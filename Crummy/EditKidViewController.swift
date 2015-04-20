@@ -1,5 +1,5 @@
 //
-//  EditPersonViewController.swift
+//  EditKidViewController.swift
 //  Crummy
 //
 //  Created by Josh Nagel on 4/20/15.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-class EditPersonViewController: UIViewController {
+class EditKidViewController: UIViewController {
   
   // properties 
 
-  @IBOutlet weak var personNameField: UITextField!
+  @IBOutlet weak var kidNameField: UITextField!
   
-  @IBOutlet weak var personDOBField: UITextField!
+  @IBOutlet weak var kidDOBField: UITextField!
   
-  @IBOutlet weak var personInsuranceField: UITextField!
+  @IBOutlet weak var kidInsuranceField: UITextField!
   
-  @IBOutlet weak var personNursePhoneField: UITextField!
+  @IBOutlet weak var kidNursePhoneField: UITextField!
   
-  @IBOutlet weak var personInfoBox: UITextView!
+  @IBOutlet weak var kidInfoBox: UITextView!
   
   @IBOutlet weak var doneButton: UIButton!
   
@@ -35,13 +35,13 @@ class EditPersonViewController: UIViewController {
   
   
   // person passed from the "list of people controller.  
-  var selectedPerson : Person!
+  var selectedKid : Kid!
 
   
   override func viewDidLoad() {
         super.viewDidLoad()
     
-    self.title = selectedPerson.name
+    self.title = selectedKid.name
     
     // hide the done button.
     doneButton.hidden = true
@@ -76,7 +76,7 @@ class EditPersonViewController: UIViewController {
     dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
     
     var strDate = dateFormatter.stringFromDate(datePicker.date)
-    selectedPerson.DOBString = strDate
+    selectedKid.DOBString = strDate
   }
   
   // pragma MARK: UIPickerViewDataSource Delegate
@@ -90,7 +90,7 @@ class EditPersonViewController: UIViewController {
   }*/
   
   func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return colors.count
+    return 1
   }
   
   // pragma MARK: UIPickerViewDelegate
