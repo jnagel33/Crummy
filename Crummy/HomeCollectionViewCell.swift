@@ -10,6 +10,6 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
     
-  @IBOutlet weak var personImageView: UIImageView!
+  @IBOutlet weak var kidImageView: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
 }
