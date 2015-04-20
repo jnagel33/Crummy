@@ -5,7 +5,6 @@
 //  Created by Josh Nagel on 4/20/15.
 //  Copyright (c) 2015 CF. All rights reserved.
 //
-
 import UIKit
 
 class EditMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -40,9 +39,13 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
     let selectedKid = self.kid[indexPath.row]
-    viewController?.selectedKid.name
+    viewController?.selectedKid = selectedKid
    
-    
     self.navigationController?.pushViewController(viewController!, animated: true)
   }
+  
+  @IBAction func addButtonPressed(sender: AnyObject) {
+    
+    performSegueWithIdentifier("ButtonSegue", sender: EditMenuViewController.self)
+    }
 }
