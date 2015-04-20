@@ -1,5 +1,5 @@
 //
-//  Person.swift
+//  Kid.swift
 //  Crummy
 //
 //  Created by Randy McLain on 4/20/15.
@@ -8,32 +8,36 @@
 
 import UIKit
 
-class Person {
+class Kid {
   
   // properties 
   
   let name : String
   
-  let DOBString : String
+  var DOBString : String
   
-  var DOB : NSDate
+  var dob : NSDate
   
-  var insuranceID : String
+  var insuranceId : String
   
-  var consultantPhone : String
+  var nursePhone : String
   
-  var personImage : UIImage?
+  var kidImage : UIImage?
+
+  var kidID : String?
   
   
   // the Person Object
-  init(theName : String, theDOB : String, theInsuranceID : String, theConsultantPhone : String) {
+  init(theName : String, theDOB : String, theInsuranceID : String, theNursePhone : String) {
     
     name = theName
     DOBString = theDOB
     // setting the NSDate DOB object based on the DOB string from user input.
     // http://stackoverflow.com/questions/24089999/how-do-you-create-a-swift-date-object
-    DOB = NSDate(dateString: DOBString)
-    insuranceID = theInsuranceID
-    consultantPhone = theConsultantPhone
+    dob = NSDate(dateString: DOBString)
+    insuranceId = theInsuranceID
+    nursePhone = theNursePhone
+    
   } // init
+  
 }
