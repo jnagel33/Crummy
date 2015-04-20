@@ -40,7 +40,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowEditMenu" {
       let destinationController = segue.destinationViewController as? EditMenuViewController
-      destinationController!.kids = self.kids
+      destinationController!.kid = self.kids
     }
   }
 }
