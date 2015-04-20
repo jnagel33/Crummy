@@ -8,28 +8,39 @@
 
 import UIKit
 
-class EditMenuViewController: UIViewController {
+class EditMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  
+  @IBOutlet weak var tableView: UITableView!
+  
+  var person: [Person]!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+      
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
+  }
+  
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if let personCount = self.person?.count {
+      return personCount
+      }
+    return 0
+  }
 
-        // Do any additional setup after loading the view.
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("EditMenuCell", forIndexPath: indexPath) as! EditMenuTableViewCell
+       cell.textLabel?.text = nil
+    if let persons = self.person?[indexPath.row] {
+      cell.textLabel!.text = persons.name
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    return cell
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditPersonVC") as? EditPersonViewController
+    let selectedPerson = self.person[indexPath.row]
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    self.navigationController?.pushViewController(viewController!, animated: true)
+  }
 }
