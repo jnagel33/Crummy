@@ -223,7 +223,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kmt-zj-PG8">
-                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
+                                <rect key="frame" x="0.0" y="438" width="600" height="175"/>
                                 <date key="date" timeIntervalSinceReferenceDate="451250976.45742297">
                                     <!--2015-04-20 19:29:36 +0000-->
                                 </date>
@@ -238,7 +238,7 @@
                             <constraint firstItem="L27-UK-Wff" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="29" id="DSu-qk-euY"/>
                             <constraint firstItem="rbK-kd-LEm" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="30" id="GbP-5D-XLV"/>
                             <constraint firstItem="SLM-Aq-lgW" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="8" id="JAU-6T-bVu"/>
-                            <constraint firstItem="kmt-zj-PG8" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="85" id="JLG-5d-Y1b"/>
+                            <constraint firstItem="kmt-zj-PG8" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="8" symbolic="YES" id="JLG-5d-Y1b"/>
                             <constraint firstItem="L27-UK-Wff" firstAttribute="top" secondItem="qsK-a9-jxJ" secondAttribute="bottom" constant="8" id="K1C-5c-b7F"/>
                             <constraint firstItem="qsK-a9-jxJ" firstAttribute="top" secondItem="rbK-kd-LEm" secondAttribute="bottom" constant="8" id="LPK-eD-HE8"/>
                             <constraint firstItem="C0G-ri-FaK" firstAttribute="top" secondItem="FhF-le-phE" secondAttribute="bottom" constant="8" id="OMb-NH-kcF"/>
@@ -257,6 +257,11 @@
                             <constraint firstItem="FhF-le-phE" firstAttribute="top" secondItem="Kja-0r-bk8" secondAttribute="bottom" constant="8" id="x4T-he-sjP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kmt-zj-PG8" secondAttribute="trailing" constant="-16" id="zHM-1u-9Yv"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JLG-5d-Y1b"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="kmt-zj-PG8" id="S8Q-Wk-VRZ"/>
@@ -274,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0v-zw-Mzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2492" y="-812"/>
+            <point key="canvasLocation" x="3412" y="-596"/>
         </scene>
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">

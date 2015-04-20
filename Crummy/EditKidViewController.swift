@@ -10,8 +10,8 @@ import UIKit
 
 class EditKidViewController: UIViewController {
   
-  // properties 
-
+  // properties
+  
   @IBOutlet weak var kidNameField: UITextField!
   
   @IBOutlet weak var kidDOBField: UITextField!
@@ -27,8 +27,7 @@ class EditKidViewController: UIViewController {
   @IBOutlet weak var datePicker: UIDatePicker!
   
   var date = NSDate()
-  
-  
+  let constraintBuffer : CGFloat = 175.0
   
   
   // setup the constraints on the picker image view here:
@@ -38,12 +37,12 @@ class EditKidViewController: UIViewController {
   @IBOutlet weak var datePickerLeading: NSLayoutConstraint!
   @IBOutlet weak var datePickerTop: NSLayoutConstraint!
   
-  // person passed from the "list of people controller.  
+  // person passed from the "list of people controller.
   var selectedKid : Kid!
-
+  
   
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
     
     self.title = selectedKid.name
     
@@ -53,31 +52,27 @@ class EditKidViewController: UIViewController {
     
     datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
     
-    // move down the picker view off the bottom of the screen.  
+    // move down the picker view off the bottom of the screen.
+    self.datePickerTop.constant = self.datePickerTop.constant - self.constraintBuffer
     
-    
-    
-    
-    
-
-    } // viewDidLoad
+  } // viewDidLoad
   
   @IBAction func datePressed(sender: AnyObject) {
-  
     
-  // button to remove the UIPicker from view and apply date to person object
+    // move down the picker view off the bottom of the screen.
+    self.datePickerTop.constant = self.datePickerTop.constant + self.constraintBuffer
   }
   
   @IBAction func donePressed(sender: AnyObject) {
     
   } // donePressed
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
   
-  // func to set the date from the picker if no date is set.  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker:UIDatePicker) {
     var dateFormatter = NSDateFormatter()
@@ -89,27 +84,29 @@ class EditKidViewController: UIViewController {
     selectedKid.DOBString = strDate
   }
   
+  
+  
   // pragma MARK: UIPickerViewDataSource Delegate
   
-//  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-//    return 1
-//  }
-//  
-//  /* func pickerView(pickerView: UIPickerView, numberOfRowsInComponent: component) {
-//  return colors.count
-//  }*/
-//  
-//  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//    return 1
-//  }
-//  
-//  // pragma MARK: UIPickerViewDelegate
-//  
-//  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-//    
-//    return colors[row]
-//  }
-//  
-//  
+  //  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+  //    return 1
+  //  }
+  //
+  //  /* func pickerView(pickerView: UIPickerView, numberOfRowsInComponent: component) {
+  //  return colors.count
+  //  }*/
+  //
+  //  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  //    return 1
+  //  }
+  //
+  //  // pragma MARK: UIPickerViewDelegate
+  //
+  //  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+  //
+  //    return colors[row]
+  //  }
+  //  
+  //  
   
 }
