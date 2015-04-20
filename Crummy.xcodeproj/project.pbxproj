@@ -93,8 +93,8 @@
 		431E22881AE55D9600A831CB /* Crummy */ = {
 			isa = PBXGroup;
 			children = (
-				D06A1D291AE5624B0081CEDD /* Model */,
 				431E228B1AE55D9600A831CB /* AppDelegate.swift */,
+				D06A1D291AE5624B0081CEDD /* Model */,
 				4347ACC21AE5678C002C9FB9 /* View */,
 				4347ACC11AE56771002C9FB9 /* Controller */,
 				431E22921AE55D9600A831CB /* Images.xcassets */,
