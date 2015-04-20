@@ -88,12 +88,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052" y="-384"/>
+            <point key="canvasLocation" x="1196" y="-318"/>
         </scene>
         <!--Edit Person View Controller-->
         <scene sceneID="aZr-B0-EKf">
             <objects>
-                <viewController id="tvq-mh-5cL" customClass="EditPersonViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditPersonVC" id="tvq-mh-5cL" customClass="EditPersonViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LIF-Mf-6AV"/>
                         <viewControllerLayoutGuide type="bottom" id="MmS-wx-dHB"/>
@@ -109,7 +109,7 @@
                                     <constraint firstAttribute="width" constant="100" id="k6y-J9-dK0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date of Birth:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kja-0r-bk8">
@@ -119,7 +119,7 @@
                                     <constraint firstAttribute="height" constant="21" id="we7-Js-aZD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Insurance ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0G-ri-FaK">
@@ -129,7 +129,7 @@
                                     <constraint firstAttribute="width" constant="200" id="sux-ie-ZDT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Consulting Nurse:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsK-a9-jxJ">
@@ -139,7 +139,7 @@
                                     <constraint firstAttribute="width" constant="200" id="sdo-OI-ATM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLM-Aq-lgW">
@@ -167,6 +167,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datePressed:" destination="tvq-mh-5cL" eventType="editingDidEnd" id="D4b-Pj-qst"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ID here." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rbK-kd-LEm">
                                 <rect key="frame" x="46" y="183" width="110" height="30"/>
@@ -191,9 +194,19 @@
                                     <constraint firstAttribute="height" constant="21" id="jFZ-IC-w1P"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CED-oL-2nT">
+                                <rect key="frame" x="533" y="64" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButton:" destination="tvq-mh-5cL" eventType="touchUpInside" id="EH7-T2-8Aq"/>
+                                    <action selector="donePressed:" destination="tvq-mh-5cL" eventType="touchUpInside" id="08O-kY-efa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -221,6 +234,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="CED-oL-2nT" id="ke2-0q-XYb"/>
+                        <outlet property="donePressed" destination="CED-oL-2nT" id="WZ8-fa-Yuc"/>
                         <outlet property="personDOBField" destination="FhF-le-phE" id="pcS-dg-0ff"/>
                         <outlet property="personInfoBox" destination="SLM-Aq-lgW" id="ZHC-eR-HB6"/>
                         <outlet property="personInsuranceField" destination="rbK-kd-LEm" id="9Fz-eg-QpE"/>
@@ -355,10 +370,39 @@
                     <view key="view" contentMode="scaleToFill" id="dHc-lA-dky">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XKx-RN-w5c">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="412"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditMenuCell" id="S2w-5q-75g" customClass="EditMenuTableViewCell" customModule="Crummy" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S2w-5q-75g" id="SlI-yu-yHh">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aul-5m-qeJ">
+                                <rect key="frame" x="16" y="420" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Aul-5m-qeJ" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="8" id="3Tv-No-wFp"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="dHc-lA-dky" secondAttribute="top" id="LwZ-kw-kbG"/>
+                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="188" id="P98-B2-qLY"/>
+                            <constraint firstItem="Aul-5m-qeJ" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leadingMargin" id="cPC-Qt-HCf"/>
+                            <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="efK-q0-f8b"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="uhy-Bv-UCo"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <segue destination="tvq-mh-5cL" kind="show" id="YHG-VY-8nb"/>
+                        <outlet property="tableView" destination="XKx-RN-w5c" id="eM6-a3-mPq"/>
+                        <segue destination="tvq-mh-5cL" kind="show" identifier="EditPersonSegue" id="YHG-VY-8nb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6v-wZ-TKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
