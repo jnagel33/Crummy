@@ -40,6 +40,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditPersonVC") as? EditPersonViewController
     let selectedPerson = self.person[indexPath.row]
+    viewController?.selectedPerson.name
+    viewController?.selectedPerson.DOB
     
     self.navigationController?.pushViewController(viewController!, animated: true)
   }

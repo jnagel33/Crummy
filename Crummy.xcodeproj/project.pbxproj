@@ -18,7 +18,8 @@
 		43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */; };
 		43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */; };
 		D06A1D2B1AE5625F0081CEDD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Person.swift */; };
-		F412A8171AE566FE005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8161AE566FE005EB19F /* EditMenuTableViewCell.swift */; };
+		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
+		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,8 @@
 		43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonViewController.swift; sourceTree = "<group>"; };
 		43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		D06A1D2A1AE5625F0081CEDD /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		F412A8161AE566FE005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
+		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
+		F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,13 +93,8 @@
 			children = (
 				D06A1D291AE5624B0081CEDD /* Model */,
 				431E228B1AE55D9600A831CB /* AppDelegate.swift */,
-				431E228D1AE55D9600A831CB /* ViewController.swift */,
-				431E228F1AE55D9600A831CB /* Main.storyboard */,
-				F412A8161AE566FE005EB19F /* EditMenuTableViewCell.swift */,
-				43DF35F81AE55FF300D567D2 /* HomeViewController.swift */,
-				43DF35FA1AE5600000D567D2 /* LoginViewController.swift */,
-				43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */,
-				43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */,
+				4347ACC21AE5678C002C9FB9 /* View */,
+				4347ACC11AE56771002C9FB9 /* Controller */,
 				431E22921AE55D9600A831CB /* Images.xcassets */,
 				431E22941AE55D9600A831CB /* LaunchScreen.xib */,
 				431E22891AE55D9600A831CB /* Supporting Files */,
@@ -147,6 +144,7 @@
 			children = (
 				431E228F1AE55D9600A831CB /* Main.storyboard */,
 				43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */,
+				F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -261,11 +259,10 @@
 			files = (
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
+				F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */,
 				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
-				431E228E1AE55D9600A831CB /* ViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */,
-				F412A8171AE566FE005EB19F /* EditMenuTableViewCell.swift in Sources */,
 				D06A1D2B1AE5625F0081CEDD /* Person.swift in Sources */,
 				43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */,
 				43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */,
