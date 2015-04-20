@@ -207,6 +207,12 @@
                                     <action selector="donePressed:" destination="tvq-mh-5cL" eventType="touchUpInside" id="08O-kY-efa"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kmt-zj-PG8">
+                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="451250976.45742297">
+                                    <!--2015-04-20 19:29:36 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -234,6 +240,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="kmt-zj-PG8" id="QdM-Qp-bob"/>
                         <outlet property="doneButton" destination="CED-oL-2nT" id="ke2-0q-XYb"/>
                         <outlet property="donePressed" destination="CED-oL-2nT" id="WZ8-fa-Yuc"/>
                         <outlet property="personDOBField" destination="FhF-le-phE" id="pcS-dg-0ff"/>
