@@ -22,9 +22,9 @@ class Kid {
   
   var nursePhone : String
   
-  var personImage : UIImage?
+  var kidImage : UIImage?
 
-  var personID : String?
+  var kidID : String?
   
   
   // the Person Object
