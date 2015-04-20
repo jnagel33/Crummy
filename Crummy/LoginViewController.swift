@@ -15,6 +15,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var constraintCenterY: NSLayoutConstraint!
   
+  var bufferForSlidingLoginView: CGFloat = 50
+  var animationDuration: Double = 0.2
+  
   var tapGestureRecognizer: UITapGestureRecognizer?
   
   override func viewDidLoad() {
@@ -42,15 +45,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   //MARK: UITextFieldDelegate
   
   func textFieldDidBeginEditing(textField: UITextField) {
-    self.constraintCenterY.constant += 50
-    UIView.animateWithDuration(0.2, animations: { () -> Void in
+    self.constraintCenterY.constant += self.bufferForSlidingLoginView
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
   }
   
   func textFieldDidEndEditing(textField: UITextField) {
-    self.constraintCenterY.constant -= 50
-    UIView.animateWithDuration(0.2, animations: { () -> Void in
+    self.constraintCenterY.constant -= self.bufferForSlidingLoginView
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
   }
