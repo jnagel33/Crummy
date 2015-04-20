@@ -9,6 +9,8 @@
 import UIKit
 
 class EditPersonViewController: UIViewController {
+  
+  // properties 
 
   @IBOutlet weak var personNameField: UITextField!
   
@@ -20,8 +22,16 @@ class EditPersonViewController: UIViewController {
   
   @IBOutlet weak var personInfoBox: UITextView!
   
+  // person passed from the "list of people controller.  
+  var selectedPerson : Person!
+  
+  
+  
   override func viewDidLoad() {
         super.viewDidLoad()
+    self.title = "This Person"
+    
+    
 
         // Do any additional setup after loading the view.
     }

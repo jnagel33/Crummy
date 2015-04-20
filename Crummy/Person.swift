@@ -10,6 +10,7 @@ import UIKit
 
 class Person {
   
+  // properties 
   
   let name : String
   
