@@ -19,6 +19,7 @@
 		43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */; };
 		D06A1D2B1AE5625F0081CEDD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Person.swift */; };
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
+		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		D06A1D2A1AE5625F0081CEDD /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
+		F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				431E228F1AE55D9600A831CB /* Main.storyboard */,
 				43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */,
+				F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -256,8 +259,8 @@
 			files = (
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
+				F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */,
 				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
-				431E228E1AE55D9600A831CB /* ViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */,
 				D06A1D2B1AE5625F0081CEDD /* Person.swift in Sources */,
