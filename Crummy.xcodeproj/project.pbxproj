@@ -12,6 +12,7 @@
 		431E22931AE55D9600A831CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431E22921AE55D9600A831CB /* Images.xcassets */; };
 		431E22961AE55D9600A831CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 431E22941AE55D9600A831CB /* LaunchScreen.xib */; };
 		431E22A21AE55D9700A831CB /* CrummyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E22A11AE55D9700A831CB /* CrummyTests.swift */; };
+		437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */; };
 		43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35F81AE55FF300D567D2 /* HomeViewController.swift */; };
 		43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FA1AE5600000D567D2 /* LoginViewController.swift */; };
 		43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */; };
@@ -43,6 +44,7 @@
 		431E229B1AE55D9700A831CB /* CrummyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrummyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		431E22A01AE55D9700A831CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		431E22A11AE55D9700A831CB /* CrummyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrummyTests.swift; sourceTree = "<group>"; };
+		437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		43DF35F81AE55FF300D567D2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		43DF35FA1AE5600000D567D2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				43DF35FA1AE5600000D567D2 /* LoginViewController.swift */,
 				43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */,
 				43DF35FE1AE5601B00D567D2 /* EditKidViewController.swift */,
+				437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
+				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
 				43E7D64A1AE57DE40014B86F /* StringExtension.swift in Sources */,
 				D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */,
 				43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */,
