@@ -8,28 +8,49 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  @IBOutlet weak var usernameTextField: UITextField!
+  @IBOutlet weak var passwordTextField: UITextField!
+  @IBOutlet weak var loginButton: UIButton!
+  
+  var tapGestureRecognizer: UITapGestureRecognizer?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.usernameTextField.becomeFirstResponder()
+    self.usernameTextField.delegate = self
+    self.passwordTextField.delegate = self
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    self.view.addGestureRecognizer(self.tapGestureRecognizer!)
+  }
+  
+  @IBAction func loginPressed(sender: UIButton) {
+    println(usernameTextField.text)
+    println(passwordTextField.text)
+    self.performSegueWithIdentifier("ShowHomeScreen", sender: self)
+  }
+  
+  func dismissKeyboard() {
+    self.usernameTextField.resignFirstResponder()
+    self.passwordTextField.resignFirstResponder()
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    self.usernameTextField.resignFirstResponder()
+    self.passwordTextField.resignFirstResponder()
+    return true
+  }
+  
+  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    if textField == usernameTextField {
+      if string.validForUsername() {
+        return true
+      } else {
+        return false
+      }
     }
-    */
-
+    return true
+  }
 }
