@@ -18,6 +18,7 @@
 		43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */; };
 		43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */; };
 		D06A1D2B1AE5625F0081CEDD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Person.swift */; };
+		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuViewController.swift; sourceTree = "<group>"; };
 		43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonViewController.swift; sourceTree = "<group>"; };
 		D06A1D2A1AE5625F0081CEDD /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		431E22891AE55D9600A831CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */,
 				431E228A1AE55D9600A831CB /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
+				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
 				431E228E1AE55D9600A831CB /* ViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */,
