@@ -13,6 +13,10 @@
 		431E22931AE55D9600A831CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431E22921AE55D9600A831CB /* Images.xcassets */; };
 		431E22961AE55D9600A831CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 431E22941AE55D9600A831CB /* LaunchScreen.xib */; };
 		431E22A21AE55D9700A831CB /* CrummyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E22A11AE55D9700A831CB /* CrummyTests.swift */; };
+		43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35F81AE55FF300D567D2 /* HomeViewController.swift */; };
+		43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FA1AE5600000D567D2 /* LoginViewController.swift */; };
+		43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */; };
+		43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		431E229B1AE55D9700A831CB /* CrummyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrummyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		431E22A01AE55D9700A831CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		431E22A11AE55D9700A831CB /* CrummyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrummyTests.swift; sourceTree = "<group>"; };
+		43DF35F81AE55FF300D567D2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		43DF35FA1AE5600000D567D2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuViewController.swift; sourceTree = "<group>"; };
+		43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,10 @@
 				431E228B1AE55D9600A831CB /* AppDelegate.swift */,
 				431E228D1AE55D9600A831CB /* ViewController.swift */,
 				431E228F1AE55D9600A831CB /* Main.storyboard */,
+				43DF35F81AE55FF300D567D2 /* HomeViewController.swift */,
+				43DF35FA1AE5600000D567D2 /* LoginViewController.swift */,
+				43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */,
+				43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */,
 				431E22921AE55D9600A831CB /* Images.xcassets */,
 				431E22941AE55D9600A831CB /* LaunchScreen.xib */,
 				431E22891AE55D9600A831CB /* Supporting Files */,
@@ -212,8 +224,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
 				431E228E1AE55D9600A831CB /* ViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
+				43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */,
+				43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */,
+				43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +427,7 @@
 				431E22A71AE55D9700A831CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		431E22A81AE55D9700A831CB /* Build configuration list for PBXNativeTarget "CrummyTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +436,7 @@
 				431E22AA1AE55D9700A831CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
