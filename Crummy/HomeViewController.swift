@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
 
   @IBOutlet weak var collectionView: UICollectionView!
   
-  var people = [Person(theName: "Josh", theDOB: NSDate(), theInsuranceID: "130831", theConsultantPhone: "8010380024"), Person(theName: "Randy", theDOB: NSDate(), theInsuranceID: "244553", theConsultantPhone: "4200244244"), Person(theName: "Ed", theDOB: NSDate(), theInsuranceID: "43988305", theConsultantPhone: "94835553")]
+  var people = [Person(theName: "Josh", theDOB: String("2011-06-13"), theInsuranceID: "130831", theConsultantPhone: "8010380024"), Person(theName: "Randy", theDOB: String("2011-06-11"), theInsuranceID: "244553", theConsultantPhone: "4200244244"), Person(theName: "Ed", theDOB: String("2011-06-12"), theInsuranceID: "43988305", theConsultantPhone: "94835553")]
   
   
   override func viewDidLoad() {

@@ -93,13 +93,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter date." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhF-le-phE">
-                                <rect key="frame" x="46" y="160" width="92" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yyyy-mm-dd" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhF-le-phE">
+                                <rect key="frame" x="46" y="160" width="103" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LTY-qo-PLw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datePressed:" destination="tvq-mh-5cL" eventType="editingDidEnd" id="D4b-Pj-qst"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ID here." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rbK-kd-LEm">
                                 <rect key="frame" x="46" y="227" width="110" height="30"/>
@@ -127,6 +130,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CED-oL-2nT">
+                                <rect key="frame" x="533" y="64" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButton:" destination="tvq-mh-5cL" eventType="touchUpInside" id="EH7-T2-8Aq"/>
+                                    <action selector="donePressed:" destination="tvq-mh-5cL" eventType="touchUpInside" id="08O-kY-efa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -154,6 +167,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="CED-oL-2nT" id="ke2-0q-XYb"/>
+                        <outlet property="donePressed" destination="CED-oL-2nT" id="WZ8-fa-Yuc"/>
                         <outlet property="personDOBField" destination="FhF-le-phE" id="pcS-dg-0ff"/>
                         <outlet property="personInfoBox" destination="SLM-Aq-lgW" id="ZHC-eR-HB6"/>
                         <outlet property="personInsuranceField" destination="rbK-kd-LEm" id="9Fz-eg-QpE"/>

@@ -22,6 +22,8 @@ class EditPersonViewController: UIViewController {
   
   @IBOutlet weak var personInfoBox: UITextView!
   
+  @IBOutlet weak var doneButton: UIButton!
+  
   // person passed from the "list of people controller.  
   var selectedPerson : Person!
   
@@ -30,26 +32,27 @@ class EditPersonViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
     self.title = "This Person"
-    
+    // hide the done button.
+    doneButton.hidden = true
     
 
         // Do any additional setup after loading the view.
-    }
+    } // viewDidLoad
+  
+  @IBAction func datePressed(sender: AnyObject) {
+    
+  } // datePressed
+  
+
+  // button to remove the UIPicker from view and apply date to person object
+
+  @IBAction func donePressed(sender: AnyObject) {
+    
+  } // donePressed
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
