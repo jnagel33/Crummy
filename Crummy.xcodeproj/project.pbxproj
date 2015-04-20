@@ -17,6 +17,7 @@
 		43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FA1AE5600000D567D2 /* LoginViewController.swift */; };
 		43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */; };
 		43DF35FF1AE5601B00D567D2 /* EditPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */; };
+		43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		43DF35FA1AE5600000D567D2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuViewController.swift; sourceTree = "<group>"; };
 		43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonViewController.swift; sourceTree = "<group>"; };
+		43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				431E228D1AE55D9600A831CB /* ViewController.swift */,
 				431E228F1AE55D9600A831CB /* Main.storyboard */,
 				43DF35F81AE55FF300D567D2 /* HomeViewController.swift */,
+				43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */,
 				43DF35FA1AE5600000D567D2 /* LoginViewController.swift */,
 				43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */,
 				43DF35FE1AE5601B00D567D2 /* EditPersonViewController.swift */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
 				431E228E1AE55D9600A831CB /* ViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
