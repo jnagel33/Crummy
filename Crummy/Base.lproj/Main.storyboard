@@ -325,8 +325,8 @@
                                             </mask>
                                         </variation>
                                         <connections>
+                                            <outlet property="kidImageView" destination="TyL-lh-up1" id="QJi-CW-DUY"/>
                                             <outlet property="nameLabel" destination="iJB-kQ-sZ2" id="n3H-t6-qPI"/>
-                                            <outlet property="personImageView" destination="TyL-lh-up1" id="qcZ-yI-OEt"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -428,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6v-wZ-TKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1712" y="-806"/>
+            <point key="canvasLocation" x="2578" y="504"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="scz-gs-4lS">
