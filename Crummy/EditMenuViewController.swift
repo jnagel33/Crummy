@@ -16,8 +16,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
 
   override func viewDidLoad() {
     super.viewDidLoad()
-      
-    self.tableView.delegate = self
+    
+   self.tableView.delegate = self
     self.tableView.dataSource = self
   }
   

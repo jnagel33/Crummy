@@ -33,4 +33,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     
     return cell
   }
+  
+  //MARK: 
+  //MARK: prepareForSegue
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowEditMenu" {
+      let destinationController = segue.destinationViewController as? EditMenuViewController
+      destinationController!.person = self.people
+    }
+  }
 }
