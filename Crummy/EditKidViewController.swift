@@ -95,9 +95,9 @@ class EditKidViewController: UIViewController {
   
   // pragma MARK: UIPickerViewDelegate
   
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-    return colors[row]
-  }
+//  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+//    return colors[row]
+//  }
   
   
     
