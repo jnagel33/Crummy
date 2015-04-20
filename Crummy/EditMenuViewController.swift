@@ -12,7 +12,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   @IBOutlet weak var tableView: UITableView!
   
-  var person: [Person]!
+  var kid: [Kid]!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,8 +22,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let personCount = self.person?.count {
-      return personCount
+    if let kidCount = self.kid?.count {
+      return kidCount
       }
     return 0
   }
@@ -31,17 +31,17 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("EditMenuCell", forIndexPath: indexPath) as! EditMenuTableViewCell
        cell.textLabel?.text = nil
-    if let persons = self.person?[indexPath.row] {
-      cell.textLabel!.text = persons.name
+    if let kids = self.kid?[indexPath.row] {
+      cell.textLabel!.text = kids.name
     }
     return cell
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditPersonVC") as? EditPersonViewController
-    let selectedPerson = self.person[indexPath.row]
-    viewController?.selectedPerson.name
-    viewController?.selectedPerson.DOB
+    let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
+    let selectedKid = self.kid[indexPath.row]
+    viewController?.selectedKid.name
+   
     
     self.navigationController?.pushViewController(viewController!, animated: true)
   }
