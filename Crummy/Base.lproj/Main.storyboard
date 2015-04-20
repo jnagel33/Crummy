@@ -198,12 +198,6 @@
                                     <action selector="donePressed:" destination="tvq-mh-5cL" eventType="touchUpInside" id="RyH-6V-JWw"/>
                                 </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kmt-zj-PG8">
-                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="451250976.45742297">
-                                    <!--2015-04-20 19:29:36 +0000-->
-                                </date>
-                            </datePicker>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name here." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-ua-GPq">
                                 <rect key="frame" x="46" y="93" width="131" height="30"/>
                                 <constraints>
@@ -212,18 +206,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kmt-zj-PG8">
+                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="451250976.45742297">
+                                    <!--2015-04-20 19:29:36 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kja-0r-bk8" firstAttribute="top" secondItem="vJc-ua-GPq" secondAttribute="bottom" constant="8" id="1uC-Ug-iuw"/>
+                            <constraint firstItem="MmS-wx-dHB" firstAttribute="top" secondItem="kmt-zj-PG8" secondAttribute="bottom" id="2gc-kA-ZVA"/>
                             <constraint firstItem="Kja-0r-bk8" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" id="Af7-t5-vGz"/>
                             <constraint firstItem="FhF-le-phE" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="30" id="ApO-Rv-WWz"/>
                             <constraint firstItem="L27-UK-Wff" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="29" id="DSu-qk-euY"/>
                             <constraint firstItem="rbK-kd-LEm" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="30" id="GbP-5D-XLV"/>
                             <constraint firstItem="SLM-Aq-lgW" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="8" id="JAU-6T-bVu"/>
+                            <constraint firstItem="kmt-zj-PG8" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="85" id="JLG-5d-Y1b"/>
                             <constraint firstItem="L27-UK-Wff" firstAttribute="top" secondItem="qsK-a9-jxJ" secondAttribute="bottom" constant="8" id="K1C-5c-b7F"/>
                             <constraint firstItem="qsK-a9-jxJ" firstAttribute="top" secondItem="rbK-kd-LEm" secondAttribute="bottom" constant="8" id="LPK-eD-HE8"/>
                             <constraint firstItem="C0G-ri-FaK" firstAttribute="top" secondItem="FhF-le-phE" secondAttribute="bottom" constant="8" id="OMb-NH-kcF"/>
+                            <constraint firstItem="kmt-zj-PG8" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="-16" id="R7H-rf-3t1"/>
                             <constraint firstItem="qsK-a9-jxJ" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" id="SlG-aM-Oke"/>
                             <constraint firstItem="C0G-ri-FaK" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" id="Yn5-Yb-dv4"/>
                             <constraint firstItem="7zr-yM-C6J" firstAttribute="top" secondItem="LIF-Mf-6AV" secondAttribute="bottom" id="ZDf-9r-RyL"/>
@@ -236,10 +239,15 @@
                             <constraint firstItem="emq-k3-xhs" firstAttribute="top" secondItem="L27-UK-Wff" secondAttribute="bottom" constant="8" id="tD4-JN-jgg"/>
                             <constraint firstItem="rbK-kd-LEm" firstAttribute="top" secondItem="C0G-ri-FaK" secondAttribute="bottom" constant="8" id="taW-qw-nzq"/>
                             <constraint firstItem="FhF-le-phE" firstAttribute="top" secondItem="Kja-0r-bk8" secondAttribute="bottom" constant="8" id="x4T-he-sjP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kmt-zj-PG8" secondAttribute="trailing" constant="-16" id="zHM-1u-9Yv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="kmt-zj-PG8" id="S8Q-Wk-VRZ"/>
+                        <outlet property="datePickerBottom" destination="2gc-kA-ZVA" id="JJs-bv-X9C"/>
+                        <outlet property="datePickerLeading" destination="R7H-rf-3t1" id="Hfm-pY-VAa"/>
+                        <outlet property="datePickerTop" destination="JLG-5d-Y1b" id="4u1-ZZ-W37"/>
+                        <outlet property="datePickerTrailing" destination="zHM-1u-9Yv" id="pwk-z5-sr7"/>
                         <outlet property="doneButton" destination="CED-oL-2nT" id="tv3-3F-YAO"/>
                         <outlet property="kidDOBField" destination="FhF-le-phE" id="jib-fE-BeM"/>
                         <outlet property="kidInfoBox" destination="SLM-Aq-lgW" id="pcX-cH-qEp"/>

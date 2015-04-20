@@ -33,6 +33,10 @@ class EditKidViewController: UIViewController {
   
   // setup the constraints on the picker image view here:
   
+  @IBOutlet weak var datePickerBottom: NSLayoutConstraint!
+  @IBOutlet weak var datePickerTrailing: NSLayoutConstraint!
+  @IBOutlet weak var datePickerLeading: NSLayoutConstraint!
+  @IBOutlet weak var datePickerTop: NSLayoutConstraint!
   
   // person passed from the "list of people controller.  
   var selectedKid : Kid!
@@ -48,8 +52,14 @@ class EditKidViewController: UIViewController {
     
     
     datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+    
+    // move down the picker view off the bottom of the screen.  
+    
+    
+    
+    
+    
 
-        // Do any additional setup after loading the view.
     } // viewDidLoad
   
   @IBAction func datePressed(sender: AnyObject) {
@@ -81,24 +91,25 @@ class EditKidViewController: UIViewController {
   
   // pragma MARK: UIPickerViewDataSource Delegate
   
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-    return 1
-  }
+//  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+//    return 1
+//  }
+//  
+//  /* func pickerView(pickerView: UIPickerView, numberOfRowsInComponent: component) {
+//  return colors.count
+//  }*/
+//  
+//  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//    return 1
+//  }
+//  
+//  // pragma MARK: UIPickerViewDelegate
+//  
+//  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+//    
+//    return colors[row]
+//  }
+//  
+//  
   
-  /* func pickerView(pickerView: UIPickerView, numberOfRowsInComponent: component) {
-  return colors.count
-  }*/
-  
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return 1
-  }
-  
-  // pragma MARK: UIPickerViewDelegate
-  
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-    return colors[row]
-  }
-  
-  
-    
 }
