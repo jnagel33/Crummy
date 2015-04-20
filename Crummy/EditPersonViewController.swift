@@ -9,9 +9,29 @@
 import UIKit
 
 class EditPersonViewController: UIViewController {
+  
+  // properties 
 
-    override func viewDidLoad() {
+  @IBOutlet weak var personNameField: UITextField!
+  
+  @IBOutlet weak var personDOBField: UITextField!
+  
+  @IBOutlet weak var personInsuranceField: UITextField!
+  
+  @IBOutlet weak var personNursePhoneField: UITextField!
+  
+  @IBOutlet weak var personInfoBox: UITextView!
+  
+  // person passed from the "list of people controller.  
+  var selectedPerson : Person!
+  
+  
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
+    self.title = "This Person"
+    
+    
 
         // Do any additional setup after loading the view.
     }
