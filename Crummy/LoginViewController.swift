@@ -13,6 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var usernameTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var loginButton: UIButton!
+  @IBOutlet weak var constraintCenterY: NSLayoutConstraint!
   
   var tapGestureRecognizer: UITapGestureRecognizer?
   
@@ -37,9 +38,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     self.passwordTextField.resignFirstResponder()
   }
   
+  //MARK:
+  //MARK: UITextFieldDelegate
+  
+  func textFieldDidBeginEditing(textField: UITextField) {
+    self.constraintCenterY.constant += 50
+    UIView.animateWithDuration(0.2, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+  }
+  
+  func textFieldDidEndEditing(textField: UITextField) {
+    self.constraintCenterY.constant -= 50
+    UIView.animateWithDuration(0.2, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+  }
+  
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.usernameTextField.resignFirstResponder()
-    self.passwordTextField.resignFirstResponder()
+    if textField == usernameTextField {
+      self.passwordTextField.becomeFirstResponder()
+    } else {
+      self.passwordTextField.resignFirstResponder()
+    }
     return true
   }
   
