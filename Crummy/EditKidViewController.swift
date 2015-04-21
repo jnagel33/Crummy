@@ -44,11 +44,6 @@ class EditKidViewController: UIViewController {
   @IBAction func donePressed(sender: AnyObject) {
     
   } // donePressed
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
   
   // func to set the date from the picker if no date is set.  
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
