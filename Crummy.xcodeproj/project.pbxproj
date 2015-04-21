@@ -20,11 +20,12 @@
 		43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35F81AE55FF300D567D2 /* HomeViewController.swift */; };
 		43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FA1AE5600000D567D2 /* LoginViewController.swift */; };
 		43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */; };
-		43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35FE1AE5601B00D567D2 /* EditKidViewController.swift */; };
 		43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */; };
 		43E7D64A1AE57DE40014B86F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E7D6491AE57DE40014B86F /* StringExtension.swift */; };
+		D0385B5E1AE5BF6C007FE10E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0385B5D1AE5BF6C007FE10E /* DatePickerViewController.swift */; };
 		D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Kid.swift */; };
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
+		D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */; };
 		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
 		F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */; };
 		F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */; };
@@ -58,11 +59,12 @@
 		43DF35F81AE55FF300D567D2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		43DF35FA1AE5600000D567D2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuViewController.swift; sourceTree = "<group>"; };
-		43DF35FE1AE5601B00D567D2 /* EditKidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditKidViewController.swift; sourceTree = "<group>"; };
 		43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		43E7D6491AE57DE40014B86F /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D0385B5D1AE5BF6C007FE10E /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerViewController.swift; path = ../DatePickerViewController.swift; sourceTree = "<group>"; };
 		D06A1D2A1AE5625F0081CEDD /* Kid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
+		D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditKidViewController.swift; path = ../EditKidViewController.swift; sourceTree = "<group>"; };
 		F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
 		F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidJsonParser.swift; sourceTree = "<group>"; };
 		F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrummyApiService.swift; sourceTree = "<group>"; };
@@ -148,10 +150,11 @@
 		4347ACC11AE56771002C9FB9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */,
+				D0385B5D1AE5BF6C007FE10E /* DatePickerViewController.swift */,
 				43DF35F81AE55FF300D567D2 /* HomeViewController.swift */,
 				43DF35FA1AE5600000D567D2 /* LoginViewController.swift */,
 				43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */,
-				43DF35FE1AE5601B00D567D2 /* EditKidViewController.swift */,
 				437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */,
 				437947FE1AE5D702002FE57B /* EventsViewController.swift */,
 			);
@@ -287,12 +290,14 @@
 				F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */,
 				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
 				43723F251AE6DF8600543B7E /* EventTableViewCell.swift in Sources */,
+				D0385B5E1AE5BF6C007FE10E /* DatePickerViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
 				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
 				F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */,
+				D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */,
 				43E7D64A1AE57DE40014B86F /* StringExtension.swift in Sources */,
 				D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */,
 				43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */,
