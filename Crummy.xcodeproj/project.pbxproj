@@ -23,6 +23,8 @@
 		D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Kid.swift */; };
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
 		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
+		F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */; };
+		F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		D06A1D2A1AE5625F0081CEDD /* Kid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
 		F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
+		F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidJsonParser.swift; sourceTree = "<group>"; };
+		F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrummyApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				D06A1D2A1AE5625F0081CEDD /* Kid.swift */,
+				F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */,
+				F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -273,7 +279,9 @@
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
+				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
+				F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */,
 				43E7D64A1AE57DE40014B86F /* StringExtension.swift in Sources */,
 				D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */,
 				43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */,
