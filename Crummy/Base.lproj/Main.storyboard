@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -158,25 +158,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLM-Aq-lgW">
-                                <rect key="frame" x="16" y="361" width="568" height="112"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="568" id="WCb-rY-POP"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter date." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhF-le-phE">
                                 <rect key="frame" x="46" y="160" width="92" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LTY-qo-PLw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="datePressed:" destination="tvq-mh-5cL" eventType="editingDidEnd" id="sHt-ZW-hbE"/>
+                                    <segue destination="oEV-aT-kdj" kind="show" identifier="datePicker" id="YKe-iB-Fas"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ID here." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rbK-kd-LEm">
@@ -205,15 +198,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CED-oL-2nT">
-                                <rect key="frame" x="533" y="64" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="donePressed:" destination="tvq-mh-5cL" eventType="touchUpInside" id="RyH-6V-JWw"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name here." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-ua-GPq">
                                 <rect key="frame" x="46" y="93" width="131" height="30"/>
                                 <constraints>
@@ -222,27 +206,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kmt-zj-PG8">
-                                <rect key="frame" x="0.0" y="438" width="600" height="175"/>
-                                <date key="date" timeIntervalSinceReferenceDate="451250976.45742297">
-                                    <!--2015-04-20 19:29:36 +0000-->
-                                </date>
-                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLM-Aq-lgW">
+                                <rect key="frame" x="16" y="361" width="568" height="112"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="568" id="WCb-rY-POP"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kja-0r-bk8" firstAttribute="top" secondItem="vJc-ua-GPq" secondAttribute="bottom" constant="8" id="1uC-Ug-iuw"/>
-                            <constraint firstItem="MmS-wx-dHB" firstAttribute="top" secondItem="kmt-zj-PG8" secondAttribute="bottom" id="2gc-kA-ZVA"/>
                             <constraint firstItem="Kja-0r-bk8" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" id="Af7-t5-vGz"/>
                             <constraint firstItem="FhF-le-phE" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="30" id="ApO-Rv-WWz"/>
                             <constraint firstItem="L27-UK-Wff" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="29" id="DSu-qk-euY"/>
                             <constraint firstItem="rbK-kd-LEm" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="30" id="GbP-5D-XLV"/>
                             <constraint firstItem="SLM-Aq-lgW" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="8" id="JAU-6T-bVu"/>
-                            <constraint firstItem="kmt-zj-PG8" firstAttribute="top" secondItem="emq-k3-xhs" secondAttribute="bottom" constant="8" symbolic="YES" id="JLG-5d-Y1b"/>
                             <constraint firstItem="L27-UK-Wff" firstAttribute="top" secondItem="qsK-a9-jxJ" secondAttribute="bottom" constant="8" id="K1C-5c-b7F"/>
                             <constraint firstItem="qsK-a9-jxJ" firstAttribute="top" secondItem="rbK-kd-LEm" secondAttribute="bottom" constant="8" id="LPK-eD-HE8"/>
                             <constraint firstItem="C0G-ri-FaK" firstAttribute="top" secondItem="FhF-le-phE" secondAttribute="bottom" constant="8" id="OMb-NH-kcF"/>
-                            <constraint firstItem="kmt-zj-PG8" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" constant="-16" id="R7H-rf-3t1"/>
                             <constraint firstItem="qsK-a9-jxJ" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" id="SlG-aM-Oke"/>
                             <constraint firstItem="C0G-ri-FaK" firstAttribute="leading" secondItem="eZD-TP-VgQ" secondAttribute="leadingMargin" id="Yn5-Yb-dv4"/>
                             <constraint firstItem="7zr-yM-C6J" firstAttribute="top" secondItem="LIF-Mf-6AV" secondAttribute="bottom" id="ZDf-9r-RyL"/>
@@ -255,22 +240,10 @@
                             <constraint firstItem="emq-k3-xhs" firstAttribute="top" secondItem="L27-UK-Wff" secondAttribute="bottom" constant="8" id="tD4-JN-jgg"/>
                             <constraint firstItem="rbK-kd-LEm" firstAttribute="top" secondItem="C0G-ri-FaK" secondAttribute="bottom" constant="8" id="taW-qw-nzq"/>
                             <constraint firstItem="FhF-le-phE" firstAttribute="top" secondItem="Kja-0r-bk8" secondAttribute="bottom" constant="8" id="x4T-he-sjP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kmt-zj-PG8" secondAttribute="trailing" constant="-16" id="zHM-1u-9Yv"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="JLG-5d-Y1b"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
-                        <outlet property="datePicker" destination="kmt-zj-PG8" id="S8Q-Wk-VRZ"/>
-                        <outlet property="datePickerBottom" destination="2gc-kA-ZVA" id="JJs-bv-X9C"/>
-                        <outlet property="datePickerLeading" destination="R7H-rf-3t1" id="Hfm-pY-VAa"/>
-                        <outlet property="datePickerTop" destination="JLG-5d-Y1b" id="4u1-ZZ-W37"/>
-                        <outlet property="datePickerTrailing" destination="zHM-1u-9Yv" id="pwk-z5-sr7"/>
-                        <outlet property="doneButton" destination="CED-oL-2nT" id="tv3-3F-YAO"/>
-                        <outlet property="kidDOBField" destination="FhF-le-phE" id="jib-fE-BeM"/>
+                        <outlet property="kidDobField" destination="FhF-le-phE" id="74G-kq-YmM"/>
                         <outlet property="kidInfoBox" destination="SLM-Aq-lgW" id="pcX-cH-qEp"/>
                         <outlet property="kidInsuranceField" destination="rbK-kd-LEm" id="7zB-vV-N5I"/>
                         <outlet property="kidNameField" destination="vJc-ua-GPq" id="tql-qe-q5z"/>
@@ -280,6 +253,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0v-zw-Mzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3412" y="-596"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="XRc-Z2-yib">
+            <objects>
+                <viewController id="oEV-aT-kdj" customClass="DatePickerViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t4R-sF-inz"/>
+                        <viewControllerLayoutGuide type="bottom" id="ssF-Mk-Hx8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OL8-Of-BcP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="UPY-iw-ed4">
+                                <rect key="frame" x="0.0" y="206" width="600" height="180"/>
+                                <date key="date" timeIntervalSinceReferenceDate="451264097.90365303">
+                                    <!--2015-04-20 23:08:17 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8P-P0-AQG">
+                                <rect key="frame" x="210" y="424" width="180" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="bpv-Rc-HSs"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dateButtonPressed:" destination="oEV-aT-kdj" eventType="touchUpInside" id="aqF-E6-0Pa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UPY-iw-ed4" firstAttribute="top" secondItem="t4R-sF-inz" secondAttribute="bottom" constant="134" id="3Rw-4B-3hn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UPY-iw-ed4" secondAttribute="trailing" constant="-16" id="B9a-Kc-9Eo"/>
+                            <constraint firstItem="x8P-P0-AQG" firstAttribute="top" secondItem="UPY-iw-ed4" secondAttribute="bottom" constant="28.5" id="GFK-OO-wdU"/>
+                            <constraint firstAttribute="centerX" secondItem="x8P-P0-AQG" secondAttribute="centerX" id="Pu1-r3-A2B"/>
+                            <constraint firstItem="UPY-iw-ed4" firstAttribute="leading" secondItem="OL8-Of-BcP" secondAttribute="leadingMargin" constant="-16" id="Sb0-DJ-IG8"/>
+                            <constraint firstItem="ssF-Mk-Hx8" firstAttribute="top" secondItem="UPY-iw-ed4" secondAttribute="bottom" constant="205" id="jq3-Ew-VZ0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateButtonPressed" destination="x8P-P0-AQG" id="tqc-DY-aFO"/>
+                        <outlet property="datePicker" destination="UPY-iw-ed4" id="4IJ-Ai-hqY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1VB-65-hN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4054" y="-596"/>
         </scene>
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">
