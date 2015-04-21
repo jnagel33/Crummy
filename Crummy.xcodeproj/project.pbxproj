@@ -140,11 +140,11 @@
 		4347ACC11AE56771002C9FB9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				43DF35FE1AE5601B00D567D2 /* EditKidViewController.swift */,
 				D0385B5D1AE5BF6C007FE10E /* DatePickerViewController.swift */,
 				43DF35F81AE55FF300D567D2 /* HomeViewController.swift */,
 				43DF35FA1AE5600000D567D2 /* LoginViewController.swift */,
 				43DF35FC1AE5600F00D567D2 /* EditMenuViewController.swift */,
-				43DF35FE1AE5601B00D567D2 /* EditKidViewController.swift */,
 				437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */,
 				437947FE1AE5D702002FE57B /* EventsViewController.swift */,
 			);
