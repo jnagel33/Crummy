@@ -27,7 +27,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
     self.passwordTextField.delegate = self
     self.emailAddressTextField.delegate = self
     
-    tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     self.view.addGestureRecognizer(self.tapGestureRecognizer!)
 
   }
