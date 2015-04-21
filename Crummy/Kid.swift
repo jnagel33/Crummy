@@ -26,6 +26,8 @@ class Kid {
 
   var kidID : String?
   
+  var events: [Event] = [Event]()
+  
   
   // the Person Object
   init(theName : String, theDOB : String, theInsuranceID : String, theNursePhone : String) {

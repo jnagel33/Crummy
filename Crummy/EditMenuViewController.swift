@@ -43,9 +43,14 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
    
     self.navigationController?.pushViewController(viewController!, animated: true)
   }
-  
   @IBAction func addButtonPressed(sender: AnyObject) {
-    
     performSegueWithIdentifier("ButtonSegue", sender: EditMenuViewController.self)
-    }
+  }
+  
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    kid.removeAtIndex(indexPath.row)
+    let indexPaths = [indexPath]
+    tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+  }
 }
