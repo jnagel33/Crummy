@@ -13,24 +13,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var usernameTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var loginButton: UIButton!
-  @IBOutlet weak var constraintCenterY: NSLayoutConstraint!
+  @IBOutlet weak var constraintContainerCenterY: NSLayoutConstraint!
+  
+  var bufferForSlidingLoginView: CGFloat = 70
+  var animationDuration: Double = 0.2
   
   var tapGestureRecognizer: UITapGestureRecognizer?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.usernameTextField.becomeFirstResponder()
     self.usernameTextField.delegate = self
     self.passwordTextField.delegate = self
     
-    tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     self.view.addGestureRecognizer(self.tapGestureRecognizer!)
   }
   
   @IBAction func loginPressed(sender: UIButton) {
     println(usernameTextField.text)
     println(passwordTextField.text)
-    self.performSegueWithIdentifier("ShowHomeScreen", sender: self)
+    self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
   }
   
   func dismissKeyboard() {
@@ -42,15 +44,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   //MARK: UITextFieldDelegate
   
   func textFieldDidBeginEditing(textField: UITextField) {
-    self.constraintCenterY.constant += 50
-    UIView.animateWithDuration(0.2, animations: { () -> Void in
+    self.constraintContainerCenterY.constant += bufferForSlidingLoginView
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
   }
   
   func textFieldDidEndEditing(textField: UITextField) {
-    self.constraintCenterY.constant -= 50
-    UIView.animateWithDuration(0.2, animations: { () -> Void in
+        self.constraintContainerCenterY.constant -= self.bufferForSlidingLoginView
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
   }
