@@ -277,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0v-zw-Mzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4116" y="-812"/>
+            <point key="canvasLocation" x="4128" y="-762"/>
         </scene>
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">
@@ -495,7 +495,7 @@
             </objects>
             <point key="canvasLocation" x="1782" y="-1198"/>
         </scene>
-        <!--Edit Menu View Controller-->
+        <!--Edit Menu-->
         <scene sceneID="4L5-0C-1y9">
             <objects>
                 <viewController id="YBf-J8-AIy" customClass="EditMenuViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
@@ -508,7 +508,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XKx-RN-w5c">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="412"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditMenuCell" id="S2w-5q-75g" customClass="EditMenuTableViewCell" customModule="Crummy" customModuleProvider="target">
@@ -519,27 +519,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aul-5m-qeJ">
-                                <rect key="frame" x="16" y="420" width="22" height="22"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addButtonPressed:" destination="YBf-J8-AIy" eventType="touchUpInside" id="Gwi-6g-ade"/>
-                                    <segue destination="tvq-mh-5cL" kind="show" identifier="ButtonSegue" id="Lz0-8b-hZ7"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Aul-5m-qeJ" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="8" id="3Tv-No-wFp"/>
+                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" id="6qe-ts-wd5"/>
                             <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="dHc-lA-dky" secondAttribute="top" id="LwZ-kw-kbG"/>
-                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="188" id="P98-B2-qLY"/>
-                            <constraint firstItem="Aul-5m-qeJ" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leadingMargin" id="cPC-Qt-HCf"/>
                             <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="efK-q0-f8b"/>
                             <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="uhy-Bv-UCo"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit Menu" id="Ci2-dW-02U">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1tJ-UY-tZl">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="YBf-J8-AIy" id="NgJ-MO-VOx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="XKx-RN-w5c" id="eM6-a3-mPq"/>
                         <segue destination="tvq-mh-5cL" kind="show" identifier="EditPersonSegue" id="YHG-VY-8nb"/>
@@ -547,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6v-wZ-TKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2578" y="504"/>
+            <point key="canvasLocation" x="2423" y="405"/>
         </scene>
         <!--Create User View Controller-->
         <scene sceneID="nmc-HD-hAU">
@@ -688,7 +683,4 @@
         <image name="PhoneButton" width="37" height="52"/>
         <image name="ThreeDotsMenuButton" width="35" height="35"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Lz0-8b-hZ7"/>
-    </inferredMetricsTieBreakers>
 </document>
