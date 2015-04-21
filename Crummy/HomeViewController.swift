@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
 
   @IBOutlet weak var collectionView: UICollectionView!
   
-  var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553")]
+  var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553"), Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553")]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,7 +40,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowEditMenu" {
       let destinationController = segue.destinationViewController as? EditMenuViewController
-      destinationController!.kid = self.kids
+      destinationController?.kid = self.kids
+    } else if segue.identifier == "ShowEvents" {
+      let destinationController = segue.destinationViewController as? EventsViewController
+      let indexPath = self.collectionView.indexPathsForSelectedItems().first as! NSIndexPath
+      destinationController?.kid = kids[indexPath.row]
     }
   }
 }

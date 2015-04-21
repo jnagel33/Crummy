@@ -15,10 +15,13 @@ class EventsViewController: UIViewController, UITextFieldDelegate {
   var keyboardHeight: CGFloat = 0
   var animationDuration: Double = 0.2
   var tapGestureRecognizer: UITapGestureRecognizer?
+  var kid: Kid!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.containerTextField.delegate = self
+    
+    self.navigationItem.title = kid.name
     
     self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     self.view.addGestureRecognizer(self.tapGestureRecognizer!)
