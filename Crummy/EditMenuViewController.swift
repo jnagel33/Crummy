@@ -11,6 +11,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   @IBOutlet weak var tableView: UITableView!
   
+  let crummyApiService = CrummyApiService()
+  
   var kid: [Kid]!
 
   override func viewDidLoad() {
@@ -52,5 +54,16 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     kid.removeAtIndex(indexPath.row)
     let indexPaths = [indexPath]
     tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+  }
+  
+  @IBAction func loginButton(sender: AnyObject) {
+    let email = "esa@yahoo.com"
+    let password = "ghds1234"
+    
+    self.crummyApiService.postLogin(email, password: password, completionHandler: { (error) -> (Void) in
+      if error == nil {
+        
+      }
+    })
   }
 }
