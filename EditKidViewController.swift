@@ -19,6 +19,8 @@ class EditKidViewController: UITableViewController {
   @IBOutlet weak var dobTableCell: UITableViewCell!
   @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var birthdateLabel: UILabel!
+  @IBOutlet weak var dateButton: UIButton!
+  
   
   var datePickerInterval : NSTimeInterval = 1.0
   let datePickerVisualHeight: CGFloat = 216.0
@@ -27,6 +29,7 @@ class EditKidViewController: UITableViewController {
   var datePicker : UIDatePicker!
   var guess: Int = 0
   
+  // not used yet.
   var date = NSDate()
   
   
@@ -44,9 +47,9 @@ class EditKidViewController: UITableViewController {
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem()
-  }
+  } // viewDidLoad
   
-  //MARK: - DatePicker
+  // MARK: - DatePicker
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker: UIDatePicker) {
@@ -57,16 +60,26 @@ class EditKidViewController: UITableViewController {
     
     self.birthdateLabel.text = selectedKid.DOBString
     birthdateLabel.textColor = UIColor.blackColor()
-    println(selectedKid.DOBString)
+//    println(selectedKid.DOBString)
   } // datePickerChanged
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
   
+  func pickerCloserPressed(sender: AnyObject) {
+    
+    UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
+      self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerVisualHeight
+    })
+    self.datePickerChanged(datePicker)
+    self.dateButton.hidden = false
+  } // pickerCloserPressed
+  
+  
+  // MARK: - Date button
   @IBAction func datePressed(sender: AnyObject) {
     // if the button is pressed, it brings up the datePicker object.
+    
+    
+    self.dateButton.hidden = true
     
     pickerView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 250))
     pickerView.backgroundColor = UIColor.lightGrayColor()
@@ -75,7 +88,7 @@ class EditKidViewController: UITableViewController {
     datePicker = UIDatePicker(frame: CGRect(x: 0, y: 25, width: pickerView.frame.width, height: 216))
     datePicker.datePickerMode = UIDatePickerMode.Date
     datePicker.backgroundColor = UIColor.lightGrayColor()
-
+    
     // its off screen.
     pickerView.addSubview(datePicker)
     
@@ -89,39 +102,47 @@ class EditKidViewController: UITableViewController {
     
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
       
-    self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerVisualHeight
-
+      self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerVisualHeight
+      
     })
     
   } // datePressed
   
-  func pickerCloserPressed(sender: AnyObject) {
+  // MARK: - Text Fields
+  
+  func textFieldDidBeginEditing(textField: UITextField!) {
     
+    // hide the right bar button
     
-    UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
-      self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerVisualHeight
-    })
-    guess++
-    println(guess)
-    self.datePickerChanged(datePicker)
-  }
+    // add a "done bar button in its place to acknowledge that editing has begun.
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem (title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "saveDataMode")
+    
+    // save the data for the kid object.
+    
+  } // textFieldDidBeginEditing
+
+  // MARK - Toolbar
+  /*
+  When I enter a text field should I then set the right bar button item to a different button, a "save" button?
+  
+  
+  */
+  func hideToolBarButton() {
+    
+    //  self.navigationItem.setRightBarButtonItem(<#item: UIBarButtonItem?#>, animated: <#Bool#>)
+  } // hideToolBarButton
+  
+  
   
   // MARK: - Table view data source
-  
+  // not currently being used.
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
     if indexPath.row == dateRow {
       // reveal the datePicker object.
     }
     
-  }
-  
-  // MARK: - TableCell
-  //
-  //  func textFieldDidBeginEditing(textField: UITextField!) {
-  //    hideDatePicker()
-  //
-  //  }
+  } // didSelectRowAtIndexPath
   
   /*
   // Override to support conditional editing of the table view.
@@ -142,13 +163,7 @@ class EditKidViewController: UITableViewController {
   }
   }
   */
-  
-  /*
-  // Override to support rearranging the table view.
-  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-  
-  }
-  */
+
   
   /*
   // Override to support conditional rearranging of the table view.
@@ -158,16 +173,9 @@ class EditKidViewController: UITableViewController {
   }
   */
   
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using [segue destinationViewController].
-  
-  // Pass the kid object to the new view controller.
-  
-  }
-  */
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  } // didReceiveMemoryWarning
   
 }
