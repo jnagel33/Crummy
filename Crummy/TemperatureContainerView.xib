@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsViewController" customModule="Crummy" customModuleProvider="target">
+            <connections>
+                <outlet property="temperatureDoneButton" destination="K6q-1z-f50" id="1EQ-lw-97O"/>
+                <outlet property="temperatureTextField" destination="viX-P3-E2m" id="OnT-Bc-6x1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="yrC-Ks-Fo1">
+            <rect key="frame" x="0.0" y="0.0" width="484" height="86"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouf-2I-k5S">
+                    <rect key="frame" x="202" y="65" width="81" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="NAn-RI-Llm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leV-lo-pyX">
+                    <rect key="frame" x="146" y="8" width="197" height="43"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viX-P3-E2m">
+                            <rect key="frame" x="9" y="7" width="80" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="rLU-00-9z7"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="° Fahrenheit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7U-K8-eg3">
+                            <rect key="frame" x="97" y="11" width="93" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="viX-P3-E2m" firstAttribute="top" secondItem="leV-lo-pyX" secondAttribute="top" constant="7" id="NGK-Fj-zBY"/>
+                        <constraint firstItem="d7U-K8-eg3" firstAttribute="leading" secondItem="viX-P3-E2m" secondAttribute="trailing" constant="8" symbolic="YES" id="ejT-UB-iTN"/>
+                        <constraint firstAttribute="centerY" secondItem="viX-P3-E2m" secondAttribute="centerY" id="gDi-m5-AlL"/>
+                        <constraint firstAttribute="trailing" secondItem="d7U-K8-eg3" secondAttribute="trailing" constant="7" id="iNZ-GJ-TXp"/>
+                        <constraint firstAttribute="centerY" secondItem="d7U-K8-eg3" secondAttribute="centerY" id="nFu-CZ-nZV"/>
+                        <constraint firstItem="viX-P3-E2m" firstAttribute="leading" secondItem="leV-lo-pyX" secondAttribute="leading" constant="9" id="zGO-lj-1xp"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6q-1z-f50">
+                    <rect key="frame" x="430" y="15" width="36" height="28"/>
+                    <state key="normal" image="CheckmarkButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="i7o-av-rAG"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ouf-2I-k5S" firstAttribute="centerX" secondItem="yrC-Ks-Fo1" secondAttribute="centerX" id="5jq-PY-bee"/>
+                <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="top" constant="8" id="Bwv-hD-b3l"/>
+                <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="topMargin" id="Czt-rC-hNh"/>
+                <constraint firstItem="leV-lo-pyX" firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" constant="0.5" id="EWa-9R-kEg"/>
+                <constraint firstAttribute="centerX" secondItem="leV-lo-pyX" secondAttribute="centerX" constant="-2.5" id="WVr-nE-rqG"/>
+                <constraint firstAttribute="trailing" secondItem="K6q-1z-f50" secondAttribute="trailing" constant="18" id="fYt-5X-MHZ"/>
+                <constraint firstItem="leV-lo-pyX" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="140" id="jlf-5N-jov"/>
+                <constraint firstAttribute="trailing" secondItem="leV-lo-pyX" secondAttribute="trailing" constant="135" id="l7n-wR-YLp"/>
+                <constraint firstAttribute="bottom" secondItem="Ouf-2I-k5S" secondAttribute="bottom" id="wXO-B9-jkD"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Czt-rC-hNh"/>
+                    <exclude reference="jlf-5N-jov"/>
+                    <exclude reference="l7n-wR-YLp"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="320" y="84"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="CheckmarkButton" width="36" height="28"/>
+    </resources>
+</document>
