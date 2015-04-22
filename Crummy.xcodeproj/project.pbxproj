@@ -15,6 +15,18 @@
 		43723F231AE6B68700543B7E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F221AE6B68700543B7E /* Event.swift */; };
 		43723F251AE6DF8600543B7E /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F241AE6DF8600543B7E /* EventTableViewCell.swift */; };
 		43723F271AE6E2D100543B7E /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F261AE6E2D100543B7E /* EventType.swift */; };
+		43723F291AE6F18700543B7E /* MedicationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F281AE6F18700543B7E /* MedicationTableViewCell.xib */; };
+		43723F2F1AE6F6FC00543B7E /* MeasurementsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F2D1AE6F6FC00543B7E /* MeasurementsTableViewCell.xib */; };
+		43723F311AE6F92A00543B7E /* SymptomsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F301AE6F92A00543B7E /* SymptomsContainerView.xib */; };
+		43723F331AE6FA7D00543B7E /* MedicationContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F321AE6FA7D00543B7E /* MedicationContainerView.xib */; };
+		43723F351AE6FD1600543B7E /* MeasurementsContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F341AE6FD1600543B7E /* MeasurementsContainerView.xib */; };
+		43723F371AE70EBA00543B7E /* TemperatureContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F361AE70EBA00543B7E /* TemperatureContainerView.xib */; };
+		43723F3A1AE714BB00543B7E /* TemperatureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F391AE714BB00543B7E /* TemperatureTableViewCell.xib */; };
+		43723F3C1AE715EE00543B7E /* SymptomsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F3B1AE715EE00543B7E /* SymptomsTableViewCell.xib */; };
+		43723F3E1AE7198500543B7E /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F3D1AE7198500543B7E /* MedicationTableViewCell.swift */; };
+		43723F401AE7199900543B7E /* MeasurementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F3F1AE7199900543B7E /* MeasurementTableViewCell.swift */; };
+		43723F421AE719AA00543B7E /* TemperatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F411AE719AA00543B7E /* TemperatureTableViewCell.swift */; };
+		43723F441AE719BB00543B7E /* SymptomsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F431AE719BB00543B7E /* SymptomsTableViewCell.swift */; };
 		437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */; };
 		437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437947FE1AE5D702002FE57B /* EventsViewController.swift */; };
 		43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF35F81AE55FF300D567D2 /* HomeViewController.swift */; };
@@ -54,6 +66,18 @@
 		43723F221AE6B68700543B7E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		43723F241AE6DF8600543B7E /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		43723F261AE6E2D100543B7E /* EventType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		43723F281AE6F18700543B7E /* MedicationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicationTableViewCell.xib; sourceTree = "<group>"; };
+		43723F2D1AE6F6FC00543B7E /* MeasurementsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementsTableViewCell.xib; sourceTree = "<group>"; };
+		43723F301AE6F92A00543B7E /* SymptomsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomsContainerView.xib; sourceTree = "<group>"; };
+		43723F321AE6FA7D00543B7E /* MedicationContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicationContainerView.xib; sourceTree = "<group>"; };
+		43723F341AE6FD1600543B7E /* MeasurementsContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementsContainerView.xib; sourceTree = "<group>"; };
+		43723F361AE70EBA00543B7E /* TemperatureContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureContainerView.xib; sourceTree = "<group>"; };
+		43723F391AE714BB00543B7E /* TemperatureTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemperatureTableViewCell.xib; sourceTree = "<group>"; };
+		43723F3B1AE715EE00543B7E /* SymptomsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SymptomsTableViewCell.xib; sourceTree = "<group>"; };
+		43723F3D1AE7198500543B7E /* MedicationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationTableViewCell.swift; sourceTree = "<group>"; };
+		43723F3F1AE7199900543B7E /* MeasurementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementTableViewCell.swift; sourceTree = "<group>"; };
+		43723F411AE719AA00543B7E /* TemperatureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureTableViewCell.swift; sourceTree = "<group>"; };
+		43723F431AE719BB00543B7E /* SymptomsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymptomsTableViewCell.swift; sourceTree = "<group>"; };
 		437947FC1AE5B6CB002FE57B /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		437947FE1AE5D702002FE57B /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		43DF35F81AE55FF300D567D2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -165,11 +189,39 @@
 			isa = PBXGroup;
 			children = (
 				431E228F1AE55D9600A831CB /* Main.storyboard */,
+				43723F381AE7128200543B7E /* EventTypeContainerViews */,
+				43723F451AE719CA00543B7E /* EventTypeTableViewCells */,
 				43723F241AE6DF8600543B7E /* EventTableViewCell.swift */,
 				43DF36001AE5655200D567D2 /* HomeCollectionViewCell.swift */,
 				F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		43723F381AE7128200543B7E /* EventTypeContainerViews */ = {
+			isa = PBXGroup;
+			children = (
+				43723F301AE6F92A00543B7E /* SymptomsContainerView.xib */,
+				43723F341AE6FD1600543B7E /* MeasurementsContainerView.xib */,
+				43723F361AE70EBA00543B7E /* TemperatureContainerView.xib */,
+				43723F321AE6FA7D00543B7E /* MedicationContainerView.xib */,
+			);
+			name = EventTypeContainerViews;
+			sourceTree = "<group>";
+		};
+		43723F451AE719CA00543B7E /* EventTypeTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				43723F3D1AE7198500543B7E /* MedicationTableViewCell.swift */,
+				43723F3F1AE7199900543B7E /* MeasurementTableViewCell.swift */,
+				43723F411AE719AA00543B7E /* TemperatureTableViewCell.swift */,
+				43723F431AE719BB00543B7E /* SymptomsTableViewCell.swift */,
+				43723F281AE6F18700543B7E /* MedicationTableViewCell.xib */,
+				43723F391AE714BB00543B7E /* TemperatureTableViewCell.xib */,
+				43723F3B1AE715EE00543B7E /* SymptomsTableViewCell.xib */,
+				43723F2D1AE6F6FC00543B7E /* MeasurementsTableViewCell.xib */,
+			);
+			name = EventTypeTableViewCells;
 			sourceTree = "<group>";
 		};
 		D06A1D291AE5624B0081CEDD /* Model */ = {
@@ -264,9 +316,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43723F291AE6F18700543B7E /* MedicationTableViewCell.xib in Resources */,
+				43723F331AE6FA7D00543B7E /* MedicationContainerView.xib in Resources */,
+				43723F3C1AE715EE00543B7E /* SymptomsTableViewCell.xib in Resources */,
 				431E22911AE55D9600A831CB /* Main.storyboard in Resources */,
+				43723F371AE70EBA00543B7E /* TemperatureContainerView.xib in Resources */,
 				431E22961AE55D9600A831CB /* LaunchScreen.xib in Resources */,
+				43723F2F1AE6F6FC00543B7E /* MeasurementsTableViewCell.xib in Resources */,
+				43723F351AE6FD1600543B7E /* MeasurementsContainerView.xib in Resources */,
 				431E22931AE55D9600A831CB /* Images.xcassets in Resources */,
+				43723F3A1AE714BB00543B7E /* TemperatureTableViewCell.xib in Resources */,
+				43723F311AE6F92A00543B7E /* SymptomsContainerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,15 +344,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43723F441AE719BB00543B7E /* SymptomsTableViewCell.swift in Sources */,
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43723F271AE6E2D100543B7E /* EventType.swift in Sources */,
 				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
 				F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */,
+				43723F421AE719AA00543B7E /* TemperatureTableViewCell.swift in Sources */,
 				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
 				43723F251AE6DF8600543B7E /* EventTableViewCell.swift in Sources */,
 				D0385B5E1AE5BF6C007FE10E /* DatePickerViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
+				43723F3E1AE7198500543B7E /* MedicationTableViewCell.swift in Sources */,
 				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
 				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
@@ -302,6 +365,7 @@
 				D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */,
 				43DF35F91AE55FF300D567D2 /* HomeViewController.swift in Sources */,
 				43DF35FD1AE5600F00D567D2 /* EditMenuViewController.swift in Sources */,
+				43723F401AE7199900543B7E /* MeasurementTableViewCell.swift in Sources */,
 				43723F231AE6B68700543B7E /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
