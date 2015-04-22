@@ -163,14 +163,13 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a1s-42-MIQ" id="uzF-wf-dv3">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afV-s1-0R2">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afV-s1-0R2">
                                                     <rect key="frame" x="16" y="23" width="14" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="14" id="OSb-uw-qZr"/>
                                                         <constraint firstAttribute="height" constant="14" id="lfX-if-6ZA"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                    <state key="normal" title="Button" backgroundImage="PlusButton"/>
+                                                    <state key="normal" backgroundImage="CalenderButton"/>
                                                     <connections>
                                                         <action selector="datePressed:" destination="1ot-Hc-qO2" eventType="touchUpInside" id="Rby-oz-3mK"/>
                                                     </connections>
@@ -589,7 +588,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XKx-RN-w5c">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="432"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditMenuCell" id="S2w-5q-75g" customClass="EditMenuTableViewCell" customModule="Crummy" customModuleProvider="target">
@@ -612,10 +611,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" id="6qe-ts-wd5"/>
-                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="zA8-nm-j8m" secondAttribute="bottom" id="ML1-jU-tCC"/>
-                            <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="efK-q0-f8b"/>
-                            <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="uhy-Bv-UCo"/>
+                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="168" id="3fg-2I-lAf"/>
+                            <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="7s6-Ut-1Ep"/>
+                            <constraint firstItem="NYT-N5-MBT" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leadingMargin" constant="261" id="GLe-mN-KCd"/>
+                            <constraint firstItem="NYT-N5-MBT" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="80" id="SpT-xR-8Jg"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="efU-2f-YWi"/>
+                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="NYT-N5-MBT" secondAttribute="bottom" constant="58" id="lSc-og-Yj2"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="dHc-lA-dky" secondAttribute="top" id="lVl-kw-yJs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Menu" id="Ci2-dW-02U">
