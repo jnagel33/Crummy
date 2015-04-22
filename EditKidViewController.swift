@@ -9,8 +9,7 @@
 import UIKit
 
 class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
-  
-  
+
   // parameters
   
   @IBOutlet weak var notesTextView: UITextView!
@@ -65,9 +64,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
 
     self.view.layoutIfNeeded()
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem()
   } // viewDidLoad
   
   // MARK: - Date Picker
@@ -131,17 +127,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   // MARK: - Text Fields
   
-  func textFieldDidBeginEditing(textField: UITextField) {
-    
-    // hide the right bar button
-    
-    // add a "done bar button in its place to acknowledge that editing has begun.
-    //self.navigationItem.rightBarButtonItem = UIBarButtonItem (title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "saveDataMode")
-    
-    // save the data for the kid object.
-    
-  } // textFieldDidBeginEditing
-  
   func textFieldDidEndEditing(textField: UITextField) {
     // if textfield == the outlet to an individual text field
     
@@ -165,7 +150,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     textField.resignFirstResponder()
     return true
   }
-    
+  
   // MARK: - Logic
   
   func getThisTextField (theRow : Int, theText : String) -> Void {
@@ -195,35 +180,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     println("got to end")
   }
-  
-  /*
-  // Override to support conditional editing of the table view.
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-  // Return NO if you do not want the specified item to be editable.
-  return true
-  }
-  */
-  
-  /*
-  // Override to support editing the table view.
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-  if editingStyle == .Delete {
-  // Delete the row from the data source
-  tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-  } else if editingStyle == .Insert {
-  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-  }
-  }
-  */
-  
-  
-  /*
-  // Override to support conditional rearranging of the table view.
-  override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-  // Return NO if you do not want the item to be re-orderable.
-  return true
-  }
-  */
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
