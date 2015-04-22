@@ -27,7 +27,8 @@
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
 		D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */; };
 		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
-		F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */; };
+		F43CFA9A1AE6EC1E00430355 /* CrummyJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43CFA991AE6EC1E00430355 /* CrummyJsonParser.swift */; };
+		F48F090F1AE8416C00D73626 /* KidsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F090E1AE8416C00D73626 /* KidsList.swift */; };
 		F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +67,8 @@
 		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
 		D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditKidViewController.swift; path = ../EditKidViewController.swift; sourceTree = "<group>"; };
 		F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
-		F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidJsonParser.swift; sourceTree = "<group>"; };
+		F43CFA991AE6EC1E00430355 /* CrummyJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrummyJsonParser.swift; sourceTree = "<group>"; };
+		F48F090E1AE8416C00D73626 /* KidsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KidsList.swift; sourceTree = "<group>"; };
 		F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrummyApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,9 +179,10 @@
 			children = (
 				43723F221AE6B68700543B7E /* Event.swift */,
 				D06A1D2A1AE5625F0081CEDD /* Kid.swift */,
+				F48F090E1AE8416C00D73626 /* KidsList.swift */,
 				43723F261AE6E2D100543B7E /* EventType.swift */,
 				F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */,
-				F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */,
+				F43CFA991AE6EC1E00430355 /* CrummyJsonParser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43723F271AE6E2D100543B7E /* EventType.swift in Sources */,
+				F48F090F1AE8416C00D73626 /* KidsList.swift in Sources */,
 				43DF35FB1AE5600000D567D2 /* LoginViewController.swift in Sources */,
 				F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */,
 				D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */,
@@ -293,10 +297,9 @@
 				D0385B5E1AE5BF6C007FE10E /* DatePickerViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
-				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
 				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
-				F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */,
+				F43CFA9A1AE6EC1E00430355 /* CrummyJsonParser.swift in Sources */,
 				D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */,
 				43E7D64A1AE57DE40014B86F /* StringExtension.swift in Sources */,
 				D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */,

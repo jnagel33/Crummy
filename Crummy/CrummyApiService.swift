@@ -11,25 +11,24 @@ class CrummyApiService {
   
   static let sharedInstance: CrummyApiService = CrummyApiService()
   
-  func postLogin(userName: String, password: String, completionHandler: (String?) ->(Void)) {
+  func postLogin(userName: String, password: String, completionHandler: (String?) -> (Void)) {
     
-    let sessionUrl = "http://crummy.herokuapp.com/api/v1/sessions"
-    let url = NSURL(string: sessionUrl)
-    let parameterString = "username=\(userName)" + "&" + "password=\(password)"
+    let url = "http://crummy.herokuapp.com/api/v1/sessions"
+    let parameterString = "email=\(userName)" + "&" + "password=\(password)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
     
-    let request = NSMutableURLRequest(URL: url!)
+    var request = NSMutableURLRequest(URL: NSURL(string: url)!)
     request.HTTPMethod = "POST"
     request.HTTPBody = data
-    request.setValue("\(data!.length)", forHTTPHeaderField: "Content-Length")
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    
+
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       if error == nil {
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           println(jsonDictionary)
           let token = jsonDictionary["auth_token"] as! String
+          
           println(token)
           
           NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
@@ -44,15 +43,44 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
-  
-  
-  
-  func getKids(searchTerm: String, completionHandler: ([Kid]?, String?) ->(Void)) {
+
+func listKid(completionHandler: [KidsList]? -> (Void)) {
     
-    let kidSearchUrl = "https://api.kid.com/search/"
-    let queryString = "?q=\(searchTerm)"
-    let requestUrl = kidSearchUrl + queryString
-    println(requestUrl)
+    let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
+  
+    let url = NSURL(string: requestUrl)
+    
+    let request = NSMutableURLRequest(URL: url!)
+        if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+          println("retrieved token:")
+          println(token)
+          request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+      
+        }
+    
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      
+      if let httpResponse = response as? NSHTTPURLResponse {
+        println(httpResponse.statusCode)
+       
+          if httpResponse.statusCode == 200 {
+          let parsedKids = CrummyJsonParser.parseJsonListKid(data)
+          
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(parsedKids)
+          })
+        }
+      }
+    })
+    dataTask.resume()
+  }
+  
+  
+  func getKid(searchTerm: String, completionHandler: ([Kid]?, String?) -> (Void)) {
+    
+    let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids"
+    let queryString = "?:\(searchTerm)"
+    let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
     let request = NSURLRequest(URL: url!)
     
@@ -61,7 +89,7 @@ class CrummyApiService {
       if let httpResponse = response as? NSHTTPURLResponse {
         println(httpResponse.statusCode)
         if httpResponse.statusCode == 200 {
-          let parsedKids = KidJsonParser.parseJson(data)
+          let parsedKids = CrummyJsonParser.parseJsonGetKid(data)
           
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(parsedKids, nil)
@@ -71,5 +99,21 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
+
+  
+  func errorResponse(httpStatusCode: Int) -> String {
+    
+    switch httpStatusCode {
+    case 200:
+      println("200")
+    case 401:
+      println("Incorrect username or password")
+    default:
+      println("x")
+    }
+    
+  return "200"
+  }
+  
   
 }
