@@ -657,7 +657,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XKx-RN-w5c">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="432"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditMenuCell" id="S2w-5q-75g" customClass="EditMenuTableViewCell" customModule="Crummy" customModuleProvider="target">
@@ -668,13 +668,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYT-N5-MBT">
+                                <rect key="frame" x="277" y="512" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton:" destination="YBf-J8-AIy" eventType="touchUpInside" id="MKZ-r2-aSZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" id="6qe-ts-wd5"/>
-                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="dHc-lA-dky" secondAttribute="top" id="LwZ-kw-kbG"/>
-                            <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="efK-q0-f8b"/>
-                            <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="uhy-Bv-UCo"/>
+                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="168" id="3fg-2I-lAf"/>
+                            <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="7s6-Ut-1Ep"/>
+                            <constraint firstItem="NYT-N5-MBT" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leadingMargin" constant="261" id="GLe-mN-KCd"/>
+                            <constraint firstItem="NYT-N5-MBT" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" constant="80" id="SpT-xR-8Jg"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="efU-2f-YWi"/>
+                            <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="NYT-N5-MBT" secondAttribute="bottom" constant="58" id="lSc-og-Yj2"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="dHc-lA-dky" secondAttribute="top" id="lVl-kw-yJs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Menu" id="Ci2-dW-02U">
