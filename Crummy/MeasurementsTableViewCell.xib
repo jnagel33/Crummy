@@ -44,7 +44,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyK-rN-j2K">
-                        <rect key="frame" x="380" y="28" width="35" height="35"/>
+                        <rect key="frame" x="376" y="28" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="KAe-00-U3Y"/>
                             <constraint firstAttribute="width" constant="35" id="Yxi-ek-BLG"/>
@@ -100,7 +100,7 @@
                     <constraint firstItem="NyK-rN-j2K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="kkh-8R-YdT"/>
                     <constraint firstItem="gU6-Kp-F2a" firstAttribute="leading" secondItem="3tu-lf-JGN" secondAttribute="trailing" constant="8" id="qEX-0M-rKD"/>
                     <constraint firstItem="gU6-Kp-F2a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="rbq-hE-1DP"/>
-                    <constraint firstAttribute="trailing" secondItem="NyK-rN-j2K" secondAttribute="trailing" constant="4" id="tq1-D6-YvA"/>
+                    <constraint firstAttribute="trailing" secondItem="NyK-rN-j2K" secondAttribute="trailing" constant="8" id="tq1-D6-YvA"/>
                     <constraint firstItem="PQc-Kd-BS3" firstAttribute="leading" secondItem="5uD-Yi-hQF" secondAttribute="leading" id="umx-He-S4t"/>
                     <constraint firstItem="PQc-Kd-BS3" firstAttribute="baseline" secondItem="RIj-n3-TvA" secondAttribute="baseline" id="xs0-qI-iEa"/>
                 </constraints>

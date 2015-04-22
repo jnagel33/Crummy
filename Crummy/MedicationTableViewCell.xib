@@ -13,7 +13,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-iw-0LG">
-                        <rect key="frame" x="59" y="12" width="297" height="30"/>
+                        <rect key="frame" x="59" y="12" width="293" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-iX-TSs">
-                        <rect key="frame" x="368" y="10" width="35" height="35"/>
+                        <rect key="frame" x="364" y="10" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="Po4-hJ-r2H"/>
                             <constraint firstAttribute="width" constant="35" id="hYc-8V-GfM"/>
@@ -40,7 +40,7 @@
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="OnG-iX-TSs" secondAttribute="centerY" id="BNZ-qB-wk2"/>
                     <constraint firstAttribute="centerY" secondItem="Ac1-iw-0LG" secondAttribute="centerY" id="bGJ-1T-a4h"/>
-                    <constraint firstItem="OnG-iX-TSs" firstAttribute="trailing" secondItem="N9S-kz-LnJ" secondAttribute="trailing" constant="-4" id="ce9-Zh-MQU"/>
+                    <constraint firstItem="OnG-iX-TSs" firstAttribute="trailing" secondItem="N9S-kz-LnJ" secondAttribute="trailing" constant="-8" id="ce9-Zh-MQU"/>
                     <constraint firstItem="2Ck-N3-tLh" firstAttribute="leading" secondItem="N9S-kz-LnJ" secondAttribute="leading" constant="8" id="cfp-FQ-Tj9"/>
                     <constraint firstItem="Ac1-iw-0LG" firstAttribute="leading" secondItem="2Ck-N3-tLh" secondAttribute="trailing" constant="8" id="hOJ-8u-mbn"/>
                     <constraint firstAttribute="centerY" secondItem="2Ck-N3-tLh" secondAttribute="centerY" id="hkC-8x-iMq"/>

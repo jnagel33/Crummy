@@ -285,6 +285,7 @@
 				TargetAttributes = {
 					431E22851AE55D9600A831CB = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = QWRJC78833;
 					};
 					431E229A1AE55D9700A831CB = {
 						CreatedOnToolsVersion = 6.3;
@@ -355,8 +356,6 @@
 				D0385B5E1AE5BF6C007FE10E /* DatePickerViewController.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
-				43723F3E1AE7198500543B7E /* MedicationTableViewCell.swift in Sources */,
-				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
 				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
 				F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */,
@@ -495,9 +494,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Crummy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -505,9 +507,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Crummy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

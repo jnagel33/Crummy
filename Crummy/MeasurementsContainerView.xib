@@ -75,7 +75,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LF0-Jm-SWg">
-                    <rect key="frame" x="439" y="27" width="36" height="28"/>
+                    <rect key="frame" x="439" y="31" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="CHY-FR-7hE"/>
+                        <constraint firstAttribute="height" constant="35" id="YCM-zu-g1B"/>
+                    </constraints>
                     <state key="normal" image="CheckmarkButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -103,8 +107,9 @@
                 <constraint firstItem="0Az-lC-OcZ" firstAttribute="leading" secondItem="fgD-Go-Zri" secondAttribute="trailing" constant="8" id="PgV-BL-QGN"/>
                 <constraint firstItem="0Az-lC-OcZ" firstAttribute="baseline" secondItem="ee6-Xb-Wf1" secondAttribute="baseline" id="TcE-Bc-1lZ"/>
                 <constraint firstItem="72L-eD-RFW" firstAttribute="leading" secondItem="p5T-Sa-EkS" secondAttribute="leading" constant="8" id="UfY-Ly-ZBi"/>
+                <constraint firstAttribute="centerY" secondItem="LF0-Jm-SWg" secondAttribute="centerY" id="YoC-1w-vFL"/>
                 <constraint firstItem="taV-j8-ZVD" firstAttribute="bottom" secondItem="p5T-Sa-EkS" secondAttribute="bottomMargin" id="Z1j-H2-1oM"/>
-                <constraint firstItem="LF0-Jm-SWg" firstAttribute="trailing" secondItem="p5T-Sa-EkS" secondAttribute="trailingMargin" id="Z6M-ih-Cnq"/>
+                <constraint firstItem="LF0-Jm-SWg" firstAttribute="trailing" secondItem="p5T-Sa-EkS" secondAttribute="trailingMargin" constant="-1" id="Z6M-ih-Cnq"/>
                 <constraint firstItem="uFG-0v-Pu6" firstAttribute="leading" secondItem="2v0-mx-vD7" secondAttribute="trailing" constant="8" symbolic="YES" id="a23-Ve-fGO"/>
                 <constraint firstItem="taV-j8-ZVD" firstAttribute="centerX" secondItem="p5T-Sa-EkS" secondAttribute="centerX" id="aum-mT-96b"/>
                 <constraint firstItem="2v0-mx-vD7" firstAttribute="top" secondItem="ee6-Xb-Wf1" secondAttribute="bottom" constant="7" id="dJd-SU-VGC"/>
@@ -116,6 +121,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Ekh-2s-P12"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="348.5" y="112"/>
         </view>
     </objects>
