@@ -163,18 +163,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a1s-42-MIQ" id="uzF-wf-dv3">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afV-s1-0R2">
-                                                    <rect key="frame" x="36" y="15" width="46" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="46" id="OSb-uw-qZr"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="datePressed:" destination="1ot-Hc-qO2" eventType="touchUpInside" id="Rby-oz-3mK"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="press button to select" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-fC-JoK">
                                                     <rect key="frame" x="257" y="16" width="305" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -189,16 +177,28 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afV-s1-0R2">
+                                                    <rect key="frame" x="36" y="8" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="OSb-uw-qZr"/>
+                                                    </constraints>
+                                                    <state key="normal" image="CalenderButton">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="datePressed:" destination="1ot-Hc-qO2" eventType="touchUpInside" id="Rby-oz-3mK"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="HXN-fC-JoK" secondAttribute="trailing" constant="30" id="0BQ-wc-s8r"/>
                                                 <constraint firstItem="hZW-VP-j5i" firstAttribute="leading" secondItem="uzF-wf-dv3" secondAttribute="leadingMargin" constant="89" id="2Y0-eu-EFj"/>
                                                 <constraint firstItem="HXN-fC-JoK" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" constant="8" id="L1K-eS-bVc"/>
                                                 <constraint firstItem="HXN-fC-JoK" firstAttribute="leading" secondItem="hZW-VP-j5i" secondAttribute="trailing" constant="50" id="LUD-va-nRg"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="afV-s1-0R2" secondAttribute="bottom" constant="6" id="Rs1-xs-9TL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="afV-s1-0R2" secondAttribute="bottom" constant="3" id="Rs1-xs-9TL"/>
                                                 <constraint firstItem="hZW-VP-j5i" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" constant="10" id="aIp-cH-RDi"/>
                                                 <constraint firstItem="afV-s1-0R2" firstAttribute="leading" secondItem="uzF-wf-dv3" secondAttribute="leadingMargin" constant="28" id="bh5-iL-jQ0"/>
-                                                <constraint firstItem="afV-s1-0R2" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" constant="7" id="wHQ-lq-2he"/>
+                                                <constraint firstItem="afV-s1-0R2" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" id="wHQ-lq-2he"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -470,36 +470,48 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hag-1i-LO4">
                                 <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeL-0C-mdL">
-                                        <rect key="frame" x="8" y="15" width="31" height="30"/>
-                                        <state key="normal" title="Med">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeL-0C-mdL">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="UEF-SG-aae"/>
+                                        </constraints>
+                                        <state key="normal" image="MedsButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="eventTypePressed:" destination="MYK-8j-q3C" eventType="touchUpInside" id="3jn-HE-GLd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJu-89-r7L">
-                                        <rect key="frame" x="423" y="15" width="94" height="30"/>
-                                        <state key="normal" title="Measurement">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJu-89-r7L">
+                                        <rect key="frame" x="448" y="0.0" width="72" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="RLB-GO-IJs"/>
+                                        </constraints>
+                                        <state key="normal" image="MeasurementButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="eventTypePressed:" destination="MYK-8j-q3C" eventType="touchUpInside" id="q8I-Yb-4zz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQW-Nh-NIP">
-                                        <rect key="frame" x="525" y="15" width="67" height="30"/>
-                                        <state key="normal" title="Symptom">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQW-Nh-NIP">
+                                        <rect key="frame" x="528" y="0.0" width="72" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="eLb-9k-lAy"/>
+                                        </constraints>
+                                        <state key="normal" image="SymptomButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="eventTypePressed:" destination="MYK-8j-q3C" eventType="touchUpInside" id="iDg-FZ-rsF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mB8-zU-oKd">
-                                        <rect key="frame" x="47" y="15" width="86" height="30"/>
-                                        <state key="normal" title="Temperature">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mB8-zU-oKd">
+                                        <rect key="frame" x="80" y="0.0" width="72" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="Qnr-NN-v5U"/>
+                                        </constraints>
+                                        <state key="normal" image="TemperatureButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -509,22 +521,19 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="xQW-Nh-NIP" firstAttribute="leading" secondItem="xJu-89-r7L" secondAttribute="trailing" constant="8" id="0bS-CD-Ou6"/>
-                                    <constraint firstAttribute="centerY" secondItem="mB8-zU-oKd" secondAttribute="centerY" id="2Ue-Ad-QZI"/>
-                                    <constraint firstItem="mB8-zU-oKd" firstAttribute="leading" secondItem="AeL-0C-mdL" secondAttribute="trailing" constant="8" id="2fn-nW-YN0"/>
-                                    <constraint firstItem="AeL-0C-mdL" firstAttribute="leading" secondItem="hag-1i-LO4" secondAttribute="leading" constant="8" id="5du-wn-bW6"/>
-                                    <constraint firstItem="AeL-0C-mdL" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="15" id="9BZ-wJ-Ny2"/>
-                                    <constraint firstItem="xQW-Nh-NIP" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="15" id="9vI-da-h0d"/>
-                                    <constraint firstAttribute="trailing" secondItem="xQW-Nh-NIP" secondAttribute="trailing" constant="8" id="Hzo-NZ-zGH"/>
-                                    <constraint firstAttribute="centerX" secondItem="xJu-89-r7L" secondAttribute="centerX" constant="-170" id="dYl-Tt-NyU"/>
-                                    <constraint firstAttribute="height" constant="60" id="eKc-GH-dDR"/>
-                                    <constraint firstAttribute="centerY" secondItem="xJu-89-r7L" secondAttribute="centerY" id="zc6-zd-Se4"/>
+                                    <constraint firstItem="mB8-zU-oKd" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="1cV-bf-7eP"/>
+                                    <constraint firstItem="xQW-Nh-NIP" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="4wJ-nZ-A7Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="xQW-Nh-NIP" secondAttribute="trailing" id="59B-jR-Hgz"/>
+                                    <constraint firstAttribute="bottom" secondItem="xJu-89-r7L" secondAttribute="bottom" id="5bC-OZ-jNh"/>
+                                    <constraint firstAttribute="bottom" secondItem="mB8-zU-oKd" secondAttribute="bottom" id="HlB-Ja-76h"/>
+                                    <constraint firstAttribute="bottom" secondItem="xQW-Nh-NIP" secondAttribute="bottom" id="OBQ-jt-d7F"/>
+                                    <constraint firstItem="AeL-0C-mdL" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="PLJ-Gu-4vt"/>
+                                    <constraint firstAttribute="bottom" secondItem="AeL-0C-mdL" secondAttribute="bottom" id="j9h-4n-u30"/>
+                                    <constraint firstItem="AeL-0C-mdL" firstAttribute="leading" secondItem="hag-1i-LO4" secondAttribute="leading" id="mhf-Wl-aE7"/>
+                                    <constraint firstItem="mB8-zU-oKd" firstAttribute="leading" secondItem="AeL-0C-mdL" secondAttribute="trailing" constant="8" id="tYH-Pp-oic"/>
+                                    <constraint firstItem="xQW-Nh-NIP" firstAttribute="leading" secondItem="xJu-89-r7L" secondAttribute="trailing" constant="8" id="udO-dd-P3U"/>
+                                    <constraint firstItem="xJu-89-r7L" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="z9Y-w2-Pc1"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="dYl-Tt-NyU"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -532,6 +541,7 @@
                             <constraint firstItem="hag-1i-LO4" firstAttribute="bottom" secondItem="Rww-pJ-a0t" secondAttribute="bottom" id="955-Fh-zfg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lo1-me-uIh" secondAttribute="trailing" constant="-16" id="9iP-tf-vhL"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="H1J-oO-PB5"/>
+                            <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="top" id="Ooh-dv-Xip"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="top" secondItem="Rww-pJ-a0t" secondAttribute="topMargin" id="TvK-sI-4sZ"/>
                             <constraint firstItem="rlp-Yh-99Z" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="UBn-WX-ffU"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="enp-lm-VLh"/>
@@ -573,7 +583,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aul-5m-qeJ">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aul-5m-qeJ">
                                 <rect key="frame" x="16" y="420" width="22" height="22"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -762,9 +772,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EditButton" width="75" height="35"/>
+        <image name="CalenderButton" width="40" height="40"/>
+        <image name="EditButton" width="65" height="30"/>
         <image name="FilterButton" width="22" height="18"/>
-        <image name="HomeButton" width="50" height="50"/>
+        <image name="HomeButton" width="40" height="38"/>
+        <image name="MeasurementButton" width="64" height="62"/>
+        <image name="MedsButton" width="42" height="59"/>
         <image name="PhoneButton" width="37" height="52"/>
+        <image name="SymptomButton" width="47" height="57"/>
+        <image name="TemperatureButton" width="55" height="54"/>
     </resources>
 </document>

@@ -18,7 +18,7 @@ class Event {
   var symptom: String?
   var date: NSDate
   
-  init(id: Int, type: EventType, temperature: Double?, medication: String?, heightInches: Int?, weight: Int?, symptom: String?, date: NSDate) {
+  init(id: Int?, type: EventType, temperature: Double?, medication: String?, heightInches: Int?, weight: Int?, symptom: String?, date: NSDate) {
     self.id = id
     self.type = type
     self.temperature = temperature
