@@ -12,7 +12,7 @@ class Kid {
   
   // properties 
   
-  let name : String
+  var name : String
   
   var DOBString : String
   
@@ -25,6 +25,8 @@ class Kid {
   var kidImage : UIImage?
 
   var kidID : String?
+  
+  //var notes : String
   
   var events: [Event] = [Event]()
   
@@ -39,7 +41,13 @@ class Kid {
     dob = NSDate(dateString: DOBString)
     insuranceId = theInsuranceID
     nursePhone = theNursePhone
+    //notes = theNotes
     
   } // init
+  
+  func kidToString() -> () {
+    
+    println(self.name + self.DOBString + self.insuranceId + self.nursePhone)
+      }
   
 }

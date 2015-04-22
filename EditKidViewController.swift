@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditKidViewController: UITableViewController {
+class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
   
   
   // parameters
@@ -21,35 +21,56 @@ class EditKidViewController: UITableViewController {
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   
-  
-  var datePickerInterval : NSTimeInterval = 1.0
-  let datePickerVisualHeight: CGFloat = 216.0
+  let datePickerInterval : NSTimeInterval = 1.0
+  let astheticSpacing : CGFloat = 8.0
+  let datePickerHeight: CGFloat = 216.0
+  let pickerViewHeight: CGFloat = 250
+  let doneButtonHeight: CGFloat = 25
+  let doneButtonWidth: CGFloat = 50
+  let pickerWidth: CGFloat = 50
   let dateRow : Int = 1
   var pickerView : UIView!
   var datePicker : UIDatePicker!
   var guess: Int = 0
   
-  // not used yet.
-  var date = NSDate()
-  
-  
   // person passed from the "list of people controller.
-  var selectedKid : Kid!
+  var selectedKid : Kid = Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024")
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // self.title = selectedKid.name
+    // setup tags
+    // assign the text fields tags.
+    self.nameTextField.tag = 0
+    self.insuranceTextField.tag = 2
+    self.consultingNurseHotline.tag = 3
+    self.notesTextView.tag = 4
     
+    // delegates
+    self.notesTextView.delegate = self
+    self.consultingNurseHotline.delegate = self
+    self.insuranceTextField.delegate = self
+    self.nameTextField.delegate = self
+    
+    // setup fields
+    self.title = selectedKid.name
+    self.nameTextField.text = selectedKid.name
+    self.birthdateLabel.text = selectedKid.DOBString
+    self.insuranceTextField.text = selectedKid.insuranceId
+    self.consultingNurseHotline.text = selectedKid.nursePhone
+    
+    // non gray out cells 
+    if let tableView = self.view as? UITableView {
+      tableView.allowsSelection = false
+    }
+
     self.view.layoutIfNeeded()
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem()
   } // viewDidLoad
   
-  // MARK: - DatePicker
+  // MARK: - Date Picker
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker: UIDatePicker) {
@@ -60,39 +81,39 @@ class EditKidViewController: UITableViewController {
     
     self.birthdateLabel.text = selectedKid.DOBString
     birthdateLabel.textColor = UIColor.blackColor()
-//    println(selectedKid.DOBString)
+    //    println(selectedKid.DOBString)
   } // datePickerChanged
   
   
   func pickerCloserPressed(sender: AnyObject) {
     
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
-      self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerVisualHeight
+      self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerHeight
     })
     self.datePickerChanged(datePicker)
     self.dateButton.hidden = false
   } // pickerCloserPressed
   
   
-  // MARK: - Date button
+  // MARK: - Date Button
   @IBAction func datePressed(sender: AnyObject) {
     // if the button is pressed, it brings up the datePicker object.
     
     
     self.dateButton.hidden = true
     
-    pickerView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 250))
+    pickerView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: pickerViewHeight))
     pickerView.backgroundColor = UIColor.lightGrayColor()
     self.view.addSubview(pickerView)
     
-    datePicker = UIDatePicker(frame: CGRect(x: 0, y: 25, width: pickerView.frame.width, height: 216))
+    datePicker = UIDatePicker(frame: CGRect(x: 0, y: doneButtonHeight, width: pickerView.frame.width, height: datePickerHeight))
     datePicker.datePickerMode = UIDatePickerMode.Date
     datePicker.backgroundColor = UIColor.lightGrayColor()
     
     // its off screen.
     pickerView.addSubview(datePicker)
     
-    let pickerCloser = UIButton(frame: CGRect(x: 0, y: 8, width: 50, height: 25))
+    let pickerCloser = UIButton(frame: CGRect(x: 0, y: astheticSpacing, width: pickerWidth, height: doneButtonHeight))
     pickerCloser.setTitle("Done", forState: UIControlState.Normal)
     pickerCloser.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
     pickerCloser.center.x = self.view.center.x
@@ -102,7 +123,7 @@ class EditKidViewController: UITableViewController {
     
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
       
-      self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerVisualHeight
+    self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerHeight
       
     })
     
@@ -110,39 +131,70 @@ class EditKidViewController: UITableViewController {
   
   // MARK: - Text Fields
   
-  func textFieldDidBeginEditing(textField: UITextField!) {
+  func textFieldDidBeginEditing(textField: UITextField) {
     
     // hide the right bar button
     
     // add a "done bar button in its place to acknowledge that editing has begun.
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem (title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "saveDataMode")
+    //self.navigationItem.rightBarButtonItem = UIBarButtonItem (title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "saveDataMode")
     
     // save the data for the kid object.
     
   } // textFieldDidBeginEditing
+  
+  func textFieldDidEndEditing(textField: UITextField) {
+    // if textfield == the outlet to an individual text field
+    
+    switch textField.tag {
+    case 0:
+      selectedKid.name = textField.text
+    case 2:
+      selectedKid.insuranceId = textField.text
+    case 3:
+      selectedKid.nursePhone = textField.text
+    case 4:
+     // selectedKid.notes = theField.text
+      println("not implemented yet")
+        default:
+      println("no choice here!")
+    } // switch
+    selectedKid.kidToString()
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+    
+  // MARK: - Logic
+  
+  func getThisTextField (theRow : Int, theText : String) -> Void {
+    //take in a string value and set the kid object located in that field to that value.  Pretty simple.   
+    
+    var text : String = theText
+    var row : Int = theRow
+    
+    switch row {
 
-  // MARK - Toolbar
-  /*
-  When I enter a text field should I then set the right bar button item to a different button, a "save" button?
-  
-  
-  */
-  func hideToolBarButton() {
-    
-    //  self.navigationItem.setRightBarButtonItem(<#item: UIBarButtonItem?#>, animated: <#Bool#>)
-  } // hideToolBarButton
-  
-  
-  
-  // MARK: - Table view data source
-  // not currently being used.
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
-    if indexPath.row == dateRow {
-      // reveal the datePicker object.
+    case 0:
+      selectedKid.name = text
+    case 1:
+      return selectedKid.DOBString = text
+    case 2:
+      return selectedKid.insuranceId = text
+    case 3:
+      return selectedKid.nursePhone = text
+    case 4:
+      println("to be built")
+      return selectedKid.nursePhone = text
+     // return selectedKid.notes = text
+    default:
+      println("out of range")
     }
+    selectedKid.kidToString()
     
-  } // didSelectRowAtIndexPath
+    println("got to end")
+  }
   
   /*
   // Override to support conditional editing of the table view.
@@ -163,7 +215,7 @@ class EditKidViewController: UITableViewController {
   }
   }
   */
-
+  
   
   /*
   // Override to support conditional rearranging of the table view.
