@@ -519,7 +519,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="mB8-zU-oKd" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="1cV-bf-7eP"/>
                                     <constraint firstItem="xQW-Nh-NIP" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="4wJ-nZ-A7Q"/>
@@ -557,6 +557,8 @@
                     <connections>
                         <outlet property="constraintButtonViewContainerBottom" destination="955-Fh-zfg" id="jTZ-Cf-vMg"/>
                         <outlet property="constraintEventTypeContainerHeight" destination="WHl-pZ-8xA" id="1nz-ua-wXv"/>
+                        <outlet property="constraintTableViewBottom" destination="eox-Tx-aaf" id="7BJ-fr-8hw"/>
+                        <outlet property="constraintTableViewTop" destination="TvK-sI-4sZ" id="NcN-6A-tNG"/>
                         <outlet property="constraintViewContainerBottom" destination="wHr-Cj-ZDv" id="40t-bl-uNO"/>
                         <outlet property="containerView" destination="rlp-Yh-99Z" id="I1X-WV-WxJ"/>
                         <outlet property="eventTypeContainerView" destination="hag-1i-LO4" id="qTP-8b-kcH"/>
