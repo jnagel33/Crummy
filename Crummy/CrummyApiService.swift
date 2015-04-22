@@ -11,40 +11,41 @@ class CrummyApiService {
   
   static let sharedInstance: CrummyApiService = CrummyApiService()
   
-  class LoginService {
+  func postLogin(userName: String, password: String, completionHandler: (String?) ->(Void)) {
     
-    func postLogin(userName: String, password: String, completionHandler: (String?) ->(Void)) {
+    let sessionUrl = "http://crummy.herokuapp.com/api/v1/sessions"
+    let url = NSURL(string: sessionUrl)
+    let parameterString = "username=\(userName)" + "&" + "password=\(password)"
+    let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+    
+    let request = NSMutableURLRequest(URL: url!)
+    request.HTTPMethod = "POST"
+    request.HTTPBody = data
+    request.setValue("\(data!.length)", forHTTPHeaderField: "Content-Length")
+    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
-      let sessionUrl = "http:crummy/herokuapp/api/v1/sessions"
-      let loginString = "?q=username=\(userName)" + "&" + "password=\(password)"
-      let requestUrl = sessionUrl + loginString
-      println(requestUrl)
-      let url = NSURL(string: requestUrl)
-      
-      let request = NSMutableURLRequest(URL: url!)
-      request.HTTPMethod = "POST"
-      //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      
-      let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-        
-        if error == nil {
-          if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
-            let token = jsonDictionary["auth_token"] as! String
+      if error == nil {
+        if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
+          println(jsonDictionary)
+          let token = jsonDictionary["auth_token"] as! String
+          println(token)
+          
+          NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
+          NSUserDefaults.standardUserDefaults().synchronize()
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(token)
             
-            NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              completionHandler(token)
-              
-            })
-          }
+          })
         }
-        
-      })
-      dataTask.resume()
-    }
+      }
+      
+    })
+    dataTask.resume()
   }
-
+  
+  
   
   func getKids(searchTerm: String, completionHandler: ([Kid]?, String?) ->(Void)) {
     
@@ -71,4 +72,4 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  }
+}

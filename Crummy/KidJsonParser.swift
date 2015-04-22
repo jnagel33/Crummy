@@ -15,20 +15,20 @@ class KidJsonParser {
     
     if let
       jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject],
-      dictionaryItems = jsonDictionary["xx"] as? [[String: AnyObject]] {
-        
-        for objects in dictionaryItems {
-          if let
-            kidName = objects["name"] as? String,
-            kidDOB = objects["dob"] as? String,
-            kidInsuranceId = objects["ins"] as? String,
-            kidNursePhone = objects["phone"] as? String
-          {
-            
-            let kidData = Kid(theName: kidName, theDOB: kidDOB, theInsuranceID: kidInsuranceId, theNursePhone: kidNursePhone)
-            parse.append(kidData)
-          }
-        }
+      dictionaryItems = jsonDictionary["auth_token"] as? [[String: AnyObject]] {
+        println(dictionaryItems)
+//        
+//        for objects in dictionaryItems {
+//          if let
+//            kidName = objects["name"] as? String,
+//            kidDOB = objects["dob"] as? String,
+//            kidInsuranceId = objects["ins"] as? String,
+//            kidNursePhone = objects["phone"] as? String
+//          {
+//          let kidData = Kid(theName: kidName, theDOB: kidDOB, theInsuranceID: kidInsuranceId, theNursePhone: kidNursePhone)
+//          parse.append(kidData)
+//          }
+//        }
       }
     return parse
   }
