@@ -14,12 +14,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHd-aR-Z52">
-                        <rect key="frame" x="104" y="12" width="206" height="30"/>
+                        <rect key="frame" x="104" y="12" width="202" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm3-AX-ZSv">
-                        <rect key="frame" x="319" y="9" width="35" height="35"/>
+                        <rect key="frame" x="315" y="9" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="W5j-Dt-mqD"/>
                             <constraint firstAttribute="height" constant="35" id="jg4-dr-h6F"/>
@@ -40,7 +40,7 @@
                     <constraint firstItem="wm3-AX-ZSv" firstAttribute="leading" secondItem="aHd-aR-Z52" secondAttribute="trailing" constant="9" id="9EG-td-MGw"/>
                     <constraint firstItem="8sb-Ie-q6z" firstAttribute="leading" secondItem="XH4-pp-CO1" secondAttribute="leading" constant="8" id="N8j-qi-s4d"/>
                     <constraint firstItem="aHd-aR-Z52" firstAttribute="top" secondItem="XH4-pp-CO1" secondAttribute="topMargin" constant="4" id="UEd-fj-NYG"/>
-                    <constraint firstAttribute="trailing" secondItem="wm3-AX-ZSv" secondAttribute="trailing" constant="4" id="XoX-uE-xxI"/>
+                    <constraint firstAttribute="trailing" secondItem="wm3-AX-ZSv" secondAttribute="trailing" constant="8" id="XoX-uE-xxI"/>
                     <constraint firstItem="aHd-aR-Z52" firstAttribute="leading" secondItem="8sb-Ie-q6z" secondAttribute="trailing" constant="8" id="ghj-Jt-G4M"/>
                     <constraint firstItem="wm3-AX-ZSv" firstAttribute="top" secondItem="XH4-pp-CO1" secondAttribute="topMargin" constant="1" id="oaE-hI-1P0"/>
                 </constraints>

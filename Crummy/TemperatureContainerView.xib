@@ -54,7 +54,11 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6q-1z-f50">
-                    <rect key="frame" x="430" y="15" width="36" height="28"/>
+                    <rect key="frame" x="431" y="26" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="CIh-oF-aJX"/>
+                        <constraint firstAttribute="width" constant="35" id="h0H-vP-EIf"/>
+                    </constraints>
                     <state key="normal" image="CheckmarkButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -73,6 +77,7 @@
                 <constraint firstAttribute="trailing" secondItem="K6q-1z-f50" secondAttribute="trailing" constant="18" id="fYt-5X-MHZ"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="140" id="jlf-5N-jov"/>
                 <constraint firstAttribute="trailing" secondItem="leV-lo-pyX" secondAttribute="trailing" constant="135" id="l7n-wR-YLp"/>
+                <constraint firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" id="scs-Mh-Icq"/>
                 <constraint firstAttribute="bottom" secondItem="Ouf-2I-k5S" secondAttribute="bottom" id="wXO-B9-jkD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -80,6 +85,7 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="Czt-rC-hNh"/>
+                    <exclude reference="EWa-9R-kEg"/>
                     <exclude reference="jlf-5N-jov"/>
                     <exclude reference="l7n-wR-YLp"/>
                 </mask>

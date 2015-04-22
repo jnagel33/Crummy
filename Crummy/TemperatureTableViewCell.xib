@@ -19,7 +19,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ug4-2D-bz2">
-                        <rect key="frame" x="301" y="9" width="35" height="35"/>
+                        <rect key="frame" x="297" y="9" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="cqG-Zc-42W"/>
                             <constraint firstAttribute="width" constant="35" id="hD7-EL-0vK"/>
@@ -42,7 +42,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ug4-2D-bz2" secondAttribute="trailing" constant="4" id="0hn-iq-Fr6"/>
+                    <constraint firstAttribute="trailing" secondItem="ug4-2D-bz2" secondAttribute="trailing" constant="8" id="0hn-iq-Fr6"/>
                     <constraint firstItem="ug4-2D-bz2" firstAttribute="trailing" secondItem="pJd-Xz-xCL" secondAttribute="trailingMargin" id="8z6-Wj-JfF"/>
                     <constraint firstItem="ug4-2D-bz2" firstAttribute="top" secondItem="pJd-Xz-xCL" secondAttribute="topMargin" constant="1" id="D1h-GE-yHY"/>
                     <constraint firstItem="wwd-Pc-Kih" firstAttribute="leading" secondItem="pJd-Xz-xCL" secondAttribute="leading" constant="8" id="F8q-9S-HXY"/>

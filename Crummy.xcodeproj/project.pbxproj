@@ -356,7 +356,6 @@
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
 				43723F3E1AE7198500543B7E /* MedicationTableViewCell.swift in Sources */,
-				43DF35FF1AE5601B00D567D2 /* EditKidViewController.swift in Sources */,
 				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
 				F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */,

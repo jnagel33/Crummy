@@ -22,7 +22,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BH-D2-dAj">
-                    <rect key="frame" x="341" y="9" width="36" height="28"/>
+                    <rect key="frame" x="342" y="19" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="1SC-qt-D6j"/>
+                        <constraint firstAttribute="width" constant="35" id="QPc-zm-6X4"/>
+                    </constraints>
                     <state key="normal" image="CheckmarkButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -30,30 +34,41 @@
                         <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="w2j-Md-59g"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Symptoms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-pv-hl4">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter symptoms" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-HP-Qdm">
+                    <rect key="frame" x="16" y="8" width="308" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symptoms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-pv-hl4">
                     <rect key="frame" x="158" y="51" width="70" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="awB-gb-3HR"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter symptoms" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-HP-Qdm">
-                    <rect key="frame" x="16" y="8" width="307" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Pbc-pv-hl4" secondAttribute="bottom" id="7Np-bE-H1H"/>
                 <constraint firstItem="zQf-8S-pib" firstAttribute="leading" secondItem="caz-ZN-q3s" secondAttribute="leading" constant="8" id="AWN-JE-JgX"/>
                 <constraint firstAttribute="centerY" secondItem="5W7-HP-Qdm" secondAttribute="centerY" constant="13.5" id="QiP-S2-f7i"/>
                 <constraint firstAttribute="centerY" secondItem="7BH-D2-dAj" secondAttribute="centerY" constant="13.5" id="Z8f-2T-sYi"/>
                 <constraint firstAttribute="centerY" secondItem="zQf-8S-pib" secondAttribute="centerY" constant="24.5" id="byz-xq-hDE"/>
+                <constraint firstAttribute="centerX" secondItem="Pbc-pv-hl4" secondAttribute="centerX" id="g9j-C2-Clf"/>
                 <constraint firstItem="5W7-HP-Qdm" firstAttribute="leading" secondItem="zQf-8S-pib" secondAttribute="trailing" constant="8" id="j2e-1U-ByN"/>
                 <constraint firstAttribute="trailing" secondItem="7BH-D2-dAj" secondAttribute="trailing" constant="10" id="oOZ-U1-pRZ"/>
                 <constraint firstItem="7BH-D2-dAj" firstAttribute="leading" secondItem="5W7-HP-Qdm" secondAttribute="trailing" constant="18" id="qIl-wi-XBH"/>
+                <constraint firstAttribute="centerY" secondItem="7BH-D2-dAj" secondAttribute="centerY" id="wZD-hl-eFT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Z8f-2T-sYi"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="408.5" y="269"/>
         </view>
     </objects>
