@@ -60,10 +60,9 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let email = "esa@yahoo.com"
     let password = "ghds1234"
     
-    self.crummyApiService.postLogin(email, password: password, completionHandler: { (error) -> (Void) in
-      if error == nil {
-        
-      }
-    })
+    //self.crummyApiService.postLogin(email, password: password, completionHandler: { (error) -> (Void) in
+
+        self.crummyApiService.listKid({ (error) -> (Void) in
+      })
   }
 }
