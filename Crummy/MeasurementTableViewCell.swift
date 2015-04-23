@@ -14,4 +14,5 @@ class MeasurementTableViewCell: UITableViewCell {
   @IBOutlet weak var heightInchesTextField: UITextField!
   @IBOutlet weak var weightTextField: UITextField!
   @IBOutlet weak var duplicateButton: UIButton!
+  
 }
