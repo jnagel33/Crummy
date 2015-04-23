@@ -93,6 +93,8 @@ class CrummyApiService {
   
   func getKid(searchTerm: String, completionHandler: ([Kid]?, String?) -> (Void)) {
     
+    // listKid
+    
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids"
     let queryString = "?:\(searchTerm)"
     let requestUrl = kidIdUrl + queryString

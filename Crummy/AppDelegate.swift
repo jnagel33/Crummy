@@ -5,17 +5,23 @@
 //  Created by Josh Nagel on 4/20/15.
 //  Copyright (c) 2015 CF. All rights reserved.
 //
-
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
-
+  
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+    
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      if let
+        rootViewController = self.window?.rootViewController as? LoginViewController,
+        storyboard = rootViewController.storyboard {
+          let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeView") as! UINavigationController
+          window?.rootViewController = homeViewController
+      }
+    }
     return true
   }
 
