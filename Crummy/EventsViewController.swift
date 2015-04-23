@@ -58,7 +58,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var kid: Kid!
   var selectedType: EventType?
   var currentContainerView: UIView?
-  var sections: [[String]]?
+  var sections = [[Event]]()
   var currentCellY: CGFloat?
   
   override func viewDidLoad() {
@@ -77,14 +77,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     cellNib = UINib(nibName: "SymptomsTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "SymptomCell")
     
-    let today = NSDate()
-    let cal = NSCalendar.currentCalendar()
-    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
-    
-    self.kid.events.append(Event(id: 1, type: EventType.Medication, temperature: 98.9, medication: "2 Advil", heightInches: 78, weight: 43, symptom: "symptom", date: yesterday!))
-    self.kid.events.append(Event(id: 1, type: EventType.Symptom, temperature: 98.9, medication: "meds", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
-    self.kid.events.append(Event(id: 1, type: EventType.Temperature, temperature: 98.9, medication: "advil", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
-    self.kid.events.append(Event(id: 1, type: EventType.Measurement, temperature: 98.9, medication: "test", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
+//    let today = NSDate()
+//    let cal = NSCalendar.currentCalendar()
+//    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
+//    
+//    self.kid.events.append(Event(id: 1, type: EventType.Medication, temperature: 98.9, medication: "2 Advil", heightInches: 78, weight: 43, symptom: "symptom", date: yesterday!))
+//    self.kid.events.append(Event(id: 1, type: EventType.Symptom, temperature: 98.9, medication: "meds", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
+//    self.kid.events.append(Event(id: 1, type: EventType.Temperature, temperature: 98.9, medication: "advil", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
+//    self.kid.events.append(Event(id: 1, type: EventType.Measurement, temperature: 98.9, medication: "test", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
     
     self.getSections()
     
@@ -230,10 +230,20 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func duplicatePressed(sender: UIButton) {
+    
+    if let
+      contentView = sender.superview,
+      cell = contentView.superview as? UITableViewCell,
+      indexPath = self.tableView.indexPathForCell(cell)
+    {
+      println(indexPath.section)
+    }
+    
     let indexPath = sender.tag
     let eventToDuplicate = kid.events[indexPath]
     eventToDuplicate.id = nil
     kid.events.insert(eventToDuplicate, atIndex: 0)
+    self.getSections()
     self.tableView.reloadData()
   }
   
@@ -242,28 +252,34 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func getSections() {
-    self.sections = [[String]]()
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM/dd/YYYY"
+    self.sections.removeAll(keepCapacity: false)
+    self.sections = [[Event]]()
+    
+    var checkedEvents = [Event]()
     for event in self.kid.events {
-      var checkedEvents = [String]()
       let date = event.date
-      let dateStr = dateFormatter.stringFromDate(date)
+      let cal = NSCalendar.currentCalendar()
+      let yearComponent = cal.component(NSCalendarUnit.CalendarUnitYear, fromDate: date)
+      let monthComponent = cal.component(NSCalendarUnit.CalendarUnitMonth, fromDate: date)
+      let dayComponent = cal.component(NSCalendarUnit.CalendarUnitDay, fromDate: date)
       if checkedEvents.isEmpty {
-        self.sections!.append([dateStr])
+        self.sections.append([event])
+        checkedEvents.append(event)
       } else {
+        let lastCheckedEvent = checkedEvents.last
+        checkedEvents.append(event)
+        let checkedYearComponent = cal.component(NSCalendarUnit.CalendarUnitYear, fromDate: lastCheckedEvent!.date)
+        let checkedMonthComponent = cal.component(NSCalendarUnit.CalendarUnitMonth, fromDate: lastCheckedEvent!.date)
+        let checkedDayComponent = cal.component(NSCalendarUnit.CalendarUnitDay, fromDate: lastCheckedEvent!.date)
         
-        for (index, date) in enumerate(checkedEvents) {
-          if dateStr == date {
-            var section = self.sections![index - 1]
-            section.append(dateStr)
-          } else {
-            self.sections!.append([dateStr])
-          }
-          checkedEvents.append(dateStr)
+        if yearComponent == checkedYearComponent && monthComponent == checkedMonthComponent && dayComponent == checkedDayComponent {
+          self.sections[sections.count - 1].append(event)
+        } else {
+          self.sections.append([event])
         }
       }
     }
+    println(sections.count)
   }
   
   @IBAction func doneButtonPressed(sender: UIButton) {
@@ -307,6 +323,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
+    self.getSections()
     self.tableView.reloadData()
   }
   
@@ -370,11 +387,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK: UITableViewDataSource
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.kid!.events.count
+    return self.sections[section].count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    self.getSections()
     let event = kid.events[indexPath.row]
     if event.type == EventType.Medication {
       var medicationCell = tableView.dequeueReusableCellWithIdentifier("MedicationCell", forIndexPath: indexPath) as! MedicationTableViewCell
@@ -440,13 +456,26 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//    return self.sections!.count
-    return 1
+    return self.sections.count
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    let section = sections![section]
-    return section.first
+    let section = sections[section]
+    
+    let cal = NSCalendar.currentCalendar()
+    let dateForSection = cal.startOfDayForDate(section.first!.date)
+    let today = cal.startOfDayForDate(NSDate())
+    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
+    if today == dateForSection {
+     return "Today"
+    } else if yesterday == dateForSection {
+      return "Yesterday"
+    } else {
+      var dateFormatter = NSDateFormatter()
+      dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+      let dateStr = dateFormatter.stringFromDate(dateForSection)
+      return dateStr
+    }
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
