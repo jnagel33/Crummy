@@ -41,6 +41,31 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
+  
+  func createNewUser(username: String, password: String, completionHandler: (String?) -> (Void)) {
+    
+    let url = "http://crummy.herokuapp.com/api/v1/users"
+    let parameterString = "email=\(username)" + "&" + "password=\(password)"
+    let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+    
+    var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    request.HTTPMethod = "POST"
+    request.HTTPBody = data
+    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      let status = self.statusResponse(response)
+      if status == "200" {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
+      } else {
+        completionHandler(status)
+      }
+    })
+    dataTask.resume()
+  }
 
   func listKid(completionHandler: [KidsList]? -> (Void)) {
     
