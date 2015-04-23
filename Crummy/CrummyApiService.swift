@@ -116,6 +116,32 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
+  
+  func getEvents(id: Int, completionHandler: ([Event]?, String?) -> (Void)) {
+    let eventIdUrl = "http://crummy.herokuapp.com/api/v1/kids/45/events"
+    let url = NSURL(string: eventIdUrl)
+    
+    let request = NSMutableURLRequest(URL: url!)
+    request.setValue("Token token=VfbcZZWaDdqTzoahGVZf", forHTTPHeaderField: "Authorization")
+    request.setValue("application/json", forHTTPHeaderField: "Accept")
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      if error != nil {
+        
+      } else {
+        if let httpResponse = response as? NSHTTPURLResponse {
+          println(httpResponse.statusCode)
+          if httpResponse.statusCode == 200 {
+            let events = CrummyJsonParser.parseEvents(data)
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              completionHandler(events, nil)
+            })
+          }
+        }
+      }
+    })
+    dataTask.resume()
+  }
 
   func statusResponse(response: NSURLResponse) -> String {
     
