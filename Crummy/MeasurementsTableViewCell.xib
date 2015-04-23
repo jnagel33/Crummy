@@ -80,7 +80,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.99320117438561051" green="1" blue="0.56502535095318862" alpha="0.88" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="PQc-Kd-BS3" firstAttribute="leading" secondItem="RIj-n3-TvA" secondAttribute="trailing" constant="8" symbolic="YES" id="5By-cc-9SS"/>
                     <constraint firstItem="RIj-n3-TvA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="99X-u2-4yA"/>

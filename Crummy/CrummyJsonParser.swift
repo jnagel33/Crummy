@@ -49,4 +49,64 @@ class CrummyJsonParser {
     }
     return parse
   }
+  
+  class func parseEvents(jsonData: NSData) -> [Event] {
+    var events = [Event]()
+    var error: NSError?
+    
+    if let jsonObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String: AnyObject]] {
+      for event in jsonObject {
+        if let eventId = event["id"] as? Int {
+          var eventType: EventType?
+          var name: String?
+          var temperature: Double?
+          var height: Int?
+          var weight: Int?
+          var description: String?
+          if let type = event["type"] as? String {
+            if type == "Medicine" {
+              eventType = EventType.Medication
+            } else if type == "Temperature" {
+              eventType = EventType.Temperature
+            } else if type == "HeightWeight" {
+              eventType = EventType.Measurement
+            } else {
+              eventType = EventType.Symptom
+            }
+          }
+          if let datetime = event["datetime"] as? String {
+            //Need dateFormatter
+          }
+          if let eventName = event["name"] as? String {
+            name = eventName
+          }
+          if let eventTemperature = event["temperature"] as? String {
+            let temperature = (eventTemperature as NSString).doubleValue
+          }
+          if let eventHeight = event["height"] as? String {
+            height = eventHeight.toInt()
+          }
+          if let eventWeight = event["weight"] as? String {
+            weight = eventWeight.toInt()
+          }
+          if let eventDescription = event["description"] as? String {
+            description = eventDescription
+          }
+          
+          let event = Event(id: eventId, type: eventType!, temperature: temperature, medication: name, heightInches: height, weight: weight, symptom: description, date: NSDate())
+          events.append(event)
+        }
+      }
+    }
+    return events
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
