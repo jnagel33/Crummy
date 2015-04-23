@@ -34,7 +34,6 @@
                         </state>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="1" green="0.75058928427935023" blue="0.91558210543345042" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="OnG-iX-TSs" secondAttribute="centerY" id="BNZ-qB-wk2"/>
                     <constraint firstAttribute="centerY" secondItem="Ac1-iw-0LG" secondAttribute="centerY" id="bGJ-1T-a4h"/>
