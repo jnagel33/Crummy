@@ -64,6 +64,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var sections = [[Event]]()
   var currentCellY: CGFloat?
   var inchesInAFoot = 12
+  var contentOffsetChangeAmount: CGFloat?
   
   //MARK:
   //MARK: ViewDidLoad
@@ -235,15 +236,21 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
             self.view.layoutIfNeeded()
           })
         } else {
-          var tableViewHeight = self.tableView.frame.height
-          var screenHeight = UIScreen.mainScreen().bounds.height
-          println("Bounds height \(screenHeight)")
-          println("cell y: \(self.currentCellY! + self.currentCellHeight)")
+          var viewHeight = self.view.frame.height
+          println("Bounds height \(viewHeight)")
+          println("cell y: \(self.currentCellY!)")
+          println("currentCellHeight: \(self.currentCellHeight)")
           println("Superview \(self.view.frame.height)")
           println("Keyboard Height \(self.keyboardHeight)")
-          if currentCellY! + self.currentCellHeight > (self.tableView.frame.height - self.keyboardHeight) {
-            println("Need to move!")
-            self.tableView.contentOffset.y = self.keyboardHeight - self.currentCellHeight
+          let cellBottomY = currentCellY! + self.currentCellHeight
+          let visibleView = self.view.frame.height - self.keyboardHeight
+          println("Cell bottom Y: \(cellBottomY)")
+          println("Visible View: \(visibleView)")
+          
+          if cellBottomY > visibleView {
+            self.contentOffsetChangeAmount = cellBottomY - visibleView
+            println("Need to move \(self.contentOffsetChangeAmount) points")
+            self.tableView.contentOffset.y = self.tableView.contentOffset.y + self.contentOffsetChangeAmount!
             UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
               self.view.layoutIfNeeded()
             })
@@ -385,16 +392,23 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         self.view.layoutIfNeeded()
       })
     }
-    
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.dismissKeyboard(textField)
+    self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
     return true
   }
   
   func doneNumberPadPressed(barButton: UIBarButtonItem) {
     self.currentTextField!.resignFirstResponder()
+    self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
   }
   
   func enteredTextField(textField: UITextField) {
@@ -403,7 +417,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       indexPath = self.tableView.indexPathForCell(cell)
     {
       var rectOfCellInTableView = tableView.rectForRowAtIndexPath(indexPath)
-      var rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, fromView: self.view)
+      var rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, toView: self.view)
       self.currentCellY = rectOfCellInSuperview.origin.y
       textField.delegate = self
       self.currentTextField = textField
