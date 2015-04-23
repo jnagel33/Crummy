@@ -84,14 +84,26 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     cellNib = UINib(nibName: "SymptomsTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "SymptomCell")
     
-//    let today = NSDate()
-//    let cal = NSCalendar.currentCalendar()
-//    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
-//    
-//    self.kid.events.append(Event(id: 1, type: EventType.Medication, temperature: 98.9, medication: "2 Advil", heightInches: 78, weight: 43, symptom: "symptom", date: yesterday!))
-//    self.kid.events.append(Event(id: 1, type: EventType.Symptom, temperature: 98.9, medication: "meds", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
-//    self.kid.events.append(Event(id: 1, type: EventType.Temperature, temperature: 98.9, medication: "advil", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
-//    self.kid.events.append(Event(id: 1, type: EventType.Measurement, temperature: 98.9, medication: "test", heightInches: 78, weight: 43, symptom: "symptom", date: NSDate()))
+    let today = NSDate()
+    let cal = NSCalendar.currentCalendar()
+    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
+    let two = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -2, toDate: today, options: nil)
+    let three = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -3, toDate: today, options: nil)
+    let four = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -4, toDate: today, options: nil)
+    self.kid.events.append(Event(id: 1, type: EventType.Medication, temperature: 98.9, medication: "2 Advil", heightInches: 78, weight: 43, symptom: "symptom", date: yesterday!))
+    self.kid.events.append(Event(id: 1, type: EventType.Symptom, temperature: 98.9, medication: "meds", heightInches: 78, weight: 43, symptom: "symptom", date: two!))
+    self.kid.events.append(Event(id: 1, type: EventType.Temperature, temperature: 98.9, medication: "advil", heightInches: 78, weight: 43, symptom: "symptom", date: three!))
+    self.kid.events.append(Event(id: 1, type: EventType.Measurement, temperature: 98.9, medication: "test", heightInches: 78, weight: 43, symptom: "symptom", date: four!))
+    
+    
+    self.kid.events.sort({ (d1, d2) -> Bool in
+      let result = d1.date.compare(d2.date)
+      if result == NSComparisonResult.OrderedDescending {
+        return true
+      } else {
+        return false
+      }
+    })
     
     self.getSections()
     
@@ -184,6 +196,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.constraintTemperatureContainerViewBottom!.constant = 0
     }
     self.tableView.userInteractionEnabled = true
+    self.selectedType = nil
   }
   
   func dismissKeyboard(textField: UITextField) {
@@ -201,6 +214,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.view.layoutIfNeeded()
     })
     self.tableView.userInteractionEnabled = true
+    self.selectedType = nil
   }
   
   func keyboardWillShow(notification: NSNotification) {
@@ -241,26 +255,19 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   func duplicatePressed(sender: UIButton) {
     
-    if let
-      contentView = sender.superview,
-      cell = contentView.superview as? UITableViewCell,
-      indexPath = self.tableView.indexPathForCell(cell)
+    if let contentView = sender.superview,
+                  cell = contentView.superview as? UITableViewCell,
+             indexPath = self.tableView.indexPathForCell(cell)
     {
-      println(indexPath.section)
+      let section = self.sections[indexPath.section]
+      var eventToDuplicate = section[indexPath.row]
+      var newEvent = Event(id: nil, type: eventToDuplicate.type, temperature: eventToDuplicate.temperature, medication: eventToDuplicate.medication, heightInches: eventToDuplicate.heightInches, weight: eventToDuplicate.weight, symptom: eventToDuplicate.symptom, date: NSDate())
+      kid.events.insert(newEvent, atIndex: 0)
+      self.getSections()
+      self.tableView.reloadData()
     }
-    
-    let indexPath = sender.tag
-    let eventToDuplicate = kid.events[indexPath]
-    eventToDuplicate.id = nil
-    kid.events.insert(eventToDuplicate, atIndex: 0)
-    self.getSections()
-    self.tableView.reloadData()
   }
-  
-  func filter() {
-    
-  }
-  
+
   func getSections() {
     self.sections.removeAll(keepCapacity: false)
     self.sections = [[Event]]()
@@ -336,8 +343,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     } else if self.symptomsDoneButton != nil && sender == self.symptomsDoneButton {
       self.symptomsTextField.resignFirstResponder()
       if let symptoms = self.symptomsTextField.text {
-        let event = Event(id: nil, type: EventType.Symptom, temperature: nil, medication: nil, heightInches: nil, weight: nil, symptom: symptoms, date: NSDate())
-        self.kid.events.insert(event, atIndex: 0)
+        if !symptoms.isEmpty {
+          let event = Event(id: nil, type: EventType.Symptom, temperature: nil, medication: nil, heightInches: nil, weight: nil, symptom: symptoms, date: NSDate())
+          self.kid.events.insert(event, atIndex: 0)
+        }
       }
       self.symptomsTextField.text = nil
     } else if self.temperatureDoneButton != nil && sender == self.temperatureDoneButton {
@@ -356,6 +365,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     })
     self.getSections()
     self.tableView.reloadData()
+    self.selectedType = nil
   }
   
   //MARK:
@@ -388,29 +398,34 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func enteredTextField(textField: UITextField) {
-    let index = textField.tag
-    var rectOfCellInTableView = tableView.rectForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))
-    var rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, fromView: self.view)
-    self.currentCellY = rectOfCellInSuperview.origin.y
-    textField.delegate = self
-    self.currentTextField = textField
-    let eventType = self.kid.events[index].type
-    if eventType == EventType.Measurement || eventType == EventType.Temperature {
-      if eventType == EventType.Measurement {
-        self.currentCellHeight = self.measurementCellHeight
+    if let contentView = textField.superview,
+      cell = contentView.superview as? UITableViewCell,
+      indexPath = self.tableView.indexPathForCell(cell)
+    {
+      var rectOfCellInTableView = tableView.rectForRowAtIndexPath(indexPath)
+      var rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, fromView: self.view)
+      self.currentCellY = rectOfCellInSuperview.origin.y
+      textField.delegate = self
+      self.currentTextField = textField
+      let section = self.sections[indexPath.section]
+      let eventType = section[indexPath.row].type
+      if eventType == EventType.Measurement || eventType == EventType.Temperature {
+        if eventType == EventType.Measurement {
+          self.currentCellHeight = self.measurementCellHeight
+        } else {
+          self.currentCellHeight = self.temperatureCellHeight
+        }
+        var toolBar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
+        toolBar.barStyle = UIBarStyle.Default
+        let doneBarButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "doneNumberPadPressed:")
+        toolBar.items = [UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),doneBarButton]
+        toolBar.sizeToFit()
+        textField.inputAccessoryView = toolBar
+      } else if eventType == EventType.Symptom {
+        self.currentCellHeight = self.symptomsCellHeight
       } else {
-        self.currentCellHeight = self.temperatureCellHeight
+        self.currentCellHeight = self.medicationCellHeight
       }
-      var toolBar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
-      toolBar.barStyle = UIBarStyle.Default
-      let doneBarButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "doneNumberPadPressed:")
-      toolBar.items = [UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),doneBarButton]
-      toolBar.sizeToFit()
-      textField.inputAccessoryView = toolBar
-    } else if eventType == EventType.Symptom {
-      self.currentCellHeight = self.symptomsCellHeight
-    } else {
-      self.currentCellHeight = self.medicationCellHeight
     }
   }
   
@@ -422,49 +437,46 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let event = kid.events[indexPath.row]
+    let section = sections[indexPath.section]
+    let event = section[indexPath.row]
     if event.type == EventType.Medication {
       var medicationCell = tableView.dequeueReusableCellWithIdentifier("MedicationCell", forIndexPath: indexPath) as! MedicationTableViewCell
-      medicationCell.nameTextField.text = self.kid!.events[indexPath.row].medication
-      medicationCell.nameTextField.tag = indexPath.row
+      medicationCell.nameTextField.text = nil
+      medicationCell.nameTextField.text = event.medication
       medicationCell.nameTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
-      medicationCell.duplicateButton.tag = indexPath.row
       medicationCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return medicationCell
     } else if event.type == EventType.Measurement {
       var measurementCell = tableView.dequeueReusableCellWithIdentifier("MeasurementCell", forIndexPath: indexPath) as! MeasurementTableViewCell
-      if let heightTotalInches = self.kid!.events[indexPath.row].heightInches {
+      measurementCell.heightFeetTextField.text = nil
+      measurementCell.heightInchesTextField.text = nil
+      measurementCell.weightTextField.text = nil
+      if let heightTotalInches = event.heightInches {
         let heightFeet: Int = heightTotalInches / self.inchesInAFoot
         let heightInches: Int = heightTotalInches % self.inchesInAFoot
         measurementCell.heightFeetTextField.text = "\(heightFeet)"
-        measurementCell.heightFeetTextField.tag = indexPath.row
         measurementCell.heightFeetTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
-        measurementCell.heightInchesTextField.tag = indexPath.row
         measurementCell.heightInchesTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
         measurementCell.heightInchesTextField.text = "\(heightInches)"
       }
-      if let weight = self.kid!.events[indexPath.row].weight {
+      if let weight = event.weight {
         measurementCell.weightTextField.text = "\(weight)"
       }
-      measurementCell.weightTextField.tag = indexPath.row
       measurementCell.weightTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
-      measurementCell.duplicateButton.tag = indexPath.row
       measurementCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return measurementCell
     } else if event.type == EventType.Symptom {
       var symptomCell = tableView.dequeueReusableCellWithIdentifier("SymptomCell", forIndexPath: indexPath) as! SymptomsTableViewCell
-      symptomCell.symptomsTextField.tag = indexPath.row
+      symptomCell.symptomsTextField.text = nil
       symptomCell.symptomsTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
-      symptomCell.symptomsTextField.text = self.kid!.events[indexPath.row].symptom
-      symptomCell.duplicateButton.tag = indexPath.row
+      symptomCell.symptomsTextField.text = event.symptom
       symptomCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return symptomCell
     } else {
       var temperatureCell = tableView.dequeueReusableCellWithIdentifier("TemperatureCell", forIndexPath: indexPath) as! TemperatureTableViewCell
-      temperatureCell.temperatureTextField.text = "\(self.kid!.events[indexPath.row].temperature!)"
-      temperatureCell.temperatureTextField.tag = indexPath.row
+      temperatureCell.temperatureTextField.text = nil
+      temperatureCell.temperatureTextField.text = "\(event.temperature!)"
       temperatureCell.temperatureTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
-      temperatureCell.duplicateButton.tag = indexPath.row
       temperatureCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return temperatureCell
     }
@@ -474,7 +486,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK: UITableViewDelegate
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    let event = kid.events[indexPath.row]
+    let section = sections[indexPath.section]
+    let event = section[indexPath.row]
     if event.type == EventType.Medication {
       return self.medicationCellHeight
     } else if event.type == EventType.Measurement {
@@ -510,15 +523,18 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    let section = indexPath.section
-    kid.events.removeAtIndex(indexPath.row)
+    var section = indexPath.section
+    self.kid.events.removeAtIndex(indexPath.row)
     self.getSections()
-    if !sections.isEmpty && sections[section].count > 0 {
+    if tableView.numberOfSections() > self.sections.count {
+      tableView.deleteSections(NSIndexSet(index: section), withRowAnimation: UITableViewRowAnimation.Left)
+    } else {
       let indexPaths = [indexPath]
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
-    } else {
-      tableView.deleteSections(NSIndexSet(index: section), withRowAnimation: UITableViewRowAnimation.Left)
     }
   }
   
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
 }

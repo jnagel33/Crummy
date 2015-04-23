@@ -12,4 +12,5 @@ class MedicationTableViewCell: UITableViewCell {
 
   @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var duplicateButton: UIButton!
+  
 }

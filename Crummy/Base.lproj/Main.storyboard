@@ -554,9 +554,7 @@
                             <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="bottom" id="wHr-Cj-ZDv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Events" id="MRg-2f-FmJ">
-                        <barButtonItem key="rightBarButtonItem" image="FilterButton" id="MKY-pL-1dL"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Events" id="MRg-2f-FmJ"/>
                     <connections>
                         <outlet property="constraintButtonViewContainerBottom" destination="955-Fh-zfg" id="jTZ-Cf-vMg"/>
                         <outlet property="constraintEventTypeContainerHeight" destination="WHl-pZ-8xA" id="1nz-ua-wXv"/>
@@ -741,7 +739,6 @@
     <resources>
         <image name="CalenderButton" width="40" height="40"/>
         <image name="EditButton" width="65" height="30"/>
-        <image name="FilterButton" width="22" height="18"/>
         <image name="HomeButton" width="40" height="38"/>
         <image name="MeasurementButton" width="64" height="62"/>
         <image name="MedsButton" width="42" height="59"/>
