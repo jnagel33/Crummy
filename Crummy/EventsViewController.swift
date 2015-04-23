@@ -13,6 +13,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK:
   //MARK: Outlets and Variables
   
+  let crummyApiService = CrummyApiService()
+  
   @IBOutlet weak var constraintButtonViewContainerBottom: NSLayoutConstraint!
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var constraintViewContainerBottom: NSLayoutConstraint!
@@ -85,16 +87,15 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     cellNib = UINib(nibName: "SymptomsTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "SymptomCell")
     
-    let today = NSDate()
-    let cal = NSCalendar.currentCalendar()
-    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
-    let two = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -2, toDate: today, options: nil)
-    let three = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -3, toDate: today, options: nil)
-    let four = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -4, toDate: today, options: nil)
-    self.kid.events.append(Event(id: 1, type: EventType.Medication, temperature: 98.9, medication: "2 Advil", heightInches: 78, weight: 43, symptom: "symptom", date: yesterday!))
-    self.kid.events.append(Event(id: 1, type: EventType.Symptom, temperature: 98.9, medication: "meds", heightInches: 78, weight: 43, symptom: "symptom", date: two!))
-    self.kid.events.append(Event(id: 1, type: EventType.Temperature, temperature: 98.9, medication: "advil", heightInches: 78, weight: 43, symptom: "symptom", date: three!))
-    self.kid.events.append(Event(id: 1, type: EventType.Measurement, temperature: 98.9, medication: "test", heightInches: 78, weight: 43, symptom: "symptom", date: four!))
+    self.crummyApiService.getEvents(1, completionHandler: { (events, error) -> (Void) in
+      if error != nil {
+        println("error")
+      } else {
+        self.kid.events = events!
+        self.getSections()
+        self.tableView.reloadData()
+      }
+    })
     
     
     self.kid.events.sort({ (d1, d2) -> Bool in
