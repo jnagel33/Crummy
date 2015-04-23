@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var constraintContainerCenterY: NSLayoutConstraint!
   
+  let crummyApiService = CrummyApiService()
   var bufferForSlidingLoginView: CGFloat = 70
   var animationDuration: Double = 0.2
   
@@ -30,9 +31,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
   }
   
   @IBAction func loginPressed(sender: UIButton) {
-    println(usernameTextField.text)
-    println(passwordTextField.text)
-    self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
+    let username = usernameTextField.text
+    let password = passwordTextField.text
+    
+    self.crummyApiService.postLogin(username, password: password, completionHandler: { (status) -> (Void) in
+      
+      if status == "200" {
+        println(status)
+        self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
+      } else {
+        println(status)
+        // send error message to login screen here
+      }
+    })
   }
   
   func dismissKeyboard() {
