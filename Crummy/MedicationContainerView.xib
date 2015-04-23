@@ -17,15 +17,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FAu-GT-BqD">
-                    <rect key="frame" x="64" y="8" width="287" height="30"/>
+                    <rect key="frame" x="51" y="8" width="301" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-t0-fb4">
-                    <rect key="frame" x="364" y="8" width="36" height="35"/>
+                    <rect key="frame" x="365" y="14" width="35" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="Ihd-Da-ql4"/>
-                        <constraint firstAttribute="width" constant="36" id="pe7-wN-y8z"/>
+                        <constraint firstAttribute="width" constant="35" id="Z7y-ZP-wEg"/>
                         <constraint firstAttribute="height" constant="35" id="qwo-Tx-scn"/>
                     </constraints>
                     <state key="normal" image="CheckmarkButton">
@@ -35,8 +34,8 @@
                         <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="xKT-uN-KR0"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meds:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eL-gr-qsv">
-                    <rect key="frame" x="8" y="12" width="48" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eL-gr-qsv">
+                    <rect key="frame" x="8" y="12" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -47,25 +46,49 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYg-KQ-N9h">
+                    <rect key="frame" x="8" y="14" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="0Wn-ln-ZYt"/>
+                        <constraint firstAttribute="width" constant="35" id="GUr-a5-SEN"/>
+                    </constraints>
+                    <state key="normal" image="ThreeDotsMenuButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="menuButtonPressed:" destination="-1" eventType="touchUpInside" id="VbA-8Q-X5U"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.92123429229999998" green="0.92123429229999998" blue="0.92123429229999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="D5B-t0-fb4" secondAttribute="trailing" constant="8" id="23K-8a-EOb"/>
                 <constraint firstItem="FAu-GT-BqD" firstAttribute="leading" secondItem="0eL-gr-qsv" secondAttribute="trailing" constant="8" symbolic="YES" id="5Xc-a1-ffa"/>
                 <constraint firstItem="D5B-t0-fb4" firstAttribute="top" secondItem="hiY-aG-iFf" secondAttribute="top" constant="8" id="6lA-JM-Dho"/>
                 <constraint firstItem="D5B-t0-fb4" firstAttribute="leading" secondItem="FAu-GT-BqD" secondAttribute="trailing" constant="13" id="Ez6-Le-f1C"/>
                 <constraint firstItem="FAu-GT-BqD" firstAttribute="top" secondItem="hiY-aG-iFf" secondAttribute="topMargin" id="RM3-hY-5St"/>
+                <constraint firstItem="FAu-GT-BqD" firstAttribute="leading" secondItem="EYg-KQ-N9h" secondAttribute="trailing" constant="8" id="Ye1-Dz-crL"/>
                 <constraint firstAttribute="bottom" secondItem="m3R-rW-H9s" secondAttribute="bottom" id="ebV-Wt-7z4"/>
                 <constraint firstItem="0eL-gr-qsv" firstAttribute="top" secondItem="hiY-aG-iFf" secondAttribute="top" constant="12" id="hBs-dN-vrn"/>
+                <constraint firstAttribute="centerY" secondItem="EYg-KQ-N9h" secondAttribute="centerY" id="iQp-Mk-gYU"/>
                 <constraint firstItem="m3R-rW-H9s" firstAttribute="centerX" secondItem="hiY-aG-iFf" secondAttribute="centerX" id="mTP-aS-05A"/>
                 <constraint firstItem="0eL-gr-qsv" firstAttribute="leading" secondItem="hiY-aG-iFf" secondAttribute="leadingMargin" id="mff-95-8dQ"/>
+                <constraint firstAttribute="centerY" secondItem="D5B-t0-fb4" secondAttribute="centerY" id="rka-R9-5KG"/>
+                <constraint firstItem="EYg-KQ-N9h" firstAttribute="leading" secondItem="hiY-aG-iFf" secondAttribute="leading" constant="8" id="xa8-s4-lUx"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="5Xc-a1-ffa"/>
+                    <exclude reference="6lA-JM-Dho"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="367" y="153.5"/>
         </view>
     </objects>
     <resources>
         <image name="CheckmarkButton" width="36" height="28"/>
+        <image name="ThreeDotsMenuButton" width="35" height="35"/>
     </resources>
 </document>

@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQf-8S-pib">
-                    <rect key="frame" x="8" y="12" width="0.0" height="0.0"/>
+                    <rect key="frame" x="8" y="12" width="36" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter symptoms" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-HP-Qdm">
-                    <rect key="frame" x="16" y="8" width="308" height="30"/>
+                    <rect key="frame" x="52" y="8" width="272" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                 </textField>
@@ -48,14 +48,30 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqg-yV-N0U">
+                    <rect key="frame" x="8" y="18" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="DiN-j7-XUL"/>
+                        <constraint firstAttribute="width" constant="35" id="RSb-Nb-pdF"/>
+                    </constraints>
+                    <state key="normal" image="ThreeDotsMenuButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="menuButtonPressed:" destination="-1" eventType="touchUpInside" id="oBx-0b-0UM"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="centerY" secondItem="mqg-yV-N0U" secondAttribute="centerY" id="2vr-a7-GAq"/>
                 <constraint firstAttribute="bottom" secondItem="Pbc-pv-hl4" secondAttribute="bottom" id="7Np-bE-H1H"/>
                 <constraint firstItem="zQf-8S-pib" firstAttribute="leading" secondItem="caz-ZN-q3s" secondAttribute="leading" constant="8" id="AWN-JE-JgX"/>
+                <constraint firstItem="5W7-HP-Qdm" firstAttribute="leading" secondItem="mqg-yV-N0U" secondAttribute="trailing" constant="9" id="CTZ-QC-dIq"/>
                 <constraint firstAttribute="centerY" secondItem="5W7-HP-Qdm" secondAttribute="centerY" constant="13.5" id="QiP-S2-f7i"/>
                 <constraint firstAttribute="centerY" secondItem="7BH-D2-dAj" secondAttribute="centerY" constant="13.5" id="Z8f-2T-sYi"/>
                 <constraint firstAttribute="centerY" secondItem="zQf-8S-pib" secondAttribute="centerY" constant="24.5" id="byz-xq-hDE"/>
+                <constraint firstItem="mqg-yV-N0U" firstAttribute="leading" secondItem="caz-ZN-q3s" secondAttribute="leading" constant="8" id="f5R-JB-gML"/>
                 <constraint firstAttribute="centerX" secondItem="Pbc-pv-hl4" secondAttribute="centerX" id="g9j-C2-Clf"/>
                 <constraint firstItem="5W7-HP-Qdm" firstAttribute="leading" secondItem="zQf-8S-pib" secondAttribute="trailing" constant="8" id="j2e-1U-ByN"/>
                 <constraint firstAttribute="trailing" secondItem="7BH-D2-dAj" secondAttribute="trailing" constant="10" id="oOZ-U1-pRZ"/>
@@ -74,5 +90,6 @@
     </objects>
     <resources>
         <image name="CheckmarkButton" width="36" height="28"/>
+        <image name="ThreeDotsMenuButton" width="35" height="35"/>
     </resources>
 </document>
