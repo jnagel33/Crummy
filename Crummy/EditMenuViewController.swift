@@ -55,14 +55,4 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let indexPaths = [indexPath]
     tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
   }
-  
-  @IBAction func loginButton(sender: AnyObject) {
-    let email = "esa@yahoo.com"
-    let password = "ghds1234"
-    
-    //self.crummyApiService.postLogin(email, password: password, completionHandler: { (error) -> (Void) in
-
-        self.crummyApiService.listKid({ (error) -> (Void) in
-      })
-  }
 }

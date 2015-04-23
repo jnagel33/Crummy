@@ -37,7 +37,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     self.crummyApiService.postLogin(username, password: password, completionHandler: { (status) -> (Void) in
       
       if status == "200" {
-        println(status)
         self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
       } else {
         println(status)
