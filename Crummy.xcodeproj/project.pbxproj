@@ -38,7 +38,7 @@
 		D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Kid.swift */; };
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
 		D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */; };
-		D0F878AD1AE8501D005B0164 /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F3D1AE7198500543B7E /* MedicationTableViewCell.swift */; };
+		D0F878AD1AE8501D005B0164 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
 		F43CFA9A1AE6EC1E00430355 /* CrummyJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43CFA991AE6EC1E00430355 /* CrummyJsonParser.swift */; };
 		F48F090F1AE8416C00D73626 /* KidsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F090E1AE8416C00D73626 /* KidsList.swift */; };
@@ -289,7 +289,7 @@
 				TargetAttributes = {
 					431E22851AE55D9600A831CB = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = DU643WSPQQ;
+						DevelopmentTeam = QWRJC78833;
 					};
 					431E229A1AE55D9700A831CB = {
 						CreatedOnToolsVersion = 6.3;
@@ -349,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0F878AD1AE8501D005B0164 /* MedicationTableViewCell.swift in Sources */,
+				D0F878AD1AE8501D005B0164 /* (null) in Sources */,
 				43723F441AE719BB00543B7E /* SymptomsTableViewCell.swift in Sources */,
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43723F271AE6E2D100543B7E /* EventType.swift in Sources */,
