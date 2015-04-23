@@ -58,11 +58,12 @@ class CrummyJsonParser {
     if let jsonObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String: AnyObject]] {
       for event in jsonObject {
         if let eventId = event["id"] as? Int {
+          var id = "\(eventId)"
           var eventType: EventType?
           var name: String?
-          var temperature: Double?
-          var height: Int?
-          var weight: Int?
+          var temperature: String?
+          var height: String?
+          var weight: String?
           var description: String?
           if let type = event["type"] as? String {
             if type == "Medicine" {
@@ -78,36 +79,27 @@ class CrummyJsonParser {
           if let datetime = event["datetime"] as? String {
             //Need dateFormatter
           }
-          if let eventName = event["name"] as? String {
+          if let eventName = event["meds"] as? String {
             name = eventName
           }
           if let eventTemperature = event["temperature"] as? String {
-            let temperature = (eventTemperature as NSString).doubleValue
+            temperature = eventTemperature
           }
           if let eventHeight = event["height"] as? String {
-            height = eventHeight.toInt()
+            height = eventHeight
           }
           if let eventWeight = event["weight"] as? String {
-            weight = eventWeight.toInt()
+            weight = eventWeight
           }
           if let eventDescription = event["description"] as? String {
             description = eventDescription
           }
           
-          let event = Event(id: eventId, type: eventType!, temperature: temperature, medication: name, heightInches: height, weight: weight, symptom: description, date: NSDate())
+          let event = Event(id: id, type: eventType!, temperature: temperature, medication: name, heightInches: height, weight: weight, symptom: description, date: NSDate())
           events.append(event)
         }
       }
     }
     return events
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
 }
