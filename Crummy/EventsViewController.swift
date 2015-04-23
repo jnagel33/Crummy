@@ -13,6 +13,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK:
   //MARK: Outlets and Variables
   
+  let crummyApiService = CrummyApiService()
+  
   @IBOutlet weak var constraintButtonViewContainerBottom: NSLayoutConstraint!
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var constraintViewContainerBottom: NSLayoutConstraint!
@@ -64,6 +66,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var sections = [[Event]]()
   var currentCellY: CGFloat?
   var inchesInAFoot = 12
+  var contentOffsetChangeAmount: CGFloat?
   
   //MARK:
   //MARK: ViewDidLoad
@@ -84,16 +87,15 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     cellNib = UINib(nibName: "SymptomsTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "SymptomCell")
     
-    let today = NSDate()
-    let cal = NSCalendar.currentCalendar()
-    let yesterday = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -1, toDate: today, options: nil)
-    let two = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -2, toDate: today, options: nil)
-    let three = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -3, toDate: today, options: nil)
-    let four = cal.dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: -4, toDate: today, options: nil)
-    self.kid.events.append(Event(id: 1, type: EventType.Medication, temperature: 98.9, medication: "2 Advil", heightInches: 78, weight: 43, symptom: "symptom", date: yesterday!))
-    self.kid.events.append(Event(id: 1, type: EventType.Symptom, temperature: 98.9, medication: "meds", heightInches: 78, weight: 43, symptom: "symptom", date: two!))
-    self.kid.events.append(Event(id: 1, type: EventType.Temperature, temperature: 98.9, medication: "advil", heightInches: 78, weight: 43, symptom: "symptom", date: three!))
-    self.kid.events.append(Event(id: 1, type: EventType.Measurement, temperature: 98.9, medication: "test", heightInches: 78, weight: 43, symptom: "symptom", date: four!))
+    self.crummyApiService.getEvents(1, completionHandler: { (events, error) -> (Void) in
+      if error != nil {
+        println("error")
+      } else {
+        self.kid.events = events!
+        self.getSections()
+        self.tableView.reloadData()
+      }
+    })
     
     
     self.kid.events.sort({ (d1, d2) -> Bool in
@@ -235,15 +237,21 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
             self.view.layoutIfNeeded()
           })
         } else {
-          var tableViewHeight = self.tableView.frame.height
-          var screenHeight = UIScreen.mainScreen().bounds.height
-          println("Bounds height \(screenHeight)")
-          println("cell y: \(self.currentCellY! + self.currentCellHeight)")
+          var viewHeight = self.view.frame.height
+          println("Bounds height \(viewHeight)")
+          println("cell y: \(self.currentCellY!)")
+          println("currentCellHeight: \(self.currentCellHeight)")
           println("Superview \(self.view.frame.height)")
           println("Keyboard Height \(self.keyboardHeight)")
-          if currentCellY! + self.currentCellHeight > (self.tableView.frame.height - self.keyboardHeight) {
-            println("Need to move!")
-            self.tableView.contentOffset.y = self.keyboardHeight - self.currentCellHeight
+          let cellBottomY = currentCellY! + self.currentCellHeight
+          let visibleView = self.view.frame.height - self.keyboardHeight
+          println("Cell bottom Y: \(cellBottomY)")
+          println("Visible View: \(visibleView)")
+          
+          if cellBottomY > visibleView {
+            self.contentOffsetChangeAmount = cellBottomY - visibleView
+            println("Need to move \(self.contentOffsetChangeAmount) points")
+            self.tableView.contentOffset.y = self.tableView.contentOffset.y + self.contentOffsetChangeAmount!
             UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
               self.view.layoutIfNeeded()
             })
@@ -385,16 +393,23 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         self.view.layoutIfNeeded()
       })
     }
-    
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.dismissKeyboard(textField)
+    self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
     return true
   }
   
   func doneNumberPadPressed(barButton: UIBarButtonItem) {
     self.currentTextField!.resignFirstResponder()
+    self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
   }
   
   func enteredTextField(textField: UITextField) {
@@ -403,7 +418,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       indexPath = self.tableView.indexPathForCell(cell)
     {
       var rectOfCellInTableView = tableView.rectForRowAtIndexPath(indexPath)
-      var rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, fromView: self.view)
+      var rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, toView: self.view)
       self.currentCellY = rectOfCellInSuperview.origin.y
       textField.delegate = self
       self.currentTextField = textField
