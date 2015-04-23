@@ -9,7 +9,7 @@
 import UIKit
 
 class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
-
+  
   // parameters
   
   @IBOutlet weak var notesTextView: UITextView!
@@ -28,15 +28,21 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let doneButtonWidth: CGFloat = 50
   let pickerWidth: CGFloat = 50
   let dateRow : Int = 1
+  let crummyApiService = CrummyApiService()
   var pickerView : UIView!
   var datePicker : UIDatePicker!
   var guess: Int = 0
   
+  
+  
   // person passed from the "list of people controller.
   var selectedKid : Kid = Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024")
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    selectedKid.notes = ""
     
     // setup tags
     // assign the text fields tags.
@@ -58,21 +64,39 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.insuranceTextField.text = selectedKid.insuranceId
     self.consultingNurseHotline.text = selectedKid.nursePhone
     
-    // non gray out cells 
+    // non gray out cells
     if let tableView = self.view as? UITableView {
       tableView.allowsSelection = false
     }
-
+    
     self.view.layoutIfNeeded()
   } // viewDidLoad
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+//
+//    if selectedKid.name != "" && selectedKid.DOBString != "" {
+      self.crummyApiService.postNewKid(selectedKid.name, dobString: selectedKid.DOBString, insuranceID: selectedKid.insuranceId, nursePhone: selectedKid.nursePhone, notes: selectedKid.notes!, completionHandler: { (status) -> Void in
+        println(status)
+        if status! == "201" {
+          // launch a popup signifying data saved.
+        }
+      })
+//      
+//    } else {
+//      
+//      // do nothing.
+//    } // name && DOB
+
+  } // viewWillDisappear
   
   // MARK: - Date Picker
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker: UIDatePicker) {
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-    var strDate = dateFormatter.stringFromDate(datePicker.date)
+    dateFormatter.dateFormat = "MM-dd-yyyy"
+    let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid.DOBString = strDate
     
     self.birthdateLabel.text = selectedKid.DOBString
@@ -119,7 +143,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
       
-    self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerHeight
+      self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerHeight
       
     })
     
@@ -138,9 +162,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 3:
       selectedKid.nursePhone = textField.text
     case 4:
-     // selectedKid.notes = theField.text
+      // selectedKid.notes = theField.text
       println("not implemented yet")
-        default:
+    default:
       println("no choice here!")
     } // switch
     selectedKid.kidToString()
@@ -154,13 +178,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   // MARK: - Logic
   
   func getThisTextField (theRow : Int, theText : String) -> Void {
-    //take in a string value and set the kid object located in that field to that value.  Pretty simple.   
+    //take in a string value and set the kid object located in that field to that value.  Pretty simple.
     
     var text : String = theText
     var row : Int = theRow
     
     switch row {
-
+      
     case 0:
       selectedKid.name = text
     case 1:
@@ -172,14 +196,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 4:
       println("to be built")
       return selectedKid.nursePhone = text
-     // return selectedKid.notes = text
+      // return selectedKid.notes = text
     default:
       println("out of range")
     }
     selectedKid.kidToString()
     
     println("got to end")
-  }
+  } // getThisTextField
+
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()

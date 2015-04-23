@@ -15,8 +15,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   let crummyApiService = CrummyApiService()
   var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553"), Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553")]
   
-  
-  
+  // Randy is working on this...
+  let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
   override func viewDidLoad() {
     super.viewDidLoad()
     self.collectionView.dataSource = self
@@ -53,6 +53,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
   
   //MARK: 
   //MARK: - popover VC. 
+  
+  // Randy is working on this.. 
   
   
 }

@@ -116,6 +116,41 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
+  
+  func postNewKid(name: String, dobString: String, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
+    // url
+    let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
+    let url = NSURL(string: requestUrl)
+    let parameterString = "name=\(name)" + "&" + "dob=\(dobString)" + "&" + "insurance_id=\(insuranceID)" + "&" + "nurse_phone=\(nursePhone)" + "&" + "'notes'=\(notes)"
+    let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+    var request = NSMutableURLRequest(URL: url!)
+    request.HTTPMethod = "POST"
+    request.HTTPBody = data
+    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    
+    // token
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      print("retrieved token: ")
+      println(token)
+      request.setValue("Token token= \(token)", forHTTPHeaderField: "Authorization")
+    }
+    //post
+    
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      let status = self.statusResponse(response)
+      println(status)
+      if status == "201" {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
+      } else {
+        completionHandler(status)
+      }
+    })
+    
+    dataTask.resume()
+  } // postNewKid
 
   func statusResponse(response: NSURLResponse) -> String {
     
