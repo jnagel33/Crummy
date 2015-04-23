@@ -10,7 +10,7 @@ import UIKit
 
 class Kid {
   
-  // properties 
+  // properties
   
   var name : String
   
@@ -23,7 +23,7 @@ class Kid {
   var nursePhone : String
   
   var kidImage : UIImage?
-
+  
   var kidID : String?
   
   var notes : String?
@@ -39,7 +39,7 @@ class Kid {
     // setting the NSDate DOB object based on the DOB string from user input.
     // http://stackoverflow.com/questions/24089999/how-do-you-create-a-swift-date-object
     // we want it formatted as Date of birth, formatted dd-mm-yyyy
-   // dob = NSDate(dateString: DOBString)
+    // dob = NSDate(dateString: DOBString)
     insuranceId = theInsuranceID
     nursePhone = theNursePhone
     
@@ -47,7 +47,7 @@ class Kid {
   
   func kidToString() -> () {
     
-    println(self.name + self.DOBString + self.insuranceId + self.nursePhone)
-      }
+    println("name: " + self.name + " DOBString: " + self.DOBString + " insuranceID: " + self.insuranceId + " nursePhone: " + self.nursePhone + " notes: ")
+  }
   
 }

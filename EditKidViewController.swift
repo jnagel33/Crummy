@@ -36,13 +36,12 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   
   // person passed from the "list of people controller.
-  var selectedKid : Kid = Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024")
+  var selectedKid : Kid!
+  //  = Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024")
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    selectedKid.notes = ""
     
     // setup tags
     // assign the text fields tags.
@@ -64,6 +63,10 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.insuranceTextField.text = selectedKid.insuranceId
     self.consultingNurseHotline.text = selectedKid.nursePhone
     
+    if selectedKid.notes != "" {
+      self.notesTextView.text = selectedKid.notes
+    }
+    
     // non gray out cells
     if let tableView = self.view as? UITableView {
       tableView.allowsSelection = false
@@ -74,20 +77,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-//
-//    if selectedKid.name != "" && selectedKid.DOBString != "" {
-      self.crummyApiService.postNewKid(selectedKid.name, dobString: selectedKid.DOBString, insuranceID: selectedKid.insuranceId, nursePhone: selectedKid.nursePhone, notes: selectedKid.notes!, completionHandler: { (status) -> Void in
-        println(status)
-        if status! == "201" {
-          // launch a popup signifying data saved.
-        }
-      })
-//      
-//    } else {
-//      
-//      // do nothing.
-//    } // name && DOB
-
+    //println(self.notesTextView.text)
+    selectedKid.notes = notesTextView.text
+    
+    self.crummyApiService.postNewKid(selectedKid.name, dobString: selectedKid.DOBString, insuranceID: selectedKid.insuranceId, nursePhone: selectedKid.nursePhone, notes: selectedKid.notes!, completionHandler: { (status) -> Void in
+      //println(self.selectedKid.notes)
+      if status! == "201" {
+        // launch a popup signifying data saved.
+      }
+    })
   } // viewWillDisappear
   
   // MARK: - Date Picker
@@ -101,7 +99,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     self.birthdateLabel.text = selectedKid.DOBString
     birthdateLabel.textColor = UIColor.blackColor()
-    //    println(selectedKid.DOBString)
   } // datePickerChanged
   
   
@@ -162,8 +159,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 3:
       selectedKid.nursePhone = textField.text
     case 4:
-      // selectedKid.notes = theField.text
-      println("not implemented yet")
+      selectedKid.notes = self.notesTextView!.text
     default:
       println("no choice here!")
     } // switch
@@ -194,17 +190,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 3:
       return selectedKid.nursePhone = text
     case 4:
-      println("to be built")
-      return selectedKid.nursePhone = text
-      // return selectedKid.notes = text
+       return selectedKid.notes = notesTextView.text
     default:
-      println("out of range")
+     // println("out of range")
     }
     selectedKid.kidToString()
     
-    println("got to end")
+   // println("got to end")
   } // getThisTextField
-
+  
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
