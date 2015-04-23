@@ -10,6 +10,7 @@ import Foundation
 class CrummyApiService {
   
   static let sharedInstance: CrummyApiService = CrummyApiService()
+  var list = [KidsList]()
   
   let baseUrl = "http://crummy.herokuapp.com/api/v1"
   
@@ -76,8 +77,6 @@ class CrummyApiService {
     let url = NSURL(string: requestUrl)
     let request = NSMutableURLRequest(URL: url!)
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      println("retrieved token:")
-      println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
@@ -85,20 +84,19 @@ class CrummyApiService {
       let status = self.statusResponse(response)
       if status == "200" {
         let parsedKids = CrummyJsonParser.parseJsonListKid(data)
+
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(parsedKids)
+                    completionHandler(parsedKids)
         })
       }
     })
     dataTask.resume()
   }
   
-  func getKid(searchTerm: String, completionHandler: ([Kid]?, String?) -> (Void)) {
-    
-    // listKid
+  func getKid(selectedKid: String, completionHandler: ([Kid]?) -> (Void)) {
     
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids"
-    let queryString = "?:\(searchTerm)"
+    let queryString = "?:ID"
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
     let request = NSURLRequest(URL: url!)
@@ -106,12 +104,11 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       if let httpResponse = response as? NSHTTPURLResponse {
-        println(httpResponse.statusCode)
         if httpResponse.statusCode == 200 {
           let parsedKids = CrummyJsonParser.parseJsonGetKid(data)
           
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            completionHandler(parsedKids, nil)
+            completionHandler(parsedKids)
           })
         }
       }

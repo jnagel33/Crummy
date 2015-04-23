@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
       if status == "200" {
         self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
       } else {
-        println(status)
+        println("Error logging in \(status)")
         // send error message to login screen here
       }
     })
