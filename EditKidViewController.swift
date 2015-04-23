@@ -192,7 +192,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 4:
        return selectedKid.notes = notesTextView.text
     default:
-     // println("out of range")
+      println("out of range")
     }
     selectedKid.kidToString()
     
