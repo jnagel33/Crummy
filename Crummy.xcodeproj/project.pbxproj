@@ -136,7 +136,6 @@
 		431E22881AE55D9600A831CB /* Crummy */ = {
 			isa = PBXGroup;
 			children = (
-				431E228B1AE55D9600A831CB /* AppDelegate.swift */,
 				D06A1D291AE5624B0081CEDD /* Model */,
 				4347ACC21AE5678C002C9FB9 /* View */,
 				4347ACC11AE56771002C9FB9 /* Controller */,
@@ -230,6 +229,7 @@
 		D06A1D291AE5624B0081CEDD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				431E228B1AE55D9600A831CB /* AppDelegate.swift */,
 				43723F221AE6B68700543B7E /* Event.swift */,
 				D06A1D2A1AE5625F0081CEDD /* Kid.swift */,
 				F48F090E1AE8416C00D73626 /* KidsList.swift */,
