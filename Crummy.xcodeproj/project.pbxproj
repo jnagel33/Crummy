@@ -23,7 +23,6 @@
 		43723F371AE70EBA00543B7E /* TemperatureContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F361AE70EBA00543B7E /* TemperatureContainerView.xib */; };
 		43723F3A1AE714BB00543B7E /* TemperatureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F391AE714BB00543B7E /* TemperatureTableViewCell.xib */; };
 		43723F3C1AE715EE00543B7E /* SymptomsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43723F3B1AE715EE00543B7E /* SymptomsTableViewCell.xib */; };
-		43723F3E1AE7198500543B7E /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F3D1AE7198500543B7E /* MedicationTableViewCell.swift */; };
 		43723F401AE7199900543B7E /* MeasurementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F3F1AE7199900543B7E /* MeasurementTableViewCell.swift */; };
 		43723F421AE719AA00543B7E /* TemperatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F411AE719AA00543B7E /* TemperatureTableViewCell.swift */; };
 		43723F441AE719BB00543B7E /* SymptomsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F431AE719BB00543B7E /* SymptomsTableViewCell.swift */; };
@@ -38,6 +37,7 @@
 		D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Kid.swift */; };
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
 		D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */; };
+		D0F878AD1AE8501D005B0164 /* MedicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43723F3D1AE7198500543B7E /* MedicationTableViewCell.swift */; };
 		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
 		F43CFA9A1AE6EC1E00430355 /* KidJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43CFA991AE6EC1E00430355 /* KidJsonParser.swift */; };
 		F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48F10FB1AE6E7EB005184D5 /* CrummyApiService.swift */; };
@@ -345,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F878AD1AE8501D005B0164 /* MedicationTableViewCell.swift in Sources */,
 				43723F441AE719BB00543B7E /* SymptomsTableViewCell.swift in Sources */,
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43723F271AE6E2D100543B7E /* EventType.swift in Sources */,
