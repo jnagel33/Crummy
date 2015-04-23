@@ -314,7 +314,7 @@
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="IvP-hq-Oqh" customClass="HomeViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" automaticallyAdjustsScrollViewInsets="NO" id="IvP-hq-Oqh" customClass="HomeViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DPh-n6-nBm"/>
                         <viewControllerLayoutGuide type="bottom" id="YiM-mG-ok5"/>
