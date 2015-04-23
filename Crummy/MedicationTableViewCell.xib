@@ -13,12 +13,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-iw-0LG">
-                        <rect key="frame" x="59" y="12" width="293" height="30"/>
+                        <rect key="frame" x="64" y="12" width="288" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-N3-tLh">
-                        <rect key="frame" x="8" y="17" width="43" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meds:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-N3-tLh">
+                        <rect key="frame" x="8" y="17" width="48" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -34,6 +34,7 @@
                         </state>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="1" green="0.75058928427935023" blue="0.91558210543345042" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="OnG-iX-TSs" secondAttribute="centerY" id="BNZ-qB-wk2"/>
                     <constraint firstAttribute="centerY" secondItem="Ac1-iw-0LG" secondAttribute="centerY" id="bGJ-1T-a4h"/>

@@ -10,6 +10,9 @@ import UIKit
 
 class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
   
+  //MARK:
+  //MARK: Outlets and Variables
+  
   @IBOutlet weak var constraintButtonViewContainerBottom: NSLayoutConstraint!
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var constraintViewContainerBottom: NSLayoutConstraint!
@@ -60,6 +63,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var currentContainerView: UIView?
   var sections = [[Event]]()
   var currentCellY: CGFloat?
+  var inchesInAFoot = 12
+  
+  //MARK:
+  //MARK: ViewDidLoad
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -93,6 +100,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
   }
+  
+  //MARK:
+  //MARK: Custom Methods
   
   @IBAction func eventTypePressed(sender: UIButton) {
     self.tableView.userInteractionEnabled = false
@@ -254,7 +264,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   func getSections() {
     self.sections.removeAll(keepCapacity: false)
     self.sections = [[Event]]()
-    
     var checkedEvents = [Event]()
     for event in self.kid.events {
       let date = event.date
@@ -282,42 +291,64 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     println(sections.count)
   }
   
+  
+  @IBAction func menuButtonPressed(sender: UIButton) {
+    self.currentContainerView?.removeFromSuperview()
+    self.constraintButtonViewContainerBottom.constant = 0
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+  }
+  
+  
   @IBAction func doneButtonPressed(sender: UIButton) {
     var currentContainerView: UIView?
     if self.medicationDoneButton != nil && sender == self.medicationDoneButton {
       self.medicationTextField.resignFirstResponder()
-      let medication = self.medicationTextField.text
-      let event = Event(id: nil, type: EventType.Medication, temperature: nil, medication: medication, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
-      self.kid.events.insert(event, atIndex: 0)
+      if !self.medicationTextField.text.isEmpty {
+        let event = Event(id: nil, type: EventType.Medication, temperature: nil, medication: self.medicationTextField.text, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
+        self.kid.events.insert(event, atIndex: 0)
+      }
       self.medicationTextField.text = nil
     } else if self.measurementsDoneButton != nil && sender == self.measurementsDoneButton {
       self.measurementsFeetTextField.resignFirstResponder()
       self.measurementInchesTextField.resignFirstResponder()
       self.measurementWeightTextField.resignFirstResponder()
-      let heightFeet = self.measurementsFeetTextField.text.toInt()
-      let heightInches = self.measurementInchesTextField.text.toInt()
-      let heightTotal = (heightFeet! * 12) + heightInches!
-      let weight = self.measurementWeightTextField.text.toInt()
-      let event = Event(id: nil, type: EventType.Measurement, temperature: nil, medication: nil, heightInches: heightTotal, weight: weight, symptom: nil, date: NSDate())
-      self.kid.events.insert(event, atIndex: 0)
+      var height: Int?
+      var weight: Int?
+      if let heightFeet = self.measurementsFeetTextField.text.toInt() {
+        if let heightInches = self.measurementInchesTextField.text.toInt() {
+          height = (heightFeet * self.inchesInAFoot) + heightInches
+        } else {
+          height = heightFeet * self.inchesInAFoot
+        }
+      }
+      if let weightLbs = self.measurementWeightTextField.text.toInt() {
+        weight = weightLbs
+      }
+      if weight != nil  || height != nil {
+        let event = Event(id: nil, type: EventType.Measurement, temperature: nil, medication: nil, heightInches: height, weight: weight, symptom: nil, date: NSDate())
+        self.kid.events.insert(event, atIndex: 0)
+      }
       self.measurementsFeetTextField.text = nil
       self.measurementInchesTextField.text = nil
       self.measurementWeightTextField.text = nil
     } else if self.symptomsDoneButton != nil && sender == self.symptomsDoneButton {
       self.symptomsTextField.resignFirstResponder()
-      let symptoms = self.symptomsTextField.text
-      let event = Event(id: nil, type: EventType.Symptom, temperature: nil, medication: nil, heightInches: nil, weight: nil, symptom: symptoms, date: NSDate())
-      self.kid.events.insert(event, atIndex: 0)
+      if let symptoms = self.symptomsTextField.text {
+        let event = Event(id: nil, type: EventType.Symptom, temperature: nil, medication: nil, heightInches: nil, weight: nil, symptom: symptoms, date: NSDate())
+        self.kid.events.insert(event, atIndex: 0)
+      }
       self.symptomsTextField.text = nil
     } else if self.temperatureDoneButton != nil && sender == self.temperatureDoneButton {
       self.temperatureTextField.resignFirstResponder()
-      let temperatureStr = self.temperatureTextField.text
-      let temperature = (temperatureStr as NSString).doubleValue
-      let event = Event(id: nil, type: EventType.Temperature, temperature: temperature, medication: nil, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
-      self.kid.events.insert(event, atIndex: 0)
+      if let temperatureStr = self.temperatureTextField.text {
+        let temperature = (temperatureStr as NSString).doubleValue
+        let event = Event(id: nil, type: EventType.Temperature, temperature: temperature, medication: nil, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
+        self.kid.events.insert(event, atIndex: 0)
+      }
       self.temperatureTextField.text = nil
     }
-    
     self.currentContainerView?.removeFromSuperview()
     self.constraintButtonViewContainerBottom.constant = 0
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
@@ -403,8 +434,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     } else if event.type == EventType.Measurement {
       var measurementCell = tableView.dequeueReusableCellWithIdentifier("MeasurementCell", forIndexPath: indexPath) as! MeasurementTableViewCell
       if let heightTotalInches = self.kid!.events[indexPath.row].heightInches {
-        let heightFeet: Int = heightTotalInches / 12
-        let heightInches: Int = heightTotalInches % 12
+        let heightFeet: Int = heightTotalInches / self.inchesInAFoot
+        let heightInches: Int = heightTotalInches % self.inchesInAFoot
         measurementCell.heightFeetTextField.text = "\(heightFeet)"
         measurementCell.heightFeetTextField.tag = indexPath.row
         measurementCell.heightFeetTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
@@ -456,7 +487,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return self.sections.count
+      return self.sections.count
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -479,9 +510,15 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    let section = indexPath.section
     kid.events.removeAtIndex(indexPath.row)
-    let indexPaths = [indexPath]
-    tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    self.getSections()
+    if !sections.isEmpty && sections[section].count > 0 {
+      let indexPaths = [indexPath]
+      tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    } else {
+      tableView.deleteSections(NSIndexSet(index: section), withRowAnimation: UITableViewRowAnimation.Left)
+    }
   }
   
 }
