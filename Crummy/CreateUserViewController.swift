@@ -40,7 +40,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
       if status == "200" {
         self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
       } else {
-        println(status)
+        println("Error creating user \(status)")
         // send error message to login screen here
       }
     })

@@ -18,7 +18,7 @@ class CrummyJsonParser {
       for objects in jsonArray {
         if let
           kidName = objects["name"] as? String,
-          kidId = objects["id"] as? String {
+          kidId = objects["id"] as? Int {
             let listData = KidsList(name: kidName, id: kidId)
             parse.append(listData)
         }
@@ -35,8 +35,7 @@ class CrummyJsonParser {
     if let
       jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject],
       dictionaryItems = jsonDictionary["auth_token"] as? [[String: AnyObject]] {
-        println(dictionaryItems)
-        
+              
         for objects in dictionaryItems {
           if let
             kidName = objects["name"] as? String,

@@ -366,7 +366,7 @@
                                     <constraint firstItem="zRK-Xt-Si8" firstAttribute="width" secondItem="R7k-mT-b5Y" secondAttribute="width" id="wWl-IV-ixe"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-7w-1oz">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-7w-1oz">
                                 <rect key="frame" x="16" y="72" width="568" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="7" minimumInteritemSpacing="7" id="hlR-ct-SbM">
@@ -616,6 +616,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="XKx-RN-w5c" id="eM6-a3-mPq"/>
+                        <segue destination="1ot-Hc-qO2" kind="show" identifier="ShowEditKidVC" id="AR7-kD-2UM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6v-wZ-TKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
