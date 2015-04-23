@@ -34,7 +34,7 @@
                                 <constraint firstAttribute="width" constant="80" id="rLU-00-9z7"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="° Fahrenheit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7U-K8-eg3">
                             <rect key="frame" x="97" y="11" width="93" height="21"/>
@@ -43,7 +43,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.92123429229999998" green="0.92123429229999998" blue="0.92123429229999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="viX-P3-E2m" firstAttribute="top" secondItem="leV-lo-pyX" secondAttribute="top" constant="7" id="NGK-Fj-zBY"/>
                         <constraint firstItem="d7U-K8-eg3" firstAttribute="leading" secondItem="viX-P3-E2m" secondAttribute="trailing" constant="8" symbolic="YES" id="ejT-UB-iTN"/>
@@ -66,17 +66,32 @@
                         <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="i7o-av-rAG"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLZ-um-Tev">
+                    <rect key="frame" x="8" y="26" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="51m-6e-SUh"/>
+                        <constraint firstAttribute="width" constant="35" id="w3D-On-IZk"/>
+                    </constraints>
+                    <state key="normal" image="ThreeDotsMenuButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="menuButtonPressed:" destination="-1" eventType="touchUpInside" id="PmJ-ym-6h6"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.92123429229999998" green="0.92123429229999998" blue="0.92123429229999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Ouf-2I-k5S" firstAttribute="centerX" secondItem="yrC-Ks-Fo1" secondAttribute="centerX" id="5jq-PY-bee"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="top" constant="8" id="Bwv-hD-b3l"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="topMargin" id="Czt-rC-hNh"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" constant="0.5" id="EWa-9R-kEg"/>
+                <constraint firstItem="tLZ-um-Tev" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="8" id="Gcm-sR-18U"/>
                 <constraint firstAttribute="centerX" secondItem="leV-lo-pyX" secondAttribute="centerX" constant="-2.5" id="WVr-nE-rqG"/>
                 <constraint firstAttribute="trailing" secondItem="K6q-1z-f50" secondAttribute="trailing" constant="18" id="fYt-5X-MHZ"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="140" id="jlf-5N-jov"/>
                 <constraint firstAttribute="trailing" secondItem="leV-lo-pyX" secondAttribute="trailing" constant="135" id="l7n-wR-YLp"/>
+                <constraint firstAttribute="centerY" secondItem="tLZ-um-Tev" secondAttribute="centerY" id="q7H-KL-OqJ"/>
                 <constraint firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" id="scs-Mh-Icq"/>
                 <constraint firstAttribute="bottom" secondItem="Ouf-2I-k5S" secondAttribute="bottom" id="wXO-B9-jkD"/>
             </constraints>
@@ -95,5 +110,6 @@
     </objects>
     <resources>
         <image name="CheckmarkButton" width="36" height="28"/>
+        <image name="ThreeDotsMenuButton" width="35" height="35"/>
     </resources>
 </document>

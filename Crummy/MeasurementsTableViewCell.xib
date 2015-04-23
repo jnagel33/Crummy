@@ -33,7 +33,7 @@
                             <constraint firstAttribute="width" constant="35" id="knA-V5-aes"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                     </textField>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5uD-Yi-hQF">
                         <rect key="frame" x="71" y="48" width="80" height="30"/>
@@ -41,7 +41,7 @@
                             <constraint firstAttribute="width" constant="80" id="qtS-Gh-m0i"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyK-rN-j2K">
                         <rect key="frame" x="376" y="28" width="35" height="35"/>
@@ -65,7 +65,7 @@
                             <constraint firstAttribute="width" constant="35" id="7bc-vT-oEN"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="inches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAJ-JF-UQe">
                         <rect key="frame" x="194" y="14" width="50" height="21"/>
@@ -80,6 +80,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.99320117438561051" green="1" blue="0.56502535095318862" alpha="0.88" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="PQc-Kd-BS3" firstAttribute="leading" secondItem="RIj-n3-TvA" secondAttribute="trailing" constant="8" symbolic="YES" id="5By-cc-9SS"/>
                     <constraint firstItem="RIj-n3-TvA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="99X-u2-4yA"/>
