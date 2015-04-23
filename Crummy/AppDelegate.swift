@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if let
         rootViewController = self.window?.rootViewController as? LoginViewController,
         storyboard = rootViewController.storyboard {
-          let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+          let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeView") as! UINavigationController
           window?.rootViewController = homeViewController
       }
     }

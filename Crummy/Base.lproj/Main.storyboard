@@ -314,7 +314,7 @@
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" automaticallyAdjustsScrollViewInsets="NO" id="IvP-hq-Oqh" customClass="HomeViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="IvP-hq-Oqh" customClass="HomeViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DPh-n6-nBm"/>
                         <viewControllerLayoutGuide type="bottom" id="YiM-mG-ok5"/>
@@ -720,7 +720,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0AU-Xo-Fh3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lqm-OK-n69" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeView" automaticallyAdjustsScrollViewInsets="NO" id="Lqm-OK-n69" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ye4-xi-Jzr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -747,6 +747,6 @@
         <image name="TemperatureButton" width="55" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KvT-uM-wsA"/>
+        <segue reference="ndJ-Ow-XWu"/>
     </inferredMetricsTieBreakers>
 </document>
