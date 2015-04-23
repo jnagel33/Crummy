@@ -122,7 +122,7 @@ class CrummyApiService {
     let url = NSURL(string: eventIdUrl)
     
     let request = NSMutableURLRequest(URL: url!)
-    request.setValue("Token token=VfbcZZWaDdqTzoahGVZf", forHTTPHeaderField: "Authorization")
+    request.setValue("Token token= /(token)", forHTTPHeaderField: "Authorization")
     request.setValue("application/json", forHTTPHeaderField: "Accept")
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
