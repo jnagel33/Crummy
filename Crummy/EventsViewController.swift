@@ -64,7 +64,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var keyboardHeight: CGFloat = 0
   var animationDuration: Double = 0.2
 //  var tapGestureRecognizer: UITapGestureRecognizer?
-  var kid: Kid!
+  var kid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
   var selectedType: EventType?
   var currentContainerView: UIView?
   var sections = [[Event]]()
@@ -77,6 +77,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   let datePickerToolbarBuffer: CGFloat = 600
   
+  var kidId: String?
+  var kidName: String?
+  var allEvents = [Event]()
+  
   //MARK:
   //MARK: ViewDidLoad
   
@@ -85,7 +89,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.dataSource = self
-    self.navigationItem.title = "Events - \(kid!.name)"
+    
+    self.navigationItem.title = "Events - \(self.kidName!)"
     
     var cellNib = UINib(nibName: "MedicationTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MedicationCell")
@@ -96,24 +101,17 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     cellNib = UINib(nibName: "SymptomsTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "SymptomCell")
     
-    self.crummyApiService.getEvents(1, completionHandler: { (events, error) -> (Void) in
+    self.crummyApiService.getEvents(self.kidId!, completionHandler: { (events, error) -> (Void) in
       if error != nil {
         println("error")
       } else {
-        self.kid.events = events!
-        self.getSections()
-        self.tableView.reloadData()
+        if !events!.isEmpty {
+          self.kid.events = events!
+          self.getSections(true)
+          self.tableView.reloadData()
+        }
       }
     })
-    
-    self.kid.events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
-    
-    self.getSections()
-    
-//    self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-//    self.view.addGestureRecognizer(self.tapGestureRecognizer!)
-    
-//    datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
   }
@@ -282,9 +280,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   func createOrUpdateEvent(event: Event) {
     if event.id != nil {
-      self.getSections()
+      self.getSections(false)
       self.tableView.reloadData()
-      self.crummyApiService.editEvent("16", event: event) { (event, error) -> (Void) in
+      self.crummyApiService.editEvent(self.kidId!, event: event) { (event, error) -> (Void) in
         if error != nil {
           println("fail")
         } else {
@@ -292,14 +290,18 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         }
       }
     } else {
-      self.crummyApiService.createEvent("16", event: event) { (eventId, error) -> (Void) in
+      self.crummyApiService.createEvent(self.kidId!, event: event) { (eventId, error) -> (Void) in
         if error != nil {
           println("fail")
         } else {
           if let id = eventId {
             event.id = id
-            self.kid.events.insert(event, atIndex: 0)
-            self.getSections()
+            if self.allEvents.count > 0 {
+              self.sections[0].insert(event, atIndex: 0)
+            } else {
+              self.sections[0].append(event)
+            }
+            self.getSections(false)
             self.tableView.reloadData()
           }
         }
@@ -307,12 +309,19 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     }
   }
 
-  func getSections() {
-    self.kid.events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+  func getSections(isOnLoad: Bool) {
+    if isOnLoad {
+      self.allEvents = self.kid.events
+    }
+    else {
+      self.allEvents = self.sections.flatMap{ $0 }
+    }
+    
+    self.allEvents.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
     self.sections.removeAll(keepCapacity: false)
     self.sections = [[Event]]()
     var checkedEvents = [Event]()
-    for event in self.kid.events {
+    for event in self.allEvents {
       let date = event.date
       let cal = NSCalendar.currentCalendar()
       let yearComponent = cal.component(NSCalendarUnit.CalendarUnitYear, fromDate: date)
@@ -424,7 +433,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     if let contentView = button.superview,
     cell = contentView.superview as? UITableViewCell,
       indexPath = self.tableView.indexPathForCell(cell) {
-        let event = self.kid.events[indexPath.row]
+        let section = indexPath.section
+        let event = self.sections[section][indexPath.row]
         self.currentEvent = event
         self.datePicker.date = event.date
         self.datePicker.frame.height + self.view.frame.height
@@ -440,7 +450,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   @IBAction func doneDatePicker(sender: UIBarButtonItem) {
     if let event = self.currentEvent {
       event.date = self.datePicker.date
-      self.getSections()
+      self.getSections(false)
       self.tableView.reloadData()
       self.createOrUpdateEvent(event)
       self.constraintDatePickerCenterX.constant = -self.datePickerToolbarBuffer
@@ -626,8 +636,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    
-    self.crummyApiService.deleteEvent("16", eventId: self.kid.events[indexPath.row].id!) { (eventId, error) -> (Void) in
+    let currentSection = indexPath.section
+    self.crummyApiService.deleteEvent(self.kidId!, eventId: self.sections[currentSection][indexPath.row].id!) { (eventId, error) -> (Void) in
       if error != nil {
         println("error occured")
       } else {
@@ -637,21 +647,23 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         println("successful delete")
       }
     }
-    var section = indexPath.section
-    self.kid.events.removeAtIndex(indexPath.row)
-    self.getSections()
-    if tableView.numberOfSections() > self.sections.count {
-      tableView.deleteSections(NSIndexSet(index: section), withRowAnimation: UITableViewRowAnimation.Left)
+    var section = self.sections[indexPath.section]
+    section.removeAtIndex(indexPath.row)
+    self.sections[indexPath.section] = section
+    let indexPaths = [indexPath]
+    
+    if section.count < 1 {
+      self.sections.removeAtIndex(indexPath.section)
+      tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: UITableViewRowAnimation.Left)
     } else {
-      let indexPaths = [indexPath]
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     }
-
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    let event = self.kid.events[indexPath.row]
+    let currentSection = indexPath.section
+    let event = self.sections[currentSection][indexPath.row]
     self.currentEvent = event
     self.tableView.userInteractionEnabled = false
     self.constraintButtonViewContainerBottom.constant += 60
