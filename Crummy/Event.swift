@@ -8,17 +8,17 @@
 
 import Foundation
 
-class Event {
-  var id: Int?
+class Event: NSObject{
+  var id: String?
   var type: EventType
-  var temperature: Double?
+  var temperature: String?
   var medication: String?
-  var heightInches: Int?
-  var weight: Int?
+  var heightInches: String?
+  var weight: String?
   var symptom: String?
   var date: NSDate
   
-  init(id: Int?, type: EventType, temperature: Double?, medication: String?, heightInches: Int?, weight: Int?, symptom: String?, date: NSDate) {
+  init(id: String?, type: EventType, temperature: String?, medication: String?, heightInches: String?, weight: String?, symptom: String?, date: NSDate) {
     self.id = id
     self.type = type
     self.temperature = temperature
@@ -28,5 +28,4 @@ class Event {
     self.symptom = symptom
     self.date = date
   }
-  
 }
