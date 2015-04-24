@@ -157,13 +157,18 @@ class CrummyApiService {
     dataTask.resume()
   } // postNewKid
 
-  func getEvents(id: Int, completionHandler: ([Event]?, String?) -> (Void)) {
-//    let eventUrl = "\(self.baseUrl)/kids/\(kidId)/events/"
-    let eventIdUrl = "http://crummy.herokuapp.com/api/v1/kids/16/events"
-    let url = NSURL(string: eventIdUrl)
+  func getEvents(id: String, completionHandler: ([Event]?, String?) -> (Void)) {
+    let eventUrl = "\(self.baseUrl)/kids/\(id)/events/"
+//    let eventIdUrl = "http://crummy.herokuapp.com/api/v1/kids/16/events"
+    let url = NSURL(string: eventUrl)
     
     let request = NSMutableURLRequest(URL: url!)
-    request.setValue("Token token= /(token)", forHTTPHeaderField: "Authorization")
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      print("retrieved token: ")
+      println(token)
+      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+    }
+//    request.setValue("Token token= /(token)", forHTTPHeaderField: "Authorization")
     request.setValue("application/json", forHTTPHeaderField: "Accept")
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
@@ -209,22 +214,22 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func createEvent(kidId: String, event: Event, completionHandler: (Event?, String?) -> (Void)) {
+  func createEvent(kidId: String, event: Event, completionHandler: (String?, String?) -> (Void)) {
     let createEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/"
     let url = NSURL(string: createEventUrl)
     var error: NSError?
     
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd-mm-yyyy hh:mm:ss"
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let eventDate = dateFormatter.stringFromDate(event.date)
     
     var newEvent = [String: AnyObject]()
-//    newEvent["datetime"] = eventDate
+    newEvent["datetime"] = eventDate
     newEvent["type"] = event.type.description()
     if let eventTemperature = event.temperature {
       newEvent["temperature"] = eventTemperature
     }
-    if let eventHeight = event.heightInches {
+    if let eventHeight = event.height {
       newEvent["height"] = "\(eventHeight)"
     }
     if let eventWeight = event.weight {
@@ -233,8 +238,8 @@ class CrummyApiService {
     if let eventDescription = event.symptom {
       newEvent["description"] = eventDescription
     }
-    if let eventMed = event.medication {
-      newEvent["meds"] = event.medication
+    if let eventMeds = event.medication {
+      newEvent["meds"] = eventMeds
     }
     
     
@@ -244,7 +249,11 @@ class CrummyApiService {
     request.HTTPMethod = "POST"
     request.HTTPBody = data
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.setValue("Token token=nvZPt85uUZKh3itdoQkz", forHTTPHeaderField: "Authorization")
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      print("retrieved token: ")
+      println(token)
+      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+    }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
         println("error")
@@ -252,9 +261,13 @@ class CrummyApiService {
         if let httpResponse = response as? NSHTTPURLResponse {
           println(httpResponse.statusCode)
           if httpResponse.statusCode == 201 {
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              completionHandler(event, nil)
-            })
+            if data != nil {
+              if let id = CrummyJsonParser.getEventId(data) {
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                  completionHandler(id, nil)
+                })
+              }
+            }
           }
         }
       }
@@ -263,22 +276,21 @@ class CrummyApiService {
   }
   
   func editEvent(kidId: String, event: Event, completionHandler: (Event?, String?) -> (Void)) {
-    let createEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(event.id!)"
-    let url = NSURL(string: createEventUrl)
+    let updateEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(event.id!)"
+    let url = NSURL(string: updateEventUrl)
     var error: NSError?
     
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd-mm-yyyyThh:mm:ss"
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let eventDate = dateFormatter.stringFromDate(event.date)
     
     var updatedEvent = [String: AnyObject]()
-    updatedEvent["id"] = event.id!
-//    updatedEvent["datetime"] = eventDate
+    updatedEvent["datetime"] = eventDate
     updatedEvent["type"] = event.type.description()
     if let eventTemperature = event.temperature {
       updatedEvent["temperature"] = eventTemperature
     }
-    if let eventHeight = event.heightInches {
+    if let eventHeight = event.height {
       updatedEvent["height"] = "\(eventHeight)"
     }
     if let eventWeight = event.weight {
@@ -287,25 +299,29 @@ class CrummyApiService {
     if let eventDescription = event.symptom {
       updatedEvent["description"] = eventDescription
     }
-    if let eventMed = event.medication {
-      updatedEvent["meds"] = event.medication
+    if let eventMeds = event.medication {
+      updatedEvent["meds"] = eventMeds
     }
     
     
     let data = NSJSONSerialization.dataWithJSONObject(updatedEvent, options: nil, error: &error)
     
     let request = NSMutableURLRequest(URL: url!)
-    request.HTTPMethod = "POST"
+    request.HTTPMethod = "PATCH"
     request.HTTPBody = data
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.setValue("Token token=nvZPt85uUZKh3itdoQkz", forHTTPHeaderField: "Authorization")
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      print("retrieved token: ")
+      println(token)
+      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+    }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
         println("error")
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
           println(httpResponse.statusCode)
-          if httpResponse.statusCode == 201 {
+          if httpResponse.statusCode == 200 {
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(event, nil)
             })
@@ -315,8 +331,6 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
-  
-
   
   func statusResponse(response: NSURLResponse) -> String {
     

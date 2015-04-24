@@ -10,7 +10,8 @@ import UIKit
 
 class MedicationTableViewCell: UITableViewCell {
 
-  @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var duplicateButton: UIButton!
   
+  @IBOutlet weak var medicationLabel: UILabel!
+  @IBOutlet weak var timeButton: UIButton!
 }
