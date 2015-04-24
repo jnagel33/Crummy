@@ -33,8 +33,9 @@ class CrummyApiService {
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           println(jsonDictionary)
           let token = jsonDictionary["authentication_token"] as! String
+          let fakeToken = "nvZPt85uUZKh3itdoQKz"
 //          println(token)
-          NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
+          NSUserDefaults.standardUserDefaults().setObject(fakeToken, forKey: "crummyToken")
           NSUserDefaults.standardUserDefaults().synchronize()
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(status)
@@ -72,7 +73,7 @@ class CrummyApiService {
     dataTask.resume()
   }
 
-  func listKid(completionHandler: [KidsList]? -> (Void)) {
+  func listKid(completionHandler: ([KidsList]?, String?) -> (Void)) {
     
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     
@@ -88,7 +89,7 @@ class CrummyApiService {
         let parsedKids = CrummyJsonParser.parseJsonListKid(data)
 
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    completionHandler(parsedKids)
+                    completionHandler(parsedKids, nil)
         })
       }
     })
@@ -207,22 +208,22 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func createEvent(kidId: String, event: Event, completionHandler: (Event?, String?) -> (Void)) {
+  func createEvent(kidId: String, event: Event, completionHandler: (String?, String?) -> (Void)) {
     let createEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/"
     let url = NSURL(string: createEventUrl)
     var error: NSError?
     
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd-mm-yyyy hh:mm:ss"
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let eventDate = dateFormatter.stringFromDate(event.date)
     
     var newEvent = [String: AnyObject]()
-//    newEvent["datetime"] = eventDate
+    newEvent["datetime"] = eventDate
     newEvent["type"] = event.type.description()
     if let eventTemperature = event.temperature {
       newEvent["temperature"] = eventTemperature
     }
-    if let eventHeight = event.heightInches {
+    if let eventHeight = event.height {
       newEvent["height"] = "\(eventHeight)"
     }
     if let eventWeight = event.weight {
@@ -231,8 +232,8 @@ class CrummyApiService {
     if let eventDescription = event.symptom {
       newEvent["description"] = eventDescription
     }
-    if let eventMed = event.medication {
-      newEvent["meds"] = event.medication
+    if let eventMeds = event.medication {
+      newEvent["meds"] = eventMeds
     }
     
     
@@ -250,9 +251,13 @@ class CrummyApiService {
         if let httpResponse = response as? NSHTTPURLResponse {
           println(httpResponse.statusCode)
           if httpResponse.statusCode == 201 {
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              completionHandler(event, nil)
-            })
+            if data != nil {
+              if let id = CrummyJsonParser.getEventId(data) {
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                  completionHandler(id, nil)
+                })
+              }
+            }
           }
         }
       }
@@ -261,22 +266,21 @@ class CrummyApiService {
   }
   
   func editEvent(kidId: String, event: Event, completionHandler: (Event?, String?) -> (Void)) {
-    let createEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(event.id!)"
-    let url = NSURL(string: createEventUrl)
+    let updateEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(event.id!)"
+    let url = NSURL(string: updateEventUrl)
     var error: NSError?
     
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "dd-mm-yyyyThh:mm:ss"
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let eventDate = dateFormatter.stringFromDate(event.date)
     
     var updatedEvent = [String: AnyObject]()
-    updatedEvent["id"] = event.id!
-//    updatedEvent["datetime"] = eventDate
+    updatedEvent["datetime"] = eventDate
     updatedEvent["type"] = event.type.description()
     if let eventTemperature = event.temperature {
       updatedEvent["temperature"] = eventTemperature
     }
-    if let eventHeight = event.heightInches {
+    if let eventHeight = event.height {
       updatedEvent["height"] = "\(eventHeight)"
     }
     if let eventWeight = event.weight {
@@ -285,15 +289,15 @@ class CrummyApiService {
     if let eventDescription = event.symptom {
       updatedEvent["description"] = eventDescription
     }
-    if let eventMed = event.medication {
-      updatedEvent["meds"] = event.medication
+    if let eventMeds = event.medication {
+      updatedEvent["meds"] = eventMeds
     }
     
     
     let data = NSJSONSerialization.dataWithJSONObject(updatedEvent, options: nil, error: &error)
     
     let request = NSMutableURLRequest(URL: url!)
-    request.HTTPMethod = "POST"
+    request.HTTPMethod = "PATCH"
     request.HTTPBody = data
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.setValue("Token token=nvZPt85uUZKh3itdoQkz", forHTTPHeaderField: "Authorization")
@@ -303,7 +307,7 @@ class CrummyApiService {
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
           println(httpResponse.statusCode)
-          if httpResponse.statusCode == 201 {
+          if httpResponse.statusCode == 200 {
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(event, nil)
             })
@@ -313,8 +317,6 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
-  
-
   
   func statusResponse(response: NSURLResponse) -> String {
     

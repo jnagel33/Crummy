@@ -13,17 +13,17 @@ class Event: NSObject{
   var type: EventType
   var temperature: String?
   var medication: String?
-  var heightInches: String?
+  var height: String?
   var weight: String?
   var symptom: String?
   var date: NSDate
   
-  init(id: String?, type: EventType, temperature: String?, medication: String?, heightInches: String?, weight: String?, symptom: String?, date: NSDate) {
+  init(id: String?, type: EventType, temperature: String?, medication: String?, height: String?, weight: String?, symptom: String?, date: NSDate) {
     self.id = id
     self.type = type
     self.temperature = temperature
     self.medication = medication
-    self.heightInches = heightInches
+    self.height = height
     self.weight = weight
     self.symptom = symptom
     self.date = date

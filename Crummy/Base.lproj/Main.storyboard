@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -536,30 +536,57 @@
                                     <constraint firstItem="xJu-89-r7L" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="z9Y-w2-Pc1"/>
                                 </constraints>
                             </view>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uXW-r5-0g2">
+                                <rect key="frame" x="-600" y="378" width="600" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="451554163.553626">
+                                    <!--2015-04-24 07:42:43 +0000-->
+                                </date>
+                            </datePicker>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-X8-jYW">
+                                <rect key="frame" x="-600" y="334" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem id="Cmk-e1-Ftd"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ue3-lr-GjI"/>
+                                    <barButtonItem title="Done" id="25w-7n-l9m">
+                                        <connections>
+                                            <action selector="doneDatePicker:" destination="MYK-8j-q3C" id="RR4-y6-tbK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="bottom" secondItem="Rww-pJ-a0t" secondAttribute="bottom" id="955-Fh-zfg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lo1-me-uIh" secondAttribute="trailing" constant="-16" id="9iP-tf-vhL"/>
+                            <constraint firstItem="uXW-r5-0g2" firstAttribute="top" secondItem="feh-X8-jYW" secondAttribute="bottom" id="C4q-Xf-s9X"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="H1J-oO-PB5"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="top" id="Ooh-dv-Xip"/>
+                            <constraint firstAttribute="centerX" secondItem="uXW-r5-0g2" secondAttribute="centerX" constant="600" id="Qjj-LV-oUK"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="top" secondItem="Rww-pJ-a0t" secondAttribute="topMargin" id="TvK-sI-4sZ"/>
                             <constraint firstItem="rlp-Yh-99Z" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="UBn-WX-ffU"/>
+                            <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="uXW-r5-0g2" secondAttribute="bottom" id="Xgj-pB-yRe"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="enp-lm-VLh"/>
                             <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="lo1-me-uIh" secondAttribute="bottom" constant="60" id="eox-Tx-aaf"/>
+                            <constraint firstAttribute="centerX" secondItem="feh-X8-jYW" secondAttribute="centerX" constant="600" id="fyR-4B-KF4"/>
                             <constraint firstAttribute="centerX" secondItem="hag-1i-LO4" secondAttribute="centerX" id="jZT-oy-LC0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rlp-Yh-99Z" secondAttribute="trailing" constant="-16" id="r4F-Ox-DWT"/>
+                            <constraint firstAttribute="width" secondItem="uXW-r5-0g2" secondAttribute="width" id="spU-qJ-jTJ"/>
                             <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="bottom" id="wHr-Cj-ZDv"/>
+                            <constraint firstItem="feh-X8-jYW" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="zlA-KV-WRx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="MRg-2f-FmJ"/>
                     <connections>
                         <outlet property="constraintButtonViewContainerBottom" destination="955-Fh-zfg" id="jTZ-Cf-vMg"/>
+                        <outlet property="constraintDatePickerCenterX" destination="Qjj-LV-oUK" id="Mow-Kv-MLV"/>
                         <outlet property="constraintEventTypeContainerHeight" destination="WHl-pZ-8xA" id="1nz-ua-wXv"/>
                         <outlet property="constraintTableViewBottom" destination="eox-Tx-aaf" id="7BJ-fr-8hw"/>
                         <outlet property="constraintTableViewTop" destination="TvK-sI-4sZ" id="NcN-6A-tNG"/>
+                        <outlet property="constraintToolbarCenterX" destination="fyR-4B-KF4" id="RtA-t0-snD"/>
                         <outlet property="constraintViewContainerBottom" destination="wHr-Cj-ZDv" id="40t-bl-uNO"/>
                         <outlet property="containerView" destination="rlp-Yh-99Z" id="I1X-WV-WxJ"/>
+                        <outlet property="datePicker" destination="uXW-r5-0g2" id="wLo-c5-Jzc"/>
                         <outlet property="eventTypeContainerView" destination="hag-1i-LO4" id="qTP-8b-kcH"/>
                         <outlet property="measurementButton" destination="xJu-89-r7L" id="08a-t9-op9"/>
                         <outlet property="medicationButton" destination="AeL-0C-mdL" id="PDU-b6-Mak"/>
