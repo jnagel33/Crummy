@@ -466,6 +466,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       })
     }
     self.contentOffsetChangeAmount != nil
+    
+    self.currentContainerView?.removeFromSuperview()
+    self.constraintButtonViewContainerBottom.constant = 0
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+    self.currentEvent = nil
+    self.tableView.userInteractionEnabled = true
     return true
   }
   
