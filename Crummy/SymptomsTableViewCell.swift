@@ -10,8 +10,10 @@ import UIKit
 
 class SymptomsTableViewCell: UITableViewCell {
 
-  @IBOutlet weak var symptomsTextField: UITextField!
+
+  @IBOutlet weak var symptomsLabel: UILabel!
   
+  @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var duplicateButton: UIButton!
   
 }

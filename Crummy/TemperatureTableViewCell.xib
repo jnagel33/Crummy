@@ -13,11 +13,6 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KTV-SA-03W" id="pJd-Xz-xCL">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qaP-Vf-ITk">
-                        <rect key="frame" x="125" y="11" width="96" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
-                    </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ug4-2D-bz2">
                         <rect key="frame" x="297" y="9" width="35" height="35"/>
                         <constraints>
@@ -28,35 +23,69 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="°F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-h4-G1S">
-                        <rect key="frame" x="229" y="16" width="17" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwd-Pc-Kih">
+                        <rect key="frame" x="106" y="16" width="101" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwd-Pc-Kih">
-                        <rect key="frame" x="8" y="16" width="101" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="temp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSG-bv-R7X">
+                        <rect key="frame" x="215" y="16" width="40" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="l08-cd-NT5"/>
+                            <constraint firstAttribute="width" constant="64" id="qgY-z5-aFP"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qgY-z5-aFP"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7g-nN-ed5">
+                        <rect key="frame" x="8" y="16" width="90" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="7j7-0U-gal"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°F" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZI8-h4-G1S">
+                        <rect key="frame" x="263" y="16" width="17" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="17" id="Jxy-KM-35m"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jxy-KM-35m"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ug4-2D-bz2" secondAttribute="trailing" constant="8" id="0hn-iq-Fr6"/>
-                    <constraint firstItem="ug4-2D-bz2" firstAttribute="trailing" secondItem="pJd-Xz-xCL" secondAttribute="trailingMargin" id="8z6-Wj-JfF"/>
+                    <constraint firstItem="ZI8-h4-G1S" firstAttribute="leading" secondItem="wSG-bv-R7X" secondAttribute="trailing" constant="8" id="57A-1a-KDJ"/>
+                    <constraint firstAttribute="centerY" secondItem="wSG-bv-R7X" secondAttribute="centerY" id="Bff-9w-aTn"/>
                     <constraint firstItem="ug4-2D-bz2" firstAttribute="top" secondItem="pJd-Xz-xCL" secondAttribute="topMargin" constant="1" id="D1h-GE-yHY"/>
-                    <constraint firstItem="wwd-Pc-Kih" firstAttribute="leading" secondItem="pJd-Xz-xCL" secondAttribute="leading" constant="8" id="F8q-9S-HXY"/>
+                    <constraint firstItem="wwd-Pc-Kih" firstAttribute="leading" secondItem="b7g-nN-ed5" secondAttribute="trailing" constant="8" id="KKk-kX-Yni"/>
                     <constraint firstItem="wwd-Pc-Kih" firstAttribute="top" secondItem="pJd-Xz-xCL" secondAttribute="topMargin" constant="8" id="W9E-PO-hbL"/>
+                    <constraint firstItem="b7g-nN-ed5" firstAttribute="baseline" secondItem="wwd-Pc-Kih" secondAttribute="baseline" id="WLl-xu-A8S"/>
+                    <constraint firstItem="b7g-nN-ed5" firstAttribute="leading" secondItem="pJd-Xz-xCL" secondAttribute="leading" constant="8" id="azY-yJ-9AT"/>
+                    <constraint firstItem="wwd-Pc-Kih" firstAttribute="leading" secondItem="b7g-nN-ed5" secondAttribute="trailing" constant="8" symbolic="YES" id="hIY-Mj-AGp"/>
+                    <constraint firstAttribute="centerY" secondItem="ZI8-h4-G1S" secondAttribute="centerY" id="rBd-eJ-mUw"/>
+                    <constraint firstItem="wSG-bv-R7X" firstAttribute="leading" secondItem="wwd-Pc-Kih" secondAttribute="trailing" constant="8" id="tr2-uc-Yin"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="8z6-Wj-JfF"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="duplicateButton" destination="ug4-2D-bz2" id="PFs-XH-5FI"/>
-                <outlet property="temperatureTextField" destination="qaP-Vf-ITk" id="P6M-Hz-Y5X"/>
+                <outlet property="temperatureLabel" destination="wSG-bv-R7X" id="zEh-u6-nDU"/>
+                <outlet property="timeLabel" destination="b7g-nN-ed5" id="G30-Jm-nrr"/>
             </connections>
             <point key="canvasLocation" x="316" y="221.5"/>
         </tableViewCell>

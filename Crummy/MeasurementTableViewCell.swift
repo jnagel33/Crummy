@@ -10,9 +10,9 @@ import UIKit
 
 class MeasurementTableViewCell: UITableViewCell {
 
-  @IBOutlet weak var heightFeetTextField: UITextField!
-  @IBOutlet weak var heightInchesTextField: UITextField!
-  @IBOutlet weak var weightTextField: UITextField!
+  @IBOutlet weak var heightLabel: UILabel!
+  @IBOutlet weak var weightLabel: UILabel!
+  @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var duplicateButton: UIButton!
   
 }

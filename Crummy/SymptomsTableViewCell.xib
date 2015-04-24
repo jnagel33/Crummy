@@ -13,11 +13,6 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lvF-4f-71h" id="XH4-pp-CO1">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHd-aR-Z52">
-                        <rect key="frame" x="104" y="12" width="202" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                    </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm3-AX-ZSv">
                         <rect key="frame" x="315" y="9" width="35" height="35"/>
                         <constraints>
@@ -28,26 +23,55 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symptoms:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sb-Ie-q6z">
-                        <rect key="frame" x="8" y="16" width="88" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Symptoms:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sb-Ie-q6z">
+                        <rect key="frame" x="106" y="16" width="95" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="95" id="51j-V9-zim"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHr-Dh-utO">
+                        <rect key="frame" x="8" y="16" width="90" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="Mzg-TI-oeU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="symptom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vub-EC-Gue">
+                        <rect key="frame" x="209" y="16" width="98" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="FwK-WO-57l"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FwK-WO-57l"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="8sb-Ie-q6z" firstAttribute="top" secondItem="XH4-pp-CO1" secondAttribute="topMargin" constant="8" id="0fq-dh-KoZ"/>
-                    <constraint firstItem="wm3-AX-ZSv" firstAttribute="leading" secondItem="aHd-aR-Z52" secondAttribute="trailing" constant="9" id="9EG-td-MGw"/>
-                    <constraint firstItem="8sb-Ie-q6z" firstAttribute="leading" secondItem="XH4-pp-CO1" secondAttribute="leading" constant="8" id="N8j-qi-s4d"/>
-                    <constraint firstItem="aHd-aR-Z52" firstAttribute="top" secondItem="XH4-pp-CO1" secondAttribute="topMargin" constant="4" id="UEd-fj-NYG"/>
+                    <constraint firstItem="HHr-Dh-utO" firstAttribute="leading" secondItem="XH4-pp-CO1" secondAttribute="leading" constant="8" id="2t2-mq-o4Q"/>
+                    <constraint firstItem="8sb-Ie-q6z" firstAttribute="leading" secondItem="HHr-Dh-utO" secondAttribute="trailing" constant="8" symbolic="YES" id="EZy-Dw-d3O"/>
+                    <constraint firstItem="wm3-AX-ZSv" firstAttribute="leading" secondItem="vub-EC-Gue" secondAttribute="trailing" constant="8" id="K3l-JL-ac7"/>
                     <constraint firstAttribute="trailing" secondItem="wm3-AX-ZSv" secondAttribute="trailing" constant="8" id="XoX-uE-xxI"/>
-                    <constraint firstItem="aHd-aR-Z52" firstAttribute="leading" secondItem="8sb-Ie-q6z" secondAttribute="trailing" constant="8" id="ghj-Jt-G4M"/>
+                    <constraint firstItem="vub-EC-Gue" firstAttribute="baseline" secondItem="8sb-Ie-q6z" secondAttribute="baseline" id="iOs-IT-oe9"/>
                     <constraint firstItem="wm3-AX-ZSv" firstAttribute="top" secondItem="XH4-pp-CO1" secondAttribute="topMargin" constant="1" id="oaE-hI-1P0"/>
+                    <constraint firstItem="vub-EC-Gue" firstAttribute="baseline" secondItem="HHr-Dh-utO" secondAttribute="baseline" id="odJ-Wl-2aB"/>
+                    <constraint firstItem="vub-EC-Gue" firstAttribute="leading" secondItem="8sb-Ie-q6z" secondAttribute="trailing" constant="8" id="zaM-Gz-kL2"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="duplicateButton" destination="wm3-AX-ZSv" id="Jc2-NI-7XL"/>
-                <outlet property="symptomsTextField" destination="aHd-aR-Z52" id="l75-Cy-kz9"/>
+                <outlet property="symptomsLabel" destination="vub-EC-Gue" id="dTz-xl-goe"/>
+                <outlet property="timeLabel" destination="HHr-Dh-utO" id="P6w-hk-ner"/>
             </connections>
             <point key="canvasLocation" x="329" y="261.5"/>
         </tableViewCell>
