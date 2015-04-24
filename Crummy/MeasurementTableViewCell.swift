@@ -12,7 +12,7 @@ class MeasurementTableViewCell: UITableViewCell {
 
   @IBOutlet weak var heightLabel: UILabel!
   @IBOutlet weak var weightLabel: UILabel!
-  @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var duplicateButton: UIButton!
   
+  @IBOutlet weak var timeButton: UIButton!
 }

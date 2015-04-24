@@ -61,7 +61,7 @@
                         <constraint firstAttribute="width" constant="306" id="lZP-vi-Kuu"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="lZP-vi-Kuu"/>
