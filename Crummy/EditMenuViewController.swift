@@ -20,8 +20,13 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     
    self.tableView.delegate = self
     self.tableView.dataSource = self
+    
+    
+
+    
   }
   
+   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let kidCount = self.kidList?.count {
       return kidCount

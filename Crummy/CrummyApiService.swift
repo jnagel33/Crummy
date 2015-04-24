@@ -33,9 +33,9 @@ class CrummyApiService {
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           println(jsonDictionary)
           let token = jsonDictionary["authentication_token"] as! String
-          let fakeToken = "nvZPt85uUZKh3itdoQKz"
-//          println(token)
-          NSUserDefaults.standardUserDefaults().setObject(fakeToken, forKey: "crummyToken")
+          
+          println(token)
+          NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
           NSUserDefaults.standardUserDefaults().synchronize()
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(status)
@@ -72,7 +72,7 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
-
+  
   func listKid(completionHandler: ([KidsList]?, String?) -> (Void)) {
     
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
@@ -85,6 +85,7 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       let status = self.statusResponse(response)
+      println("-> \(status)")
       if status == "200" {
         let parsedKids = CrummyJsonParser.parseJsonListKid(data)
 
@@ -335,8 +336,6 @@ class CrummyApiService {
     
     if let httpResponse = response as? NSHTTPURLResponse {
       let httpStatus = httpResponse.statusCode
-      
-      println("The error code \(httpResponse.statusCode)")
       
       switch httpStatus {
       case 200:
