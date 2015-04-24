@@ -33,9 +33,7 @@ class CrummyApiService {
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           println(jsonDictionary)
           let token = jsonDictionary["authentication_token"] as! String
-          let fakeToken = "nvZPt85uUZKh3itdoQKz"
-//          println(token)
-          NSUserDefaults.standardUserDefaults().setObject(fakeToken, forKey: "crummyToken")
+          NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
           NSUserDefaults.standardUserDefaults().synchronize()
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(status)
