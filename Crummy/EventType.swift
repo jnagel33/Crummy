@@ -18,9 +18,9 @@ enum EventType: Int {
   func description() -> String {
     switch self {
     case .Medication:
-      return "Medication"
+      return "Medicine"
     case .Measurement:
-      return "Measurement"
+      return "HeightWeight"
     case .Symptom:
       return "Symptom"
     case .Temperature:
