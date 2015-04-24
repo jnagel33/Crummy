@@ -13,17 +13,22 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   let crummyApiService = CrummyApiService()
   
-  var kid: [Kid]!
+  var kidList: [KidsList]?
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
    self.tableView.delegate = self
     self.tableView.dataSource = self
+    
+    
+
+    
   }
   
+   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let kidCount = self.kid?.count {
+    if let kidCount = self.kidList?.count {
       return kidCount
       }
     return 0
@@ -32,7 +37,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("EditMenuCell", forIndexPath: indexPath) as! EditMenuTableViewCell
        cell.textLabel?.text = nil
-    if let kids = self.kid?[indexPath.row] {
+    if let kids = self.kidList?[indexPath.row] {
       cell.textLabel!.text = kids.name
     }
     return cell
@@ -40,9 +45,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let destinationController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
-    let indexPath = self.tableView.indexPathForSelectedRow()
-    let selectedKid = self.kid[indexPath!.row]
-    destinationController?.selectedKid = selectedKid
+    let selectedKid = self.kidList![indexPath.row]
+//    destinationController?.selectedKid = selectedKid
     performSegueWithIdentifier("ShowEditKidVC", sender: EditMenuViewController.self)
   }
   
@@ -55,7 +59,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     
-    kid.removeAtIndex(indexPath.row)
+    kidList?.removeAtIndex(indexPath.row)
     let indexPaths = [indexPath]
     tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
   }
