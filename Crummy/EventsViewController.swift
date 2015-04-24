@@ -38,6 +38,12 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   @IBOutlet weak var eventTypeContainerView: UIView!
   @IBOutlet weak var constraintEventTypeContainerHeight: NSLayoutConstraint!
 
+  @IBOutlet weak var datePicker: UIDatePicker!
+  
+  @IBOutlet weak var constraintDatePickerCenterX: NSLayoutConstraint!
+
+  @IBOutlet weak var constraintToolbarCenterX: NSLayoutConstraint!
+  
   let medicationContainerViewHeight: CGFloat = 63
   let measurementsContainerViewHeight: CGFloat = 96
   let symptomsContainerViewHeight: CGFloat = 72
@@ -57,7 +63,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var currentTextField: UITextField?
   var keyboardHeight: CGFloat = 0
   var animationDuration: Double = 0.2
-  var tapGestureRecognizer: UITapGestureRecognizer?
+//  var tapGestureRecognizer: UITapGestureRecognizer?
   var kid: Kid!
   var selectedType: EventType?
   var currentContainerView: UIView?
@@ -68,6 +74,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   var dateFormatter = NSDateFormatter()
   var currentEvent: Event?
+  
+  let datePickerToolbarBuffer: CGFloat = 600
   
   //MARK:
   //MARK: ViewDidLoad
@@ -98,12 +106,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       }
     })
     
-    kid.events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+    self.kid.events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
     
     self.getSections()
     
 //    self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
 //    self.view.addGestureRecognizer(self.tapGestureRecognizer!)
+    
+//    datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
   }
@@ -169,6 +179,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     }
   }
   
+  
+//  func datePickerChanged(datePicker:UIDatePicker) {
+//    
+//    self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+//    self.dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+//    
+//    var strDate = self.dateFormatter.stringFromDate(datePicker.date)
+//  }
   
   func dismissKeyboard() {
     if self.medicationTextField != nil && self.medicationTextField.isFirstResponder() {
@@ -290,6 +308,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
 
   func getSections() {
+    self.kid.events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
     self.sections.removeAll(keepCapacity: false)
     self.sections = [[Event]]()
     var checkedEvents = [Event]()
@@ -400,6 +419,43 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     self.currentEvent = nil
   }
   
+  func showDatePicker(button: UIButton) {
+    
+    if let contentView = button.superview,
+    cell = contentView.superview as? UITableViewCell,
+      indexPath = self.tableView.indexPathForCell(cell) {
+        let event = self.kid.events[indexPath.row]
+        self.currentEvent = event
+        self.datePicker.date = event.date
+        self.datePicker.frame.height + self.view.frame.height
+        self.constraintDatePickerCenterX.constant = 0
+        self.constraintToolbarCenterX.constant = 0
+        UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+          self.view.layoutIfNeeded()
+          self.datePicker.backgroundColor = UIColor.whiteColor()
+        })
+    }
+  }
+  
+  @IBAction func doneDatePicker(sender: UIBarButtonItem) {
+    if let event = self.currentEvent {
+      event.date = self.datePicker.date
+      self.getSections()
+      self.tableView.reloadData()
+      self.createOrUpdateEvent(event)
+      self.constraintDatePickerCenterX.constant = -self.datePickerToolbarBuffer
+      self.constraintToolbarCenterX.constant = -self.datePickerToolbarBuffer
+      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+        self.datePicker.backgroundColor = UIColor.whiteColor()
+      })
+    }
+    
+    self.currentEvent = nil
+    
+  }
+  
+  
   //MARK:
   //MARK: UITextFieldDelegate
   
@@ -491,35 +547,39 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     if event.type == EventType.Medication {
       var medicationCell = tableView.dequeueReusableCellWithIdentifier("MedicationCell", forIndexPath: indexPath) as! MedicationTableViewCell
       medicationCell.medicationLabel.text = nil
-      medicationCell.timeLabel.text = nil
+      medicationCell.timeButton.setTitle(nil, forState: .Normal)
       medicationCell.medicationLabel.text = event.medication
-      medicationCell.timeLabel.text = self.dateFormatter.stringFromDate(event.date)
+      medicationCell.timeButton.setTitle(self.dateFormatter.stringFromDate(event.date), forState: .Normal)
+      medicationCell.timeButton.addTarget(self, action: "showDatePicker:", forControlEvents: UIControlEvents.TouchUpInside)
       medicationCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return medicationCell
     } else if event.type == EventType.Measurement {
       var measurementCell = tableView.dequeueReusableCellWithIdentifier("MeasurementCell", forIndexPath: indexPath) as! MeasurementTableViewCell
       measurementCell.heightLabel.text = nil
       measurementCell.weightLabel.text = nil
-      measurementCell.timeLabel.text = nil
+      measurementCell.timeButton.setTitle(nil, forState: .Normal)
       measurementCell.weightLabel.text = event.weight
       measurementCell.heightLabel.text = event.height
-      measurementCell.timeLabel.text = self.dateFormatter.stringFromDate(event.date)
+      measurementCell.timeButton.setTitle(self.dateFormatter.stringFromDate(event.date), forState: .Normal)
+      measurementCell.timeButton.addTarget(self, action: "showDatePicker:", forControlEvents: UIControlEvents.TouchUpInside)
       measurementCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return measurementCell
     } else if event.type == EventType.Symptom {
       var symptomCell = tableView.dequeueReusableCellWithIdentifier("SymptomCell", forIndexPath: indexPath) as! SymptomsTableViewCell
       symptomCell.symptomsLabel.text = nil
-      symptomCell.timeLabel.text = nil
+      symptomCell.timeButton.setTitle(nil, forState: .Normal)
       symptomCell.symptomsLabel.text = event.symptom
-      symptomCell.timeLabel.text = self.dateFormatter.stringFromDate(event.date)
+      symptomCell.timeButton.setTitle(self.dateFormatter.stringFromDate(event.date), forState: .Normal)
+      symptomCell.timeButton.addTarget(self, action: "showDatePicker:", forControlEvents: UIControlEvents.TouchUpInside)
       symptomCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return symptomCell
     } else {
       var temperatureCell = tableView.dequeueReusableCellWithIdentifier("TemperatureCell", forIndexPath: indexPath) as! TemperatureTableViewCell
       temperatureCell.temperatureLabel.text = nil
-      temperatureCell.timeLabel.text = nil
+      temperatureCell.timeButton.setTitle(nil, forState: .Normal)
       temperatureCell.temperatureLabel.text = event.temperature
-      temperatureCell.timeLabel.text = self.dateFormatter.stringFromDate(event.date)
+      temperatureCell.timeButton.setTitle(self.dateFormatter.stringFromDate(event.date), forState: .Normal)
+      temperatureCell.timeButton.addTarget(self, action: "showDatePicker:", forControlEvents: UIControlEvents.TouchUpInside)
       temperatureCell.duplicateButton.addTarget(self, action: "duplicatePressed:", forControlEvents: UIControlEvents.TouchUpInside)
       return temperatureCell
     }
@@ -559,7 +619,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       return "Yesterday"
     } else {
       var dateFormatter = NSDateFormatter()
-      dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+      dateFormatter.dateFormat = "EEEE, MMMM dd"
       let dateStr = dateFormatter.stringFromDate(dateForSection)
       return dateStr
     }
@@ -653,6 +713,5 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.temperatureTextField.delegate = self
       self.temperatureTextField.text = event.temperature
     }
-
   }
 }
