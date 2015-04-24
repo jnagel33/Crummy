@@ -34,11 +34,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   var guess: Int = 0
   
   // person passed from the "list of people controller.
-  var selectedKid : Kid!
+  var selectedKid : Kid?
   
     override func viewDidLoad() {
     super.viewDidLoad()
-      
+    
+    if selectedKid == nil {
+       selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
+    }
+
     // setup tags
     // assign the text fields tags.
     self.nameTextField.tag = 0
@@ -53,14 +57,14 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.nameTextField.delegate = self
 
     // setup fields
-    self.title = selectedKid.name
-    self.nameTextField.text = selectedKid.name
-    self.birthdateLabel.text = selectedKid.DOBString
-    self.insuranceTextField.text = selectedKid.insuranceId
-    self.consultingNurseHotline.text = selectedKid.nursePhone
+    self.title = selectedKid!.name
+    self.nameTextField.text = selectedKid!.name
+    self.birthdateLabel.text = selectedKid!.DOBString
+    self.insuranceTextField.text = selectedKid!.insuranceId
+    self.consultingNurseHotline.text = selectedKid!.nursePhone
     
-    if selectedKid.notes != "" {
-      self.notesTextView.text = selectedKid.notes
+    if selectedKid!.notes != "" {
+      self.notesTextView.text = selectedKid!.notes
     }
       
     // non gray out cells
@@ -74,9 +78,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     //println(self.notesTextView.text)
-    selectedKid.notes = notesTextView.text
+    selectedKid!.notes = notesTextView.text
     
-    self.crummyApiService.postNewKid(selectedKid.name, dobString: selectedKid.DOBString, insuranceID: selectedKid.insuranceId, nursePhone: selectedKid.nursePhone, notes: selectedKid.notes!, completionHandler: { (status) -> Void in
+    self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
       //println(self.selectedKid.notes)
       if status! == "201" {
         // launch a popup signifying data saved.
@@ -91,20 +95,22 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     var dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "MM-dd-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
-    selectedKid.DOBString = strDate
+    selectedKid!.DOBString = strDate
     
-    self.birthdateLabel.text = selectedKid.DOBString
+    self.birthdateLabel.text = selectedKid!.DOBString
     birthdateLabel.textColor = UIColor.blackColor()
   } // datePickerChanged
   
   
   func pickerCloserPressed(sender: AnyObject) {
+
+    self.datePickerChanged(datePicker)
+    self.dateButton.hidden = false
     
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
       self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerHeight
     })
-    self.datePickerChanged(datePicker)
-    self.dateButton.hidden = false
+    
   } // pickerCloserPressed
   
   
@@ -149,17 +155,17 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     switch textField.tag {
     case 0:
-      selectedKid.name = textField.text
+      selectedKid!.name = textField.text
     case 2:
-      selectedKid.insuranceId = textField.text
+      selectedKid!.insuranceId = textField.text
     case 3:
-      selectedKid.nursePhone = textField.text
+      selectedKid!.nursePhone = textField.text
     case 4:
-      selectedKid.notes = self.notesTextView!.text
+      selectedKid!.notes = self.notesTextView!.text
     default:
       println("no choice here!")
     } // switch
-    selectedKid.kidToString()
+    selectedKid!.kidToString()
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -178,19 +184,19 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     switch row {
       
     case 0:
-      selectedKid.name = text
+      selectedKid!.name = text
     case 1:
-      return selectedKid.DOBString = text
+      return selectedKid!.DOBString = text
     case 2:
-      return selectedKid.insuranceId = text
+      return selectedKid!.insuranceId = text
     case 3:
-      return selectedKid.nursePhone = text
+      return selectedKid!.nursePhone = text
     case 4:
-       return selectedKid.notes = notesTextView.text
+       return selectedKid!.notes = notesTextView.text
     default:
       println("out of range")
     }
-    selectedKid.kidToString()
+    selectedKid!.kidToString()
     
    // println("got to end")
   } // getThisTextField
