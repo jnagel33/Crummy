@@ -106,6 +106,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
 
     self.datePickerChanged(datePicker)
     self.dateButton.hidden = false
+    
+    UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
+      self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerHeight
+    })
+    
   } // pickerCloserPressed
   
   

@@ -91,9 +91,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
     phoneCloser.center.x = self.view.center.x
     phoneCloser.addTarget(self, action: "phoneCloserPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     phoneMenuContainer.addSubview(phoneCloser)
-//    let phoneCellView = NSBundle.mainBundle().loadNibNamed("PhoneCellContainerView", owner: self, options: nil).count as! PhoneTableViewCell
     let phoneCellView = NSBundle.mainBundle().loadNibNamed("PhoneCellContainerView", owner: self, options: nil)
-   // phoneMenuContainer.addSubview(phoneCellView.count)
     UIView.animateWithDuration(phoneInterval, animations: { () -> Void in
       self.phoneMenuContainer.frame.origin.y = self.view.frame.height - phoneMenuViewAndDoneHeight
     })
