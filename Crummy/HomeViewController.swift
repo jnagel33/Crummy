@@ -10,11 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
   
+  let crummyApiService = CrummyApiService()
+  
   @IBOutlet weak var collectionView: UICollectionView!
   
+  var kidList = [KidsList]()
   
   let kidNumberHeight: CGFloat = 50.0
-  let crummyApiService = CrummyApiService()
   var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553"), Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553")]
   
   // Randy is working on this...
@@ -39,9 +41,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
     //    self.phoneMenuView.delegate = self
     //    self.phoneMenuView.dataSource = self
   }
-  
-  //MARK:
-  //MARK: UICollectionViewDataSource
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return kidList.count
@@ -87,8 +86,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
   //MARK:
   //MARK: - popover VC.
   
-  // Randy is working on this..
-  
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
     
@@ -98,7 +95,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
     var phoneMenuView : UITableView!
     let phoneMenuViewHeight: CGFloat =  CGFloat(self.view.frame.height) - (kidCount * kidNumberHeight)
     phoneMenuView = UITableView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: -phoneMenuViewHeight))
-NS
     phoneMenuView.registerNib(phoneNib, forCellReuseIdentifier: "phoneCell")
     
     UIView.animateWithDuration(1.4, animations: { () -> Void in
