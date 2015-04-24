@@ -12,10 +12,12 @@ class KidsList {
   
   var name: String
   var id: Int
+  var phone: String
   
-  init(name: String, id: Int) {
+  init(name: String, id: Int, phone: String) {
     
     self.name = name
     self.id = id
+    self.phone = phone
   }
 }

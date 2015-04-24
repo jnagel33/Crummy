@@ -117,7 +117,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
   } // phoneButtonPressed
   
   func phoneCloserPressed(sender: AnyObject) {
-    var kidCount = CGFloat(kids.count)
+    var kidCount = CGFloat(kidList.count)
     let phoneMenuViewAndDoneHeight: CGFloat = ((self.view.frame.height) - (kidCount * kidNumberHeight) - doneButtonHeight)
     UIView.animateWithDuration(phoneInterval, animations: { () -> Void in
       self.phoneMenuContainer.frame.origin.y = self.view.frame.height + phoneMenuViewAndDoneHeight
@@ -130,15 +130,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCellWithIdentifier("phoneCell", forIndexPath: indexPath) as! PhoneTableViewCell
-    cell.Name.text = kids[indexPath.row].name
+    cell.Name.text = kidList[indexPath.row].name
     cell.InsuranceID.text = kids[indexPath.row].insuranceId
-    cell.Phone.text = kids[indexPath.row].nursePhone
+    
+    ///// NEds to be kidslist.  
+    cell.Phone.text = kidList[indexPath.row].phone
     
     return cell
   } // cellForRowAtIndexPath
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return kids.count
+    return kidList.count
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
