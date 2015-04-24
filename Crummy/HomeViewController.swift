@@ -134,7 +134,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
     cell.InsuranceID.text = kids[indexPath.row].insuranceId
     
     ///// NEds to be kidslist.  
-    cell.Phone.text = kidList[indexPath.row].phone
+    if let thephone = kidList[indexPath.row].phone {
+      cell.Phone.text = thephone
+    } else {
+    cell.Phone.text = "no phone number"
+    }
+    
     
     return cell
   } // cellForRowAtIndexPath
