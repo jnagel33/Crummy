@@ -70,7 +70,7 @@ class CrummyApiService {
     })
     dataTask.resume()
   }
-
+  
   func listKid(completionHandler: ([KidsList]?, String?) -> (Void)) {
     
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
@@ -83,6 +83,7 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       let status = self.statusResponse(response)
+      println("-> \(status)")
       if status == "200" {
         let parsedKids = CrummyJsonParser.parseJsonListKid(data)
 
@@ -333,8 +334,6 @@ class CrummyApiService {
     
     if let httpResponse = response as? NSHTTPURLResponse {
       let httpStatus = httpResponse.statusCode
-      
-      println("The error code \(httpResponse.statusCode)")
       
       switch httpStatus {
       case 200:
