@@ -97,7 +97,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       }
     })
     
-    
     self.kid.events.sort({ (d1, d2) -> Bool in
       let result = d1.date.compare(d2.date)
       if result == NSComparisonResult.OrderedDescending {
@@ -262,7 +261,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func duplicatePressed(sender: UIButton) {
-    
     if let contentView = sender.superview,
                   cell = contentView.superview as? UITableViewCell,
              indexPath = self.tableView.indexPathForCell(cell)
@@ -270,10 +268,26 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       let section = self.sections[indexPath.section]
       var eventToDuplicate = section[indexPath.row]
       var newEvent = Event(id: nil, type: eventToDuplicate.type, temperature: eventToDuplicate.temperature, medication: eventToDuplicate.medication, heightInches: eventToDuplicate.heightInches, weight: eventToDuplicate.weight, symptom: eventToDuplicate.symptom, date: NSDate())
-      kid.events.insert(newEvent, atIndex: 0)
-      self.getSections()
-      self.tableView.reloadData()
+      self.createEvent(newEvent)
+//      kid.events.insert(newEvent, atIndex: 0)
+//      self.getSections()
+//      self.tableView.reloadData()
     }
+  }
+  
+  func createEvent(event: Event) {
+    self.kid.events.insert(event, atIndex: 0)
+    self.getSections()
+    self.tableView.reloadData()
+    //    self.crummyApiService.createEvent(self.kid!.kidID!, event: event) { (event, error) -> (Void) in
+    self.crummyApiService.createEvent("16", event: event) { (event, error) -> (Void) in
+      if error != nil {
+        println("fail")
+      } else {
+        println("success")
+      }
+    }
+    
   }
 
   func getSections() {
@@ -322,7 +336,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.medicationTextField.resignFirstResponder()
       if !self.medicationTextField.text.isEmpty {
         let event = Event(id: nil, type: EventType.Medication, temperature: nil, medication: self.medicationTextField.text, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
-        self.kid.events.insert(event, atIndex: 0)
+//        self.kid.events.insert(event, atIndex: 0)
+        self.createEvent(event)
       }
       self.medicationTextField.text = nil
     } else if self.measurementsDoneButton != nil && sender == self.measurementsDoneButton {
@@ -342,8 +357,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         weight = weightLbs
       }
       if weight != nil  || height != nil {
-        let event = Event(id: nil, type: EventType.Measurement, temperature: nil, medication: nil, heightInches: height, weight: weight, symptom: nil, date: NSDate())
-        self.kid.events.insert(event, atIndex: 0)
+        let event = Event(id: nil, type: EventType.Measurement, temperature: nil, medication: nil, heightInches: "\(height)", weight: "\(weight)", symptom: nil, date: NSDate())
+//        self.kid.events.insert(event, atIndex: 0)
+        self.createEvent(event)
       }
       self.measurementsFeetTextField.text = nil
       self.measurementInchesTextField.text = nil
@@ -353,16 +369,17 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       if let symptoms = self.symptomsTextField.text {
         if !symptoms.isEmpty {
           let event = Event(id: nil, type: EventType.Symptom, temperature: nil, medication: nil, heightInches: nil, weight: nil, symptom: symptoms, date: NSDate())
-          self.kid.events.insert(event, atIndex: 0)
+//          self.kid.events.insert(event, atIndex: 0)
+          self.createEvent(event)
         }
       }
       self.symptomsTextField.text = nil
     } else if self.temperatureDoneButton != nil && sender == self.temperatureDoneButton {
       self.temperatureTextField.resignFirstResponder()
       if let temperatureStr = self.temperatureTextField.text {
-        let temperature = (temperatureStr as NSString).doubleValue
-        let event = Event(id: nil, type: EventType.Temperature, temperature: temperature, medication: nil, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
-        self.kid.events.insert(event, atIndex: 0)
+        let event = Event(id: nil, type: EventType.Temperature, temperature: temperatureStr, medication: nil, heightInches: nil, weight: nil, symptom: nil, date: NSDate())
+//        self.kid.events.insert(event, atIndex: 0)
+        self.createEvent(event)
       }
       self.temperatureTextField.text = nil
     }
@@ -371,9 +388,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
-    self.getSections()
-    self.tableView.reloadData()
-    self.selectedType = nil
+//    self.getSections()
+//    self.tableView.reloadData()
+//    self.selectedType = nil
   }
   
   //MARK:
@@ -397,19 +414,26 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     self.dismissKeyboard(textField)
-    self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
-    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
-      self.view.layoutIfNeeded()
-    })
+    
+    if self.contentOffsetChangeAmount != nil {
+      self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
+      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+      })
+    }
+    self.contentOffsetChangeAmount != nil
     return true
   }
   
   func doneNumberPadPressed(barButton: UIBarButtonItem) {
     self.currentTextField!.resignFirstResponder()
-    self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
-    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
-      self.view.layoutIfNeeded()
-    })
+    if self.contentOffsetChangeAmount != nil {
+      self.tableView.contentOffset.y -= self.contentOffsetChangeAmount!
+      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+      })
+    }
+    self.contentOffsetChangeAmount = nil
   }
   
   func enteredTextField(textField: UITextField) {
@@ -467,12 +491,19 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       measurementCell.heightInchesTextField.text = nil
       measurementCell.weightTextField.text = nil
       if let heightTotalInches = event.heightInches {
-        let heightFeet: Int = heightTotalInches / self.inchesInAFoot
-        let heightInches: Int = heightTotalInches % self.inchesInAFoot
-        measurementCell.heightFeetTextField.text = "\(heightFeet)"
+        var heightFeet: Int?
+        var heightInches: Int?
+        if let heightInch = heightTotalInches.toInt() {
+          heightFeet = heightInch / self.inchesInAFoot
+          heightInches = heightInch % self.inchesInAFoot
+          measurementCell.heightFeetTextField.text = "\(heightFeet!)"
+          measurementCell.heightInchesTextField.text = "\(heightInches!)"
+        } else {
+          measurementCell.heightFeetTextField.text = "0"
+          measurementCell.heightInchesTextField.text = "\(event.heightInches!)"
+        }
         measurementCell.heightFeetTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
         measurementCell.heightInchesTextField.addTarget(self, action: "enteredTextField:", forControlEvents: UIControlEvents.EditingDidBegin)
-        measurementCell.heightInchesTextField.text = "\(heightInches)"
       }
       if let weight = event.weight {
         measurementCell.weightTextField.text = "\(weight)"
@@ -538,6 +569,17 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//    self.crummyApiService.deleteEvent(self.kid.kidID!, eventId: self.kid.events[indexPath.row].id!) { (eventId, error) -> (Void) in
+    self.crummyApiService.deleteEvent("9", eventId: "87") { (eventId, error) -> (Void) in
+      if error != nil {
+        println("error occured")
+      } else {
+        if error != nil {
+          println("error on delete")
+        }
+        println("successful delete")
+      }
+    }
     var section = indexPath.section
     self.kid.events.removeAtIndex(indexPath.row)
     self.getSections()
@@ -547,6 +589,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       let indexPaths = [indexPath]
       tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
     }
+
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
