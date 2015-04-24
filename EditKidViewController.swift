@@ -32,14 +32,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   var pickerView : UIView!
   var datePicker : UIDatePicker!
   var guess: Int = 0
-  var SelectedObj: Kid!
   
-   // person passed from the "list of people controller.
-   var selectedKid : Kid = Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024")
+  // person passed from the "list of people controller.
+  var selectedKid : Kid!
   
     override func viewDidLoad() {
     super.viewDidLoad()
-
+      
     // setup tags
     // assign the text fields tags.
     self.nameTextField.tag = 0
@@ -52,7 +51,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.consultingNurseHotline.delegate = self
     self.insuranceTextField.delegate = self
     self.nameTextField.delegate = self
-    
+
     // setup fields
     self.title = selectedKid.name
     self.nameTextField.text = selectedKid.name
@@ -63,7 +62,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     if selectedKid.notes != "" {
       self.notesTextView.text = selectedKid.notes
     }
-    
+      
     // non gray out cells
     if let tableView = self.view as? UITableView {
       tableView.allowsSelection = false

@@ -33,8 +33,9 @@ class CrummyApiService {
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
           println(jsonDictionary)
           let token = jsonDictionary["authentication_token"] as! String
+          let fakeToken = "nvZPt85uUZKh3itdoQKz"
 //          println(token)
-          NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
+          NSUserDefaults.standardUserDefaults().setObject(fakeToken, forKey: "crummyToken")
           NSUserDefaults.standardUserDefaults().synchronize()
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(status)
@@ -72,7 +73,7 @@ class CrummyApiService {
     dataTask.resume()
   }
 
-  func listKid(completionHandler: [KidsList]? -> (Void)) {
+  func listKid(completionHandler: ([KidsList]?, String?) -> (Void)) {
     
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     
@@ -88,7 +89,7 @@ class CrummyApiService {
         let parsedKids = CrummyJsonParser.parseJsonListKid(data)
 
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    completionHandler(parsedKids)
+                    completionHandler(parsedKids, nil)
         })
       }
     })
