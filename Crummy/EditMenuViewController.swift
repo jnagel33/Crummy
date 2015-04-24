@@ -39,15 +39,17 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let destinationController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as? EditMenuViewController
-    let selectedKid = self.kid[indexPath.row]
-     destinationController?.kid = self.kid
+    let destinationController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
+    let indexPath = self.tableView.indexPathForSelectedRow()
+    let selectedKid = self.kid[indexPath!.row]
+    destinationController?.selectedKid = selectedKid
     performSegueWithIdentifier("ShowEditKidVC", sender: EditMenuViewController.self)
   }
   
   @IBAction func addButtonPressed(sender: AnyObject) {
-    let destinationController = storyboard?.instantiateViewControllerWithIdentifier("EditKidVC") as? EditMenuViewController
-    destinationController?.kid = self.kid
+    let destinationController = storyboard?.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
+     destinationController?.selectedKid = nil
+    
     performSegueWithIdentifier("ShowEditKidVC", sender: EditMenuViewController.self)
   }
   
