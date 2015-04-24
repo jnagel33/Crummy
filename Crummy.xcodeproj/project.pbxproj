@@ -37,6 +37,9 @@
 		D0385B5E1AE5BF6C007FE10E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0385B5D1AE5BF6C007FE10E /* DatePickerViewController.swift */; };
 		D06A1D2B1AE5625F0081CEDD /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2A1AE5625F0081CEDD /* Kid.swift */; };
 		D06A1D2D1AE56D2A0081CEDD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */; };
+		D06E529B1AEAD17B003B7C1E /* FlashColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E529A1AEAD17B003B7C1E /* FlashColor.swift */; };
+		D092FD9E1AE9DC0F002198B9 /* PhoneCellContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D092FD9D1AE9DC0F002198B9 /* PhoneCellContainerView.xib */; };
+		D092FDA01AE9E1D2002198B9 /* PhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D092FD9F1AE9E1D2002198B9 /* PhoneTableViewCell.swift */; };
 		D0B724CA1AE6D55900AFF02C /* EditKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */; };
 		D0F878AD1AE8501D005B0164 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F412A8191AE57BC8005EB19F /* EditMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */; };
@@ -90,6 +93,9 @@
 		D0385B5D1AE5BF6C007FE10E /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerViewController.swift; path = ../DatePickerViewController.swift; sourceTree = "<group>"; };
 		D06A1D2A1AE5625F0081CEDD /* Kid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		D06A1D2C1AE56D2A0081CEDD /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../DateExtension.swift; sourceTree = "<group>"; };
+		D06E529A1AEAD17B003B7C1E /* FlashColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashColor.swift; sourceTree = "<group>"; };
+		D092FD9D1AE9DC0F002198B9 /* PhoneCellContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhoneCellContainerView.xib; path = ../PhoneCellContainerView.xib; sourceTree = "<group>"; };
+		D092FD9F1AE9E1D2002198B9 /* PhoneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneTableViewCell.swift; path = ../PhoneTableViewCell.swift; sourceTree = "<group>"; };
 		D0B724C91AE6D55900AFF02C /* EditKidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditKidViewController.swift; path = ../EditKidViewController.swift; sourceTree = "<group>"; };
 		F412A8181AE57BC8005EB19F /* EditMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMenuTableViewCell.swift; sourceTree = "<group>"; };
 		F43CFA991AE6EC1E00430355 /* CrummyJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrummyJsonParser.swift; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 		431E227D1AE55D9600A831CB = {
 			isa = PBXGroup;
 			children = (
+				D06E529A1AEAD17B003B7C1E /* FlashColor.swift */,
 				431E22881AE55D9600A831CB /* Crummy */,
 				431E229E1AE55D9700A831CB /* CrummyTests */,
 				431E22871AE55D9600A831CB /* Products */,
@@ -190,6 +197,7 @@
 		4347ACC21AE5678C002C9FB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D092FDA11AE9E354002198B9 /* Phonelist Attributes */,
 				431E228F1AE55D9600A831CB /* Main.storyboard */,
 				43723F381AE7128200543B7E /* EventTypeContainerViews */,
 				43723F451AE719CA00543B7E /* EventTypeTableViewCells */,
@@ -238,6 +246,15 @@
 				F43CFA991AE6EC1E00430355 /* CrummyJsonParser.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D092FDA11AE9E354002198B9 /* Phonelist Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				D092FD9F1AE9E1D2002198B9 /* PhoneTableViewCell.swift */,
+				D092FD9D1AE9DC0F002198B9 /* PhoneCellContainerView.xib */,
+			);
+			name = "Phonelist Attributes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +306,6 @@
 				TargetAttributes = {
 					431E22851AE55D9600A831CB = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = DU643WSPQQ;
 					};
 					431E229A1AE55D9700A831CB = {
 						CreatedOnToolsVersion = 6.3;
@@ -325,6 +341,7 @@
 				43723F331AE6FA7D00543B7E /* MedicationContainerView.xib in Resources */,
 				43723F3C1AE715EE00543B7E /* SymptomsTableViewCell.xib in Resources */,
 				431E22911AE55D9600A831CB /* Main.storyboard in Resources */,
+				D092FD9E1AE9DC0F002198B9 /* PhoneCellContainerView.xib in Resources */,
 				43723F371AE70EBA00543B7E /* TemperatureContainerView.xib in Resources */,
 				431E22961AE55D9600A831CB /* LaunchScreen.xib in Resources */,
 				43723F2F1AE6F6FC00543B7E /* MeasurementsTableViewCell.xib in Resources */,
@@ -351,6 +368,7 @@
 			files = (
 				D0F878AD1AE8501D005B0164 /* (null) in Sources */,
 				43723F441AE719BB00543B7E /* SymptomsTableViewCell.swift in Sources */,
+				D06E529B1AEAD17B003B7C1E /* FlashColor.swift in Sources */,
 				43DF36011AE5655200D567D2 /* HomeCollectionViewCell.swift in Sources */,
 				43723F271AE6E2D100543B7E /* EventType.swift in Sources */,
 				F48F090F1AE8416C00D73626 /* KidsList.swift in Sources */,
@@ -363,6 +381,7 @@
 				439728DB1AE85913001F91A8 /* MedicationTableViewCell.swift in Sources */,
 				431E228C1AE55D9600A831CB /* AppDelegate.swift in Sources */,
 				437947FF1AE5D702002FE57B /* EventsViewController.swift in Sources */,
+				D092FDA01AE9E1D2002198B9 /* PhoneTableViewCell.swift in Sources */,
 				F48F10FC1AE6E7EB005184D5 /* CrummyApiService.swift in Sources */,
 				437947FD1AE5B6CB002FE57B /* CreateUserViewController.swift in Sources */,
 				F43CFA9A1AE6EC1E00430355 /* CrummyJsonParser.swift in Sources */,
