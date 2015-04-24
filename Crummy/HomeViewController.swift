@@ -68,11 +68,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
     // adding table view properties for the phone table view popover.
     
     var kidCount = CGFloat(kids.count)
-    
+      
     println("button pressed")
     var phoneMenuView : UITableView!
     let phoneMenuViewHeight: CGFloat =  CGFloat(self.view.frame.height) - (kidCount * kidNumberHeight)
     phoneMenuView = UITableView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: -phoneMenuViewHeight))
+NS
     phoneMenuView.registerNib(phoneNib, forCellReuseIdentifier: "phoneCell")
     
     UIView.animateWithDuration(1.4, animations: { () -> Void in
