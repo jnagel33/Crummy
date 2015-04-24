@@ -32,11 +32,12 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   var pickerView : UIView!
   var datePicker : UIDatePicker!
   var guess: Int = 0
+  var SelectedObj: Kid!
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
   
-  override func viewDidLoad() {
+    override func viewDidLoad() {
     super.viewDidLoad()
     
     if selectedKid == nil {
