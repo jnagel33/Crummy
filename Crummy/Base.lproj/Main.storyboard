@@ -541,13 +541,13 @@
                                 </constraints>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uXW-r5-0g2">
-                                <rect key="frame" x="-600" y="378" width="600" height="162"/>
+                                <rect key="frame" x="600" y="378" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="451554163.553626">
                                     <!--2015-04-24 07:42:43 +0000-->
                                 </date>
                             </datePicker>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-X8-jYW">
-                                <rect key="frame" x="-600" y="334" width="600" height="44"/>
+                                <rect key="frame" x="600" y="334" width="600" height="44"/>
                                 <items>
                                     <barButtonItem id="Cmk-e1-Ftd"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ue3-lr-GjI"/>
@@ -566,13 +566,13 @@
                             <constraint firstItem="uXW-r5-0g2" firstAttribute="top" secondItem="feh-X8-jYW" secondAttribute="bottom" id="C4q-Xf-s9X"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="H1J-oO-PB5"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="top" id="Ooh-dv-Xip"/>
-                            <constraint firstAttribute="centerX" secondItem="uXW-r5-0g2" secondAttribute="centerX" constant="600" id="Qjj-LV-oUK"/>
+                            <constraint firstAttribute="centerX" secondItem="uXW-r5-0g2" secondAttribute="centerX" constant="-600" id="Qjj-LV-oUK"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="top" secondItem="Rww-pJ-a0t" secondAttribute="topMargin" id="TvK-sI-4sZ"/>
                             <constraint firstItem="rlp-Yh-99Z" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="UBn-WX-ffU"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="uXW-r5-0g2" secondAttribute="bottom" id="Xgj-pB-yRe"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="enp-lm-VLh"/>
                             <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="lo1-me-uIh" secondAttribute="bottom" constant="60" id="eox-Tx-aaf"/>
-                            <constraint firstAttribute="centerX" secondItem="feh-X8-jYW" secondAttribute="centerX" constant="600" id="fyR-4B-KF4"/>
+                            <constraint firstAttribute="centerX" secondItem="feh-X8-jYW" secondAttribute="centerX" constant="-600" id="fyR-4B-KF4"/>
                             <constraint firstAttribute="centerX" secondItem="hag-1i-LO4" secondAttribute="centerX" id="jZT-oy-LC0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rlp-Yh-99Z" secondAttribute="trailing" constant="-16" id="r4F-Ox-DWT"/>
                             <constraint firstAttribute="width" secondItem="uXW-r5-0g2" secondAttribute="width" id="spU-qJ-jTJ"/>
