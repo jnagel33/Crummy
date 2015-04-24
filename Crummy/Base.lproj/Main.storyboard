@@ -724,13 +724,35 @@
                                     <constraint firstItem="hTQ-Fw-JOI" firstAttribute="top" secondItem="Bep-Uc-NtA" secondAttribute="bottom" constant="26" id="uzD-uG-cCE"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoW-MB-Q9s">
+                                <rect key="frame" x="600" y="64" width="600" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8b-x9-Cav">
+                                        <rect key="frame" x="267" y="9" width="66" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="nem-vO-Dux"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="T8b-x9-Cav" secondAttribute="centerX" id="Lf1-3Q-mro"/>
+                                    <constraint firstAttribute="centerY" secondItem="T8b-x9-Cav" secondAttribute="centerY" id="QwO-xI-i4w"/>
+                                    <constraint firstAttribute="height" constant="40" id="arr-Bu-Bb6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Z0U-9A-ZUU" secondAttribute="trailing" id="2xk-8H-IgP"/>
                             <constraint firstAttribute="centerX" secondItem="mGx-0c-vvR" secondAttribute="centerX" id="3pC-1i-T32"/>
                             <constraint firstItem="mGx-0c-vvR" firstAttribute="leading" secondItem="CV8-7c-ut7" secondAttribute="leadingMargin" id="7JR-sl-ohL"/>
+                            <constraint firstAttribute="centerX" secondItem="GoW-MB-Q9s" secondAttribute="centerX" constant="-600" id="Kep-HH-FGh"/>
                             <constraint firstItem="Z0U-9A-ZUU" firstAttribute="top" secondItem="sGa-mY-PWO" secondAttribute="bottom" id="Pr9-B6-Iwg"/>
+                            <constraint firstItem="GoW-MB-Q9s" firstAttribute="width" secondItem="CV8-7c-ut7" secondAttribute="width" id="QLU-b2-rVn"/>
+                            <constraint firstItem="GoW-MB-Q9s" firstAttribute="top" secondItem="sGa-mY-PWO" secondAttribute="bottom" constant="44" id="Tff-dF-aKQ"/>
                             <constraint firstItem="Z0U-9A-ZUU" firstAttribute="centerX" secondItem="mGx-0c-vvR" secondAttribute="centerX" id="dSK-9e-p03"/>
                             <constraint firstItem="Z0U-9A-ZUU" firstAttribute="leading" secondItem="CV8-7c-ut7" secondAttribute="leading" id="doy-vf-FYR"/>
                             <constraint firstAttribute="centerY" secondItem="mGx-0c-vvR" secondAttribute="centerY" id="idP-ST-Nbd"/>
@@ -738,7 +760,10 @@
                     </view>
                     <connections>
                         <outlet property="constraintCenterY" destination="idP-ST-Nbd" id="Udg-nv-Zat"/>
+                        <outlet property="constraintStatusViewCenterX" destination="Kep-HH-FGh" id="kEJ-Im-L7w"/>
                         <outlet property="passwordTextField" destination="fVd-eK-nHq" id="esW-rh-8WS"/>
+                        <outlet property="statusLabel" destination="T8b-x9-Cav" id="5eb-mp-YLm"/>
+                        <outlet property="statusView" destination="GoW-MB-Q9s" id="mLe-Zu-Hlv"/>
                         <outlet property="usernameTextField" destination="Bep-Uc-NtA" id="cb2-uv-fIC"/>
                         <segue destination="IvP-hq-Oqh" kind="show" identifier="ShowHomeMenu" id="KvT-uM-wsA"/>
                     </connections>
@@ -777,6 +802,6 @@
         <image name="TemperatureButton" width="55" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ndJ-Ow-XWu"/>
+        <segue reference="KvT-uM-wsA"/>
     </inferredMetricsTieBreakers>
 </document>

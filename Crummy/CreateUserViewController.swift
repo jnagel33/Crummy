@@ -10,6 +10,9 @@ import UIKit
 
 class CreateUserViewController: UIViewController, UITextFieldDelegate {
 
+  @IBOutlet weak var constraintStatusViewCenterX: NSLayoutConstraint!
+  @IBOutlet weak var statusView: UIView!
+  @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var usernameTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
 
@@ -31,15 +34,28 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
   }
   
   @IBAction func doneBarButton(sender: UIBarButtonItem) {
-    dismissViewControllerAnimated(true, completion: nil)
+//    dismissViewControllerAnimated(true, completion: nil)
     let username = usernameTextField.text
     let password = passwordTextField.text
     
     self.crummyApiService.createNewUser(username, password: password, completionHandler: { (status) -> (Void) in
       
       if status == "200" {
-        self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
+        self.statusView.backgroundColor = UIColor.greenColor()
+        self.statusLabel.text = "Success"
+        self.constraintStatusViewCenterX.constant = 0
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+          self.view.layoutIfNeeded()
+        }, completion: { (finshed) -> Void in
+          self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
+        })
       } else {
+        self.statusView.backgroundColor = UIColor.redColor()
+        self.statusLabel.text = "Error creating user"
+        self.constraintStatusViewCenterX.constant = 0
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+          self.view.layoutIfNeeded()
+        })
         println("Error creating user \(status)")
         // send error message to login screen here
       }
