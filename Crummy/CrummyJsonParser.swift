@@ -64,6 +64,7 @@ class CrummyJsonParser {
           var height: String?
           var weight: String?
           var description: String?
+          var date: NSDate?
           if let type = event["type"] as? String {
             if type == "Medicine" {
               eventType = EventType.Medication
@@ -77,6 +78,9 @@ class CrummyJsonParser {
           }
           if let datetime = event["datetime"] as? String {
             //Need dateFormatter
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            date = dateFormatter.dateFromString(datetime)
           }
           if let eventName = event["meds"] as? String {
             name = eventName
@@ -94,11 +98,19 @@ class CrummyJsonParser {
             description = eventDescription
           }
           
-          let event = Event(id: id, type: eventType!, temperature: temperature, medication: name, heightInches: height, weight: weight, symptom: description, date: NSDate())
+          let event = Event(id: id, type: eventType!, temperature: temperature, medication: name, height: height, weight: weight, symptom: description, date: date!)
           events.append(event)
         }
       }
     }
     return events
+  }
+  
+  class func getEventId(data: NSData) -> String? {
+    
+    if let event = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject], id = event["id"] as? Int {
+      return "\(id)"
+    }
+    return nil
   }
 }

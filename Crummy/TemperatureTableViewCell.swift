@@ -10,6 +10,7 @@ import UIKit
 
 class TemperatureTableViewCell: UITableViewCell {
 
-  @IBOutlet weak var temperatureTextField: UITextField!
+  @IBOutlet weak var temperatureLabel: UILabel!
   @IBOutlet weak var duplicateButton: UIButton!
+  @IBOutlet weak var timeButton: UIButton!
 }
