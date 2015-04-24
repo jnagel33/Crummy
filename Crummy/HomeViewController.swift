@@ -9,9 +9,7 @@
 import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
-  
-  let crummyApiService = CrummyApiService()
-  
+
   @IBOutlet weak var collectionView: UICollectionView!
   
   var kidList = [KidsList]()
@@ -45,9 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    println(kids.count)
-    return kids.count
-
+    return kidList.count
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
