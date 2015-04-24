@@ -178,14 +178,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   
-//  func datePickerChanged(datePicker:UIDatePicker) {
-//    
-//    self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-//    self.dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-//    
-//    var strDate = self.dateFormatter.stringFromDate(datePicker.date)
-//  }
-  
   func dismissKeyboard() {
     if self.medicationTextField != nil && self.medicationTextField.isFirstResponder() {
       self.medicationTextField.resignFirstResponder()
@@ -241,26 +233,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
           UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
             self.view.layoutIfNeeded()
           })
-        } else {
-          var viewHeight = self.view.frame.height
-          println("Bounds height \(viewHeight)")
-          println("cell y: \(self.currentCellY!)")
-          println("currentCellHeight: \(self.currentCellHeight)")
-          println("Superview \(self.view.frame.height)")
-          println("Keyboard Height \(self.keyboardHeight)")
-          let cellBottomY = currentCellY! + self.currentCellHeight
-          let visibleView = self.view.frame.height - self.keyboardHeight
-          println("Cell bottom Y: \(cellBottomY)")
-          println("Visible View: \(visibleView)")
-          
-          if cellBottomY > visibleView {
-            self.contentOffsetChangeAmount = cellBottomY - visibleView
-            println("Need to move \(self.contentOffsetChangeAmount) points")
-            self.tableView.contentOffset.y = self.tableView.contentOffset.y + self.contentOffsetChangeAmount!
-            UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
-              self.view.layoutIfNeeded()
-            })
-          }
         }
       }
     }
