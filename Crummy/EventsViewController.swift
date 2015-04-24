@@ -299,7 +299,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
             if self.allEvents.count > 0 {
               self.sections[0].insert(event, atIndex: 0)
             } else {
-              self.sections[0].append(event)
+              self.sections.append([event])
             }
             self.getSections(false)
             self.tableView.reloadData()
