@@ -18,8 +18,9 @@ class CrummyJsonParser {
       for objects in jsonArray {
         if let
           kidName = objects["name"] as? String,
+          kidPhone = objects["nurse_phone"] as? String,
           kidId = objects["id"] as? Int {
-            let listData = KidsList(name: kidName, id: kidId)
+            let listData = KidsList(name: kidName, id: kidId, phone: kidPhone)
             parse.append(listData)
         }
       }
