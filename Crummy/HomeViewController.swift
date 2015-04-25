@@ -149,6 +149,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kids[indexPath.row].nursePhone)")!)
+    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://2063755563")!)
   } // didSelectRowAtIndexPath
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
+class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   // parameters
   
@@ -32,12 +32,18 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   var pickerView : UIView!
   var datePicker : UIDatePicker!
   var guess: Int = 0
+  let pickerCellIndexPath = 4
+  var kidImage: UIImage?
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
   
     override func viewDidLoad() {
     super.viewDidLoad()
+      
+    var cellNib = UINib(nibName: "ImagePickerCell", bundle: nil)
+    tableView.registerNib(cellNib,
+      forCellReuseIdentifier: "ImagePickerCell")
     
     if selectedKid == nil {
        selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
@@ -51,6 +57,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.notesTextView.tag = 4
     
     // delegates
+    self.tableView.dataSource = self
+    self.tableView.delegate = self
     self.notesTextView.delegate = self
     self.consultingNurseHotline.delegate = self
     self.insuranceTextField.delegate = self
@@ -68,9 +76,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
       
     // non gray out cells
-    if let tableView = self.view as? UITableView {
-      tableView.allowsSelection = false
-    }
+//    if let tableView = self.view as? UITableView {
+//      tableView.allowsSelection = false
+//    }
     
     self.view.layoutIfNeeded()
   } // viewDidLoad
@@ -202,9 +210,48 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   } // getThisTextField
   
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  } // didReceiveMemoryWarning
+  //MARK:
+  //MARK: UITableViewDataSource
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    if indexPath.row == self.pickerCellIndexPath {
+      let cell = tableView.dequeueReusableCellWithIdentifier("ImagePickerCell", forIndexPath: indexPath) as! ImagePickerCell
+      cell.kidImageView.image = self.kidImage
+      return cell
+    }
+    return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+  }
+  
+  //MARK:
+  //MARK: UITableViewDelegate
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    if indexPath.row == self.pickerCellIndexPath {
+      if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        var imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePickerController.allowsEditing = true
+        self.presentViewController(imagePickerController, animated: true, completion: nil)
+      }
+    }
+  }
+  
+  
+  //MARK:
+  //MARK: UIImagePickerControllerDelegate
+  
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    if let photo = info[UIImagePickerControllerEditedImage] as? UIImage {
+      self.kidImage = photo
+    }
+    tableView.reloadData()
+    picker.dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
+  }
   
 }
