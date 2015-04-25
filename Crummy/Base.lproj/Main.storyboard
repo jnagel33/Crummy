@@ -359,7 +359,7 @@
                                             <color key="titleShadowColor" red="0.93624009956012522" green="0.94136491402116407" blue="0.93047673498327854" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="phoneButtonPressed:" destination="IvP-hq-Oqh" eventType="touchUpInside" id="xOK-p6-lup"/>
+                                            <action selector="phoneButtonPressed:" destination="IvP-hq-Oqh" eventType="touchUpInside" id="WFd-tI-OWM"/>
                                         </connections>
                                     </button>
                                 </subviews>
