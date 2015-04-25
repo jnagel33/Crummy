@@ -36,22 +36,26 @@ class CrummyJsonParser {
     if let
       jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject] {
         
-        let name = jsonDictionary["name"] as! String
-        let kidId = jsonDictionary["id"] as! Int
-        let id = String(stringInterpolationSegment: kidId)
-        
-        
-        //        var insuranceId = jsonDictionary["insurance_id"] as! String
-        //        if insuranceId == "" {
-        //          insuranceId = " "
-        //        }
-        //        var nursePhone = jsonDictionary["nurse_phone"] as! String
-        //        if nursePhone == "" {
-        //          nursePhone = " "
-        
-        //   editMenuKid = Kid(theName: name, theDOB: "", theInsuranceID: insuranceId, theNursePhone: nursePhone)
-        editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: " ", theNursePhone: " ", theKidID: id)
-        // }
+      let name = jsonDictionary["name"] as! String
+      let kidId = jsonDictionary["id"] as! Int
+      let id = String(stringInterpolationSegment: kidId)
+      var dob = jsonDictionary["dob"] as? String
+      if dob == "" {
+        dob = " "
+      }
+      var insuranceId = jsonDictionary["insurance_id"] as? String
+      if insuranceId == "" {
+        insuranceId = " "
+      }
+      var nursePhone = jsonDictionary["nurse_phone"] as? String
+      if nursePhone == "" {
+        nursePhone = " "
+      }
+      var notes = jsonDictionary["notes"] as? String  // Add notes when Kid obbject updated
+      if notes == "" {
+        notes = " "
+      }
+      editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theKidID: id)
     }
     return editMenuKid
   }

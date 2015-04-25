@@ -44,7 +44,6 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let selectedMunchkin = self.kidList?[indexPath.row]
     let id = selectedMunchkin?.id
     let idString = String(stringInterpolationSegment: id!)
-    println(idString)
     
     crummyApiService.getKid(idString, completionHandler: { (kiddos, error) -> (Void) in
       if error != nil {
@@ -67,8 +66,22 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     
+    let selectedMunchkin = self.kidList?[indexPath.row]
+    let id = selectedMunchkin?.id
+    let idString = String(stringInterpolationSegment: id!)
+    
     kidList?.removeAtIndex(indexPath.row)
     let indexPaths = [indexPath]
     tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    
+     println("Deleteing kid with ID: \(idString)")
+    
+    crummyApiService.deleteKid(idString, completionHandler: { (error) -> (Void) in
+     
+      
+      
+
+      
+    })
   }
 }
