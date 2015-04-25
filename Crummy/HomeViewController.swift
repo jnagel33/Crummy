@@ -75,7 +75,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     return cell
   }
   
-  //MARK:
+    //MARK:
   //MARK: prepareForSegue
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -91,7 +91,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
   }
   
-  
+  override func viewWillAppear(animated: Bool) {
+    self.crummyApiService.listKid { (kidList, error) -> (Void) in
+      if error != nil {
+        println("error reloading kid list")
+      } else {
+        self.kidList = kidList!
+        self.collectionView.reloadData()
+      }
+    }
+  }
+    
   //MARK:
   //MARK: - popover VC.
   
