@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
+    self.window?.tintColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+    
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
       if let
         rootViewController = self.window?.rootViewController as? LoginViewController,

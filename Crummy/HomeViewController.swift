@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate {
 
+  @IBOutlet weak var buttonContainerView: UIView!
   @IBOutlet weak var collectionView: UICollectionView!
   
   var kidList = [KidsList]()
@@ -28,6 +29,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UITableV
   // find the Nib in the bundle.
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   override func viewDidLoad() {
+    
+    let navBarImage = UIImage(named: "CrummyNavBar")
+    self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
+    
+    var buttonBar = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
+    self.buttonContainerView.backgroundColor = buttonBar
     
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if error != nil {
