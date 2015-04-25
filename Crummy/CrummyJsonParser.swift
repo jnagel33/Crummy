@@ -28,26 +28,28 @@ class CrummyJsonParser {
     return parse
   }
   
-  class func parseJsonGetKid(jsonData: NSData) -> [Kid] {
-    var parse = [Kid]()
+  class func parseJsonGetKid(jsonData: NSData) -> Kid {
+    var editMenuKid: Kid!
     var jsonError: NSError?
     
     if let
-      jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject],
-      dictionaryItems = jsonDictionary["auth_token"] as? [[String: AnyObject]] {
-              
-        for objects in dictionaryItems {
-          if let
-            kidName = objects["name"] as? String,
-            kidDOB = objects["dob"] as? String,
-            kidInsuranceId = objects["ins"] as? String,
-            kidNursePhone = objects["phone"] as? String {
-              let kidData = Kid(theName: kidName, theDOB: kidDOB, theInsuranceID: kidInsuranceId, theNursePhone: kidNursePhone)
-              parse.append(kidData)
-          }
-        }
+      jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject] {
+        
+        let name = jsonDictionary["name"] as! String
+        
+        //        var insuranceId = jsonDictionary["insurance_id"] as! String
+        //        if insuranceId == "" {
+        //          insuranceId = " "
+        //        }
+        //        var nursePhone = jsonDictionary["nurse_phone"] as! String
+        //        if nursePhone == "" {
+        //          nursePhone = " "
+        
+        //   editMenuKid = Kid(theName: name, theDOB: "", theInsuranceID: insuranceId, theNursePhone: nursePhone)
+        editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: " ", theNursePhone: " ")
+        // }
     }
-    return parse
+    return editMenuKid
   }
   
   class func parseEvents(jsonData: NSData) -> [Event] {

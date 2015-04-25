@@ -13,30 +13,26 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   let crummyApiService = CrummyApiService()
   
+  var kiddo: Kid!
   var kidList: [KidsList]?
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-   self.tableView.delegate = self
+    self.tableView.delegate = self
     self.tableView.dataSource = self
-    
-    
-
-    
   }
   
-   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let kidCount = self.kidList?.count {
       return kidCount
-      }
+    }
     return 0
   }
-
+  
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("EditMenuCell", forIndexPath: indexPath) as! EditMenuTableViewCell
-       cell.textLabel?.text = nil
+    cell.textLabel?.text = nil
     if let kids = self.kidList?[indexPath.row] {
       cell.textLabel!.text = kids.name
     }
@@ -44,15 +40,27 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let destinationController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
-    let selectedKid = self.kidList![indexPath.row]
-//    destinationController?.selectedKid = selectedKid
-    performSegueWithIdentifier("ShowEditKidVC", sender: EditMenuViewController.self)
+    
+    let selectedMunchkin = self.kidList?[indexPath.row]
+    let id = selectedMunchkin?.id
+    let idString = String(stringInterpolationSegment: id!)
+    println(idString)
+    
+    crummyApiService.getKid(idString, completionHandler: { (kiddos, error) -> (Void) in
+      if error != nil {
+        println("error getting kid")
+      } else {
+        self.kiddo = kiddos!
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as! EditKidViewController
+        viewController.selectedKid = self.kiddo
+        self.navigationController?.pushViewController(viewController, animated: false)
+      }
+    })
   }
   
   @IBAction func addButtonPressed(sender: AnyObject) {
     let destinationController = storyboard?.instantiateViewControllerWithIdentifier("EditKidVC") as? EditKidViewController
-     destinationController?.selectedKid = nil
+    destinationController?.selectedKid = nil
     
     performSegueWithIdentifier("ShowEditKidVC", sender: EditMenuViewController.self)
   }
