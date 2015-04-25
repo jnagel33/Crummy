@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   var kid: [Kid]!
   
-  // Randy is working on this...
   let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
   // find the Nib in the bundle.
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
@@ -140,9 +139,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let cell = tableView.dequeueReusableCellWithIdentifier("phoneCell", forIndexPath: indexPath) as! PhoneTableViewCell
     cell.Name.text = kidList[indexPath.row].name
-    cell.InsuranceID.text = kids[indexPath.row].insuranceId
-    
-    ///// NEds to be kidslist.
+    if let theInsurance = kidList[indexPath.row].
+    cell.InsuranceID.text = kidList[indexPath.row].insuranceId
     if let thephone = kidList[indexPath.row].phone {
       cell.Phone.text = thephone
     } else {
