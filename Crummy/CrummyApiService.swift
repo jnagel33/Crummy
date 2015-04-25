@@ -31,7 +31,6 @@ class CrummyApiService {
       let status = self.statusResponse(response)
       if status == "200" {
         if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
-          println(jsonDictionary)
           let token = jsonDictionary["authentication_token"] as! String
           
           println(token)
@@ -85,7 +84,6 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       let status = self.statusResponse(response)
-      println("-> \(status)")
       if status == "200" {
         let parsedKids = CrummyJsonParser.parseJsonListKid(data)
 
@@ -111,7 +109,6 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       if let httpResponse = response as? NSHTTPURLResponse {
-        println("getkid \(httpResponse.statusCode)")
         if httpResponse.statusCode == 200 {
           let editMenuKid = CrummyJsonParser.parseJsonGetKid(data)
           
@@ -119,6 +116,70 @@ class CrummyApiService {
             completionHandler(editMenuKid, nil)
           })
         }
+      }
+    })
+    dataTask.resume()
+  }
+  
+  func editKid(id: String, name: String, dobString: String, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
+    let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
+    let queryString = id
+    let requestUrl = kidIdUrl + queryString
+    let url = NSURL(string: requestUrl)
+    var error: NSError?
+    var editedKid = [String: AnyObject]()
+    
+    editedKid["name"] = "\(name)"
+    editedKid["dob"] = "\(dobString)"
+    editedKid["insurance_id"] = "\(insuranceID)"
+    editedKid["nurse_phone"] = "\(nursePhone)"
+    editedKid["notes"] = "\(notes)"
+    
+    let data = NSJSONSerialization.dataWithJSONObject(editedKid, options: nil, error: &error)
+    let request = NSMutableURLRequest(URL: url!)
+    request.HTTPMethod = "PATCH"
+    request.HTTPBody = data
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      print("retrieved token: ")
+      println(token)
+      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+    }
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      let status = self.statusResponse(response)
+      if status == "200" {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
+      } else {
+        completionHandler(status)
+      }
+    })
+    dataTask.resume()
+  }
+
+  func deleteKid(id: String, completionHandler: (String) -> (Void)) {
+    
+    let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
+    let queryString = id
+    let requestUrl = kidIdUrl + queryString
+    let url = NSURL(string: requestUrl)
+    let request = NSMutableURLRequest(URL: url!)
+    request.HTTPMethod = "DELETE"
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+    }
+    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+      
+      let status = self.statusResponse(response)
+      if status == "200" {
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
+        } else {
+        completionHandler(status)
       }
     })
     dataTask.resume()
