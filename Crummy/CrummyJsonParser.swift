@@ -37,6 +37,9 @@ class CrummyJsonParser {
       jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject] {
         
         let name = jsonDictionary["name"] as! String
+        let kidId = jsonDictionary["id"] as! Int
+        let id = String(stringInterpolationSegment: kidId)
+        
         
         //        var insuranceId = jsonDictionary["insurance_id"] as! String
         //        if insuranceId == "" {
@@ -47,7 +50,7 @@ class CrummyJsonParser {
         //          nursePhone = " "
         
         //   editMenuKid = Kid(theName: name, theDOB: "", theInsuranceID: insuranceId, theNursePhone: nursePhone)
-        editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: " ", theNursePhone: " ")
+        editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: " ", theNursePhone: " ", theKidID: id)
         // }
     }
     return editMenuKid

@@ -64,7 +64,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var keyboardHeight: CGFloat = 0
   var animationDuration: Double = 0.2
 //  var tapGestureRecognizer: UITapGestureRecognizer?
-  var kid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
+  var kid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theKidID: "")
   var selectedType: EventType?
   var currentContainerView: UIView?
   var sections = [[Event]]()
