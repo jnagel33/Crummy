@@ -34,6 +34,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   var guess: Int = 0
   let pickerCellIndexPath = 4
   var kidImage: UIImage?
+  var addKid = false
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
@@ -47,6 +48,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     if selectedKid == nil {
       selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theKidID: "")
+      addKid = true
     }
 
     // setup tags
@@ -88,12 +90,18 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     //println(self.notesTextView.text)
     selectedKid!.notes = notesTextView.text
     
-    self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
-      //println(self.selectedKid.notes)
-      if status! == "201" {
-        // launch a popup signifying data saved.
-      }
-    })
+    if addKid == true {
+      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+        //println(self.selectedKid.notes)
+        if status! == "201" {
+          // launch a popup signifying data saved.
+          self.addKid = false
+        }
+      })
+    } else {
+      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+      })
+    }
   } // viewWillDisappear
   
   // MARK: - Date Picker
