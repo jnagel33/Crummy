@@ -97,22 +97,25 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func getKid(selectedKid: String, completionHandler: ([Kid]?) -> (Void)) {
+  func getKid(id: String, completionHandler: (Kid?, String?) -> (Void)) {
     
-    let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids"
-    let queryString = "?:ID"
+    let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
+    let queryString = id
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
-    let request = NSURLRequest(URL: url!)
-    
+    let request = NSMutableURLRequest(URL: url!)
+    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
+    }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
       if let httpResponse = response as? NSHTTPURLResponse {
+        println("getkid \(httpResponse.statusCode)")
         if httpResponse.statusCode == 200 {
-          let parsedKids = CrummyJsonParser.parseJsonGetKid(data)
+          let editMenuKid = CrummyJsonParser.parseJsonGetKid(data)
           
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            completionHandler(parsedKids)
+            completionHandler(editMenuKid, nil)
           })
         }
       }
