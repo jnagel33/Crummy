@@ -16,7 +16,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   let crummyApiService = CrummyApiService()
   
   @IBOutlet weak var constraintButtonViewContainerBottom: NSLayoutConstraint!
-  @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var constraintViewContainerBottom: NSLayoutConstraint!
   @IBOutlet weak var medicationButton: UIButton!
   @IBOutlet weak var temperatureButton: UIButton!
@@ -63,7 +62,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var currentTextField: UITextField?
   var keyboardHeight: CGFloat = 0
   var animationDuration: Double = 0.2
-//  var tapGestureRecognizer: UITapGestureRecognizer?
   var kid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
   var selectedType: EventType?
   var currentContainerView: UIView?
@@ -80,6 +78,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var kidId: String?
   var kidName: String?
   var allEvents = [Event]()
+  var currentCell: UITableViewCell?
   
   //MARK:
   //MARK: ViewDidLoad
@@ -89,6 +88,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.dataSource = self
+    
+    var containerBarColor = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
+    self.eventTypeContainerView.backgroundColor = containerBarColor
     
     self.navigationItem.title = "Events - \(self.kidName!)"
     
@@ -175,6 +177,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       temperatureView.addConstraint(NSLayoutConstraint(item: temperatureView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: self.temperatureContainerViewHeight))
       self.temperatureTextField.delegate = self
     }
+    
+    var containerBarColor = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
+    self.currentContainerView!.backgroundColor = containerBarColor
   }
   
   
@@ -327,6 +332,11 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     })
     self.currentEvent = nil
     self.tableView.userInteractionEnabled = true
+    if let cell = currentCell {
+      cell.contentView.layer.borderColor = UIColor.clearColor().CGColor
+      cell.contentView.layer.borderWidth = 0
+      self.currentCell = nil
+    }
   }
   
   
@@ -398,6 +408,11 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     })
     
     self.currentEvent = nil
+    if let cell = currentCell {
+      cell.contentView.layer.borderColor = UIColor.clearColor().CGColor
+      cell.contentView.layer.borderWidth = 0
+      self.currentCell = nil
+    }
   }
   
   func showDatePicker(button: UIButton) {
@@ -642,6 +657,13 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+    if let currentCell = tableView.cellForRowAtIndexPath(indexPath) {
+      currentCell.contentView.layer.borderColor = UIColor.redColor().CGColor
+      currentCell.contentView.layer.borderWidth = 3.0
+      self.currentCell = currentCell
+    }
+    
     let currentSection = indexPath.section
     let event = self.sections[currentSection][indexPath.row]
     self.currentEvent = event
@@ -705,5 +727,19 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.temperatureTextField.delegate = self
       self.temperatureTextField.text = event.temperature
     }
+  }
+  
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    var view = CustomHeaderView()
+    
+    var headerLabel = UILabel(frame: CGRectMake(15, 0, 300, 30))
+    headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+    headerLabel.textColor = UIColor.whiteColor()
+    view.addSubview(headerLabel)
+    return view
+  }
+  
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 32
   }
 }
