@@ -46,7 +46,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       forCellReuseIdentifier: "ImagePickerCell")
     
     if selectedKid == nil {
-       selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
+      selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theKidID: "")
     }
 
     // setup tags
