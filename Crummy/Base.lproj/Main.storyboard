@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -359,7 +359,7 @@
                                             <color key="titleShadowColor" red="0.93624009956012522" green="0.94136491402116407" blue="0.93047673498327854" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="phoneButtonPressed:" destination="IvP-hq-Oqh" eventType="touchUpInside" id="xOK-p6-lup"/>
+                                            <action selector="phoneButtonPressed:" destination="IvP-hq-Oqh" eventType="touchUpInside" id="WFd-tI-OWM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -443,6 +443,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="8gD-zL-oOr"/>
                     <connections>
+                        <outlet property="buttonContainerView" destination="wt9-oY-btR" id="gzb-gP-vm4"/>
                         <outlet property="collectionView" destination="Y1Z-7w-1oz" id="Akr-pQ-yub"/>
                     </connections>
                 </viewController>
@@ -463,7 +464,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-me-uIh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="525"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlp-Yh-99Z">
@@ -474,10 +475,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hag-1i-LO4">
-                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="525" width="600" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeL-0C-mdL">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="60"/>
+                                        <rect key="frame" x="0.0" y="10" width="72" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="UEF-SG-aae"/>
                                         </constraints>
@@ -489,7 +490,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJu-89-r7L">
-                                        <rect key="frame" x="313" y="0.0" width="72" height="60"/>
+                                        <rect key="frame" x="313" y="10" width="72" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="RLB-GO-IJs"/>
                                         </constraints>
@@ -501,7 +502,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQW-Nh-NIP">
-                                        <rect key="frame" x="528" y="0.0" width="72" height="60"/>
+                                        <rect key="frame" x="528" y="10" width="72" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="eLb-9k-lAy"/>
                                         </constraints>
@@ -513,7 +514,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mB8-zU-oKd">
-                                        <rect key="frame" x="211" y="0.0" width="72" height="60"/>
+                                        <rect key="frame" x="211" y="10" width="72" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="Qnr-NN-v5U"/>
                                         </constraints>
@@ -524,41 +525,41 @@
                                             <action selector="eventTypePressed:" destination="MYK-8j-q3C" eventType="touchUpInside" id="y2B-jZ-iqN"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-RV-PlL">
-                                        <rect key="frame" x="295" y="0.0" width="10" height="60"/>
+                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-RV-PlL">
+                                        <rect key="frame" x="295" y="10" width="10" height="65"/>
                                         <color key="backgroundColor" red="0.92123429229999998" green="0.92123429229999998" blue="0.92123429229999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="10" id="rp8-Cc-PXj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.92123429229999998" green="0.92123429229999998" blue="0.92123429229999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="mB8-zU-oKd" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="1cV-bf-7eP"/>
-                                    <constraint firstItem="xQW-Nh-NIP" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="4wJ-nZ-A7Q"/>
+                                    <constraint firstItem="mB8-zU-oKd" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="10" id="1cV-bf-7eP"/>
+                                    <constraint firstItem="xQW-Nh-NIP" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="10" id="4wJ-nZ-A7Q"/>
                                     <constraint firstAttribute="trailing" secondItem="xQW-Nh-NIP" secondAttribute="trailing" id="59B-jR-Hgz"/>
-                                    <constraint firstAttribute="bottom" secondItem="xJu-89-r7L" secondAttribute="bottom" id="5bC-OZ-jNh"/>
-                                    <constraint firstAttribute="bottom" secondItem="mB8-zU-oKd" secondAttribute="bottom" id="HlB-Ja-76h"/>
-                                    <constraint firstAttribute="bottom" secondItem="xQW-Nh-NIP" secondAttribute="bottom" id="OBQ-jt-d7F"/>
-                                    <constraint firstItem="AeL-0C-mdL" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="PLJ-Gu-4vt"/>
+                                    <constraint firstAttribute="bottom" secondItem="xJu-89-r7L" secondAttribute="bottom" constant="5" id="5bC-OZ-jNh"/>
+                                    <constraint firstAttribute="bottom" secondItem="mB8-zU-oKd" secondAttribute="bottom" constant="5" id="HlB-Ja-76h"/>
+                                    <constraint firstAttribute="bottom" secondItem="xQW-Nh-NIP" secondAttribute="bottom" constant="5" id="OBQ-jt-d7F"/>
+                                    <constraint firstItem="AeL-0C-mdL" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="10" id="PLJ-Gu-4vt"/>
                                     <constraint firstItem="xJu-89-r7L" firstAttribute="leading" secondItem="e5u-RV-PlL" secondAttribute="trailing" constant="8" id="Tdx-Ip-2Ns"/>
                                     <constraint firstAttribute="bottom" secondItem="e5u-RV-PlL" secondAttribute="bottom" id="f53-GB-0WO"/>
-                                    <constraint firstAttribute="bottom" secondItem="AeL-0C-mdL" secondAttribute="bottom" id="j9h-4n-u30"/>
-                                    <constraint firstItem="e5u-RV-PlL" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="kaG-Eq-20S"/>
+                                    <constraint firstAttribute="bottom" secondItem="AeL-0C-mdL" secondAttribute="bottom" constant="5" id="j9h-4n-u30"/>
+                                    <constraint firstItem="e5u-RV-PlL" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="10" id="kaG-Eq-20S"/>
                                     <constraint firstAttribute="centerX" secondItem="e5u-RV-PlL" secondAttribute="centerX" id="mUe-DJ-C4z"/>
                                     <constraint firstItem="AeL-0C-mdL" firstAttribute="leading" secondItem="hag-1i-LO4" secondAttribute="leading" id="mhf-Wl-aE7"/>
                                     <constraint firstItem="e5u-RV-PlL" firstAttribute="leading" secondItem="mB8-zU-oKd" secondAttribute="trailing" constant="12" id="xuX-q8-2XY"/>
-                                    <constraint firstItem="xJu-89-r7L" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" id="z9Y-w2-Pc1"/>
+                                    <constraint firstItem="xJu-89-r7L" firstAttribute="top" secondItem="hag-1i-LO4" secondAttribute="top" constant="10" id="z9Y-w2-Pc1"/>
                                 </constraints>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uXW-r5-0g2">
-                                <rect key="frame" x="600" y="378" width="600" height="162"/>
+                                <rect key="frame" x="600" y="363" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="451554163.553626">
                                     <!--2015-04-24 07:42:43 +0000-->
                                 </date>
                             </datePicker>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-X8-jYW">
-                                <rect key="frame" x="600" y="334" width="600" height="44"/>
+                                <rect key="frame" x="600" y="319" width="600" height="44"/>
                                 <items>
                                     <barButtonItem id="Cmk-e1-Ftd"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ue3-lr-GjI"/>
@@ -576,13 +577,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="lo1-me-uIh" secondAttribute="trailing" constant="-16" id="9iP-tf-vhL"/>
                             <constraint firstItem="uXW-r5-0g2" firstAttribute="top" secondItem="feh-X8-jYW" secondAttribute="bottom" id="C4q-Xf-s9X"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="H1J-oO-PB5"/>
-                            <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="top" id="Ooh-dv-Xip"/>
+                            <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="top" constant="-15" id="Ooh-dv-Xip"/>
                             <constraint firstAttribute="centerX" secondItem="uXW-r5-0g2" secondAttribute="centerX" constant="-600" id="Qjj-LV-oUK"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="top" secondItem="Rww-pJ-a0t" secondAttribute="topMargin" id="TvK-sI-4sZ"/>
                             <constraint firstItem="rlp-Yh-99Z" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="UBn-WX-ffU"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="uXW-r5-0g2" secondAttribute="bottom" id="Xgj-pB-yRe"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="enp-lm-VLh"/>
-                            <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="lo1-me-uIh" secondAttribute="bottom" constant="60" id="eox-Tx-aaf"/>
+                            <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="lo1-me-uIh" secondAttribute="bottom" constant="75" id="eox-Tx-aaf"/>
                             <constraint firstAttribute="centerX" secondItem="feh-X8-jYW" secondAttribute="centerX" constant="-600" id="fyR-4B-KF4"/>
                             <constraint firstAttribute="centerX" secondItem="hag-1i-LO4" secondAttribute="centerX" id="jZT-oy-LC0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rlp-Yh-99Z" secondAttribute="trailing" constant="-16" id="r4F-Ox-DWT"/>
@@ -600,7 +601,6 @@
                         <outlet property="constraintTableViewTop" destination="TvK-sI-4sZ" id="NcN-6A-tNG"/>
                         <outlet property="constraintToolbarCenterX" destination="fyR-4B-KF4" id="RtA-t0-snD"/>
                         <outlet property="constraintViewContainerBottom" destination="wHr-Cj-ZDv" id="40t-bl-uNO"/>
-                        <outlet property="containerView" destination="rlp-Yh-99Z" id="I1X-WV-WxJ"/>
                         <outlet property="datePicker" destination="uXW-r5-0g2" id="wLo-c5-Jzc"/>
                         <outlet property="eventTypeContainerView" destination="hag-1i-LO4" id="qTP-8b-kcH"/>
                         <outlet property="measurementButton" destination="xJu-89-r7L" id="08a-t9-op9"/>
@@ -807,10 +807,10 @@
         <image name="EditButton" width="65" height="30"/>
         <image name="HomeButton" width="40" height="38"/>
         <image name="MeasurementButton" width="64" height="62"/>
-        <image name="MedsButton" width="42" height="59"/>
+        <image name="MedsButton" width="48" height="67"/>
         <image name="PhoneButton" width="37" height="52"/>
-        <image name="SymptomButton" width="47" height="57"/>
-        <image name="TemperatureButton" width="55" height="54"/>
+        <image name="SymptomButton" width="51" height="62"/>
+        <image name="TemperatureButton" width="60" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KvT-uM-wsA"/>
