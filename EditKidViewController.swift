@@ -49,9 +49,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
     if let name = selectedKid?.name {
-      self.titleLabel.text = selectedKid!.name
-    } else {
       self.titleLabel.text = "Edit"
+    } else {
+      self.titleLabel.text = "Add"
       }
     self.navigationItem.titleView = self.titleLabel
       
@@ -257,7 +257,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       }
     }
   }
-  
   
   //MARK:
   //MARK: UIImagePickerControllerDelegate
