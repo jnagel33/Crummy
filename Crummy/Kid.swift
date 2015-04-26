@@ -43,6 +43,7 @@ class Kid {
     insuranceId = theInsuranceID
     nursePhone = theNursePhone
     kidID = theKidID
+    notes = theNotes
     
   } // init
   
