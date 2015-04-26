@@ -32,7 +32,7 @@ class Kid {
   
   
   // the Person Object
-  init(theName : String, theDOB : String, theInsuranceID : String, theNursePhone : String, theKidID: String) {
+  init(theName : String, theDOB : String, theInsuranceID : String, theNursePhone : String, theNotes: String, theKidID: String) {
     
     name = theName
     DOBString = theDOB
