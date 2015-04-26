@@ -20,9 +20,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let crummyApiService = CrummyApiService()
   var phoneMenuContainer : UIView!
   
-  var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024", theKidID: "1"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244", theKidID: "1"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553", theKidID: "1"), Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024", theKidID: "1"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244", theKidID: "1"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553", theKidID: "1")]
   var kidList = [KidsList]()
-  
   var kid: [Kid]!
   
   // Randy is working on this...
@@ -107,7 +105,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
-    var kidCount = CGFloat(kids.count)
+    var kidCount = CGFloat(kid.count)
     let phoneMenuViewAndDoneHeight: CGFloat = ((kidCount * kidNumberHeight) + doneButtonHeight + astheticSpacing)
     // add the phone menu container
     phoneMenuContainer = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: phoneMenuViewAndDoneHeight))
@@ -150,7 +148,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let cell = tableView.dequeueReusableCellWithIdentifier("phoneCell", forIndexPath: indexPath) as! PhoneTableViewCell
     cell.Name.text = kidList[indexPath.row].name
-    cell.InsuranceID.text = kids[indexPath.row].insuranceId
+    cell.InsuranceID.text = kid[indexPath.row].insuranceId
     
     ///// NEds to be kidslist.
     if let thephone = kidList[indexPath.row].phone {
@@ -168,6 +166,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kids[indexPath.row].nursePhone)")!)
+    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kid[indexPath.row].nursePhone)")!)
   } // didSelectRowAtIndexPath
 }
