@@ -13,68 +13,62 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK:
   //MARK: Outlets and Variables
   
-  let crummyApiService = CrummyApiService()
-  
   @IBOutlet weak var constraintButtonViewContainerBottom: NSLayoutConstraint!
   @IBOutlet weak var constraintViewContainerBottom: NSLayoutConstraint!
   @IBOutlet weak var medicationButton: UIButton!
+  @IBOutlet weak var constraintTableViewBottom: NSLayoutConstraint!
+  @IBOutlet weak var constraintTableViewTop: NSLayoutConstraint!
+  @IBOutlet weak var constraintEventTypeContainerHeight: NSLayoutConstraint!
+  @IBOutlet weak var constraintDatePickerCenterX: NSLayoutConstraint!
+  @IBOutlet weak var constraintToolbarCenterX: NSLayoutConstraint!
   @IBOutlet weak var temperatureButton: UIButton!
   @IBOutlet weak var symptomButton: UIButton!
   @IBOutlet weak var measurementButton: UIButton!
-  @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var constraintTableViewBottom: NSLayoutConstraint!
-  @IBOutlet weak var constraintTableViewTop: NSLayoutConstraint!
-  
-  @IBOutlet weak var symptomsTextField: UITextField!
   @IBOutlet weak var symptomsDoneButton: UIButton!
+  @IBOutlet weak var measurementsDoneButton: UIButton!
+  @IBOutlet weak var temperatureDoneButton: UIButton!
+  @IBOutlet weak var medicationDoneButton: UIButton!
+  @IBOutlet weak var symptomsTextField: UITextField!
   @IBOutlet weak var measurementsHeightTextField: UITextField!
   @IBOutlet weak var measurementWeightTextField: UITextField!
-  @IBOutlet weak var measurementsDoneButton: UIButton!
   @IBOutlet weak var temperatureTextField: UITextField!
-  @IBOutlet weak var temperatureDoneButton: UIButton!
   @IBOutlet weak var medicationTextField: UITextField!
-  @IBOutlet weak var medicationDoneButton: UIButton!
   @IBOutlet weak var eventTypeContainerView: UIView!
-  @IBOutlet weak var constraintEventTypeContainerHeight: NSLayoutConstraint!
-
+  @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var datePicker: UIDatePicker!
   
-  @IBOutlet weak var constraintDatePickerCenterX: NSLayoutConstraint!
-
-  @IBOutlet weak var constraintToolbarCenterX: NSLayoutConstraint!
-  
-  let medicationContainerViewHeight: CGFloat = 63
+  let crummyApiService = CrummyApiService()
+  let medicationContainerViewHeight: CGFloat = 75
   let measurementsContainerViewHeight: CGFloat = 96
-  let symptomsContainerViewHeight: CGFloat = 72
+  let symptomsContainerViewHeight: CGFloat = 75
   let temperatureContainerViewHeight: CGFloat = 86
-  
   let medicationCellHeight: CGFloat = 56
   let measurementCellHeight: CGFloat = 92
   let symptomsCellHeight: CGFloat = 55
   let temperatureCellHeight: CGFloat = 53
-  var currentCellHeight: CGFloat = 0
+  let eventTypeContainerHeight: CGFloat = 60
+  let datePickerToolbarBuffer: CGFloat = 600
+  let toolBarHeight: CGFloat = 50
+  let headerHeight: CGFloat = 32
+  let rowSelectedBorderSize: CGFloat = 3
+  let animationDuration: Double = 0.2
+  let headerViewFrame: CGRect = CGRectMake(15, 0, 300, 30)
   
+  var currentCellHeight: CGFloat = 0
   var constraintMedicationContainerViewBottom: NSLayoutConstraint?
   var constraintMeasurementContainerViewBottom: NSLayoutConstraint?
   var constraintSymptomsContainerViewBottom: NSLayoutConstraint?
   var constraintTemperatureContainerViewBottom: NSLayoutConstraint?
-  
   var currentTextField: UITextField?
   var keyboardHeight: CGFloat = 0
-  var animationDuration: Double = 0.2
   var kid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
   var selectedType: EventType?
   var currentContainerView: UIView?
   var sections = [[Event]]()
   var currentCellY: CGFloat?
-  var inchesInAFoot = 12
   var contentOffsetChangeAmount: CGFloat?
-  
   var dateFormatter = NSDateFormatter()
   var currentEvent: Event?
-  
-  let datePickerToolbarBuffer: CGFloat = 600
-  
   var kidId: String?
   var kidName: String?
   var allEvents = [Event]()
@@ -91,8 +85,12 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     
     var containerBarColor = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
     self.eventTypeContainerView.backgroundColor = containerBarColor
+
     
-    self.navigationItem.title = "Events - \(self.kidName!)"
+    var titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+    titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    titleLabel.text = "Events - \(self.kidName!)"
+    self.navigationItem.titleView = titleLabel
     
     var cellNib = UINib(nibName: "MedicationTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MedicationCell")
@@ -123,7 +121,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   @IBAction func eventTypePressed(sender: UIButton) {
     self.tableView.userInteractionEnabled = false
-    self.constraintButtonViewContainerBottom.constant += 60
+    self.constraintButtonViewContainerBottom.constant += self.eventTypeContainerHeight
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
@@ -177,7 +175,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       temperatureView.addConstraint(NSLayoutConstraint(item: temperatureView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: self.temperatureContainerViewHeight))
       self.temperatureTextField.delegate = self
     }
-    
     var containerBarColor = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
     self.currentContainerView!.backgroundColor = containerBarColor
   }
@@ -289,11 +286,9 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   func getSections(isOnLoad: Bool) {
     if isOnLoad {
       self.allEvents = self.kid.events
-    }
-    else {
+    } else {
       self.allEvents = self.sections.flatMap{ $0 }
     }
-    
     self.allEvents.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
     self.sections.removeAll(keepCapacity: false)
     self.sections = [[Event]]()
@@ -401,12 +396,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       }
       self.temperatureTextField.text = nil
     }
-    self.currentContainerView?.removeFromSuperview()
     self.constraintButtonViewContainerBottom.constant = 0
-    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+    self.eventTypeContainerView.alpha = 0
+    self.currentContainerView?.removeFromSuperview()
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
+      self.eventTypeContainerView.alpha = 1
       self.view.layoutIfNeeded()
     })
-    
+    self.tableView.userInteractionEnabled = true
     self.currentEvent = nil
     if let cell = currentCell {
       cell.contentView.layer.borderColor = UIColor.clearColor().CGColor
@@ -522,7 +519,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         } else {
           self.currentCellHeight = self.temperatureCellHeight
         }
-        var toolBar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
+        var toolBar = UIToolbar(frame: CGRectMake(0, 0, self.view.frame.width, self.toolBarHeight))
         toolBar.barStyle = UIBarStyle.Default
         let doneBarButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "doneNumberPadPressed:")
         toolBar.items = [UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),doneBarButton]
@@ -660,7 +657,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     
     if let currentCell = tableView.cellForRowAtIndexPath(indexPath) {
       currentCell.contentView.layer.borderColor = UIColor.redColor().CGColor
-      currentCell.contentView.layer.borderWidth = 3.0
+      currentCell.contentView.layer.borderWidth = self.rowSelectedBorderSize
       self.currentCell = currentCell
     }
     
@@ -668,7 +665,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     let event = self.sections[currentSection][indexPath.row]
     self.currentEvent = event
     self.tableView.userInteractionEnabled = false
-    self.constraintButtonViewContainerBottom.constant += 60
+    self.constraintButtonViewContainerBottom.constant += self.eventTypeContainerHeight
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
@@ -732,14 +729,15 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     var view = CustomHeaderView()
     
-    var headerLabel = UILabel(frame: CGRectMake(15, 0, 300, 30))
+    var headerLabel = UILabel(frame: self.headerViewFrame)
     headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
     headerLabel.textColor = UIColor.whiteColor()
+    headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 23)
     view.addSubview(headerLabel)
     return view
   }
   
   func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 32
+    return self.headerHeight
   }
 }

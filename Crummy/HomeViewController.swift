@@ -32,6 +32,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   override func viewDidLoad() {
     
+    var titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+    titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    titleLabel.text = "Home"
+    self.navigationItem.titleView = titleLabel
+    
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
     
