@@ -19,6 +19,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let phoneInterval : NSTimeInterval = 1.0
   let crummyApiService = CrummyApiService()
   var phoneMenuContainer : UIView!
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   
   var kidList = [KidsList]()
   var kid: [Kid]!
@@ -29,6 +31,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
+    
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
+    titleLabel.text = "Home"
+    self.navigationItem.titleView = self.titleLabel
     
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)

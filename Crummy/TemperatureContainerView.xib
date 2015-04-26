@@ -17,16 +17,29 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouf-2I-k5S">
-                    <rect key="frame" x="202" y="65" width="81" height="21"/>
+                    <rect key="frame" x="203" y="65" width="79" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="NAn-RI-Llm"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLZ-um-Tev">
+                    <rect key="frame" x="12" y="26" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="51m-6e-SUh"/>
+                        <constraint firstAttribute="width" constant="35" id="w3D-On-IZk"/>
+                    </constraints>
+                    <state key="normal" image="RedX">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="menuButtonPressed:" destination="-1" eventType="touchUpInside" id="PmJ-ym-6h6"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leV-lo-pyX">
-                    <rect key="frame" x="146" y="8" width="197" height="43"/>
+                    <rect key="frame" x="150" y="14" width="196" height="43"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viX-P3-E2m">
                             <rect key="frame" x="9" y="7" width="80" height="30"/>
@@ -37,8 +50,8 @@
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="° Fahrenheit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7U-K8-eg3">
-                            <rect key="frame" x="97" y="11" width="93" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="97" y="12" width="92" height="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -54,10 +67,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6q-1z-f50">
-                    <rect key="frame" x="431" y="26" width="35" height="35"/>
+                    <rect key="frame" x="431" y="26" width="45" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="CIh-oF-aJX"/>
-                        <constraint firstAttribute="width" constant="35" id="h0H-vP-EIf"/>
+                        <constraint firstAttribute="height" constant="33" id="CIh-oF-aJX"/>
+                        <constraint firstAttribute="width" constant="45" id="h0H-vP-EIf"/>
                     </constraints>
                     <state key="normal" image="CheckmarkButton">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,33 +79,20 @@
                         <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="i7o-av-rAG"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLZ-um-Tev">
-                    <rect key="frame" x="8" y="26" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="51m-6e-SUh"/>
-                        <constraint firstAttribute="width" constant="35" id="w3D-On-IZk"/>
-                    </constraints>
-                    <state key="normal" image="ThreeDotsMenuButton">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="menuButtonPressed:" destination="-1" eventType="touchUpInside" id="PmJ-ym-6h6"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="0.92123429229999998" green="0.92123429229999998" blue="0.92123429229999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Ouf-2I-k5S" firstAttribute="centerX" secondItem="yrC-Ks-Fo1" secondAttribute="centerX" id="5jq-PY-bee"/>
-                <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="top" constant="8" id="Bwv-hD-b3l"/>
+                <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="top" constant="14" id="Bwv-hD-b3l"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="top" secondItem="yrC-Ks-Fo1" secondAttribute="topMargin" id="Czt-rC-hNh"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" constant="0.5" id="EWa-9R-kEg"/>
-                <constraint firstItem="tLZ-um-Tev" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="8" id="Gcm-sR-18U"/>
-                <constraint firstAttribute="centerX" secondItem="leV-lo-pyX" secondAttribute="centerX" constant="-2.5" id="WVr-nE-rqG"/>
-                <constraint firstAttribute="trailing" secondItem="K6q-1z-f50" secondAttribute="trailing" constant="18" id="fYt-5X-MHZ"/>
+                <constraint firstItem="tLZ-um-Tev" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="12" id="Gcm-sR-18U"/>
+                <constraint firstAttribute="centerX" secondItem="leV-lo-pyX" secondAttribute="centerX" constant="-5.5" id="WVr-nE-rqG"/>
+                <constraint firstAttribute="trailing" secondItem="K6q-1z-f50" secondAttribute="trailing" constant="8" id="fYt-5X-MHZ"/>
                 <constraint firstItem="leV-lo-pyX" firstAttribute="leading" secondItem="yrC-Ks-Fo1" secondAttribute="leading" constant="140" id="jlf-5N-jov"/>
                 <constraint firstAttribute="trailing" secondItem="leV-lo-pyX" secondAttribute="trailing" constant="135" id="l7n-wR-YLp"/>
                 <constraint firstAttribute="centerY" secondItem="tLZ-um-Tev" secondAttribute="centerY" id="q7H-KL-OqJ"/>
-                <constraint firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" id="scs-Mh-Icq"/>
+                <constraint firstAttribute="centerY" secondItem="K6q-1z-f50" secondAttribute="centerY" constant="0.5" id="scs-Mh-Icq"/>
                 <constraint firstAttribute="bottom" secondItem="Ouf-2I-k5S" secondAttribute="bottom" id="wXO-B9-jkD"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -109,7 +109,7 @@
         </view>
     </objects>
     <resources>
-        <image name="CheckmarkButton" width="36" height="28"/>
-        <image name="ThreeDotsMenuButton" width="35" height="35"/>
+        <image name="CheckmarkButton" width="45" height="33"/>
+        <image name="RedX" width="35" height="35"/>
     </resources>
 </document>
