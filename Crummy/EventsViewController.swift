@@ -53,6 +53,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   let rowSelectedBorderSize: CGFloat = 3
   let animationDuration: Double = 0.2
   let headerViewFrame: CGRect = CGRectMake(15, 0, 300, 30)
+  let titleFontSize: CGFloat = 26
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let headerFontSize: CGFloat = 23
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   
   var currentCellHeight: CGFloat = 0
   var constraintMedicationContainerViewBottom: NSLayoutConstraint?
@@ -61,7 +65,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var constraintTemperatureContainerViewBottom: NSLayoutConstraint?
   var currentTextField: UITextField?
   var keyboardHeight: CGFloat = 0
-  var kid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "")
+  var kid = Kid()
   var selectedType: EventType?
   var currentContainerView: UIView?
   var sections = [[Event]]()
@@ -87,10 +91,11 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     self.eventTypeContainerView.backgroundColor = containerBarColor
 
     
-    var titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
-    titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
-    titleLabel.text = "Events - \(self.kidName!)"
-    self.navigationItem.titleView = titleLabel
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    self.titleLabel.text = "Events - \(self.kidName!)"
+    self.navigationItem.titleView = self.titleLabel
     
     var cellNib = UINib(nibName: "MedicationTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MedicationCell")
@@ -732,7 +737,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     var headerLabel = UILabel(frame: self.headerViewFrame)
     headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
     headerLabel.textColor = UIColor.whiteColor()
-    headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 23)
+    headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.headerFontSize)
     view.addSubview(headerLabel)
     return view
   }

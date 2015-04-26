@@ -46,6 +46,16 @@ class Kid {
     
   } // init
   
+  //convenienc init when needing an empty Kid object
+  init() {
+    self.events = [Event]()
+    self.name = ""
+    self.DOBString = ""
+    self.insuranceId = ""
+    self.nursePhone = ""
+    self.kidID = ""
+  }
+  
   func kidToString() -> () {
     
     println("name: " + self.name + " DOBString: " + self.DOBString + " insuranceID: " + self.insuranceId + " nursePhone: " + self.nursePhone + " notes: ")

@@ -19,6 +19,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let phoneInterval : NSTimeInterval = 1.0
   let crummyApiService = CrummyApiService()
   var phoneMenuContainer : UIView!
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   
   var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024", theKidID: "1"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244", theKidID: "1"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553", theKidID: "1"), Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024", theKidID: "1"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244", theKidID: "1"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553", theKidID: "1")]
   var kidList = [KidsList]()
@@ -32,10 +34,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   override func viewDidLoad() {
     
-    var titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
-    titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
     titleLabel.text = "Home"
-    self.navigationItem.titleView = titleLabel
+    self.navigationItem.titleView = self.titleLabel
     
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
