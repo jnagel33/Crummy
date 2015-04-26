@@ -52,10 +52,10 @@ class CrummyJsonParser {
         nursePhone = " "
       }
       var notes = jsonDictionary["notes"] as? String  // Add notes when Kid obbject updated
-      if notes == "" {
+      if notes == nil {
         notes = " "
       }
-      editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theKidID: id)
+      editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theNotes: notes!, theKidID: id)
     }
     return editMenuKid
   }
