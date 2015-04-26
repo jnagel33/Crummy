@@ -16,24 +16,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQf-8S-pib">
-                    <rect key="frame" x="8" y="14" width="36" height="0.0"/>
+                    <rect key="frame" x="8" y="14" width="40" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BH-D2-dAj">
-                    <rect key="frame" x="342" y="21" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="1SC-qt-D6j"/>
-                        <constraint firstAttribute="width" constant="35" id="QPc-zm-6X4"/>
-                    </constraints>
-                    <state key="normal" image="CheckmarkButton">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="w2j-Md-59g"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symptoms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-pv-hl4">
                     <rect key="frame" x="159" y="53" width="68" height="21"/>
                     <constraints>
@@ -44,12 +31,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqg-yV-N0U">
-                    <rect key="frame" x="8" y="20" width="35" height="35"/>
+                    <rect key="frame" x="12" y="20" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="DiN-j7-XUL"/>
                         <constraint firstAttribute="width" constant="35" id="RSb-Nb-pdF"/>
                     </constraints>
-                    <state key="normal" image="ThreeDotsMenuButton">
+                    <state key="normal" image="RedX">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -57,10 +44,23 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter symptoms" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-HP-Qdm">
-                    <rect key="frame" x="57" y="14" width="272" height="30"/>
+                    <rect key="frame" x="61" y="14" width="265" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BH-D2-dAj">
+                    <rect key="frame" x="334" y="22" width="45" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="1SC-qt-D6j"/>
+                        <constraint firstAttribute="width" constant="45" id="QPc-zm-6X4"/>
+                    </constraints>
+                    <state key="normal" image="CheckmarkButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="w2j-Md-59g"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -71,11 +71,11 @@
                 <constraint firstAttribute="centerY" secondItem="5W7-HP-Qdm" secondAttribute="centerY" constant="8.5" id="QiP-S2-f7i"/>
                 <constraint firstAttribute="centerY" secondItem="7BH-D2-dAj" secondAttribute="centerY" constant="13.5" id="Z8f-2T-sYi"/>
                 <constraint firstAttribute="centerY" secondItem="zQf-8S-pib" secondAttribute="centerY" constant="23.5" id="byz-xq-hDE"/>
-                <constraint firstItem="mqg-yV-N0U" firstAttribute="leading" secondItem="caz-ZN-q3s" secondAttribute="leading" constant="8" id="f5R-JB-gML"/>
+                <constraint firstItem="mqg-yV-N0U" firstAttribute="leading" secondItem="caz-ZN-q3s" secondAttribute="leading" constant="12" id="f5R-JB-gML"/>
                 <constraint firstAttribute="centerX" secondItem="Pbc-pv-hl4" secondAttribute="centerX" id="g9j-C2-Clf"/>
                 <constraint firstItem="5W7-HP-Qdm" firstAttribute="leading" secondItem="zQf-8S-pib" secondAttribute="trailing" constant="13" id="j2e-1U-ByN"/>
-                <constraint firstAttribute="trailing" secondItem="7BH-D2-dAj" secondAttribute="trailing" constant="10" id="oOZ-U1-pRZ"/>
-                <constraint firstItem="7BH-D2-dAj" firstAttribute="leading" secondItem="5W7-HP-Qdm" secondAttribute="trailing" constant="13" id="qIl-wi-XBH"/>
+                <constraint firstAttribute="trailing" secondItem="7BH-D2-dAj" secondAttribute="trailing" constant="8" id="oOZ-U1-pRZ"/>
+                <constraint firstItem="7BH-D2-dAj" firstAttribute="leading" secondItem="5W7-HP-Qdm" secondAttribute="trailing" constant="8" id="qIl-wi-XBH"/>
                 <constraint firstAttribute="centerY" secondItem="7BH-D2-dAj" secondAttribute="centerY" constant="-1" id="wZD-hl-eFT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -85,11 +85,11 @@
                     <exclude reference="Z8f-2T-sYi"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="408.5" y="268"/>
+            <point key="canvasLocation" x="408.5" y="267.5"/>
         </view>
     </objects>
     <resources>
-        <image name="CheckmarkButton" width="36" height="28"/>
-        <image name="ThreeDotsMenuButton" width="35" height="35"/>
+        <image name="CheckmarkButton" width="45" height="33"/>
+        <image name="RedX" width="35" height="35"/>
     </resources>
 </document>

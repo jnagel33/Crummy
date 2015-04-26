@@ -51,7 +51,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     if let name = selectedKid?.name {
       self.titleLabel.text = selectedKid!.name
     } else {
-      self.titleLabel.text = "New"
+      self.titleLabel.text = "Edit"
       }
     self.navigationItem.titleView = self.titleLabel
       
