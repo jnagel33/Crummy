@@ -43,7 +43,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   let symptomsCellHeight: CGFloat = 55
   let temperatureCellHeight: CGFloat = 53
   let eventTypeContainerHeight: CGFloat = 75
-  let datePickerToolbarBuffer: CGFloat = 600
   let toolBarHeight: CGFloat = 50
   let headerHeight: CGFloat = 32
   let rowSelectedBorderSize: CGFloat = 3
@@ -82,6 +81,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.dataSource = self
+    self.constraintDatePickerCenterX.constant = -self.view.frame.width
+    self.constraintToolbarCenterX.constant = -self.view.frame.width
     
     var containerBarColor = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
     self.eventTypeContainerView.backgroundColor = containerBarColor
@@ -453,8 +454,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       }
         self.tableView.userInteractionEnabled = true
         self.eventTypeContainerView.userInteractionEnabled = true
-        self.constraintDatePickerCenterX.constant = -self.datePickerToolbarBuffer
-        self.constraintToolbarCenterX.constant = -self.datePickerToolbarBuffer
+        self.constraintDatePickerCenterX.constant = -self.view.frame.width
+        self.constraintToolbarCenterX.constant = -self.view.frame.width
         UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
           self.view.layoutIfNeeded()
           self.datePicker.backgroundColor = UIColor.whiteColor()
@@ -772,7 +773,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    var view = CustomHeaderView()
+    var view = CustomHeaderView(width: self.view.frame.width)
     var headerLabel = UILabel(frame: self.headerViewFrame)
     headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
     headerLabel.textColor = UIColor.whiteColor()
