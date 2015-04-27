@@ -15,13 +15,13 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var usernameTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
-
   @IBOutlet weak var constraintCenterY: NSLayoutConstraint!
   
   let crummyApiService = CrummyApiService()
   var bufferForSlidingLoginViewEmail: CGFloat = 80
   var bufferForSlidingLoginViewPassword: CGFloat = 40
   var animationDuration: Double = 0.2
+  let animationDurationLonger: Double = 0.5
   var tapGestureRecognizer: UITapGestureRecognizer?
   
   override func viewDidLoad() {
@@ -44,7 +44,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
         self.statusView.backgroundColor = UIColor.greenColor()
         self.statusLabel.text = "Success"
         self.constraintStatusViewCenterX.constant = 0
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
           self.view.layoutIfNeeded()
         }, completion: { (finshed) -> Void in
           self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
@@ -53,7 +53,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
         self.statusView.backgroundColor = UIColor.redColor()
         self.statusLabel.text = "Error creating user"
         self.constraintStatusViewCenterX.constant = 0
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
           self.view.layoutIfNeeded()
         })
         println("Error creating user \(status)")
