@@ -79,6 +79,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="PlusButton" width="36" height="36"/>
+        <image name="PlusButton" width="35" height="35"/>
     </resources>
 </document>
