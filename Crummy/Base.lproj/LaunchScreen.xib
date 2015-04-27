@@ -10,24 +10,40 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CrummyLaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="e53-NT-saG">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GradientLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="r2N-hv-08V">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crummy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2y-vl-keQ">
+                    <rect key="frame" x="99" y="192" width="283" height="95"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="80"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <color key="tintColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="e53-NT-saG" secondAttribute="bottom" id="2P7-Lh-ytL"/>
-                <constraint firstItem="e53-NT-saG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="J6G-KV-Wcy"/>
-                <constraint firstItem="e53-NT-saG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KUr-SN-KU6"/>
-                <constraint firstAttribute="trailing" secondItem="e53-NT-saG" secondAttribute="trailing" id="qYM-fm-Yc3"/>
+                <constraint firstAttribute="centerX" secondItem="r2N-hv-08V" secondAttribute="centerX" id="0lc-h9-Hwa"/>
+                <constraint firstItem="r2N-hv-08V" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="61S-u8-r2f"/>
+                <constraint firstAttribute="trailing" secondItem="r2N-hv-08V" secondAttribute="trailing" id="88s-ss-23b"/>
+                <constraint firstAttribute="centerY" secondItem="z2y-vl-keQ" secondAttribute="centerY" id="MBT-ic-17R"/>
+                <constraint firstAttribute="centerX" secondItem="z2y-vl-keQ" secondAttribute="centerX" id="Mgp-lV-3h6"/>
+                <constraint firstItem="r2N-hv-08V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ppn-Bq-DKq"/>
+                <constraint firstAttribute="bottom" secondItem="r2N-hv-08V" secondAttribute="bottom" id="TiU-cW-Ggg"/>
+                <constraint firstAttribute="centerY" secondItem="r2N-hv-08V" secondAttribute="centerY" id="zrc-4Q-jUr"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="0lc-h9-Hwa"/>
+                    <exclude reference="zrc-4Q-jUr"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="CrummyLaunchImage" width="550" height="753"/>
+        <image name="GradientLaunchScreen" width="1024" height="1024"/>
     </resources>
 </document>
