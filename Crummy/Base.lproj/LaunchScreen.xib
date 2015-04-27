@@ -28,6 +28,6 @@
         </view>
     </objects>
     <resources>
-        <image name="CrummyLaunchImage" width="275" height="376"/>
+        <image name="CrummyLaunchImage" width="550" height="753"/>
     </resources>
 </document>
