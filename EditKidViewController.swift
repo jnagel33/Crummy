@@ -184,6 +184,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   // MARK: - Text Fields
   
+  func textFieldDidBeginEditing(textField: UITextField) {
+    // check to see if the picker visual is up, and if so move it down.
+    if pickerIsUp == true {
+      self.pickerCloserPressed(datePicker)
+    }
+  } // textFieldDidBeginEditing
+  
   func textFieldDidEndEditing(textField: UITextField) {
     // if textfield == the outlet to an individual text field
     
@@ -215,7 +222,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     var text : String = theText
     var row : Int = theRow
-    
+
     switch row {
       
     case 0:
@@ -270,11 +277,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     if indexPath.row == self.pickerCellIndexPath {
-      
-      datePicker.resignFirstResponder()
-      
-      // check to see if the picker visual is up, and if so move it down.  
-      
+
       
       if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
         var imagePickerController = UIImagePickerController()
