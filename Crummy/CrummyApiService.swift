@@ -99,6 +99,7 @@ class CrummyApiService {
     
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
+    println(id)
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
     let request = NSMutableURLRequest(URL: url!)

@@ -17,20 +17,22 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var insuranceTextField: UITextField!
   @IBOutlet weak var dobTableCell: UITableViewCell!
   @IBOutlet weak var nameTextField: UITextField!
+  
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   
-  let datePickerInterval : NSTimeInterval = 1.0
-  let astheticSpacing : CGFloat = 8.0
+  let datePickerInterval: NSTimeInterval = 1.0
+  let astheticSpacing: CGFloat = 8.0
   let datePickerHeight: CGFloat = 216.0
   let pickerViewHeight: CGFloat = 250
   let doneButtonHeight: CGFloat = 25
   let doneButtonWidth: CGFloat = 50
   let pickerWidth: CGFloat = 50
-  let dateRow : Int = 1
+  let dateRow: Int = 1
   let crummyApiService = CrummyApiService()
-  var pickerView : UIView!
-  var datePicker : UIDatePicker!
+  var pickerIsUp: Bool = false
+  var pickerView: UIView!
+  var datePicker: UIDatePicker!
   var guess: Int = 0
   let pickerCellIndexPath = 4
   var kidImage: UIImage?
@@ -138,6 +140,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
       self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerHeight
     })
+    // window is down
+    self.pickerIsUp = false
     
   } // pickerCloserPressed
   
@@ -146,7 +150,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBAction func datePressed(sender: AnyObject) {
     // if the button is pressed, it brings up the datePicker object.
     
-    
+    self.dismisKeyboard()
     self.dateButton.hidden = true
     
     pickerView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: pickerViewHeight))
@@ -173,10 +177,19 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerHeight
       
     })
+    // window is up
+    self.pickerIsUp = true
     
   } // datePressed
   
   // MARK: - Text Fields
+  
+  func textFieldDidBeginEditing(textField: UITextField) {
+    // check to see if the picker visual is up, and if so move it down.
+    if pickerIsUp == true {
+      self.pickerCloserPressed(datePicker)
+    }
+  } // textFieldDidBeginEditing
   
   func textFieldDidEndEditing(textField: UITextField) {
     // if textfield == the outlet to an individual text field
@@ -194,6 +207,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       println("no choice here!")
     } // switch
     selectedKid!.kidToString()
+    textField.resignFirstResponder()
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -208,7 +222,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     var text : String = theText
     var row : Int = theRow
-    
+
     switch row {
       
     case 0:
@@ -229,7 +243,22 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
    // println("got to end")
   } // getThisTextField
   
+  func dismisKeyboard() {
+    
+    if (self.nameTextField.isFirstResponder()) {
+      nameTextField.resignFirstResponder()
+    } else if
+      (self.insuranceTextField.isFirstResponder()) {
+        insuranceTextField.resignFirstResponder()
+      } else if
+      (self.consultingNurseHotline.isFirstResponder()) {
+        consultingNurseHotline.resignFirstResponder()
+      } else if
+      (self.notesTextView.isFirstResponder()) {
+        notesTextView.resignFirstResponder()
+    }
   
+  } // dismisKeyboard
   //MARK:
   //MARK: UITableViewDataSource
   
@@ -248,6 +277,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     if indexPath.row == self.pickerCellIndexPath {
+
+      
       if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
         var imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -261,7 +292,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   //MARK:
   //MARK: UIImagePickerControllerDelegate
   
-  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
     if let photo = info[UIImagePickerControllerEditedImage] as? UIImage {
       self.kidImage = photo
     }
