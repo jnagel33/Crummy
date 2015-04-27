@@ -191,7 +191,7 @@ class CrummyApiService {
     let url = NSURL(string: requestUrl)
     var request = NSMutableURLRequest(URL: url!)
     
-    let parameterString = "name=\(name)" + "&" + "dob=\(dobString)" + "&" + "insurance_id=\(insuranceID)" + "&" + "nurse_phone=\(nursePhone)" + "&" + "'notes'=\(notes)"
+    let parameterString = "name=\(name)" + "&" + "dob=\(dobString)" + "&" + "insurance_id=\(insuranceID)" + "&" + "nurse_phone=\(nursePhone)" + "&" + "notes=\(notes)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
     
     request.HTTPMethod = "POST"

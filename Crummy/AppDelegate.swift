@@ -11,8 +11,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  var globalNavigationItemFontSize: CGFloat = 17
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    var attributes = [
+      NSFontAttributeName : UIFont(name: "HelveticaNeue", size: self.globalNavigationItemFontSize)!
+    ] as [NSObject: AnyObject]
+    
+    UIBarButtonItem.appearance().setTitleTextAttributes(attributes, forState: UIControlState.Normal)
     
     self.window?.tintColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
     

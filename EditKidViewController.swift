@@ -35,6 +35,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let pickerCellIndexPath = 4
   var kidImage: UIImage?
   var addKid = false
+  let titleFontSize: CGFloat = 26
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
@@ -42,12 +45,22 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     override func viewDidLoad() {
     super.viewDidLoad()
       
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleFontSize)
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
+    if let name = selectedKid?.name {
+      self.titleLabel.text = "Edit"
+    } else {
+      self.titleLabel.text = "Add"
+      }
+    self.navigationItem.titleView = self.titleLabel
+      
     var cellNib = UINib(nibName: "ImagePickerCell", bundle: nil)
     tableView.registerNib(cellNib,
       forCellReuseIdentifier: "ImagePickerCell")
     
     if selectedKid == nil {
-      selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theKidID: "")
+      selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theNotes: "", theKidID: "")
       addKid = true
     }
 
@@ -67,7 +80,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.nameTextField.delegate = self
 
     // setup fields
-    self.title = selectedKid!.name
     self.nameTextField.text = selectedKid!.name
     self.birthdateLabel.text = selectedKid!.DOBString
     self.insuranceTextField.text = selectedKid!.insuranceId
@@ -245,7 +257,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       }
     }
   }
-  
   
   //MARK:
   //MARK: UIImagePickerControllerDelegate

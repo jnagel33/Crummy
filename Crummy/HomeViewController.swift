@@ -19,10 +19,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let phoneInterval : NSTimeInterval = 1.0
   let crummyApiService = CrummyApiService()
   var phoneMenuContainer : UIView!
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let titleSize: CGFloat = 26
   
-  var kids = [Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024", theKidID: "1"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244", theKidID: "1"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553", theKidID: "1"), Kid(theName: "Josh", theDOB: "2014-10-10", theInsuranceID: "130831", theNursePhone: "8010380024", theKidID: "1"), Kid(theName: "Randy", theDOB: "2014-10-10", theInsuranceID: "244553", theNursePhone: "4200244244", theKidID: "1"), Kid(theName: "Ed", theDOB: "2014-10-10", theInsuranceID: "43988305", theNursePhone: "94835553", theKidID: "1")]
   var kidList = [KidsList]()
-  
   var kid: [Kid]!
   
   let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -30,6 +31,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
+    
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
+    titleLabel.text = "Home"
+    self.navigationItem.titleView = self.titleLabel
     
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
@@ -59,6 +66,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.nameLabel.text = kidList[indexPath.row].name
     cell.kidImageView.layer.cornerRadius = cell.kidImageView.frame.height / 2
     cell.kidImageView.layer.masksToBounds = true
+    cell.kidImageView.layer.borderWidth = 8
+    cell.kidImageView.layer.borderColor = UIColor(patternImage: UIImage(named: "ImageViewBorder")!).CGColor
     if indexPath.row == 0 {
       cell.kidImageView.image = UIImage(named: "boy1")
     } else if indexPath.row == 1 {
@@ -74,7 +83,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     return cell
   }
   
-  //MARK:
+    //MARK:
   //MARK: prepareForSegue
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -90,13 +99,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
   }
   
-  
+  override func viewWillAppear(animated: Bool) {
+    self.crummyApiService.listKid { (kidList, error) -> (Void) in
+      if error != nil {
+        println("error reloading kid list")
+      } else {
+        self.kidList = kidList!
+        self.collectionView.reloadData()
+      }
+    }
+  }
+    
   //MARK:
   //MARK: - popover VC.
   
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
-    var kidCount = CGFloat(kids.count)
+    var kidCount = CGFloat(kid.count)
     let phoneMenuViewAndDoneHeight: CGFloat = ((kidCount * kidNumberHeight) + doneButtonHeight + astheticSpacing)
     // add the phone menu container
     phoneMenuContainer = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: phoneMenuViewAndDoneHeight))
@@ -156,6 +175,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kids[indexPath.row].nursePhone)")!)
+    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kid[indexPath.row].nursePhone)")!)
   } // didSelectRowAtIndexPath
 }

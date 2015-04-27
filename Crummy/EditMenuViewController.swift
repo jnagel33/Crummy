@@ -15,12 +15,21 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   var kiddo: Kid!
   var kidList: [KidsList]?
+  let titleFontSize: CGFloat = 26
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     self.tableView.delegate = self
     self.tableView.dataSource = self
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleFontSize)
+    self.titleLabel.text = "Edit Menu"
+    self.navigationItem.titleView = self.titleLabel
+    
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,19 +78,26 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let selectedMunchkin = self.kidList?[indexPath.row]
     let id = selectedMunchkin?.id
     let idString = String(stringInterpolationSegment: id!)
+    let name = selectedMunchkin?.name
     
-    kidList?.removeAtIndex(indexPath.row)
-    let indexPaths = [indexPath]
-    tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+    let alertController = UIAlertController(title: "Alert", message: "Seriously? Delete your own child? Eviscerate poor \(name!)?", preferredStyle: .Alert)
     
-     println("Deleteing kid with ID: \(idString)")
+    let defaultActionHandler = { (action: UIAlertAction!) -> Void in
+      self.kidList?.removeAtIndex(indexPath.row)
+      let indexPaths = [indexPath]
+      tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+      println("Deleteing kid with ID: \(idString)")
+      self.crummyApiService.deleteKid(idString, completionHandler: { (error) -> (Void) in
+      })
+    }
+    let defaultAction = UIAlertAction(title: "Delete anyway you monster!", style: .Default, handler: defaultActionHandler)
+    alertController.addAction(defaultAction)
     
-    crummyApiService.deleteKid(idString, completionHandler: { (error) -> (Void) in
-     
-      
-      
-
-      
-    })
+    let cancelActionHandler = { (action:UIAlertAction!) -> Void in
+      self.tableView.reloadData()
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: cancelActionHandler)
+    alertController.addAction(cancelAction)
+    self.presentViewController(alertController, animated: true, completion: nil)
   }
 }
