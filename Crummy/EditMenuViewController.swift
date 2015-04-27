@@ -18,6 +18,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   let titleFontSize: CGFloat = 26
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  var indexPaths: [NSIndexPath]?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -79,13 +80,13 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let id = selectedMunchkin?.id
     let idString = String(stringInterpolationSegment: id!)
     let name = selectedMunchkin?.name
+    self.indexPaths = [indexPath]
     
-    let alertController = UIAlertController(title: "Alert", message: "Seriously? Delete your own child? Eviscerate poor \(name!)?", preferredStyle: .Alert)
+    let alertController = UIAlertController(title: "Alert", message: "Seriously! Delete your own child? Eviscerate poor \(name!)?", preferredStyle: .Alert)
     
     let defaultActionHandler = { (action: UIAlertAction!) -> Void in
       self.kidList?.removeAtIndex(indexPath.row)
-      let indexPaths = [indexPath]
-      tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+      tableView.deleteRowsAtIndexPaths(self.indexPaths!, withRowAnimation: .Automatic)
       println("Deleteing kid with ID: \(idString)")
       self.crummyApiService.deleteKid(idString, completionHandler: { (error) -> (Void) in
       })
@@ -94,7 +95,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     alertController.addAction(defaultAction)
     
     let cancelActionHandler = { (action:UIAlertAction!) -> Void in
-      self.tableView.reloadData()
+      self.tableView.reloadRowsAtIndexPaths(self.indexPaths!, withRowAnimation: .Automatic)
+      
     }
     let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: cancelActionHandler)
     alertController.addAction(cancelAction)
