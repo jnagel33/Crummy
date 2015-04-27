@@ -214,6 +214,36 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         })
       }
     }
+    
+    if currentEvent != nil {
+      var viewHeight = self.view.frame.height
+      let cellBottomY = currentCellY! + self.currentCellHeight
+      let visibleView = self.view.frame.height - self.keyboardHeight
+      println("ViewHeight\(viewHeight)")
+      println("CellBottomY\(cellBottomY)")
+      println("CellHeight\(self.currentCellHeight)")
+      println("VisibleView\(visibleView)")
+      if cellBottomY > visibleView {
+        self.contentOffsetChangeAmount = cellBottomY - visibleView + self.currentContainerViewHeight
+        println("ChangeAmount\(self.contentOffsetChangeAmount)")
+        self.animateTableViewOffset(false)
+//        self.tableView.contentOffset.y = self.tableView.contentOffset.y + self.contentOffsetChangeAmount!
+//        UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+//          self.view.layoutIfNeeded()
+//        })
+      }
+    }
+  }
+  
+  func animateTableViewOffset(toOriginalOffset: Bool) {
+    if toOriginalOffset {
+      self.tableView.contentOffset.y = self.tableView.contentOffset.y - self.contentOffsetChangeAmount!
+    } else {
+      self.tableView.contentOffset.y = self.tableView.contentOffset.y + self.contentOffsetChangeAmount!
+    }
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
   }
   
   func duplicatePressed(sender: UIButton) {
@@ -313,6 +343,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       cell.selected = false
       self.currentCell = nil
     }
+    if self.contentOffsetChangeAmount != nil {
+      self.animateTableViewOffset(true)
+      self.contentOffsetChangeAmount = nil
+    }
   }
   
   
@@ -391,6 +425,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.currentCell = nil
     }
     self.currentContainerView = nil
+    if self.contentOffsetChangeAmount != nil {
+      self.animateTableViewOffset(true)
+      self.contentOffsetChangeAmount = nil
+    }
   }
   
   func showDatePicker(button: UIButton) {
@@ -418,19 +456,21 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   @IBAction func doneDatePicker(sender: UIBarButtonItem) {
     if let event = self.currentEvent {
-      event.date = self.datePicker.date
-      self.tableView.userInteractionEnabled = true
-      self.eventTypeContainerView.userInteractionEnabled = true
-      self.getSections(false)
-      self.tableView.reloadData()
-      self.createOrUpdateEvent(event)
-      self.constraintDatePickerCenterX.constant = -self.datePickerToolbarBuffer
-      self.constraintToolbarCenterX.constant = -self.datePickerToolbarBuffer
-      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
-        self.view.layoutIfNeeded()
-        self.datePicker.backgroundColor = UIColor.whiteColor()
-      })
-    }
+      if event.date != self.datePicker.date {
+        event.date = self.datePicker.date
+        self.getSections(false)
+        self.tableView.reloadData()
+        self.createOrUpdateEvent(event)
+      }
+        self.tableView.userInteractionEnabled = true
+        self.eventTypeContainerView.userInteractionEnabled = true
+        self.constraintDatePickerCenterX.constant = -self.datePickerToolbarBuffer
+        self.constraintToolbarCenterX.constant = -self.datePickerToolbarBuffer
+        UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+          self.view.layoutIfNeeded()
+          self.datePicker.backgroundColor = UIColor.whiteColor()
+        })
+      }
     
     self.currentEvent = nil
     
@@ -651,11 +691,18 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     if let currentCell = tableView.cellForRowAtIndexPath(indexPath) {
       if currentCell == self.currentCell {
         self.tableView(tableView, didDeselectRowAtIndexPath: indexPath)
+        if self.contentOffsetChangeAmount != nil {
+          self.animateTableViewOffset(true)
+          self.contentOffsetChangeAmount = nil
+        }
         return
       }
       currentCell.contentView.layer.borderColor = UIColor.redColor().CGColor
       currentCell.contentView.layer.borderWidth = self.rowSelectedBorderSize
       self.currentCell = currentCell
+      let rectOfCellInTableView = tableView.rectForRowAtIndexPath(indexPath)
+      let rectOfCellInSuperview = tableView.convertRect(rectOfCellInTableView, toView: self.view)
+      self.currentCellY = rectOfCellInSuperview.origin.y
     }
     if currentContainerView != nil {
       self.currentContainerView!.removeFromSuperview()
@@ -680,6 +727,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.currentContainerViewHeight = self.medicationContainerViewHeight
       self.medicationTextField.delegate = self
       self.medicationTextField.text = event.medication
+      self.currentCellHeight = self.medicationCellHeight
       self.medicationTextField.becomeFirstResponder()
     } else if event.type == EventType.Measurement {
       self.selectedType = EventType.Measurement
@@ -692,6 +740,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.measurementWeightTextField.delegate = self
       self.measurementsHeightTextField.text = event.height
       self.measurementWeightTextField.text = event.weight
+      self.currentCellHeight = self.measurementCellHeight
       self.measurementsHeightTextField.becomeFirstResponder()
     } else if event.type == EventType.Symptom {
       self.selectedType = EventType.Symptom
@@ -701,6 +750,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     self.constraintContainerViewBottom = NSLayoutConstraint(item: symptomsView, attribute: NSLayoutAttribute.Bottom, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
       self.symptomsTextField.delegate = self
       self.symptomsTextField.text = event.symptom
+      self.currentCellHeight = self.symptomsCellHeight
       self.symptomsTextField.becomeFirstResponder()
     } else if event.type == EventType.Temperature {
       self.selectedType = EventType.Temperature
@@ -711,13 +761,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.currentContainerViewHeight = self.temperatureContainerViewHeight
       self.temperatureTextField.delegate = self
       self.temperatureTextField.text = event.temperature
+      self.currentCellHeight = self.temperatureCellHeight
       self.temperatureTextField.becomeFirstResponder()
     }
     self.currentContainerView?.setTranslatesAutoresizingMaskIntoConstraints(false)
     self.view.addSubview(self.currentContainerView!)
     var constraintTrailing = NSLayoutConstraint(item: self.currentContainerView!, attribute: NSLayoutAttribute.Trailing, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: self.eventTypeConstraintBuffer)
     self.view.addConstraint(constraintTrailing)
-    var constraintLeading = NSLayoutConstraint(item: self.currentContainerView!, attribute: NSLayoutAttribute.Leading, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: self.eventTypeConstraintBuffer)
+    var constraintLeading = NSLayoutConstraint(item: self.currentContainerView!, attribute: NSLayoutAttribute.Leading, relatedBy: .Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: -self.eventTypeConstraintBuffer)
     self.view.addConstraint(constraintLeading)
     self.view.addConstraint(self.constraintContainerViewBottom!)
     self.currentContainerView!.addConstraint(NSLayoutConstraint(item: self.currentContainerView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: self.currentContainerViewHeight))

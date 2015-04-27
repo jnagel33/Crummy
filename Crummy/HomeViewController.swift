@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   var phoneMenuContainer : UIView!
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let titleSize: CGFloat = 26
   
   var kidList = [KidsList]()
   var kid: [Kid]!
@@ -32,7 +33,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   override func viewDidLoad() {
     
-    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 26)
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
     titleLabel.text = "Home"
@@ -66,6 +67,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.nameLabel.text = kidList[indexPath.row].name
     cell.kidImageView.layer.cornerRadius = cell.kidImageView.frame.height / 2
     cell.kidImageView.layer.masksToBounds = true
+    cell.kidImageView.layer.borderWidth = 8
+    cell.kidImageView.layer.borderColor = UIColor(patternImage: UIImage(named: "ImageViewBorder")!).CGColor
     if indexPath.row == 0 {
       cell.kidImageView.image = UIImage(named: "boy1")
     } else if indexPath.row == 1 {
