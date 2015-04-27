@@ -80,7 +80,7 @@
         </view>
     </objects>
     <resources>
-        <image name="CheckmarkButton" width="40" height="29"/>
+        <image name="CheckmarkButton" width="45" height="33"/>
         <image name="RedX" width="35" height="35"/>
     </resources>
 </document>
