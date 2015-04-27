@@ -119,7 +119,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK: Custom Methods
   
   @IBAction func eventTypePressed(sender: UIButton) {
-//    self.tableView.userInteractionEnabled = false
     self.constraintButtonViewContainerBottom.constant += self.eventTypeContainerHeight
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
@@ -214,23 +213,13 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         })
       }
     }
-    
     if currentEvent != nil {
       var viewHeight = self.view.frame.height
       let cellBottomY = currentCellY! + self.currentCellHeight
       let visibleView = self.view.frame.height - self.keyboardHeight
-      println("ViewHeight\(viewHeight)")
-      println("CellBottomY\(cellBottomY)")
-      println("CellHeight\(self.currentCellHeight)")
-      println("VisibleView\(visibleView)")
-      if cellBottomY > visibleView {
+      if cellBottomY > visibleView - self.currentContainerViewHeight {
         self.contentOffsetChangeAmount = cellBottomY - visibleView + self.currentContainerViewHeight
-        println("ChangeAmount\(self.contentOffsetChangeAmount)")
         self.animateTableViewOffset(false)
-//        self.tableView.contentOffset.y = self.tableView.contentOffset.y + self.contentOffsetChangeAmount!
-//        UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
-//          self.view.layoutIfNeeded()
-//        })
       }
     }
   }
