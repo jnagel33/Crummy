@@ -49,7 +49,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let selectedMunchkin = self.kidList?[indexPath.row]
     let id = selectedMunchkin?.id
     let idString = String(stringInterpolationSegment: id!)
