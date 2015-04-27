@@ -17,6 +17,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var insuranceTextField: UITextField!
   @IBOutlet weak var dobTableCell: UITableViewCell!
   @IBOutlet weak var nameTextField: UITextField!
+  
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   

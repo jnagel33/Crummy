@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleSize: CGFloat = 26
-  
+  var kidCount: CGFloat = 0.0
   var kidList = [KidsList]()
   var kid: [Kid]!
   
@@ -115,7 +115,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
-    var kidCount = CGFloat(kid.count)
+    
+    if kidList.count == 0 {
+      kidCount = 0
+    } else {
+      kidCount = CGFloat(kidList.count)
+    }
+    
+    
+
     let phoneMenuViewAndDoneHeight: CGFloat = ((kidCount * kidNumberHeight) + doneButtonHeight + astheticSpacing)
     // add the phone menu container
     phoneMenuContainer = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: phoneMenuViewAndDoneHeight))
@@ -158,8 +166,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let cell = tableView.dequeueReusableCellWithIdentifier("phoneCell", forIndexPath: indexPath) as! PhoneTableViewCell
     cell.Name.text = kidList[indexPath.row].name
-    if let theInsurance = kidList[indexPath.row].
-    cell.InsuranceID.text = kidList[indexPath.row].insuranceId
+    cell.InsuranceID.text = kid[indexPath.row].insuranceId
+    
+    ///// NEds to be kidslist.
     if let thephone = kidList[indexPath.row].phone {
       cell.Phone.text = thephone
     } else {
