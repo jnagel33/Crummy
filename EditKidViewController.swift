@@ -101,7 +101,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    //println(self.notesTextView.text)
     selectedKid!.notes = notesTextView.text
     
     if addKid == true {
@@ -210,9 +209,19 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     textField.resignFirstResponder()
   }
   
+  func textViewDidBeginEditing(textView: UITextView) {
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeNotesEditor")
+  }
+  
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
+  }
+  
+  func closeNotesEditor () {
+
+    notesTextView.resignFirstResponder()
+    
   }
   
   // MARK: - Logic

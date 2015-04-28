@@ -12,6 +12,7 @@ class KidsList {
   var name: String
   var id: Int
   var phone: String?
+  var insuranceID: String?
   
   init(name: String, id: Int, phone: String) {
     
