@@ -31,6 +31,15 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     self.titleLabel.text = "Edit Menu"
     self.navigationItem.titleView = self.titleLabel
     
+    self.crummyApiService.listKid { (kidList, error) -> (Void) in
+      if error != nil {
+        println("error getting kid list")
+      } else {
+        self.kidList = kidList!
+        self.tableView.reloadData()
+      }
+    }
+    
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
