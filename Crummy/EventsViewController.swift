@@ -501,7 +501,12 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
       self.view.layoutIfNeeded()
     })
-    self.currentEvent = nil
+    if let cell = currentCell {
+      cell.contentView.layer.borderColor = UIColor.clearColor().CGColor
+      cell.contentView.layer.borderWidth = 0
+      cell.selected = false
+      self.currentCell = nil
+    }
     self.tableView.userInteractionEnabled = true
     return true
   }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -419,13 +419,13 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-7w-1oz">
-                                <rect key="frame" x="10" y="114" width="580" height="436"/>
+                                <rect key="frame" x="10" y="64" width="580" height="486"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="hlR-ct-SbM">
                                     <size key="itemSize" width="140" height="170"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="2" minY="0.0" maxX="2" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="2" minY="40" maxX="2" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCell" id="hV6-sa-GQO" customClass="HomeCollectionViewCell" customModule="Crummy" customModuleProvider="target">
@@ -445,7 +445,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJB-kQ-sZ2">
                                                     <rect key="frame" x="47" y="142" width="46" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.035294117649999998" green="0.12941176469999999" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -467,7 +467,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.035294117649999998" green="0.12941176469999999" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7py-RF-an2" firstAttribute="width" secondItem="tJI-9L-Nwi" secondAttribute="height" multiplier="1:60" id="3dl-8y-4nP"/>
                             <constraint firstItem="Y1Z-7w-1oz" firstAttribute="leading" secondItem="hui-bZ-FkA" secondAttribute="trailing" id="59Z-j6-X4I"/>
@@ -484,7 +484,7 @@
                             <constraint firstItem="hui-bZ-FkA" firstAttribute="width" secondItem="tJI-9L-Nwi" secondAttribute="height" multiplier="1:60" id="hMk-k6-G8X"/>
                             <constraint firstItem="hui-bZ-FkA" firstAttribute="leading" secondItem="tJI-9L-Nwi" secondAttribute="leadingMargin" constant="-16" id="oYb-cu-wBH"/>
                             <constraint firstItem="wt9-oY-btR" firstAttribute="top" secondItem="hui-bZ-FkA" secondAttribute="bottom" id="pLz-FF-hNt"/>
-                            <constraint firstItem="Y1Z-7w-1oz" firstAttribute="top" secondItem="DPh-n6-nBm" secondAttribute="bottom" constant="50" id="yNK-Kf-mhG"/>
+                            <constraint firstItem="Y1Z-7w-1oz" firstAttribute="top" secondItem="DPh-n6-nBm" secondAttribute="bottom" id="yNK-Kf-mhG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="8gD-zL-oOr"/>
