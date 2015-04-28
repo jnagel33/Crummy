@@ -30,6 +30,9 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleFontSize)
     self.titleLabel.text = "Edit Menu"
     self.navigationItem.titleView = self.titleLabel
+  }
+  
+  override func viewWillAppear(animated: Bool) {
     
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if error != nil {
@@ -39,7 +42,6 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.reloadData()
       }
     }
-    
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

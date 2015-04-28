@@ -166,9 +166,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     let cell = tableView.dequeueReusableCellWithIdentifier("phoneCell", forIndexPath: indexPath) as! PhoneTableViewCell
     cell.Name.text = kidList[indexPath.row].name
-    cell.InsuranceID.text = kid[indexPath.row].insuranceId
-    
-    ///// NEds to be kidslist.
+    cell.InsuranceID.text = kidList[indexPath.row].insuranceID
     if let thephone = kidList[indexPath.row].phone {
       cell.Phone.text = thephone
     } else {
@@ -184,6 +182,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kid[indexPath.row].nursePhone)")!)
+    println(kidList[indexPath.row].phone!)
+    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kidList[indexPath.row].phone!)")!)
   } // didSelectRowAtIndexPath
 }
