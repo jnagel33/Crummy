@@ -88,7 +88,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
     return true
   }
   
-  
   func getUsernameFromRegister(username: String) {
     self.usernameTextField.text = username
   }

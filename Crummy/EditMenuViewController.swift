@@ -33,6 +33,17 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     
   }
   
+  override func viewWillAppear(animated: Bool) {
+    self.crummyApiService.listKid { (kidList, error) -> (Void) in
+      if error != nil {
+        println("error reloading kid list")
+      } else {
+        self.kidList = kidList!
+        self.tableView.reloadData()
+      }
+    }
+  }
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let kidCount = self.kidList?.count {
       return kidCount

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   // parameters
@@ -98,7 +99,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker: UIDatePicker) {
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM-dd-yyyy"
+    dateFormatter.dateFormat = "dd-MM-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid!.DOBString = strDate
     
@@ -107,14 +108,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   } // datePickerChanged
   
   @IBAction func donePressed(sender: UIBarButtonItem) {
-    selectedKid!.notes = notesTextView.text
-    
+    selectedKid!.notes = self.notesTextView.text
+    selectedKid!.name = self.nameTextField.text
+    selectedKid!.nursePhone = self.consultingNurseHotline.text
+
     if addKid == true {
       self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
         //println(self.selectedKid.notes)
-        if status! == "201" {
+        if status! == "201" || status! == "200" {
           // launch a popup signifying data saved.
-          self.addKid = false
           self.navigationController?.popViewControllerAnimated(true)
         }
       })

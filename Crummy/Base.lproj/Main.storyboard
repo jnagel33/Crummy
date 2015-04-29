@@ -165,18 +165,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afV-s1-0R2">
-                                                    <rect key="frame" x="16" y="23" width="14" height="14"/>
+                                                    <rect key="frame" x="16" y="20" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="14" id="OSb-uw-qZr"/>
-                                                        <constraint firstAttribute="height" constant="14" id="lfX-if-6ZA"/>
+                                                        <constraint firstAttribute="height" constant="20" id="KCV-hx-4CC"/>
+                                                        <constraint firstAttribute="width" constant="20" id="M8m-Zt-4Jv"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="CalenderButton"/>
                                                     <connections>
-                                                        <action selector="datePressed:" destination="1ot-Hc-qO2" eventType="touchUpInside" id="Rby-oz-3mK"/>
+                                                        <action selector="datePressed" destination="1ot-Hc-qO2" eventType="touchUpInside" id="VAH-bn-3CL"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-fC-JoK">
-                                                    <rect key="frame" x="115" y="16" width="167" height="27"/>
+                                                    <rect key="frame" x="115" y="16" width="477" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -188,15 +188,15 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="afV-s1-0R2" firstAttribute="centerY" secondItem="pIn-XT-Bdq" secondAttribute="centerY" id="2jz-44-f3S"/>
                                                 <constraint firstAttribute="centerY" secondItem="HXN-fC-JoK" secondAttribute="centerY" id="8ot-mC-E3x"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="HXN-fC-JoK" secondAttribute="trailing" constant="310" id="FVt-6w-L4v"/>
                                                 <constraint firstItem="HXN-fC-JoK" firstAttribute="leading" secondItem="pIn-XT-Bdq" secondAttribute="trailing" constant="8" id="ZB1-Jt-BMG"/>
                                                 <constraint firstItem="afV-s1-0R2" firstAttribute="leading" secondItem="uzF-wf-dv3" secondAttribute="leadingMargin" constant="8" id="bh5-iL-jQ0"/>
                                                 <constraint firstItem="HXN-fC-JoK" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" constant="8" id="cwQ-yX-1dS"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="HXN-fC-JoK" secondAttribute="bottom" constant="8" id="hXY-Iv-djV"/>
                                                 <constraint firstAttribute="centerY" secondItem="afV-s1-0R2" secondAttribute="centerY" id="hc9-es-TuR"/>
-                                                <constraint firstItem="pIn-XT-Bdq" firstAttribute="leading" secondItem="afV-s1-0R2" secondAttribute="trailing" constant="8" id="suS-p3-4QX"/>
+                                                <constraint firstItem="pIn-XT-Bdq" firstAttribute="leading" secondItem="afV-s1-0R2" secondAttribute="trailing" constant="2" id="suS-p3-4QX"/>
+                                                <constraint firstItem="pIn-XT-Bdq" firstAttribute="centerY" secondItem="HXN-fC-JoK" secondAttribute="centerY" id="tLm-3I-bSh"/>
+                                                <constraint firstItem="HXN-fC-JoK" firstAttribute="trailing" secondItem="uzF-wf-dv3" secondAttribute="trailingMargin" id="wYC-qb-CoH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

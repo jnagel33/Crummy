@@ -55,7 +55,7 @@ class CrummyJsonParser {
       if notes == nil {
         notes = " "
       }
-      editMenuKid = Kid(theName: name, theDOB: " ", theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theNotes: notes!, theKidID: id)
+      editMenuKid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theNotes: notes!, theKidID: id)
     }
     return editMenuKid
   }
