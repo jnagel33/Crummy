@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-776" y="-198"/>
+            <point key="canvasLocation" x="-1394" y="-188"/>
         </scene>
         <!--Edit Kid View Controller-->
         <scene sceneID="92C-Wd-hbt">
@@ -352,7 +352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZi-TQ-BBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3406" y="370"/>
+            <point key="canvasLocation" x="1854" y="218"/>
         </scene>
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">
@@ -382,6 +382,9 @@
                                         <state key="normal" image="HomeButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="Wrh-yA-uwM"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-mT-b5Y">
                                         <rect key="frame" x="400" y="0.0" width="200" height="50"/>
@@ -706,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6v-wZ-TKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2423" y="405"/>
+            <point key="canvasLocation" x="1039" y="213"/>
         </scene>
         <!--Create User View Controller-->
         <scene sceneID="nmc-HD-hAU">
@@ -826,7 +829,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTw-cd-pMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="106"/>
+            <point key="canvasLocation" x="-719" y="-982"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0AU-Xo-Fh3">
@@ -858,6 +861,6 @@
         <image name="TemperatureButton" width="60" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J2D-g9-ZxQ"/>
+        <segue reference="C4c-HT-tPk"/>
     </inferredMetricsTieBreakers>
 </document>
