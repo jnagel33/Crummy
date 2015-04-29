@@ -31,7 +31,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
-    
+//    self.navigationItem.setHidesBackButton(true, animated: false)
+    self.navigationItem.hidesBackButton = true
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
@@ -56,6 +57,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.collectionView.dataSource = self
     self.collectionView.delegate = self
   }
+  
+  @IBAction func logoutPressed(sender: UIBarButtonItem) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.removeObjectForKey("crummyToken")
+    defaults.synchronize()
+    let storyBoard = self.navigationController?.storyboard
+    let login = storyboard?.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+    self.presentViewController(login, animated: true, completion: nil)
+    
+  }
+  
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return kidList.count

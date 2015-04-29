@@ -17,7 +17,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var insuranceTextField: UITextField!
   @IBOutlet weak var dobTableCell: UITableViewCell!
   @IBOutlet weak var nameTextField: UITextField!
-  
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   
@@ -28,13 +27,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let doneButtonHeight: CGFloat = 25
   let doneButtonWidth: CGFloat = 50
   let pickerWidth: CGFloat = 50
-  let dateRow: Int = 1
   let crummyApiService = CrummyApiService()
   var pickerIsUp: Bool = false
   var pickerView: UIView!
   var datePicker: UIDatePicker!
   var guess: Int = 0
   let pickerCellIndexPath = 4
+  let dateCellIndexPath = 1
   var kidImage: UIImage?
   var addKid = false
   let titleFontSize: CGFloat = 26
@@ -99,25 +98,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.view.layoutIfNeeded()
   } // viewDidLoad
   
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    //println(self.notesTextView.text)
-    selectedKid!.notes = notesTextView.text
-    
-    if addKid == true {
-      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
-        //println(self.selectedKid.notes)
-        if status! == "201" {
-          // launch a popup signifying data saved.
-          self.addKid = false
-        }
-      })
-    } else {
-      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
-      })
-    }
-  } // viewWillDisappear
-  
   // MARK: - Date Picker
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
@@ -131,7 +111,25 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     birthdateLabel.textColor = UIColor.blackColor()
   } // datePickerChanged
   
-  
+  @IBAction func donePressed(sender: UIBarButtonItem) {
+    selectedKid!.notes = notesTextView.text
+    
+    if addKid == true {
+      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+        //println(self.selectedKid.notes)
+        if status! == "201" {
+          // launch a popup signifying data saved.
+          self.addKid = false
+          self.navigationController?.popViewControllerAnimated(true)
+        }
+      })
+    } else {
+      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+        self.navigationController?.popViewControllerAnimated(true)
+      })
+    }
+  }
+
   func pickerCloserPressed(sender: AnyObject) {
 
     self.datePickerChanged(datePicker)
@@ -147,10 +145,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   
   // MARK: - Date Button
-  @IBAction func datePressed(sender: AnyObject) {
+  @IBAction func datePressed() {
     // if the button is pressed, it brings up the datePicker object.
     
     self.dismisKeyboard()
+    self.pickerIsUp = true;
     self.dateButton.hidden = true
     
     pickerView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: pickerViewHeight))
@@ -277,14 +276,16 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     if indexPath.row == self.pickerCellIndexPath {
-
-      
       if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
         var imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         imagePickerController.allowsEditing = true
         self.presentViewController(imagePickerController, animated: true, completion: nil)
+      }
+    } else if indexPath.row == self.dateCellIndexPath {
+      if !pickerIsUp {
+        self.datePressed()
       }
     }
   }
