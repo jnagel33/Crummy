@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 CF. All rights reserved.
 //
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -55,7 +56,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-
-
+  
+  lazy var applicationDocumentsDirectory: NSURL = {
+    
+    // The directory the application uses to store the Core Data store file.
+    let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    return urls[urls.count-1] as! NSURL
+    }()
+  
+  lazy var managedObjectModel: NSManagedObjectModel = {
+    
+    let modelURL = NSBundle.mainBundle().URLForResource("Core_Data", withExtension: "momd")!
+    return NSManagedObjectModel(contentsOfURL: modelURL)!
+    }()
+  
+  lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+    
+    // Create the coordinator and store
+    var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Core_Data.sqlite")
+    var error: NSError? = nil
+    var failureReason = "There was an error creating or loading the application's saved data."
+    if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+      coordinator = nil
+     
+      var dict = [String: AnyObject]()
+      dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
+      dict[NSLocalizedFailureReasonErrorKey] = failureReason
+      dict[NSUnderlyingErrorKey] = error
+      error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+      
+      // Replace this with code to handle the error appropriately.
+      // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+     
+      NSLog("Unresolved error \(error), \(error!.userInfo)")
+      abort()
+    }
+    
+    return coordinator
+    }()
+  
+  lazy var managedObjectContext: NSManagedObjectContext? = {
+    
+    let coordinator = self.persistentStoreCoordinator
+    if coordinator == nil {
+      return nil
+    }
+    var managedObjectContext = NSManagedObjectContext()
+    managedObjectContext.persistentStoreCoordinator = coordinator
+    return managedObjectContext
+    }()
+  
+  func saveContext () {
+    if let moc = self.managedObjectContext {
+      var error: NSError? = nil
+      if moc.hasChanges && !moc.save(&error) {
+        
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        
+        NSLog("Unresolved error \(error), \(error!.userInfo)")
+        abort()
+      }
+    }
+  }
 }
 
