@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-776" y="-198"/>
+            <point key="canvasLocation" x="-1394" y="-188"/>
         </scene>
         <!--Edit Kid View Controller-->
         <scene sceneID="92C-Wd-hbt">
@@ -175,13 +175,12 @@
                                                         <action selector="datePressed:" destination="1ot-Hc-qO2" eventType="touchUpInside" id="Rby-oz-3mK"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="press button to select" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-fC-JoK">
-                                                    <rect key="frame" x="115" y="19" width="167" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-fC-JoK">
+                                                    <rect key="frame" x="115" y="16" width="167" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-XT-Bdq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Birthday:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-XT-Bdq">
                                                     <rect key="frame" x="38" y="19" width="69" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -191,8 +190,11 @@
                                             <constraints>
                                                 <constraint firstItem="afV-s1-0R2" firstAttribute="centerY" secondItem="pIn-XT-Bdq" secondAttribute="centerY" id="2jz-44-f3S"/>
                                                 <constraint firstAttribute="centerY" secondItem="HXN-fC-JoK" secondAttribute="centerY" id="8ot-mC-E3x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HXN-fC-JoK" secondAttribute="trailing" constant="310" id="FVt-6w-L4v"/>
                                                 <constraint firstItem="HXN-fC-JoK" firstAttribute="leading" secondItem="pIn-XT-Bdq" secondAttribute="trailing" constant="8" id="ZB1-Jt-BMG"/>
                                                 <constraint firstItem="afV-s1-0R2" firstAttribute="leading" secondItem="uzF-wf-dv3" secondAttribute="leadingMargin" constant="8" id="bh5-iL-jQ0"/>
+                                                <constraint firstItem="HXN-fC-JoK" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" constant="8" id="cwQ-yX-1dS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HXN-fC-JoK" secondAttribute="bottom" constant="8" id="hXY-Iv-djV"/>
                                                 <constraint firstAttribute="centerY" secondItem="afV-s1-0R2" secondAttribute="centerY" id="hc9-es-TuR"/>
                                                 <constraint firstItem="pIn-XT-Bdq" firstAttribute="leading" secondItem="afV-s1-0R2" secondAttribute="trailing" constant="8" id="suS-p3-4QX"/>
                                             </constraints>
@@ -387,6 +389,9 @@
                                         <state key="normal" image="HomeButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="Wrh-yA-uwM"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-mT-b5Y">
                                         <rect key="frame" x="400" y="0.0" width="200" height="50"/>

@@ -43,9 +43,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   // person passed from the "list of people controller.
   var selectedKid : Kid?
   
-    override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
-      
+    
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleFontSize)
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
@@ -53,9 +53,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       self.titleLabel.text = "Edit"
     } else {
       self.titleLabel.text = "Add"
-      }
+    }
     self.navigationItem.titleView = self.titleLabel
-      
+    
     var cellNib = UINib(nibName: "ImagePickerCell", bundle: nil)
     tableView.registerNib(cellNib,
       forCellReuseIdentifier: "ImagePickerCell")
@@ -64,7 +64,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theNotes: "", theKidID: "")
       addKid = true
     }
-
+    
     // setup tags
     // assign the text fields tags.
     self.nameTextField.tag = 0
@@ -79,7 +79,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.consultingNurseHotline.delegate = self
     self.insuranceTextField.delegate = self
     self.nameTextField.delegate = self
-
+    
     // setup fields
     self.nameTextField.text = selectedKid!.name
     self.birthdateLabel.text = selectedKid!.DOBString
@@ -89,11 +89,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     if selectedKid!.notes != "" {
       self.notesTextView.text = selectedKid!.notes
     }
-      
-    // non gray out cells
-//    if let tableView = self.view as? UITableView {
-//      tableView.allowsSelection = false
-//    }
     
     self.view.layoutIfNeeded()
   } // viewDidLoad
@@ -131,7 +126,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   }
 
   func pickerCloserPressed(sender: AnyObject) {
-
+    
     self.datePickerChanged(datePicker)
     self.dateButton.hidden = false
     
@@ -221,7 +216,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     var text : String = theText
     var row : Int = theRow
-
+    
     switch row {
       
     case 0:
@@ -233,13 +228,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 3:
       return selectedKid!.nursePhone = text
     case 4:
-       return selectedKid!.notes = notesTextView.text
+      return selectedKid!.notes = notesTextView.text
     default:
       println("out of range")
     }
     selectedKid!.kidToString()
     
-   // println("got to end")
+    // println("got to end")
   } // getThisTextField
   
   func dismisKeyboard() {
@@ -249,14 +244,14 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     } else if
       (self.insuranceTextField.isFirstResponder()) {
         insuranceTextField.resignFirstResponder()
-      } else if
+    } else if
       (self.consultingNurseHotline.isFirstResponder()) {
         consultingNurseHotline.resignFirstResponder()
-      } else if
+    } else if
       (self.notesTextView.isFirstResponder()) {
         notesTextView.resignFirstResponder()
     }
-  
+    
   } // dismisKeyboard
   //MARK:
   //MARK: UITableViewDataSource
