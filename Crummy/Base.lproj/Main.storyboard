@@ -116,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-776" y="-198"/>
+            <point key="canvasLocation" x="-1394" y="-188"/>
         </scene>
         <!--Edit Kid View Controller-->
         <scene sceneID="92C-Wd-hbt">
@@ -175,12 +175,12 @@
                                                         <action selector="datePressed:" destination="1ot-Hc-qO2" eventType="touchUpInside" id="Rby-oz-3mK"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-fC-JoK">
-                                                    <rect key="frame" x="115" y="19" width="167" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-fC-JoK">
+                                                    <rect key="frame" x="115" y="16" width="167" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-XT-Bdq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Birthday:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-XT-Bdq">
                                                     <rect key="frame" x="38" y="19" width="69" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,8 +190,11 @@
                                             <constraints>
                                                 <constraint firstItem="afV-s1-0R2" firstAttribute="centerY" secondItem="pIn-XT-Bdq" secondAttribute="centerY" id="2jz-44-f3S"/>
                                                 <constraint firstAttribute="centerY" secondItem="HXN-fC-JoK" secondAttribute="centerY" id="8ot-mC-E3x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HXN-fC-JoK" secondAttribute="trailing" constant="310" id="FVt-6w-L4v"/>
                                                 <constraint firstItem="HXN-fC-JoK" firstAttribute="leading" secondItem="pIn-XT-Bdq" secondAttribute="trailing" constant="8" id="ZB1-Jt-BMG"/>
                                                 <constraint firstItem="afV-s1-0R2" firstAttribute="leading" secondItem="uzF-wf-dv3" secondAttribute="leadingMargin" constant="8" id="bh5-iL-jQ0"/>
+                                                <constraint firstItem="HXN-fC-JoK" firstAttribute="top" secondItem="uzF-wf-dv3" secondAttribute="topMargin" constant="8" id="cwQ-yX-1dS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="HXN-fC-JoK" secondAttribute="bottom" constant="8" id="hXY-Iv-djV"/>
                                                 <constraint firstAttribute="centerY" secondItem="afV-s1-0R2" secondAttribute="centerY" id="hc9-es-TuR"/>
                                                 <constraint firstItem="pIn-XT-Bdq" firstAttribute="leading" secondItem="afV-s1-0R2" secondAttribute="trailing" constant="8" id="suS-p3-4QX"/>
                                             </constraints>
@@ -349,7 +352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZi-TQ-BBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3456" y="423"/>
+            <point key="canvasLocation" x="1854" y="218"/>
         </scene>
         <!--Home-->
         <scene sceneID="wfT-Gi-4VW">
@@ -379,6 +382,9 @@
                                         <state key="normal" image="HomeButton">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="Wrh-yA-uwM"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-mT-b5Y">
                                         <rect key="frame" x="400" y="0.0" width="200" height="50"/>
@@ -703,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6v-wZ-TKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2423" y="405"/>
+            <point key="canvasLocation" x="1039" y="213"/>
         </scene>
         <!--Create User View Controller-->
         <scene sceneID="nmc-HD-hAU">
@@ -823,7 +829,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTw-cd-pMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="106"/>
+            <point key="canvasLocation" x="-719" y="-982"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0AU-Xo-Fh3">
@@ -855,6 +861,6 @@
         <image name="TemperatureButton" width="60" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J2D-g9-ZxQ"/>
+        <segue reference="C4c-HT-tPk"/>
     </inferredMetricsTieBreakers>
 </document>
