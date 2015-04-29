@@ -14,7 +14,7 @@ class Kid {
   
   var name : String
   
-  var DOBString : String
+  var DOBString : String?
   // VVV is this even being used?  VVV
   var dob : NSDate?
   
@@ -32,7 +32,7 @@ class Kid {
   
   
   // the Person Object
-  init(theName : String, theDOB : String, theInsuranceID : String, theNursePhone : String, theNotes: String, theKidID: String) {
+  init(theName : String, theDOB : String?, theInsuranceID : String, theNursePhone : String, theNotes: String, theKidID: String) {
     
     name = theName
     DOBString = theDOB
@@ -59,7 +59,7 @@ class Kid {
   
   func kidToString() -> () {
     
-    println("name: " + self.name + " DOBString: " + self.DOBString + " insuranceID: " + self.insuranceId + " nursePhone: " + self.nursePhone + " notes: ")
+//    println("name: " + self.name + " DOBString: " + self.DOBString! + " insuranceID: " + self.insuranceId + " nursePhone: " + self.nursePhone + " notes: ")
   }
   
 }
