@@ -99,6 +99,7 @@ class CrummyApiService {
     
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
+    println(id)
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
     let request = NSMutableURLRequest(URL: url!)
@@ -120,7 +121,7 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func editKid(id: String, name: String, dobString: String, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
+  func editKid(id: String, name: String, dobString: String?, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
     let requestUrl = kidIdUrl + queryString
@@ -184,7 +185,7 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func postNewKid(name: String, dobString: String, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
+  func postNewKid(name: String, dobString: String?, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
     // url
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     let url = NSURL(string: requestUrl)
@@ -208,13 +209,10 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       let status = self.statusResponse(response)
       println(status)
-      if status == "201" {
-        
+      if status == "201" || status == "200" {
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
           completionHandler(status)
         })
-      } else {
-        completionHandler(status)
       }
     })
     

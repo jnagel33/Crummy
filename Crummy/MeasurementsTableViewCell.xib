@@ -25,7 +25,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Height:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIj-n3-TvA">
-                        <rect key="frame" x="99" y="16" width="58" height="22"/>
+                        <rect key="frame" x="86" y="16" width="58" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="58" id="hKR-1M-zOT"/>
                         </constraints>
@@ -34,19 +34,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdI-aX-9a2">
-                        <rect key="frame" x="99" y="56" width="57" height="20"/>
+                        <rect key="frame" x="86" y="56" width="57" height="20"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="height" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owd-hz-paD">
-                        <rect key="frame" x="165" y="16" width="47" height="20"/>
+                        <rect key="frame" x="152" y="16" width="47" height="20"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="weight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cj4-OT-ffP">
-                        <rect key="frame" x="164" y="56" width="43" height="20"/>
+                        <rect key="frame" x="151" y="56" width="43" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="43" id="RMY-mC-TAi"/>
                         </constraints>
@@ -55,9 +55,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9l-9a-o4W">
-                        <rect key="frame" x="8" y="31" width="83" height="30"/>
+                        <rect key="frame" x="8" y="31" width="70" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="83" id="XFH-bN-M5v"/>
+                            <constraint firstAttribute="width" constant="70" id="XFH-bN-M5v"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                         <state key="normal" title="time">
@@ -66,7 +66,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63x-3G-4lD">
-                        <rect key="frame" x="215" y="56" width="23" height="20"/>
+                        <rect key="frame" x="202" y="56" width="23" height="20"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -100,6 +100,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="PlusButton" width="36" height="36"/>
+        <image name="PlusButton" width="35" height="35"/>
     </resources>
 </document>

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   // parameters
@@ -20,19 +21,20 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   
-  let datePickerInterval : NSTimeInterval = 1.0
-  let astheticSpacing : CGFloat = 8.0
+  let datePickerInterval: NSTimeInterval = 1.0
+  let astheticSpacing: CGFloat = 8.0
   let datePickerHeight: CGFloat = 216.0
   let pickerViewHeight: CGFloat = 250
   let doneButtonHeight: CGFloat = 25
   let doneButtonWidth: CGFloat = 50
   let pickerWidth: CGFloat = 50
-  let dateRow : Int = 1
   let crummyApiService = CrummyApiService()
-  var pickerView : UIView!
-  var datePicker : UIDatePicker!
+  var pickerIsUp: Bool = false
+  var pickerView: UIView!
+  var datePicker: UIDatePicker!
   var guess: Int = 0
   let pickerCellIndexPath = 4
+  let dateCellIndexPath = 1
   var kidImage: UIImage?
   var addKid = false
   let titleFontSize: CGFloat = 26
@@ -42,9 +44,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   // person passed from the "list of people controller.
   var selectedKid : Kid?
   
-    override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
-      
+    
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleFontSize)
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
@@ -52,9 +54,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       self.titleLabel.text = "Edit"
     } else {
       self.titleLabel.text = "Add"
-      }
+    }
     self.navigationItem.titleView = self.titleLabel
-      
+    
     var cellNib = UINib(nibName: "ImagePickerCell", bundle: nil)
     tableView.registerNib(cellNib,
       forCellReuseIdentifier: "ImagePickerCell")
@@ -63,7 +65,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       selectedKid = Kid(theName: "", theDOB: "", theInsuranceID: "", theNursePhone: "", theNotes: "", theKidID: "")
       addKid = true
     }
-
+    
     // setup tags
     // assign the text fields tags.
     self.nameTextField.tag = 0
@@ -78,7 +80,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.consultingNurseHotline.delegate = self
     self.insuranceTextField.delegate = self
     self.nameTextField.delegate = self
-
+    
     // setup fields
     self.nameTextField.text = selectedKid!.name
     self.birthdateLabel.text = selectedKid!.DOBString
@@ -88,40 +90,16 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     if selectedKid!.notes != "" {
       self.notesTextView.text = selectedKid!.notes
     }
-      
-    // non gray out cells
-//    if let tableView = self.view as? UITableView {
-//      tableView.allowsSelection = false
-//    }
     
     self.view.layoutIfNeeded()
   } // viewDidLoad
-  
-  override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    //println(self.notesTextView.text)
-    selectedKid!.notes = notesTextView.text
-    
-    if addKid == true {
-      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
-        //println(self.selectedKid.notes)
-        if status! == "201" {
-          // launch a popup signifying data saved.
-          self.addKid = false
-        }
-      })
-    } else {
-      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
-      })
-    }
-  } // viewWillDisappear
   
   // MARK: - Date Picker
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker: UIDatePicker) {
     var dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM-dd-yyyy"
+    dateFormatter.dateFormat = "dd-MM-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid!.DOBString = strDate
     
@@ -129,24 +107,46 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     birthdateLabel.textColor = UIColor.blackColor()
   } // datePickerChanged
   
-  
-  func pickerCloserPressed(sender: AnyObject) {
+  @IBAction func donePressed(sender: UIBarButtonItem) {
+    selectedKid!.notes = self.notesTextView.text
+    selectedKid!.name = self.nameTextField.text
+    selectedKid!.nursePhone = self.consultingNurseHotline.text
 
+    if addKid == true {
+      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+        //println(self.selectedKid.notes)
+        if status! == "201" || status! == "200" {
+          // launch a popup signifying data saved.
+          self.navigationController?.popViewControllerAnimated(true)
+        }
+      })
+    } else {
+      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+        self.navigationController?.popViewControllerAnimated(true)
+      })
+    }
+  }
+
+  func pickerCloserPressed(sender: AnyObject) {
+    
     self.datePickerChanged(datePicker)
     self.dateButton.hidden = false
     
     UIView.animateWithDuration(datePickerInterval, animations: { () -> Void in
       self.pickerView.frame.origin.y = self.view.frame.height + self.datePickerHeight
     })
+    // window is down
+    self.pickerIsUp = false
     
   } // pickerCloserPressed
   
   
   // MARK: - Date Button
-  @IBAction func datePressed(sender: AnyObject) {
+  @IBAction func datePressed() {
     // if the button is pressed, it brings up the datePicker object.
     
-    
+    self.dismisKeyboard()
+    self.pickerIsUp = true;
     self.dateButton.hidden = true
     
     pickerView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: pickerViewHeight))
@@ -173,10 +173,19 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       self.pickerView.frame.origin.y = self.view.frame.height - self.datePickerHeight
       
     })
+    // window is up
+    self.pickerIsUp = true
     
   } // datePressed
   
   // MARK: - Text Fields
+  
+  func textFieldDidBeginEditing(textField: UITextField) {
+    // check to see if the picker visual is up, and if so move it down.
+    if pickerIsUp == true {
+      self.pickerCloserPressed(datePicker)
+    }
+  } // textFieldDidBeginEditing
   
   func textFieldDidEndEditing(textField: UITextField) {
     // if textfield == the outlet to an individual text field
@@ -194,6 +203,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       println("no choice here!")
     } // switch
     selectedKid!.kidToString()
+    textField.resignFirstResponder()
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -220,16 +230,31 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 3:
       return selectedKid!.nursePhone = text
     case 4:
-       return selectedKid!.notes = notesTextView.text
+      return selectedKid!.notes = notesTextView.text
     default:
       println("out of range")
     }
     selectedKid!.kidToString()
     
-   // println("got to end")
+    // println("got to end")
   } // getThisTextField
   
-  
+  func dismisKeyboard() {
+    
+    if (self.nameTextField.isFirstResponder()) {
+      nameTextField.resignFirstResponder()
+    } else if
+      (self.insuranceTextField.isFirstResponder()) {
+        insuranceTextField.resignFirstResponder()
+    } else if
+      (self.consultingNurseHotline.isFirstResponder()) {
+        consultingNurseHotline.resignFirstResponder()
+    } else if
+      (self.notesTextView.isFirstResponder()) {
+        notesTextView.resignFirstResponder()
+    }
+    
+  } // dismisKeyboard
   //MARK:
   //MARK: UITableViewDataSource
   
@@ -255,13 +280,17 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
         imagePickerController.allowsEditing = true
         self.presentViewController(imagePickerController, animated: true, completion: nil)
       }
+    } else if indexPath.row == self.dateCellIndexPath {
+      if !pickerIsUp {
+        self.datePressed()
+      }
     }
   }
   
   //MARK:
   //MARK: UIImagePickerControllerDelegate
   
-  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
     if let photo = info[UIImagePickerControllerEditedImage] as? UIImage {
       self.kidImage = photo
     }

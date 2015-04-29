@@ -22,17 +22,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleSize: CGFloat = 26
-  
+  var kidCount: CGFloat = 0.0
   var kidList = [KidsList]()
   var kid: [Kid]!
   
-  // Randy is working on this...
   let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
   // find the Nib in the bundle.
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
-    
+//    self.navigationItem.setHidesBackButton(true, animated: false)
+    self.navigationItem.hidesBackButton = true
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
@@ -57,6 +57,17 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.collectionView.dataSource = self
     self.collectionView.delegate = self
   }
+  
+  @IBAction func logoutPressed(sender: UIBarButtonItem) {
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.removeObjectForKey("crummyToken")
+    defaults.synchronize()
+    let storyBoard = self.navigationController?.storyboard
+    let login = storyboard?.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+    self.presentViewController(login, animated: true, completion: nil)
+    
+  }
+  
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return kidList.count
@@ -116,7 +127,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
-    var kidCount = CGFloat(kid.count)
+    
+    if kidList.count == 0 {
+      kidCount = 0
+    } else {
+      kidCount = CGFloat(kidList.count)
+    }
+    
+    
+
     let phoneMenuViewAndDoneHeight: CGFloat = ((kidCount * kidNumberHeight) + doneButtonHeight + astheticSpacing)
     // add the phone menu container
     phoneMenuContainer = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: phoneMenuViewAndDoneHeight))
