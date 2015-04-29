@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol CreateUserViewControllerDelegate : class {
+  func getUsernameFromRegister(username: String) -> Void
+}
+
 class CreateUserViewController: UIViewController, UITextFieldDelegate {
 
+  
   @IBOutlet weak var constraintStatusViewCenterX: NSLayoutConstraint!
   @IBOutlet weak var statusView: UIView!
   @IBOutlet weak var statusLabel: UILabel!
@@ -23,18 +28,30 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
   var animationDuration: Double = 0.2
   let animationDurationLonger: Double = 0.5
   var tapGestureRecognizer: UITapGestureRecognizer?
+  let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let titleSize: CGFloat = 26
+  var delegate: CreateUserViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.usernameTextField.delegate = self
     self.passwordTextField.delegate = self
     
+    self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
+    self.titleLabel.textAlignment = .Center
+    self.titleLabel.textColor = self.titleColor
+    titleLabel.text = "Register"
+    self.navigationItem.titleView = self.titleLabel
+    
+    let navBarImage = UIImage(named: "CrummyNavBar")
+    self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
+    
     self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     self.view.addGestureRecognizer(self.tapGestureRecognizer!)
   }
   
   @IBAction func doneBarButton(sender: UIBarButtonItem) {
-//    dismissViewControllerAnimated(true, completion: nil)
     let username = usernameTextField.text
     let password = passwordTextField.text
     
@@ -47,7 +64,8 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
           self.view.layoutIfNeeded()
         }, completion: { (finshed) -> Void in
-          self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
+          self.delegate?.getUsernameFromRegister(self.usernameTextField.text)
+          self.dismissViewControllerAnimated(true, completion: nil)
         })
       } else {
         self.statusView.backgroundColor = UIColor.redColor()
@@ -111,5 +129,5 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
       }
     }
     return true
-  }
+  }  
 }

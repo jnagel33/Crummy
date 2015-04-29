@@ -486,6 +486,10 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   }
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
+    if self.measurementsHeightTextField != nil && textField == self.measurementsHeightTextField {
+      self.measurementWeightTextField.becomeFirstResponder()
+      return false
+    } else {
     self.dismissKeyboard(textField)
     
     if self.contentOffsetChangeAmount != nil {
@@ -509,6 +513,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     }
     self.tableView.userInteractionEnabled = true
     return true
+    }
   }
   
   func doneNumberPadPressed(barButton: UIBarButtonItem) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -52,15 +52,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ain-c9-gk5">
-                                        <rect key="frame" x="8" y="395" width="552" height="30"/>
-                                        <state key="normal" title="Create A New User">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="1Rq-7O-DJ5" kind="show" id="8SY-Ch-nKq"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crummy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65j-It-waA">
                                         <rect key="frame" x="201" y="42" width="166" height="74"/>
                                         <constraints>
@@ -70,6 +61,15 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ain-c9-gk5">
+                                        <rect key="frame" x="8" y="395" width="552" height="30"/>
+                                        <state key="normal" title="Create A New User">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="2Do-ZB-hBr" kind="show" identifier="Register" id="8SY-Ch-nKq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -340,6 +340,13 @@
                             <outlet property="delegate" destination="1ot-Hc-qO2" id="PtW-zK-cPb"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="34u-bS-pak">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="YwX-hw-PPo">
+                            <connections>
+                                <action selector="donePressed:" destination="1ot-Hc-qO2" id="QGa-Jx-D3s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="birthdateLabel" destination="HXN-fC-JoK" id="bcB-JY-XWg"/>
                         <outlet property="consultingNurseHotline" destination="GjN-Fo-CuI" id="JA2-In-Ahb"/>
@@ -423,7 +430,7 @@
                                     <constraint firstItem="zRK-Xt-Si8" firstAttribute="width" secondItem="R7k-mT-b5Y" secondAttribute="width" id="wWl-IV-ixe"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-7w-1oz">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-7w-1oz">
                                 <rect key="frame" x="10" y="64" width="580" height="486"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="hlR-ct-SbM">
@@ -492,7 +499,13 @@
                             <constraint firstItem="Y1Z-7w-1oz" firstAttribute="top" secondItem="DPh-n6-nBm" secondAttribute="bottom" id="yNK-Kf-mhG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="8gD-zL-oOr"/>
+                    <navigationItem key="navigationItem" title="Home" id="8gD-zL-oOr">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="Geo-XZ-DcR">
+                            <connections>
+                                <action selector="logoutPressed:" destination="IvP-hq-Oqh" id="7H2-wY-LEH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonContainerView" destination="wt9-oY-btR" id="gzb-gP-vm4"/>
                         <outlet property="collectionView" destination="Y1Z-7w-1oz" id="Akr-pQ-yub"/>
@@ -500,7 +513,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUt-kT-uwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="-614"/>
+            <point key="canvasLocation" x="1097" y="-592"/>
         </scene>
         <!--Events-->
         <scene sceneID="XFg-KP-hFy">
@@ -711,7 +724,7 @@
             </objects>
             <point key="canvasLocation" x="1039" y="213"/>
         </scene>
-        <!--Create User View Controller-->
+        <!--Register-->
         <scene sceneID="nmc-HD-hAU">
             <objects>
                 <viewController id="1Rq-7O-DJ5" customClass="CreateUserViewController" customModule="Crummy" customModuleProvider="target" sceneMemberID="viewController">
@@ -723,23 +736,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0U-9A-ZUU">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Register" id="kyn-Ky-e8G">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MjU-mL-9Vb">
-                                            <connections>
-                                                <action selector="cancelPressed:" destination="1Rq-7O-DJ5" id="F6e-x9-TLK"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="EVJ-Sa-K0f">
-                                            <connections>
-                                                <action selector="doneBarButton:" destination="1Rq-7O-DJ5" id="oWu-S1-5j3"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGx-0c-vvR">
                                 <rect key="frame" x="16" y="150" width="568" height="300"/>
                                 <subviews>
@@ -805,18 +801,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Z0U-9A-ZUU" secondAttribute="trailing" id="2xk-8H-IgP"/>
                             <constraint firstAttribute="centerX" secondItem="mGx-0c-vvR" secondAttribute="centerX" id="3pC-1i-T32"/>
                             <constraint firstItem="mGx-0c-vvR" firstAttribute="leading" secondItem="CV8-7c-ut7" secondAttribute="leadingMargin" id="7JR-sl-ohL"/>
                             <constraint firstAttribute="centerX" secondItem="GoW-MB-Q9s" secondAttribute="centerX" constant="-600" id="Kep-HH-FGh"/>
-                            <constraint firstItem="Z0U-9A-ZUU" firstAttribute="top" secondItem="sGa-mY-PWO" secondAttribute="bottom" id="Pr9-B6-Iwg"/>
                             <constraint firstItem="GoW-MB-Q9s" firstAttribute="width" secondItem="CV8-7c-ut7" secondAttribute="width" id="QLU-b2-rVn"/>
-                            <constraint firstItem="GoW-MB-Q9s" firstAttribute="top" secondItem="sGa-mY-PWO" secondAttribute="bottom" constant="44" id="Tff-dF-aKQ"/>
-                            <constraint firstItem="Z0U-9A-ZUU" firstAttribute="centerX" secondItem="mGx-0c-vvR" secondAttribute="centerX" id="dSK-9e-p03"/>
-                            <constraint firstItem="Z0U-9A-ZUU" firstAttribute="leading" secondItem="CV8-7c-ut7" secondAttribute="leading" id="doy-vf-FYR"/>
+                            <constraint firstItem="GoW-MB-Q9s" firstAttribute="top" secondItem="sGa-mY-PWO" secondAttribute="bottom" id="Tff-dF-aKQ"/>
                             <constraint firstAttribute="centerY" secondItem="mGx-0c-vvR" secondAttribute="centerY" id="idP-ST-Nbd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Register" id="QMU-mb-a3d">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="pX0-Mp-eXi">
+                            <connections>
+                                <action selector="cancelPressed:" destination="1Rq-7O-DJ5" id="aoc-O2-hWz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="GBC-is-eTv">
+                            <connections>
+                                <action selector="doneBarButton:" destination="1Rq-7O-DJ5" id="PEL-bQ-St7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="constraintCenterY" destination="idP-ST-Nbd" id="Udg-nv-Zat"/>
                         <outlet property="constraintStatusViewCenterX" destination="Kep-HH-FGh" id="kEJ-Im-L7w"/>
@@ -848,6 +852,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="roE-3b-kNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="81" y="-730"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="d8e-Fl-StY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Do-ZB-hBr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Db-Ex-6E4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1Rq-7O-DJ5" kind="relationship" relationship="rootViewController" id="xPK-Re-IKD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T1P-ot-HTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11" y="106"/>
         </scene>
     </scenes>
     <resources>

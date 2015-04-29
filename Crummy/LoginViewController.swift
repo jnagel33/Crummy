@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserViewControllerDelegate {
 
   @IBOutlet weak var usernameTextField: UITextField!
   @IBOutlet weak var passwordTextField: UITextField!
@@ -86,5 +86,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
       }
     }
     return true
+  }
+  
+  
+  func getUsernameFromRegister(username: String) {
+    self.usernameTextField.text = username
+  }
+  
+  //MARK:
+  //MARK: prepareForSegue
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "Register" {
+      let destinationController = segue.destinationViewController as! UINavigationController
+    let createUser = destinationController.viewControllers[0] as! CreateUserViewController
+      createUser.delegate = self
+    }
   }
 }
