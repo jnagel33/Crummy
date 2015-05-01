@@ -24,7 +24,6 @@ class CrummyJsonParser {
             parse.append(listData)
         }
       }
-      
     }
     return parse
   }
