@@ -63,19 +63,9 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let selectedMunchkin = self.kidList?[indexPath.row]
-    let id = selectedMunchkin?.kidID
-    let idString = String(stringInterpolationSegment: id!)
-    
-    crummyApiService.getKid(idString, completionHandler: { (kiddos, error) -> (Void) in
-      if error != nil {
-        println("error getting kid")
-      } else {
-        self.kiddo = kiddos!
-        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as! EditKidViewController
-        viewController.selectedKid = self.kiddo
-        self.navigationController?.pushViewController(viewController, animated: false)
-      }
-    })
+    let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("EditKidVC") as! EditKidViewController
+    viewController.selectedKid = selectedMunchkin
+    self.navigationController?.pushViewController(viewController, animated: false)
   }
   
   @IBAction func addButtonPressed(sender: AnyObject) {
