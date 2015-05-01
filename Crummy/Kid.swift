@@ -18,9 +18,9 @@ class Kid {
   // VVV is this even being used?  VVV
   var dob : NSDate?
   
-  var insuranceId : String
+  var insuranceId : String?
   
-  var nursePhone : String
+  var nursePhone : String?
   
   var kidImage : UIImage?
   
@@ -32,7 +32,7 @@ class Kid {
   
   
   // the Person Object
-  init(theName : String, theDOB : String?, theInsuranceID : String, theNursePhone : String, theNotes: String, theKidID: String) {
+  init(theName : String, theDOB : String?, theInsuranceID : String?, theNursePhone : String?, theNotes: String?, theKidID: String) {
     
     name = theName
     DOBString = theDOB

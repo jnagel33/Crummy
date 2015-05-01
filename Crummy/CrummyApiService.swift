@@ -10,7 +10,6 @@ import Foundation
 class CrummyApiService {
   
   static let sharedInstance: CrummyApiService = CrummyApiService()
-  var list = [KidsList]()
   
   let baseUrl = "http://crummy.herokuapp.com/api/v1"
   
@@ -66,13 +65,15 @@ class CrummyApiService {
           completionHandler(status)
         })
       } else {
-        completionHandler(status)
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
       }
     })
     dataTask.resume()
   }
   
-  func listKid(completionHandler: ([KidsList]?, String?) -> (Void)) {
+  func listKid(completionHandler: ([Kid]?, String?) -> (Void)) {
     
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     
@@ -121,7 +122,7 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func editKid(id: String, name: String, dobString: String?, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
+  func editKid(id: String, name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?) -> Void) {
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
     let requestUrl = kidIdUrl + queryString
@@ -129,11 +130,19 @@ class CrummyApiService {
     var error: NSError?
     var editedKid = [String: AnyObject]()
     
-    editedKid["name"] = "\(name)"
-    editedKid["dob"] = "\(dobString)"
-    editedKid["insurance_id"] = "\(insuranceID)"
-    editedKid["nurse_phone"] = "\(nursePhone)"
-    editedKid["notes"] = "\(notes)"
+    editedKid["name"] = name
+    if let kidDob = dobString {
+      editedKid["dob"] = kidDob
+    }
+    if let kidInsuranceId = insuranceID {
+      editedKid["insurance_id"] = kidInsuranceId
+    }
+    if let kidNursePhone = nursePhone {
+      editedKid["nurse_phone"] = kidNursePhone
+    }
+    if let kidNotes = notes {
+      editedKid["notes"]  = kidNotes
+    }
     
     let data = NSJSONSerialization.dataWithJSONObject(editedKid, options: nil, error: &error)
     let request = NSMutableURLRequest(URL: url!)
@@ -185,18 +194,31 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func postNewKid(name: String, dobString: String?, insuranceID: String, nursePhone: String, notes: String, completionHandler: (String?) -> Void) {
+  func postNewKid(name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?) -> Void) {
     // url
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     let url = NSURL(string: requestUrl)
     var request = NSMutableURLRequest(URL: url!)
+    var error: NSError?
+    var editedKid = [String: AnyObject]()
+    editedKid["name"] = name
+    if let kidDob = dobString {
+      editedKid["dob"] = kidDob
+    }
+    if let kidInsuranceId = insuranceID {
+      editedKid["insurance_id"] = kidInsuranceId
+    }
+    if let kidNursePhone = nursePhone {
+      editedKid["nurse_phone"] = kidNursePhone
+    }
+    if let kidNotes = notes {
+      editedKid["notes"]  = kidNotes
+    }
     
-    let parameterString = "name=\(name)" + "&" + "dob=\(dobString)" + "&" + "insurance_id=\(insuranceID)" + "&" + "nurse_phone=\(nursePhone)" + "&" + "notes=\(notes)"
-    let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
-    
+    let data = NSJSONSerialization.dataWithJSONObject(editedKid, options: nil, error: &error)
     request.HTTPMethod = "POST"
     request.HTTPBody = data
-    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
     // token
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
@@ -221,7 +243,6 @@ class CrummyApiService {
 
   func getEvents(id: String, completionHandler: ([Event]?, String?) -> (Void)) {
     let eventUrl = "\(self.baseUrl)/kids/\(id)/events/"
-//    let eventIdUrl = "http://crummy.herokuapp.com/api/v1/kids/16/events"
     let url = NSURL(string: eventUrl)
     
     let request = NSMutableURLRequest(URL: url!)
@@ -230,7 +251,6 @@ class CrummyApiService {
       println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
-//    request.setValue("Token token= /(token)", forHTTPHeaderField: "Authorization")
     request.setValue("application/json", forHTTPHeaderField: "Accept")
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {

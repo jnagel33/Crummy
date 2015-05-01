@@ -111,6 +111,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     selectedKid!.notes = self.notesTextView.text
     selectedKid!.name = self.nameTextField.text
     selectedKid!.nursePhone = self.consultingNurseHotline.text
+    selectedKid!.insuranceId = self.insuranceTextField.text
 
     if addKid == true {
       self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
