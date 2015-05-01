@@ -47,8 +47,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
           UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
             self.view.layoutIfNeeded()
             }, completion: { (finshed) -> Void in
+              self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
           })
-        self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
       } else {
         self.statusView.backgroundColor = UIColor.redColor()
         self.statusLabel.text = "Error creating user"
