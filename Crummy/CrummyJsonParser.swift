@@ -9,20 +9,22 @@ import Foundation
 
 class CrummyJsonParser {
   
-  class func parseJsonListKid(jsonData: NSData) -> [KidsList] {
-    var parse = [KidsList]()
+  class func parseJsonListKid(jsonData: NSData) -> [Kid] {
+    var parse = [Kid]()
     var jsonError: NSError?
     
     if let jsonArray = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [[String: AnyObject]] {
       
-      for objects in jsonArray {
-        if let
-          kidName = objects["name"] as? String,
-          kidPhone = objects["nurse_phone"] as? String,
-          kidId = objects["id"] as? Int {
-            let listData = KidsList(name: kidName, id: kidId, phone: kidPhone)
-            parse.append(listData)
-        }
+      for object in jsonArray {
+        let name = object["name"] as! String
+        let kidId = object["id"] as! Int
+        let id = "\(kidId)"
+        var dob = object["dob"] as? String
+        var insuranceId = object["insurance_id"] as? String
+        var nursePhone = object["nurse_phone"] as? String
+        var notes = object["notes"] as? String  // Add notes when Kid obbject updated
+        let kid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theNotes: notes!, theKidID: id)
+        parse.append(kid)
       }
     }
     return parse
@@ -39,21 +41,9 @@ class CrummyJsonParser {
       let kidId = jsonDictionary["id"] as! Int
       let id = String(stringInterpolationSegment: kidId)
       var dob = jsonDictionary["dob"] as? String
-      if dob == "" {
-        dob = " "
-      }
       var insuranceId = jsonDictionary["insurance_id"] as? String
-      if insuranceId == "" {
-        insuranceId = " "
-      }
       var nursePhone = jsonDictionary["nurse_phone"] as? String
-      if nursePhone == "" {
-        nursePhone = " "
-      }
       var notes = jsonDictionary["notes"] as? String  // Add notes when Kid obbject updated
-      if notes == nil {
-        notes = " "
-      }
       editMenuKid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId!, theNursePhone: nursePhone!, theNotes: notes!, theKidID: id)
     }
     return editMenuKid

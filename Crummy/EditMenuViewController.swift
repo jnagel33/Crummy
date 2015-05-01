@@ -14,7 +14,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   let crummyApiService = CrummyApiService()
   
   var kiddo: Kid!
-  var kidList: [KidsList]?
+  var kidList: [Kid]?
   let titleFontSize: CGFloat = 26
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
@@ -63,7 +63,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let selectedMunchkin = self.kidList?[indexPath.row]
-    let id = selectedMunchkin?.id
+    let id = selectedMunchkin?.kidID
     let idString = String(stringInterpolationSegment: id!)
     
     crummyApiService.getKid(idString, completionHandler: { (kiddos, error) -> (Void) in
@@ -88,7 +88,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     
     let selectedMunchkin = self.kidList?[indexPath.row]
-    let id = selectedMunchkin?.id
+    let id = selectedMunchkin?.kidID
     let idString = String(stringInterpolationSegment: id!)
     let name = selectedMunchkin?.name
     self.indexPaths = [indexPath]

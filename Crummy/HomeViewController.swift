@@ -23,15 +23,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleSize: CGFloat = 26
   var kidCount: CGFloat = 0.0
-  var kidList = [KidsList]()
-  var kid: [Kid]!
+  var kids = [Kid]()
   
   let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
   // find the Nib in the bundle.
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
-//    self.navigationItem.setHidesBackButton(true, animated: false)
     self.navigationItem.hidesBackButton = true
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
     self.titleLabel.textAlignment = .Center
@@ -49,7 +47,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       if error != nil {
         println("error getting kid list")
       } else {
-        self.kidList = kidList!
+        self.kids = kidList!
         self.collectionView.reloadData()
       }
     }
@@ -70,12 +68,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return kidList.count
+    return kids.count
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCollectionViewCell
-    cell.nameLabel.text = kidList[indexPath.row].name
+    cell.nameLabel.text = kids[indexPath.row].name
     cell.kidImageView.layer.cornerRadius = cell.kidImageView.frame.height / 2
     cell.kidImageView.layer.masksToBounds = true
     cell.kidImageView.layer.borderWidth = 8
@@ -101,12 +99,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowEditMenu" {
       let destinationController = segue.destinationViewController as? EditMenuViewController
-      destinationController?.kidList = self.kidList
+      destinationController?.kidList = self.kids
     } else if segue.identifier == "ShowEvents" {
       let destinationController = segue.destinationViewController as? EventsViewController
       let indexPath = self.collectionView.indexPathsForSelectedItems().first as! NSIndexPath
-      let kid = self.kidList[indexPath.row]
-      destinationController?.kidId = "\(kid.id)"
+      let kid = self.kids[indexPath.row]
+      destinationController?.kidId = "\(kid.kidID)"
       destinationController?.kidName = kid.name
     }
   }
@@ -116,7 +114,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       if error != nil {
         println("error reloading kid list")
       } else {
-        self.kidList = kidList!
+        self.kids = kidList!
         self.collectionView.reloadData()
       }
     }
@@ -128,10 +126,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
     
-    if kidList.count == 0 {
+    if kids.count == 0 {
       kidCount = 0
     } else {
-      kidCount = CGFloat(kidList.count)
+      kidCount = CGFloat(kids.count)
     }
     
     
@@ -164,7 +162,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   } // phoneButtonPressed
   
   func phoneCloserPressed(sender: AnyObject) {
-    var kidCount = CGFloat(kidList.count)
+    var kidCount = CGFloat(kids.count)
     let phoneMenuViewAndDoneHeight: CGFloat = ((self.view.frame.height) - (kidCount * kidNumberHeight) - doneButtonHeight)
     UIView.animateWithDuration(phoneInterval, animations: { () -> Void in
       self.phoneMenuContainer.frame.origin.y = self.view.frame.height + phoneMenuViewAndDoneHeight
@@ -177,11 +175,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCellWithIdentifier("phoneCell", forIndexPath: indexPath) as! PhoneTableViewCell
-    cell.Name.text = kidList[indexPath.row].name
-    cell.InsuranceID.text = kid[indexPath.row].insuranceId
+    cell.Name.text = kids[indexPath.row].name
+    cell.InsuranceID.text = kids[indexPath.row].insuranceId
     
     ///// NEds to be kidslist.
-    if let thephone = kidList[indexPath.row].phone {
+    if let thephone = kids[indexPath.row].nursePhone {
       cell.Phone.text = thephone
     } else {
       cell.Phone.text = "no phone number"
@@ -192,10 +190,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   } // cellForRowAtIndexPath
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return kidList.count
+    return kids.count
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kid[indexPath.row].nursePhone)")!)
+    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kids[indexPath.row].nursePhone)")!)
   } // didSelectRowAtIndexPath
 }
