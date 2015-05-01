@@ -40,7 +40,9 @@ class CrummyApiService {
           })
         }
       } else {
-        completionHandler(status)
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
       }
     })
     dataTask.resume()
@@ -162,7 +164,9 @@ class CrummyApiService {
           completionHandler(status)
         })
       } else {
-        completionHandler(status)
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
       }
     })
     dataTask.resume()
@@ -188,7 +192,9 @@ class CrummyApiService {
           completionHandler(status)
         })
         } else {
-        completionHandler(status)
+        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+          completionHandler(status)
+        })
       }
     })
     dataTask.resume()

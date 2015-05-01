@@ -14,10 +14,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var constraintContainerCenterY: NSLayoutConstraint!
+  @IBOutlet weak var constraintStatusViewCenterX: NSLayoutConstraint!
   
+  @IBOutlet weak var statusLabel: UILabel!
+  @IBOutlet weak var statusView: UIView!
   let crummyApiService = CrummyApiService()
   var bufferForSlidingLoginView: CGFloat = 70
   var animationDuration: Double = 0.2
+  let animationDurationLonger: Double = 0.5
   
   var tapGestureRecognizer: UITapGestureRecognizer?
   
@@ -37,10 +41,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
     self.crummyApiService.postLogin(username, password: password, completionHandler: { (status) -> (Void) in
       
       if status == "200" {
+          self.statusView.backgroundColor = UIColor.greenColor()
+          self.statusLabel.text = "Success"
+          self.constraintStatusViewCenterX.constant = 0
+          UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+            }, completion: { (finshed) -> Void in
+          })
         self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
       } else {
-        println("Error logging in \(status)")
-        // send error message to login screen here
+        self.statusView.backgroundColor = UIColor.redColor()
+        self.statusLabel.text = "Error creating user"
+        self.constraintStatusViewCenterX.constant = 0
+        UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
+          self.view.layoutIfNeeded()
+        })
       }
     })
   }

@@ -99,18 +99,40 @@
                                     <constraint firstItem="Iv4-Db-fdQ" firstAttribute="top" secondItem="fxC-jH-47V" secondAttribute="bottom" constant="28" id="tn3-98-nU0"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-ZL-x4n">
+                                <rect key="frame" x="-600" y="28" width="600" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaO-Mv-KV4">
+                                        <rect key="frame" x="267" y="9" width="66" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="oaO-Mv-KV4" secondAttribute="centerY" constant="0.5" id="5As-ck-fpx"/>
+                                    <constraint firstAttribute="height" constant="40" id="Jwt-XU-kJG"/>
+                                    <constraint firstAttribute="centerX" secondItem="oaO-Mv-KV4" secondAttribute="centerX" id="ixQ-oT-cQo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BbN-ZL-x4n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Iq7-0A-llG"/>
+                            <constraint firstItem="BbN-ZL-x4n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="MD6-B1-fTA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XDY-ef-CbG" secondAttribute="trailing" id="YTT-Le-qzO"/>
                             <constraint firstAttribute="centerY" secondItem="XDY-ef-CbG" secondAttribute="centerY" constant="18.5" id="o56-Zb-9fA"/>
                             <constraint firstItem="XDY-ef-CbG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qBW-3D-aBq"/>
+                            <constraint firstAttribute="centerX" secondItem="BbN-ZL-x4n" secondAttribute="centerX" constant="600" id="wE4-lG-adS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="constraintContainerCenterY" destination="o56-Zb-9fA" id="17e-Rs-GXf"/>
+                        <outlet property="constraintStatusViewCenterX" destination="wE4-lG-adS" id="a7H-Bd-lbg"/>
                         <outlet property="loginButton" destination="Iv4-Db-fdQ" id="kT1-4C-4lp"/>
                         <outlet property="passwordTextField" destination="fxC-jH-47V" id="9eI-MZ-wdK"/>
+                        <outlet property="statusLabel" destination="oaO-Mv-KV4" id="pa3-Az-dKX"/>
+                        <outlet property="statusView" destination="BbN-ZL-x4n" id="jmN-Ue-gfa"/>
                         <outlet property="usernameTextField" destination="PL7-xF-sFf" id="AMi-yT-hc2"/>
                         <segue destination="Lqm-OK-n69" kind="show" identifier="ShowHomeMenu" id="C4c-HT-tPk"/>
                     </connections>
@@ -875,6 +897,6 @@
         <image name="TemperatureButton" width="60" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C4c-HT-tPk"/>
+        <segue reference="J2D-g9-ZxQ"/>
     </inferredMetricsTieBreakers>
 </document>
