@@ -24,12 +24,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let titleSize: CGFloat = 26
   var kidCount: CGFloat = 0.0
   var kids = [Kid]()
+  let blurViewTag = 99
+  let animationDuration: Double = 0.3
   
   let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
   // find the Nib in the bundle.
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
+    super.viewDidLoad()
+    self.collectionView.dataSource = self
+    self.collectionView.delegate = self
+    
     self.navigationItem.hidesBackButton = true
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
     self.titleLabel.textAlignment = .Center
@@ -51,9 +57,37 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.collectionView.reloadData()
       }
     }
-    super.viewDidLoad()
-    self.collectionView.dataSource = self
-    self.collectionView.delegate = self
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResign", name: UIApplicationWillResignActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appBecameActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  
+  func appWillResign() {
+    if self.phoneMenuContainer != nil {
+      let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+      var blurView = UIVisualEffectView(effect: blurEffect)
+      blurView.tag = self.blurViewTag
+      blurView.frame = self.view.frame
+      self.phoneMenuContainer.addSubview(blurView)
+    }
+  }
+  
+  func appBecameActive() {
+    if self.phoneMenuContainer != nil {
+      let blurView = self.phoneMenuContainer.viewWithTag(self.blurViewTag)
+      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+        blurView?.removeFromSuperview()
+      })
+    }
   }
   
   @IBAction func logoutPressed(sender: UIBarButtonItem) {
@@ -63,9 +97,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let storyBoard = self.navigationController?.storyboard
     let login = storyboard?.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
     self.presentViewController(login, animated: true, completion: nil)
-    
   }
-  
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return kids.count

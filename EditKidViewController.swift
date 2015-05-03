@@ -21,6 +21,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   
+  let animationDuration: Double = 0.3
   let datePickerInterval: NSTimeInterval = 1.0
   let astheticSpacing: CGFloat = 8.0
   let datePickerHeight: CGFloat = 216.0
@@ -40,6 +41,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let titleFontSize: CGFloat = 26
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  let blurViewTag = 99
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
@@ -92,7 +94,35 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
     
     self.view.layoutIfNeeded()
+    
   } // viewDidLoad
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResign", name: UIApplicationWillResignActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appBecameActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  
+  func appWillResign() {
+    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+    var blurView = UIVisualEffectView(effect: blurEffect)
+    blurView.tag = self.blurViewTag
+    blurView.frame = self.view.frame
+    self.view.addSubview(blurView)
+  }
+  
+  func appBecameActive() {
+    let blurView = self.view.viewWithTag(self.blurViewTag)
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      blurView?.removeFromSuperview()
+    })
+  }
   
   // MARK: - Date Picker
   // func to set the date from the picker if no date is set.
