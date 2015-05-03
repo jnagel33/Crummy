@@ -44,7 +44,7 @@ class CrummyJsonParser {
       var insuranceId = jsonDictionary["insurance_id"] as? String
       var nursePhone = jsonDictionary["nurse_phone"] as? String
       var notes = jsonDictionary["notes"] as? String  // Add notes when Kid obbject updated
-      editMenuKid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId, theNursePhone: nursePhone, theNotes: notes, theKidID: id)
+      editMenuKid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId, theNursePhone: nursePhone, theNotes: notes!, theKidID: id)
     }
     return editMenuKid
   }
