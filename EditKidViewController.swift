@@ -36,6 +36,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let pickerCellIndexPath = 4
   let dateCellIndexPath = 1
   var kidImage: UIImage?
+  var kidFormattedBirthdate :String?
   var addKid = false
   let titleFontSize: CGFloat = 26
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
@@ -102,7 +103,10 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     dateFormatter.dateFormat = "dd-MM-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid!.DOBString = strDate
-    
+//    
+//    let theDate: NSDate = datePicker.date
+//    let stringDate = DateObject.convertddMMYYYYToString(theDate)
+//    
     self.birthdateLabel.text = selectedKid!.DOBString
     birthdateLabel.textColor = UIColor.blackColor()
   } // datePickerChanged
