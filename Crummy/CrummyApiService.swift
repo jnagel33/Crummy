@@ -200,7 +200,7 @@ class CrummyApiService {
     dataTask.resume()
   }
   
-  func postNewKid(name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?) -> Void) {
+  func postNewKid(name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?, String?) -> Void) {
     // url
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     let url = NSURL(string: requestUrl)
@@ -237,9 +237,17 @@ class CrummyApiService {
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       let status = self.statusResponse(response)
       println(status)
+      var error: NSError?
       if status == "201" || status == "200" {
+        if let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? [String: AnyObject], id = jsonObject["id"] as? Int {
+          let kidID = "\(id)"
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(kidID, status)
+          })
+        }
+      } else {
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(status)
+          completionHandler(nil, status)
         })
       }
     })
