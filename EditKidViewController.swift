@@ -156,7 +156,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     selectedKid!.insuranceId = self.insuranceTextField.text
 
     if addKid == true {
-      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (id, status) -> Void in
+        //println(self.selectedKid.notes)
         if status! == "201" || status! == "200" {
           // launch a popup signifying data saved.
           self.selectedKid?.kidID = id!
@@ -364,13 +365,33 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     picker.dismissViewControllerAnimated(true, completion: nil)
   }
   
-  //MARK:
-  //MARK: UIImageEncoding and Decoding
+  //MARK: Save Image
   
+  func saveImage(image: UIImage) {
+    if self.selectedKid != nil {
+      let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+      let documentsDirectoryPath = paths[0] as! String
+      let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+      var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      let imageData = UIImageJPEGRepresentation(image, 1)
+      let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
+      data[customImageLocation] = imageData
+      NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
+    }
+  }
   
+  //MARK: Load Image
   
-  
-  
-  
-  
+  func loadImage() {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let documentsDirectoryPath = paths[0] as! String
+    let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
+      if let imageData = savedData[customImageLocation] as? NSData {
+        self.kidImage = UIImage(data: imageData)
+      }
+    }
+  }
 }
