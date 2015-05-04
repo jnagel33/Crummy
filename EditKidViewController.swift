@@ -37,11 +37,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let pickerCellIndexPath = 4
   let dateCellIndexPath = 1
   var kidImage: UIImage?
+  var kidFormattedBirthdate :String?
   var addKid = false
   let titleFontSize: CGFloat = 26
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let blurViewTag = 99
+  
+  let thumbImageFile = "thumbImage.jpg"
+  let fullImageFile = "fullImage.jpg"
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
@@ -86,7 +90,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     // setup fields
     self.nameTextField.text = selectedKid!.name
-    self.birthdateLabel.text = selectedKid!.DOBString
+    
+    if let birthdate = selectedKid!.DOBString {
+      self.birthdateLabel.text = self.userDate(birthdate)
+    }
+    //self.birthdateLabel.text = self.userDate(selectedKid!.DOBString!)
     self.insuranceTextField.text = selectedKid!.insuranceId
     self.consultingNurseHotline.text = selectedKid!.nursePhone
     
@@ -133,8 +141,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     dateFormatter.dateFormat = "dd-MM-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid!.DOBString = strDate
+
     
-    self.birthdateLabel.text = selectedKid!.DOBString
+    if let birthdate = selectedKid!.DOBString {
+      self.birthdateLabel.text = self.userDate(birthdate)
+    }
     birthdateLabel.textColor = UIColor.blackColor()
   } // datePickerChanged
   
@@ -145,8 +156,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     selectedKid!.insuranceId = self.insuranceTextField.text
 
     if addKid == true {
-      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (id, status) -> Void in
-        //println(self.selectedKid.notes)
+      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
         if status! == "201" || status! == "200" {
           // launch a popup signifying data saved.
           self.selectedKid?.kidID = id!
@@ -154,13 +164,15 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
             self.saveImage(image)
           }
           self.navigationController?.popViewControllerAnimated(true)
+          
+              // Put in the NS encoding code here for the image ...
         }
       })
     } else {
       self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
         self.navigationController?.popViewControllerAnimated(true)
       })
-    }
+    } // else 
   }
 
   func pickerCloserPressed(sender: AnyObject) {
@@ -213,6 +225,19 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.pickerIsUp = true
     
   } // datePressed
+  
+  func userDate (theDate : String) -> (String){
+    var dateFormatter = NSDateFormatter()
+    var dateFormatter2 = NSDateFormatter()
+    var theDateObject = NSDate()
+    dateFormatter.dateFormat = "MMMM dd, YYYY"
+    dateFormatter2.dateFormat = "dd-MM-yyyy"
+    
+    theDateObject = dateFormatter2.dateFromString(theDate)!
+    
+    return dateFormatter.stringFromDate(theDateObject)
+    
+  }
   
   // MARK: - Text Fields
   
@@ -339,33 +364,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     picker.dismissViewControllerAnimated(true, completion: nil)
   }
   
-  //MARK: Save Image
+  //MARK:
+  //MARK: UIImageEncoding and Decoding
   
-  func saveImage(image: UIImage) {
-    if self.selectedKid != nil {
-      let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-      let documentsDirectoryPath = paths[0] as! String
-      let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
-      var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
-      let imageData = UIImageJPEGRepresentation(image, 1)
-      let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
-      data[customImageLocation] = imageData
-      NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
-    }
-  }
   
-  //MARK: Load Image
   
-  func loadImage() {
-    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-    let documentsDirectoryPath = paths[0] as! String
-    let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
-    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
-      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
-      let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
-      if let imageData = savedData[customImageLocation] as? NSData {
-        self.kidImage = UIImage(data: imageData)
-      }
-    }
-  }
+  
+  
+  
+  
 }
