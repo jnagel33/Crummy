@@ -70,7 +70,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
-  
   func appWillResign() {
     if self.phoneMenuContainer != nil {
       let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
@@ -110,19 +109,32 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.kidImageView.layer.masksToBounds = true
     cell.kidImageView.layer.borderWidth = 8
     cell.kidImageView.layer.borderColor = UIColor(patternImage: UIImage(named: "ImageViewBorder")!).CGColor
-    if indexPath.row == 0 {
-      cell.kidImageView.image = UIImage(named: "boy1")
-    } else if indexPath.row == 1 {
-      cell.kidImageView.image = UIImage(named: "culkin")
-    } else if indexPath.row == 2 {
-      cell.kidImageView.image = UIImage(named: "girl2")
-    } else if indexPath.row == 3 {
-      cell.kidImageView.image = UIImage(named: "girl")
+    let kid = self.kids[indexPath.row]
+    let image = self.loadImage(kid)
+    if let kidImage = image {
+      cell.kidImageView.image = self.loadImage(kid)
     } else {
-      cell.kidImageView.image = UIImage(named: "kid5")
+      cell.kidImageView.image = UIImage(named: "PersonPlaceholderImage")
     }
     
     return cell
+  }
+  
+  //MARK:
+  //MARK: Load Image
+  
+  func loadImage(kid: Kid) -> UIImage? {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let documentsDirectoryPath = paths[0] as! String
+    let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      let customImageLocation = "kid_photo_\(kid.kidID)"
+      if let imageData = savedData[customImageLocation] as? NSData {
+        return UIImage(data: imageData)
+      }
+    }
+    return nil
   }
   
     //MARK:
