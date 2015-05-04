@@ -21,6 +21,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var birthdateLabel: UILabel!
   @IBOutlet weak var dateButton: UIButton!
   
+  let animationDuration: Double = 0.3
   let datePickerInterval: NSTimeInterval = 1.0
   let astheticSpacing: CGFloat = 8.0
   let datePickerHeight: CGFloat = 216.0
@@ -41,6 +42,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let titleFontSize: CGFloat = 26
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
+  let blurViewTag = 99
   
   // person passed from the "list of people controller.
   var selectedKid : Kid?
@@ -53,6 +55,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.titleLabel.textColor = self.titleColor
     if let name = selectedKid?.name {
       self.titleLabel.text = "Edit"
+      self.loadImage()
     } else {
       self.titleLabel.text = "Add"
     }
@@ -93,7 +96,35 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
     
     self.view.layoutIfNeeded()
+    
   } // viewDidLoad
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResign", name: UIApplicationWillResignActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appBecameActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  
+  func appWillResign() {
+    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+    var blurView = UIVisualEffectView(effect: blurEffect)
+    blurView.tag = self.blurViewTag
+    blurView.frame = self.view.frame
+    self.view.addSubview(blurView)
+  }
+  
+  func appBecameActive() {
+    let blurView = self.view.viewWithTag(self.blurViewTag)
+    UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+      blurView?.removeFromSuperview()
+    })
+  }
   
   // MARK: - Date Picker
   // func to set the date from the picker if no date is set.
@@ -118,10 +149,14 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     selectedKid!.insuranceId = self.insuranceTextField.text
 
     if addKid == true {
-      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+      self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (id, status) -> Void in
         //println(self.selectedKid.notes)
         if status! == "201" || status! == "200" {
           // launch a popup signifying data saved.
+          self.selectedKid?.kidID = id!
+          if let image = self.kidImage {
+            self.saveImage(image)
+          }
           self.navigationController?.popViewControllerAnimated(true)
         }
       })
@@ -298,6 +333,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
     if let photo = info[UIImagePickerControllerEditedImage] as? UIImage {
       self.kidImage = photo
+      saveImage(photo)
     }
     tableView.reloadData()
     picker.dismissViewControllerAnimated(true, completion: nil)
@@ -307,4 +343,33 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     picker.dismissViewControllerAnimated(true, completion: nil)
   }
   
+  //MARK: Save Image
+  
+  func saveImage(image: UIImage) {
+    if self.selectedKid != nil {
+      let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+      let documentsDirectoryPath = paths[0] as! String
+      let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+      var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      let imageData = UIImageJPEGRepresentation(image, 1)
+      let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
+      data[customImageLocation] = imageData
+      NSKeyedArchiver.archiveRootObject(data, toFile: filePath)
+    }
+  }
+  
+  //MARK: Load Image
+  
+  func loadImage() {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let documentsDirectoryPath = paths[0] as! String
+    let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
+      if let imageData = savedData[customImageLocation] as? NSData {
+        self.kidImage = UIImage(data: imageData)
+      }
+    }
+  }
 }

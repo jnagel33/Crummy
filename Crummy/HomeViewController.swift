@@ -24,12 +24,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let titleSize: CGFloat = 26
   var kidCount: CGFloat = 0.0
   var kids = [Kid]()
+  let blurViewTag = 99
+  let animationDuration: Double = 0.3
   
   let phonePopoverAC = UIAlertController(title: "PhoneList", message: "Select a number to dial.", preferredStyle: UIAlertControllerStyle.ActionSheet)
   // find the Nib in the bundle.
   let phoneNib = UINib(nibName: "PhoneCellContainerView", bundle: NSBundle.mainBundle())
   
   override func viewDidLoad() {
+    super.viewDidLoad()
+    self.collectionView.dataSource = self
+    self.collectionView.delegate = self
+    
     self.navigationItem.hidesBackButton = true
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleSize)
     self.titleLabel.textAlignment = .Center
@@ -51,9 +57,36 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.collectionView.reloadData()
       }
     }
-    super.viewDidLoad()
-    self.collectionView.dataSource = self
-    self.collectionView.delegate = self
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appWillResign", name: UIApplicationWillResignActiveNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "appBecameActive", name: UIApplicationDidBecomeActiveNotification, object: nil)
+  }
+  
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  func appWillResign() {
+    if self.phoneMenuContainer != nil {
+      let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+      var blurView = UIVisualEffectView(effect: blurEffect)
+      blurView.tag = self.blurViewTag
+      blurView.frame = self.view.frame
+      self.phoneMenuContainer.addSubview(blurView)
+    }
+  }
+  
+  func appBecameActive() {
+    if self.phoneMenuContainer != nil {
+      let blurView = self.phoneMenuContainer.viewWithTag(self.blurViewTag)
+      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+        blurView?.removeFromSuperview()
+      })
+    }
   }
   
   @IBAction func logoutPressed(sender: UIBarButtonItem) {
@@ -63,9 +96,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let storyBoard = self.navigationController?.storyboard
     let login = storyboard?.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
     self.presentViewController(login, animated: true, completion: nil)
-    
   }
-  
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return kids.count
@@ -78,19 +109,32 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.kidImageView.layer.masksToBounds = true
     cell.kidImageView.layer.borderWidth = 8
     cell.kidImageView.layer.borderColor = UIColor(patternImage: UIImage(named: "ImageViewBorder")!).CGColor
-    if indexPath.row == 0 {
-      cell.kidImageView.image = UIImage(named: "boy1")
-    } else if indexPath.row == 1 {
-      cell.kidImageView.image = UIImage(named: "culkin")
-    } else if indexPath.row == 2 {
-      cell.kidImageView.image = UIImage(named: "girl2")
-    } else if indexPath.row == 3 {
-      cell.kidImageView.image = UIImage(named: "girl")
+    let kid = self.kids[indexPath.row]
+    let image = self.loadImage(kid)
+    if let kidImage = image {
+      cell.kidImageView.image = self.loadImage(kid)
     } else {
-      cell.kidImageView.image = UIImage(named: "kid5")
+      cell.kidImageView.image = UIImage(named: "PersonPlaceholderImage")
     }
     
     return cell
+  }
+  
+  //MARK:
+  //MARK: Load Image
+  
+  func loadImage(kid: Kid) -> UIImage? {
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    let documentsDirectoryPath = paths[0] as! String
+    let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      let customImageLocation = "kid_photo_\(kid.kidID)"
+      if let imageData = savedData[customImageLocation] as? NSData {
+        return UIImage(data: imageData)
+      }
+    }
+    return nil
   }
   
     //MARK:
