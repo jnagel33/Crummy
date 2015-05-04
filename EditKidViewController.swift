@@ -42,6 +42,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   
+  let thumbImageFile = "thumbImage.jpg"
+  let fullImageFile = "fullImage.jpg"
+  
   // person passed from the "list of people controller.
   var selectedKid : Kid?
   
@@ -84,7 +87,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     // setup fields
     self.nameTextField.text = selectedKid!.name
-    self.birthdateLabel.text = selectedKid!.DOBString
+    
+    if let birthdate = selectedKid!.DOBString {
+      self.birthdateLabel.text = self.userDate(birthdate)
+    }
+    //self.birthdateLabel.text = self.userDate(selectedKid!.DOBString!)
     self.insuranceTextField.text = selectedKid!.insuranceId
     self.consultingNurseHotline.text = selectedKid!.nursePhone
     
@@ -103,11 +110,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     dateFormatter.dateFormat = "dd-MM-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid!.DOBString = strDate
-//    
-//    let theDate: NSDate = datePicker.date
-//    let stringDate = DateObject.convertddMMYYYYToString(theDate)
-//    
-    self.birthdateLabel.text = selectedKid!.DOBString
+
+    
+    if let birthdate = selectedKid!.DOBString {
+      self.birthdateLabel.text = self.userDate(birthdate)
+    }
     birthdateLabel.textColor = UIColor.blackColor()
   } // datePickerChanged
   
@@ -119,17 +126,18 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
 
     if addKid == true {
       self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
-        //println(self.selectedKid.notes)
         if status! == "201" || status! == "200" {
           // launch a popup signifying data saved.
           self.navigationController?.popViewControllerAnimated(true)
+          
+              // Put in the NS encoding code here for the image ...
         }
       })
     } else {
       self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
         self.navigationController?.popViewControllerAnimated(true)
       })
-    }
+    } // else 
   }
 
   func pickerCloserPressed(sender: AnyObject) {
@@ -182,6 +190,19 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.pickerIsUp = true
     
   } // datePressed
+  
+  func userDate (theDate : String) -> (String){
+    var dateFormatter = NSDateFormatter()
+    var dateFormatter2 = NSDateFormatter()
+    var theDateObject = NSDate()
+    dateFormatter.dateFormat = "MMMM dd, YYYY"
+    dateFormatter2.dateFormat = "dd-MM-yyyy"
+    
+    theDateObject = dateFormatter2.dateFromString(theDate)!
+    
+    return dateFormatter.stringFromDate(theDateObject)
+    
+  }
   
   // MARK: - Text Fields
   
@@ -306,5 +327,14 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     picker.dismissViewControllerAnimated(true, completion: nil)
   }
+  
+  //MARK:
+  //MARK: UIImageEncoding and Decoding
+  
+  
+  
+  
+  
+  
   
 }
