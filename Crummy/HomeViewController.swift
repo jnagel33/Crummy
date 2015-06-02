@@ -16,7 +16,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   let kidNumberHeight: CGFloat = 50.0
   let doneButtonHeight: CGFloat = 25.0
   let astheticSpacing : CGFloat = 8.0
-  let phoneInterval : NSTimeInterval = 1.0
+  let phoneInterval : NSTimeInterval = 0.4
   let crummyApiService = CrummyApiService()
   var phoneMenuContainer : UIView!
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
