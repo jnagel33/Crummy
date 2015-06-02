@@ -169,7 +169,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
         }
       })
     } else {
-      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status, error) -> Void in
         self.navigationController?.popViewControllerAnimated(true)
       })
     } // else 

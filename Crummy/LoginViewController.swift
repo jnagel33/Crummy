@@ -38,9 +38,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
     let username = usernameTextField.text
     let password = passwordTextField.text
     
-    self.crummyApiService.postLogin(username, password: password, completionHandler: { (status) -> (Void) in
+    self.crummyApiService.postLogin(username, password: password, completionHandler: { (status, error) -> (Void) in
       
-      if status == "200" {
+      if status != nil {
           self.statusView.backgroundColor = UIColor.greenColor()
           self.statusLabel.text = "Success"
           self.constraintStatusViewCenterX.constant = 0
@@ -112,6 +112,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "Register" {
+      self.constraintStatusViewCenterX.constant = 600
+      UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+      })
       let destinationController = segue.destinationViewController as! UINavigationController
     let createUser = destinationController.viewControllers[0] as! CreateUserViewController
       createUser.delegate = self

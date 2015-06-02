@@ -12,7 +12,9 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   @IBOutlet weak var tableView: UITableView!
   
   let crummyApiService = CrummyApiService()
-  
+  let headerViewFrame: CGRect = CGRectMake(15, 0, 300, 30)
+  let headerFontSize: CGFloat = 23
+  let headerHeight: CGFloat = 32
   var kiddo: Kid!
   var kidList: [Kid]?
   let titleFontSize: CGFloat = 26
@@ -102,5 +104,23 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: cancelActionHandler)
     alertController.addAction(cancelAction)
     self.presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    var view = CustomHeaderView(width: self.view.frame.width)
+    var headerLabel = UILabel(frame: self.headerViewFrame)
+    headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+    headerLabel.textColor = UIColor.whiteColor()
+    headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.headerFontSize)
+    view.addSubview(headerLabel)
+    return view
+  }
+  
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return self.headerHeight
+  }
+  
+  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return "My Kids"
   }
 }
