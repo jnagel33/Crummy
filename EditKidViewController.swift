@@ -22,7 +22,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   @IBOutlet weak var dateButton: UIButton!
   
   let animationDuration: Double = 0.3
-  let datePickerInterval: NSTimeInterval = 1.0
+  let datePickerInterval: NSTimeInterval = 0.6
   let astheticSpacing: CGFloat = 8.0
   let datePickerHeight: CGFloat = 216.0
   let pickerViewHeight: CGFloat = 250
@@ -91,10 +91,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     // setup fields
     self.nameTextField.text = selectedKid!.name
     
-    if let birthdate = selectedKid!.DOBString {
-      self.birthdateLabel.text = self.userDate(birthdate)
+    if selectedKid!.DOBString != "" && selectedKid!.DOBString != nil {
+      self.birthdateLabel.text = self.userDate(selectedKid!.DOBString!)
     }
-    //self.birthdateLabel.text = self.userDate(selectedKid!.DOBString!)
     self.insuranceTextField.text = selectedKid!.insuranceId
     self.consultingNurseHotline.text = selectedKid!.nursePhone
     
@@ -170,7 +169,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
         }
       })
     } else {
-      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status) -> Void in
+      self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status, error) -> Void in
         self.navigationController?.popViewControllerAnimated(true)
       })
     } // else 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -82,7 +82,7 @@
                     </variation>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measurements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taV-j8-ZVD">
-                    <rect key="frame" x="195" y="84" width="93" height="12"/>
+                    <rect key="frame" x="195" y="80" width="93" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="zE9-CR-dDb"/>
                     </constraints>
@@ -104,20 +104,16 @@
                 <constraint firstItem="ee6-Xb-Wf1" firstAttribute="leading" secondItem="72L-eD-RFW" secondAttribute="trailing" constant="11" id="8EH-Lm-Pmi"/>
                 <constraint firstItem="ee6-Xb-Wf1" firstAttribute="top" secondItem="p5T-Sa-EkS" secondAttribute="top" constant="8" id="967-QJ-9xK"/>
                 <constraint firstItem="XQd-BD-iX0" firstAttribute="baseline" secondItem="uFG-0v-Pu6" secondAttribute="baseline" id="Aa1-QC-4Lv"/>
-                <constraint firstItem="LF0-Jm-SWg" firstAttribute="top" secondItem="p5T-Sa-EkS" secondAttribute="top" constant="27" id="Ekh-2s-P12"/>
                 <constraint firstAttribute="trailing" secondItem="LF0-Jm-SWg" secondAttribute="trailing" constant="8" id="FTT-44-ioI"/>
                 <constraint firstItem="XQd-BD-iX0" firstAttribute="leading" secondItem="72L-eD-RFW" secondAttribute="leading" id="H6C-mv-6sd"/>
                 <constraint firstItem="2v0-mx-vD7" firstAttribute="leading" secondItem="XQd-BD-iX0" secondAttribute="trailing" constant="8" symbolic="YES" id="MVg-NG-ynr"/>
                 <constraint firstItem="uFG-0v-Pu6" firstAttribute="top" secondItem="ee6-Xb-Wf1" secondAttribute="bottom" constant="11" id="Pqo-gA-p5V"/>
-                <constraint firstItem="72L-eD-RFW" firstAttribute="leading" secondItem="p5T-Sa-EkS" secondAttribute="leading" constant="59" id="UfY-Ly-ZBi"/>
-                <constraint firstItem="uFG-0v-Pu6" firstAttribute="top" secondItem="ee6-Xb-Wf1" secondAttribute="bottom" constant="11" id="XmG-AW-GyR"/>
                 <constraint firstItem="FRy-8i-GDJ" firstAttribute="leading" secondItem="p5T-Sa-EkS" secondAttribute="leading" constant="12" id="XuZ-pq-71q"/>
                 <constraint firstAttribute="centerY" secondItem="LF0-Jm-SWg" secondAttribute="centerY" id="YoC-1w-vFL"/>
-                <constraint firstItem="taV-j8-ZVD" firstAttribute="bottom" secondItem="p5T-Sa-EkS" secondAttribute="bottomMargin" constant="8" id="Z1j-H2-1oM"/>
+                <constraint firstItem="taV-j8-ZVD" firstAttribute="bottom" secondItem="p5T-Sa-EkS" secondAttribute="bottom" constant="-4" id="Z1j-H2-1oM"/>
                 <constraint firstItem="LF0-Jm-SWg" firstAttribute="trailing" secondItem="p5T-Sa-EkS" secondAttribute="trailingMargin" id="Z6M-ih-Cnq"/>
                 <constraint firstItem="uFG-0v-Pu6" firstAttribute="leading" secondItem="2v0-mx-vD7" secondAttribute="trailing" constant="8" symbolic="YES" id="a23-Ve-fGO"/>
                 <constraint firstItem="taV-j8-ZVD" firstAttribute="centerX" secondItem="p5T-Sa-EkS" secondAttribute="centerX" id="aum-mT-96b"/>
-                <constraint firstItem="2v0-mx-vD7" firstAttribute="top" secondItem="ee6-Xb-Wf1" secondAttribute="bottom" constant="7" id="dJd-SU-VGC"/>
                 <constraint firstItem="ee6-Xb-Wf1" firstAttribute="leading" secondItem="2v0-mx-vD7" secondAttribute="leading" id="eC7-RE-X6D"/>
                 <constraint firstItem="LF0-Jm-SWg" firstAttribute="leading" secondItem="ee6-Xb-Wf1" secondAttribute="trailing" constant="8" id="fDt-mr-cAY"/>
                 <constraint firstItem="72L-eD-RFW" firstAttribute="top" secondItem="p5T-Sa-EkS" secondAttribute="top" constant="12" id="flF-LK-l0s"/>
@@ -128,14 +124,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="UfY-Ly-ZBi"/>
-                    <exclude reference="dJd-SU-VGC"/>
-                    <exclude reference="XmG-AW-GyR"/>
-                    <exclude reference="Ekh-2s-P12"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="348.5" y="112"/>
         </view>
     </objects>
