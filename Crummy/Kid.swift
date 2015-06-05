@@ -56,10 +56,4 @@ class Kid {
     self.nursePhone = ""
     self.kidID = ""
   }
-  
-  func kidToString() -> () {
-    
-//    println("name: " + self.name + " DOBString: " + self.DOBString! + " insuranceID: " + self.insuranceId + " nursePhone: " + self.nursePhone + " notes: ")
-  }
-  
 }

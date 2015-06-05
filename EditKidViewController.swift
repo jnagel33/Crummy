@@ -156,7 +156,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
 
     if addKid == true {
       self.crummyApiService.postNewKid(selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (id, status) -> Void in
-        //println(self.selectedKid.notes)
         if status! == "201" || status! == "200" {
           // launch a popup signifying data saved.
           self.selectedKid?.kidID = id!
@@ -170,7 +169,16 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       })
     } else {
       self.crummyApiService.editKid(selectedKid!.kidID, name: selectedKid!.name, dobString: selectedKid!.DOBString, insuranceID: selectedKid!.insuranceId, nursePhone: selectedKid!.nursePhone, notes: selectedKid!.notes!, completionHandler: { (status, error) -> Void in
-        self.navigationController?.popViewControllerAnimated(true)
+        if let errorDescription = error {
+          let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
+          let okAction = UIAlertAction(title: "OK", style: .Default, handler: { (alert) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+          })
+          alertController.addAction(okAction)
+          self.presentViewController(alertController, animated: true, completion: nil)
+        } else {
+          self.navigationController?.popViewControllerAnimated(true)
+        }
       })
     } // else 
   }
@@ -268,9 +276,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 4:
       selectedKid!.notes = self.notesTextView!.text
     default:
-      println("no choice here!")
+      break
     } // switch
-    selectedKid!.kidToString()
     textField.resignFirstResponder()
   }
   
@@ -300,11 +307,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     case 4:
       return selectedKid!.notes = notesTextView.text
     default:
-      println("out of range")
+      break
     }
-    selectedKid!.kidToString()
-    
-    // println("got to end")
   } // getThisTextField
   
   func dismisKeyboard() {

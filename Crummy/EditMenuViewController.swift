@@ -37,8 +37,13 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   
   override func viewWillAppear(animated: Bool) {
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
-      if error != nil {
-        println("error reloading kid list")
+      if let errorDescription = error {
+        let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: { (alert) -> Void in
+          self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
       } else {
         self.kidList = kidList!
         self.tableView.reloadData()
@@ -90,7 +95,6 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
     let defaultActionHandler = { (action: UIAlertAction!) -> Void in
       self.kidList?.removeAtIndex(indexPath.row)
       tableView.deleteRowsAtIndexPaths(self.indexPaths!, withRowAnimation: .Automatic)
-      println("Deleteing kid with ID: \(idString)")
       self.crummyApiService.deleteKid(idString, completionHandler: { (error) -> (Void) in
       })
     }

@@ -103,7 +103,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     
     self.crummyApiService.getEvents(self.kidId!, completionHandler: { (events, error) -> (Void) in
       if error != nil {
-        println("error")
+        self.presentErrorAlert(error!)
       } else {
         if !events!.isEmpty {
           self.kid.events = events!
@@ -118,6 +118,15 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   //MARK:
   //MARK: Custom Methods
+  
+  func presentErrorAlert(error: String?) {
+      let alertController = UIAlertController(title: "An Error Occurred", message: error, preferredStyle: .Alert)
+      let okAction = UIAlertAction(title: "OK", style: .Default, handler: { (alert) -> Void in
+        self.dismissViewControllerAnimated(true, completion: nil)
+      })
+      alertController.addAction(okAction)
+      self.presentViewController(alertController, animated: true, completion: nil)
+  }
   
   @IBAction func eventTypePressed(sender: UIButton) {
     self.constraintButtonViewContainerBottom.constant += self.eventTypeContainerHeight
@@ -257,15 +266,13 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.tableView.reloadData()
       self.crummyApiService.editEvent(self.kidId!, event: event) { (event, error) -> (Void) in
         if error != nil {
-          println("fail")
-        } else {
-          println("success")
+          self.presentErrorAlert(error!)
         }
       }
     } else {
       self.crummyApiService.createEvent(self.kidId!, event: event) { (eventId, error) -> (Void) in
         if error != nil {
-          println("fail")
+          self.presentErrorAlert(error!)
         } else {
           if let id = eventId {
             event.id = id
@@ -315,7 +322,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         }
       }
     }
-    println(sections.count)
   }
   
   @IBAction func menuButtonPressed(sender: UIButton?) {
@@ -656,12 +662,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     let currentSection = indexPath.section
     self.crummyApiService.deleteEvent(self.kidId!, eventId: self.sections[currentSection][indexPath.row].id!) { (eventId, error) -> (Void) in
       if error != nil {
-        println("error occured")
-      } else {
-        if error != nil {
-          println("error on delete")
-        }
-        println("successful delete")
+        self.presentErrorAlert(error!)
       }
     }
     var section = self.sections[indexPath.section]

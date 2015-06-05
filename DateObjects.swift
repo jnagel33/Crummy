@@ -22,5 +22,5 @@ class DateObject {
     
     return stringDate
     
-  } //convertddMMYYYYToString
+  }
 }

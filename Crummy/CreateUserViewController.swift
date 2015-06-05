@@ -74,7 +74,6 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
           self.view.layoutIfNeeded()
         })
-        println("Error creating user \(status)")
         // send error message to login screen here
       }
     })

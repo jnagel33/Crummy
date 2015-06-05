@@ -23,8 +23,6 @@ class CrummyApiService {
     request.HTTPMethod = "POST"
     request.HTTPBody = data
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-    println("The request is: \(request)")
-    println("The body is: \(request.HTTPBody?.debugDescription)")
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
@@ -35,7 +33,6 @@ class CrummyApiService {
           if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
             let token = jsonDictionary["authentication_token"] as! String
             
-            println(token)
             NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
             NSUserDefaults.standardUserDefaults().synchronize()
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -111,7 +108,6 @@ class CrummyApiService {
     
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
-    println(id)
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
     let request = NSMutableURLRequest(URL: url!)
@@ -164,8 +160,6 @@ class CrummyApiService {
     request.HTTPBody = data
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      print("retrieved token: ")
-      println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
@@ -243,15 +237,12 @@ class CrummyApiService {
     
     // token
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      print("retrieved token: ")
-      println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     //post
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       let status = self.statusResponse(response)
-      println(status)
       var error: NSError?
       if status == "201" || status == "200" {
         if let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? [String: AnyObject], id = jsonObject["id"] as? Int {
@@ -276,8 +267,6 @@ class CrummyApiService {
     
     let request = NSMutableURLRequest(URL: url!)
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      print("retrieved token: ")
-      println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -286,7 +275,6 @@ class CrummyApiService {
         
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
-          println(httpResponse.statusCode)
           if httpResponse.statusCode == 200 {
             let events = CrummyJsonParser.parseEvents(data)
             
@@ -310,10 +298,9 @@ class CrummyApiService {
     request.setValue("Token token=nvZPt85uUZKh3itdoQkz", forHTTPHeaderField: "Authorization")
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        println("error")
+        completionHandler(nil, error.description)
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
-          println(httpResponse.statusCode)
           if httpResponse.statusCode == 204 {
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(eventId, nil)
@@ -361,16 +348,13 @@ class CrummyApiService {
     request.HTTPBody = data
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      print("retrieved token: ")
-      println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        println("error")
+        completionHandler(nil, error.description)
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
-          println(httpResponse.statusCode)
           if httpResponse.statusCode == 201 {
             if data != nil {
               if let id = CrummyJsonParser.getEventId(data) {
@@ -422,16 +406,13 @@ class CrummyApiService {
     request.HTTPBody = data
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      print("retrieved token: ")
-      println(token)
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        println("error")
+        completionHandler(nil, error.description)
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
-          println(httpResponse.statusCode)
           if httpResponse.statusCode == 200 {
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(event, nil)
