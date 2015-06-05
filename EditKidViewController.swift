@@ -334,13 +334,26 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     if indexPath.row == self.pickerCellIndexPath {
-      if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+      let alertController = UIAlertController(title: "Add a Photo", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+      let addExistingPhotoAction = UIAlertAction(title: "Add an Existing Photo", style: .Default, handler: { (alert) -> Void in
         var imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePickerController.allowsEditing = true
         self.presentViewController(imagePickerController, animated: true, completion: nil)
+      })
+      alertController.addAction(addExistingPhotoAction)
+      if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        let takePhotoAction = UIAlertAction(title: "Take a Photo", style: .Default, handler: { (alert) -> Void in
+          var imagePickerController = UIImagePickerController()
+          imagePickerController.delegate = self
+          imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+          imagePickerController.allowsEditing = true
+          self.presentViewController(imagePickerController, animated: true, completion: nil)
+        })
+        alertController.addAction(takePhotoAction)
       }
+      self.presentViewController(alertController, animated: true, completion: nil)
     } else if indexPath.row == self.dateCellIndexPath {
       if !pickerIsUp {
         self.datePressed()
