@@ -13,10 +13,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   @IBOutlet weak var buttonContainerView: UIView!
   @IBOutlet weak var collectionView: UICollectionView!
   
-  let kidNumberHeight: CGFloat = 50.0
+  let kidNumberHeight: CGFloat = 100
   let doneButtonHeight: CGFloat = 25.0
   let astheticSpacing : CGFloat = 8.0
-  let phoneInterval : NSTimeInterval = 1.0
+  let phoneInterval : NSTimeInterval = 0.4
   let crummyApiService = CrummyApiService()
   var phoneMenuContainer : UIView!
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
@@ -169,7 +169,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBAction func phoneButtonPressed(sender: AnyObject) {
     // adding table view properties for the phone table view popover.
-    
     if kids.count == 0 {
       kidCount = 0
     } else {
@@ -238,6 +237,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   } // numberOfRowsInSection
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(kids[indexPath.row].nursePhone)")!)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    if let nursePhone = self.kids[indexPath.row].nursePhone {
+      UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(nursePhone)")!)
+    }
   } // didSelectRowAtIndexPath
+  
+  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 100
+  }
 }

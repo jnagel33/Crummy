@@ -12,21 +12,6 @@ import UIKit
 class DateObject {
   
   var dateFormatter = NSDateFormatter()
- 
-  
-  
-  // we want to convert "dd-MM-yyyy" to "MMMM-dd-YYYY"
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   // we want to convert a string to "dd-MM-yyyy"
   

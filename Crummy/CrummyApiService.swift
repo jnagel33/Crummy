@@ -13,7 +13,7 @@ class CrummyApiService {
   
   let baseUrl = "http://crummy.herokuapp.com/api/v1"
   
-  func postLogin(username: String, password: String, completionHandler: (String?) -> (Void)) {
+  func postLogin(username: String, password: String, completionHandler: (String?, String?) -> (Void)) {
     
     let url = "http://crummy.herokuapp.com/api/v1/sessions"
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
@@ -27,28 +27,32 @@ class CrummyApiService {
     println("The body is: \(request.HTTPBody?.debugDescription)")
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      let status = self.statusResponse(response)
-      if status == "200" {
-        if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
-          let token = jsonDictionary["authentication_token"] as! String
-          
-          println(token)
-          NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
-          NSUserDefaults.standardUserDefaults().synchronize()
+      if error != nil {
+        completionHandler(nil, error.description)
+      } else {
+        let status = self.statusResponse(response)
+        if status == "200" {
+          if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
+            let token = jsonDictionary["authentication_token"] as! String
+            
+            println(token)
+            NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              completionHandler(status, nil)
+            })
+          }
+        } else {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            completionHandler(status)
+            completionHandler(nil, status)
           })
         }
-      } else {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(status)
-        })
       }
     })
     dataTask.resume()
   }
   
-  func createNewUser(username: String, password: String, completionHandler: (String?) -> (Void)) {
+  func createNewUser(username: String, password: String, completionHandler: (String?, String?) -> (Void)) {
     
     let url = "http://crummy.herokuapp.com/api/v1/users"
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
@@ -60,16 +64,19 @@ class CrummyApiService {
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      let status = self.statusResponse(response)
-      if status == "200" {
-        
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(status)
-        })
+      if error != nil {
+        completionHandler(nil, error.description)
       } else {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(status)
-        })
+        let status = self.statusResponse(response)
+        if status == "200" {
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(status, nil)
+          })
+        } else {
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(nil, status)
+          })
+        }
       }
     })
     dataTask.resume()
@@ -85,14 +92,16 @@ class CrummyApiService {
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      
-      let status = self.statusResponse(response)
-      if status == "200" {
-        let parsedKids = CrummyJsonParser.parseJsonListKid(data)
-
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    completionHandler(parsedKids, nil)
-        })
+      if error != nil {
+        completionHandler(nil, error.description)
+      } else {
+        let status = self.statusResponse(response)
+        if status == "200" {
+          let parsedKids = CrummyJsonParser.parseJsonListKid(data)
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              completionHandler(parsedKids, nil)
+          })
+        }
       }
     })
     dataTask.resume()
@@ -110,21 +119,24 @@ class CrummyApiService {
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      
-      if let httpResponse = response as? NSHTTPURLResponse {
-        if httpResponse.statusCode == 200 {
+      if error != nil {
+        completionHandler(nil, error.description)
+      } else {
+        let status = self.statusResponse(response)
+        if status == "200" {
           let editMenuKid = CrummyJsonParser.parseJsonGetKid(data)
-          
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(editMenuKid, nil)
           })
+        } else {
+          completionHandler(nil,status)
         }
       }
     })
     dataTask.resume()
   }
   
-  func editKid(id: String, name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?) -> Void) {
+  func editKid(id: String, name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?, String?) -> Void) {
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
     let requestUrl = kidIdUrl + queryString
@@ -157,16 +169,19 @@ class CrummyApiService {
       request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      let status = self.statusResponse(response)
-      if status == "200" {
-        
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(status)
-        })
+      if error != nil {
+        completionHandler(nil, error.description)
       } else {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(status)
-        })
+        let status = self.statusResponse(response)
+        if status == "200" {
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(status, nil)
+          })
+        } else {
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(nil, status)
+          })
+        }
       }
     })
     dataTask.resume()

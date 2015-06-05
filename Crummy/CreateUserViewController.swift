@@ -55,9 +55,9 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
     let username = usernameTextField.text
     let password = passwordTextField.text
     
-    self.crummyApiService.createNewUser(username, password: password, completionHandler: { (status) -> (Void) in
+    self.crummyApiService.createNewUser(username, password: password, completionHandler: { (status, error) -> (Void) in
       
-      if status == "200" {
+      if status != nil {
         self.statusView.backgroundColor = UIColor.greenColor()
         self.statusLabel.text = "Success"
         self.constraintStatusViewCenterX.constant = 0
