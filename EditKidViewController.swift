@@ -204,6 +204,13 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     datePicker = UIDatePicker(frame: CGRect(x: 0, y: doneButtonHeight, width: pickerView.frame.width, height: datePickerHeight))
     datePicker.datePickerMode = UIDatePickerMode.Date
     datePicker.backgroundColor = UIColor.lightGrayColor()
+    if let birthDate = self.selectedKid?.DOBString {
+      if birthDate != "" {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        datePicker.date = dateFormatter.dateFromString(birthDate)!
+      }
+    }
     
     // its off screen.
     pickerView.addSubview(datePicker)
