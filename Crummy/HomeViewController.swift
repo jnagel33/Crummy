@@ -50,8 +50,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.buttonContainerView.backgroundColor = buttonBar
     
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
-      if error != nil {
-        println("error getting kid list")
+      if let errorDescription = error {
+        let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: { (alert) -> Void in
+          self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
       } else {
         self.kids = kidList!
         self.collectionView.reloadData()
@@ -155,8 +160,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   override func viewWillAppear(animated: Bool) {
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
-      if error != nil {
-        println("error reloading kid list")
+      if let errorDescription = error {
+        let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: { (alert) -> Void in
+          self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
       } else {
         self.kids = kidList!
         self.collectionView.reloadData()
