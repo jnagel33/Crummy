@@ -395,7 +395,11 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
       let documentsDirectoryPath = paths[0] as! String
       let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
-      var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+      //var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String: AnyObject]
+      var data = [String: AnyObject]()
+      if let dataObj = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String: AnyObject]  {
+        data = dataObj
+      }
       let imageData = UIImageJPEGRepresentation(image, 1)
       let customImageLocation = "kid_photo_\(self.selectedKid!.kidID)"
       data[customImageLocation] = imageData
