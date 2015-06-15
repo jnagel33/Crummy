@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15A178w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -14,14 +14,19 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2V0-Wd-F6V" id="28I-jw-hNm">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gV-Yr-n85">
-                        <rect key="frame" x="8" y="27" width="87" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gV-Yr-n85">
+                        <rect key="frame" x="8" y="27" width="87" height="21.5"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="87" id="y5i-73-USw"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneButton" translatesAutoresizingMaskIntoConstraints="NO" id="NhP-r2-1R5">
                         <rect key="frame" x="333" y="12" width="37" height="52"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="37" id="lsG-qN-SLf"/>
                             <constraint firstAttribute="height" constant="52" id="sYX-bw-7LQ"/>
@@ -31,13 +36,15 @@
                         <rect key="frame" x="103" y="14" width="222" height="47"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insurance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPv-5t-d2g">
-                                <rect key="frame" x="20" y="6" width="75" height="21"/>
+                                <rect key="frame" x="0.0" y="6" width="122.5" height="21"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fax-iQ-ZYV">
-                                <rect key="frame" x="20" y="29" width="75" height="15"/>
+                                <rect key="frame" x="0.0" y="29" width="122" height="15"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="d6b-zX-ZuH"/>
                                 </constraints>
@@ -46,37 +53,41 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nurse Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jo-GM-cVa">
-                                <rect key="frame" x="110" y="29" width="92" height="15"/>
+                                <rect key="frame" x="130" y="29" width="92" height="15"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insurance ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ea-TM-SwA">
-                                <rect key="frame" x="110" y="6" width="92" height="20"/>
+                                <rect key="frame" x="130" y="6" width="91.5" height="20"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8jo-GM-cVa" firstAttribute="top" secondItem="8ea-TM-SwA" secondAttribute="bottom" constant="3" id="7k6-Ek-JMN"/>
-                            <constraint firstItem="SPv-5t-d2g" firstAttribute="leading" secondItem="mo6-yV-ygg" secondAttribute="leading" constant="20" id="HHj-Xd-yvh"/>
-                            <constraint firstAttribute="trailing" secondItem="8ea-TM-SwA" secondAttribute="trailing" constant="20" id="ILM-Fx-Ent"/>
+                            <constraint firstItem="SPv-5t-d2g" firstAttribute="leading" secondItem="mo6-yV-ygg" secondAttribute="leading" id="HHj-Xd-yvh"/>
+                            <constraint firstAttribute="trailing" secondItem="8ea-TM-SwA" secondAttribute="trailing" id="ILM-Fx-Ent"/>
                             <constraint firstItem="Fax-iQ-ZYV" firstAttribute="top" secondItem="SPv-5t-d2g" secondAttribute="bottom" constant="2" id="MC7-RV-2Vc"/>
                             <constraint firstItem="8ea-TM-SwA" firstAttribute="top" secondItem="mo6-yV-ygg" secondAttribute="top" constant="6" id="PWZ-zB-Ut1"/>
-                            <constraint firstItem="Fax-iQ-ZYV" firstAttribute="leading" secondItem="mo6-yV-ygg" secondAttribute="leading" constant="20" id="Pgj-LW-rgj"/>
+                            <constraint firstItem="Fax-iQ-ZYV" firstAttribute="leading" secondItem="mo6-yV-ygg" secondAttribute="leading" id="Pgj-LW-rgj"/>
                             <constraint firstItem="8jo-GM-cVa" firstAttribute="leading" secondItem="8ea-TM-SwA" secondAttribute="leading" id="WTR-d6-gU9"/>
                             <constraint firstItem="Fax-iQ-ZYV" firstAttribute="firstBaseline" secondItem="8jo-GM-cVa" secondAttribute="firstBaseline" id="dv8-rk-W5S"/>
-                            <constraint firstItem="8ea-TM-SwA" firstAttribute="leading" secondItem="SPv-5t-d2g" secondAttribute="trailing" constant="15" id="h6y-K1-bv7"/>
-                            <constraint firstAttribute="trailing" secondItem="8jo-GM-cVa" secondAttribute="trailing" constant="20" id="hnM-li-I2x"/>
+                            <constraint firstItem="8ea-TM-SwA" firstAttribute="leading" secondItem="SPv-5t-d2g" secondAttribute="trailing" constant="8" id="h6y-K1-bv7"/>
+                            <constraint firstAttribute="trailing" secondItem="8jo-GM-cVa" secondAttribute="trailing" id="hnM-li-I2x"/>
                             <constraint firstItem="8jo-GM-cVa" firstAttribute="baseline" secondItem="Fax-iQ-ZYV" secondAttribute="baseline" id="jtR-ep-QQO"/>
-                            <constraint firstItem="8jo-GM-cVa" firstAttribute="leading" secondItem="Fax-iQ-ZYV" secondAttribute="trailing" constant="15" id="mwb-kL-XVV"/>
+                            <constraint firstItem="8jo-GM-cVa" firstAttribute="leading" secondItem="Fax-iQ-ZYV" secondAttribute="trailing" constant="8" id="mwb-kL-XVV"/>
                             <constraint firstItem="SPv-5t-d2g" firstAttribute="top" secondItem="mo6-yV-ygg" secondAttribute="top" constant="6" id="t2U-xQ-g4A"/>
                             <constraint firstAttribute="bottom" secondItem="Fax-iQ-ZYV" secondAttribute="bottom" constant="3" id="uUB-8e-Btl"/>
                         </constraints>
                     </view>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="0gV-Yr-n85" secondAttribute="centerY" id="32l-Kl-VLS"/>
                     <constraint firstItem="0gV-Yr-n85" firstAttribute="leading" secondItem="28I-jw-hNm" secondAttribute="leadingMargin" id="C47-VC-dqD"/>
@@ -88,7 +99,13 @@
                     <constraint firstAttribute="centerY" secondItem="mo6-yV-ygg" secondAttribute="centerY" id="gSn-38-oDn"/>
                     <constraint firstItem="mo6-yV-ygg" firstAttribute="leading" secondItem="0gV-Yr-n85" secondAttribute="trailing" constant="8" id="oFP-8P-5c9"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="bOK-ES-VMh"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="InsuranceID" destination="8ea-TM-SwA" id="lLz-VG-Py0"/>
                 <outlet property="Name" destination="0gV-Yr-n85" id="PEE-cm-D1A"/>
