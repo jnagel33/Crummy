@@ -103,24 +103,39 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     cellNib = UINib(nibName: "SymptomsTableViewCell", bundle: NSBundle.mainBundle())
     self.tableView.registerNib(cellNib, forCellReuseIdentifier: "SymptomCell")
     
-    self.crummyApiService.getEvents(self.kidId!, completionHandler: { (events, error) -> (Void) in
-      if error != nil {
-        self.presentErrorAlert(error!)
-      } else {
-        if !events!.isEmpty {
-          self.kid.events = events!
-          self.getSections(true)
-          self.tableView.reloadData()
-          self.activityIndicator.stopAnimating()
-        }
-      }
-    })
+    self.getEventsByType(nil)
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
   }
   
   //MARK:
   //MARK: Custom Methods
+  
+  func getEventsByType(type: EventType?) {
+    self.crummyApiService.getEvents(self.kidId!, completionHandler: { (events, error) -> (Void) in
+      if error != nil {
+        self.presentErrorAlert(error!)
+      } else {
+        if !events!.isEmpty {
+          var filteredEvents = [Event]()
+          if let eventType = type {
+            for event in events! {
+              if event.type == eventType {
+                filteredEvents.append(event)
+                self.titleLabel.text = "\(eventType.description()) - \(self.kidName!)"
+              }
+            }
+            self.kid.events = filteredEvents
+          } else {
+            self.kid.events = events!
+          }
+          self.getSections(true)
+          self.tableView.reloadData()
+          self.activityIndicator.stopAnimating()
+        }
+      }
+    })
+  }
   
   func presentErrorAlert(error: String?) {
       let alertController = UIAlertController(title: "An Error Occurred", message: error, preferredStyle: .Alert)
