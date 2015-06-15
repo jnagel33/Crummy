@@ -9,6 +9,7 @@ import UIKit
 
 class EditMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var tableView: UITableView!
   
   let crummyApiService = CrummyApiService()
@@ -36,6 +37,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   override func viewWillAppear(animated: Bool) {
+    self.activityIndicator.startAnimating()
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if let errorDescription = error {
         let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
@@ -47,6 +49,7 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
       } else {
         self.kidList = kidList!
         self.tableView.reloadData()
+        self.activityIndicator.stopAnimating()
       }
     }
   }

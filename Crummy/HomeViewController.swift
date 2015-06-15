@@ -12,6 +12,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBOutlet weak var buttonContainerView: UIView!
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   let kidNumberHeight: CGFloat = 100
   let doneButtonHeight: CGFloat = 25.0
@@ -51,6 +52,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var buttonBar = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
     self.buttonContainerView.backgroundColor = buttonBar
     
+    self.activityIndicator.startAnimating()
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if let errorDescription = error {
         let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
@@ -62,6 +64,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       } else {
         self.kids = kidList!
         self.collectionView.reloadData()
+        self.activityIndicator.stopAnimating()
       }
     }
   }
@@ -161,6 +164,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   override func viewWillAppear(animated: Bool) {
+    self.activityIndicator.startAnimating()
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if let errorDescription = error {
         let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
@@ -172,6 +176,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       } else {
         self.kids = kidList!
         self.collectionView.reloadData()
+        self.activityIndicator.stopAnimating()
       }
     }
   }
