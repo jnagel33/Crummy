@@ -196,7 +196,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     // adding the phone menu view
     let phoneMenuViewHeight: CGFloat =  CGFloat(kidCount * kidNumberHeight)
     var phoneMenuView = UITableView(frame: CGRect(x: 0, y: doneButtonHeight + astheticSpacing, width: phoneMenuContainer.frame.width, height: phoneMenuViewHeight))
-    //phoneMenuView.backgroundColor = UIColor.lightGrayColor()
     phoneMenuView.registerNib(phoneNib, forCellReuseIdentifier: "phoneCell")
     phoneMenuContainer.addSubview(phoneMenuView)
     phoneMenuView.delegate = self

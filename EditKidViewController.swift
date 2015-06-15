@@ -163,8 +163,6 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
             self.saveImage(image)
           }
           self.navigationController?.popViewControllerAnimated(true)
-          
-              // Put in the NS encoding code here for the image ...
         }
       })
     } else {
