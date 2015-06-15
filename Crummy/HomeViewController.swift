@@ -12,9 +12,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   @IBOutlet weak var buttonContainerView: UIView!
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   let kidNumberHeight: CGFloat = 100
-  let doneButtonHeight: CGFloat = 25.0
+  let doneButtonHeight: CGFloat = 30.0
   let astheticSpacing : CGFloat = 8.0
   let phoneInterval : NSTimeInterval = 0.4
   let crummyApiService = CrummyApiService()
@@ -42,6 +43,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.titleLabel.textColor = self.titleColor
     titleLabel.text = "Home"
     self.navigationItem.titleView = self.titleLabel
+    let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    self.navigationItem.backBarButtonItem = backButton
     
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
@@ -49,6 +52,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var buttonBar = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
     self.buttonContainerView.backgroundColor = buttonBar
     
+    self.activityIndicator.startAnimating()
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if let errorDescription = error {
         let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
@@ -60,6 +64,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       } else {
         self.kids = kidList!
         self.collectionView.reloadData()
+        self.activityIndicator.stopAnimating()
       }
     }
   }

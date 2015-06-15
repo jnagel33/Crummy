@@ -43,6 +43,9 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let blurViewTag = 99
+  let nameCellIndexPath = 0
+  let insuranceCellIndexPath = 2
+  let phoneCellIndexPath = 3
   
   let thumbImageFile = "thumbImage.jpg"
   let fullImageFile = "fullImage.jpg"
@@ -352,6 +355,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
         self.presentViewController(imagePickerController, animated: true, completion: nil)
       })
       alertController.addAction(addExistingPhotoAction)
+      let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+      alertController.addAction(cancelAction)
       if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
         let takePhotoAction = UIAlertAction(title: "Take a Photo", style: .Default, handler: { (alert) -> Void in
           var imagePickerController = UIImagePickerController()
@@ -367,6 +372,12 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       if !pickerIsUp {
         self.datePressed()
       }
+    } else if indexPath.row == self.nameCellIndexPath {
+      self.nameTextField.becomeFirstResponder()
+    } else if indexPath.row == self.insuranceCellIndexPath {
+      self.insuranceTextField.becomeFirstResponder()
+    } else if indexPath.row == self.phoneCellIndexPath {
+      self.consultingNurseHotline.becomeFirstResponder()
     }
   }
   
