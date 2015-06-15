@@ -42,6 +42,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     self.titleLabel.textColor = self.titleColor
     titleLabel.text = "Home"
     self.navigationItem.titleView = self.titleLabel
+    let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+    self.navigationItem.backBarButtonItem = backButton
     
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
