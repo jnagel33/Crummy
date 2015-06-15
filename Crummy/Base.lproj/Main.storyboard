@@ -524,10 +524,16 @@
                                     <constraint firstItem="R7k-mT-b5Y" firstAttribute="top" secondItem="wt9-oY-btR" secondAttribute="top" id="uvo-ET-69i"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="766-YP-kcj">
+                                <rect key="frame" x="281" y="281" width="37" height="37"/>
+                                <animations/>
+                                <color key="color" red="0.035294117649999998" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="766-YP-kcj" secondAttribute="centerX" id="1bs-5r-4Sr"/>
                             <constraint firstItem="7py-RF-an2" firstAttribute="width" secondItem="tJI-9L-Nwi" secondAttribute="height" multiplier="1:60" id="3dl-8y-4nP"/>
                             <constraint firstItem="Y1Z-7w-1oz" firstAttribute="leading" secondItem="hui-bZ-FkA" secondAttribute="trailing" id="59Z-j6-X4I"/>
                             <constraint firstItem="wt9-oY-btR" firstAttribute="bottom" secondItem="YiM-mG-ok5" secondAttribute="top" id="B7v-sM-omU"/>
@@ -537,6 +543,7 @@
                             <constraint firstItem="hui-bZ-FkA" firstAttribute="top" secondItem="DPh-n6-nBm" secondAttribute="bottom" id="JsQ-WZ-IXN"/>
                             <constraint firstItem="wt9-oY-btR" firstAttribute="top" secondItem="7py-RF-an2" secondAttribute="bottom" id="PVM-TW-0dY"/>
                             <constraint firstAttribute="width" secondItem="wt9-oY-btR" secondAttribute="width" id="S4E-eK-3Bb"/>
+                            <constraint firstAttribute="centerY" secondItem="766-YP-kcj" secondAttribute="centerY" id="XcL-bu-qOI"/>
                             <constraint firstItem="Y1Z-7w-1oz" firstAttribute="centerX" secondItem="wt9-oY-btR" secondAttribute="centerX" id="ZfU-65-Sfn"/>
                             <constraint firstItem="7py-RF-an2" firstAttribute="top" secondItem="hui-bZ-FkA" secondAttribute="top" id="bCk-dG-zH1"/>
                             <constraint firstItem="wt9-oY-btR" firstAttribute="top" secondItem="Y1Z-7w-1oz" secondAttribute="bottom" id="fCP-p2-aZ9"/>
@@ -554,6 +561,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="766-YP-kcj" id="eOO-Oa-eIc"/>
                         <outlet property="buttonContainerView" destination="wt9-oY-btR" id="gzb-gP-vm4"/>
                         <outlet property="collectionView" destination="Y1Z-7w-1oz" id="Akr-pQ-yub"/>
                     </connections>
@@ -726,8 +734,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lkN-V2-Veq">
+                                <rect key="frame" x="290" y="290" width="37" height="37"/>
+                                <animations/>
+                                <color key="color" red="0.035294117649999998" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XKx-RN-w5c">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -748,7 +761,7 @@
                             <constraint firstAttribute="trailing" secondItem="XKx-RN-w5c" secondAttribute="trailing" id="7s6-Ut-1Ep"/>
                             <constraint firstItem="XKx-RN-w5c" firstAttribute="leading" secondItem="dHc-lA-dky" secondAttribute="leading" id="efU-2f-YWi"/>
                             <constraint firstItem="6YG-mY-ips" firstAttribute="top" secondItem="XKx-RN-w5c" secondAttribute="bottom" id="l0G-mq-0QA"/>
-                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="dHc-lA-dky" secondAttribute="top" id="lVl-kw-yJs"/>
+                            <constraint firstItem="XKx-RN-w5c" firstAttribute="top" secondItem="zA8-nm-j8m" secondAttribute="bottom" id="sIm-um-FWq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Menu" id="Ci2-dW-02U">
@@ -759,6 +772,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="lkN-V2-Veq" id="dAP-7q-ZQt"/>
                         <outlet property="tableView" destination="XKx-RN-w5c" id="eM6-a3-mPq"/>
                         <segue destination="1ot-Hc-qO2" kind="show" identifier="ShowEditKidVC" id="AR7-kD-2UM"/>
                     </connections>
