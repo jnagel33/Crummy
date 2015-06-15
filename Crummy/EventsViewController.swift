@@ -32,6 +32,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   @IBOutlet weak var eventTypeContainerView: UIView!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var datePicker: UIDatePicker!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   let crummyApiService = CrummyApiService()
   let medicationContainerViewHeight: CGFloat = 75
@@ -78,6 +79,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.activityIndicator.startAnimating()
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.dataSource = self
@@ -109,6 +111,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
           self.kid.events = events!
           self.getSections(true)
           self.tableView.reloadData()
+          self.activityIndicator.stopAnimating()
         }
       }
     })
@@ -276,16 +279,16 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         } else {
           if let id = eventId {
             event.id = id
-            if self.allEvents.count > 0 {
-              self.sections[0].insert(event, atIndex: 0)
-            } else {
-              self.sections.append([event])
-            }
-            self.getSections(false)
-            self.tableView.reloadData()
           }
         }
       }
+      if self.allEvents.count > 0 {
+        self.sections[0].insert(event, atIndex: 0)
+      } else {
+        self.sections.append([event])
+      }
+      self.getSections(false)
+      self.tableView.reloadData()
     }
   }
 

@@ -587,6 +587,11 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="AoU-jr-cuW">
+                                <rect key="frame" x="281.5" y="281.5" width="37" height="37"/>
+                                <animations/>
+                                <color key="color" red="0.054901960780000002" green="0.18039215689999999" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlp-Yh-99Z">
                                 <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <animations/>
@@ -689,6 +694,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="lo1-me-uIh" secondAttribute="trailing" constant="-16" id="9iP-tf-vhL"/>
                             <constraint firstItem="uXW-r5-0g2" firstAttribute="top" secondItem="feh-X8-jYW" secondAttribute="bottom" id="C4q-Xf-s9X"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="H1J-oO-PB5"/>
+                            <constraint firstAttribute="centerY" secondItem="AoU-jr-cuW" secondAttribute="centerY" id="Nhz-9v-cFp"/>
                             <constraint firstItem="hag-1i-LO4" firstAttribute="top" secondItem="rlp-Yh-99Z" secondAttribute="top" constant="-15" id="Ooh-dv-Xip"/>
                             <constraint firstAttribute="centerX" secondItem="uXW-r5-0g2" secondAttribute="centerX" constant="-600" id="Qjj-LV-oUK"/>
                             <constraint firstItem="lo1-me-uIh" firstAttribute="top" secondItem="Rww-pJ-a0t" secondAttribute="topMargin" id="TvK-sI-4sZ"/>
@@ -697,6 +703,7 @@
                             <constraint firstItem="lo1-me-uIh" firstAttribute="leading" secondItem="Rww-pJ-a0t" secondAttribute="leadingMargin" constant="-16" id="enp-lm-VLh"/>
                             <constraint firstItem="G14-99-w1O" firstAttribute="top" secondItem="lo1-me-uIh" secondAttribute="bottom" constant="75" id="eox-Tx-aaf"/>
                             <constraint firstAttribute="centerX" secondItem="feh-X8-jYW" secondAttribute="centerX" constant="-600" id="fyR-4B-KF4"/>
+                            <constraint firstAttribute="centerX" secondItem="AoU-jr-cuW" secondAttribute="centerX" id="hDL-cl-s4f"/>
                             <constraint firstAttribute="centerX" secondItem="hag-1i-LO4" secondAttribute="centerX" id="jZT-oy-LC0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rlp-Yh-99Z" secondAttribute="trailing" constant="-16" id="r4F-Ox-DWT"/>
                             <constraint firstAttribute="width" secondItem="uXW-r5-0g2" secondAttribute="width" id="spU-qJ-jTJ"/>
@@ -706,6 +713,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="MRg-2f-FmJ"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="AoU-jr-cuW" id="c0F-E2-i0a"/>
                         <outlet property="constraintButtonViewContainerBottom" destination="955-Fh-zfg" id="jTZ-Cf-vMg"/>
                         <outlet property="constraintDatePickerCenterX" destination="Qjj-LV-oUK" id="Mow-Kv-MLV"/>
                         <outlet property="constraintToolbarCenterX" destination="fyR-4B-KF4" id="RtA-t0-snD"/>
