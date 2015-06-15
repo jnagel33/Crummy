@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   let kidNumberHeight: CGFloat = 100
-  let doneButtonHeight: CGFloat = 25.0
+  let doneButtonHeight: CGFloat = 30.0
   let astheticSpacing : CGFloat = 8.0
   let phoneInterval : NSTimeInterval = 0.4
   let crummyApiService = CrummyApiService()
@@ -164,7 +164,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   }
   
   override func viewWillAppear(animated: Bool) {
-    self.activityIndicator.startAnimating()
     self.crummyApiService.listKid { (kidList, error) -> (Void) in
       if let errorDescription = error {
         let alertController = UIAlertController(title: "An Error Occurred", message: errorDescription, preferredStyle: .Alert)
@@ -176,7 +175,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       } else {
         self.kids = kidList!
         self.collectionView.reloadData()
-        self.activityIndicator.stopAnimating()
       }
     }
   }
@@ -203,7 +201,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     // adding the phone menu view
     let phoneMenuViewHeight: CGFloat =  CGFloat(kidCount * kidNumberHeight)
     var phoneMenuView = UITableView(frame: CGRect(x: 0, y: doneButtonHeight + astheticSpacing, width: phoneMenuContainer.frame.width, height: phoneMenuViewHeight))
-    //phoneMenuView.backgroundColor = UIColor.lightGrayColor()
     phoneMenuView.registerNib(phoneNib, forCellReuseIdentifier: "phoneCell")
     phoneMenuContainer.addSubview(phoneMenuView)
     phoneMenuView.delegate = self
