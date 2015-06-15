@@ -426,17 +426,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hui-bZ-FkA">
-                                <rect key="frame" x="0.0" y="64" width="10" height="486"/>
+                                <rect key="frame" x="0.0" y="64" width="10" height="472"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7py-RF-an2">
-                                <rect key="frame" x="590" y="64" width="10" height="486"/>
+                                <rect key="frame" x="590" y="64" width="10" height="472"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-7w-1oz">
-                                <rect key="frame" x="10" y="64" width="580" height="486"/>
+                                <rect key="frame" x="10" y="64" width="580" height="472"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="hlR-ct-SbM">
@@ -489,10 +489,10 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wt9-oY-btR">
-                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="536" width="600" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7k-mT-b5Y">
-                                        <rect key="frame" x="300" y="0.0" width="300" height="50"/>
+                                        <rect key="frame" x="300" y="0.0" width="300" height="64"/>
                                         <animations/>
                                         <state key="normal" image="EditButton"/>
                                         <connections>
@@ -500,7 +500,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRK-Xt-Si8">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="64"/>
                                         <animations/>
                                         <state key="normal" image="PhoneButton">
                                             <color key="titleShadowColor" red="0.93624009956012522" green="0.94136491402116407" blue="0.93047673498327854" alpha="1" colorSpace="calibratedRGB"/>
@@ -519,7 +519,7 @@
                                     <constraint firstAttribute="centerY" secondItem="R7k-mT-b5Y" secondAttribute="centerY" id="P5S-TB-5Sw"/>
                                     <constraint firstItem="zRK-Xt-Si8" firstAttribute="top" secondItem="R7k-mT-b5Y" secondAttribute="top" id="Q7x-hh-Qlr"/>
                                     <constraint firstItem="zRK-Xt-Si8" firstAttribute="width" secondItem="R7k-mT-b5Y" secondAttribute="width" id="QCc-Gk-dlq"/>
-                                    <constraint firstAttribute="height" constant="50" id="e3S-7G-4il"/>
+                                    <constraint firstAttribute="height" constant="64" id="e3S-7G-4il"/>
                                     <constraint firstAttribute="trailing" secondItem="R7k-mT-b5Y" secondAttribute="trailing" id="fZg-9v-jZ7"/>
                                     <constraint firstItem="R7k-mT-b5Y" firstAttribute="top" secondItem="wt9-oY-btR" secondAttribute="top" id="uvo-ET-69i"/>
                                 </constraints>
