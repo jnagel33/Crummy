@@ -711,7 +711,13 @@
                             <constraint firstItem="feh-X8-jYW" firstAttribute="width" secondItem="Rww-pJ-a0t" secondAttribute="width" id="zlA-KV-WRx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Events" id="MRg-2f-FmJ"/>
+                    <navigationItem key="navigationItem" title="Events" id="MRg-2f-FmJ">
+                        <barButtonItem key="rightBarButtonItem" image="FilterButton" id="wUH-Qg-q6L">
+                            <connections>
+                                <action selector="filterButtonPressed:" destination="MYK-8j-q3C" id="9xC-m0-dsZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="AoU-jr-cuW" id="c0F-E2-i0a"/>
                         <outlet property="constraintButtonViewContainerBottom" destination="955-Fh-zfg" id="jTZ-Cf-vMg"/>
@@ -970,6 +976,7 @@
     <resources>
         <image name="CalenderButton" width="40" height="40"/>
         <image name="EditButton" width="65" height="30"/>
+        <image name="FilterButton" width="22" height="25"/>
         <image name="MeasurementButton" width="64" height="62"/>
         <image name="MedsButton" width="48" height="67"/>
         <image name="PhoneButton" width="37" height="52"/>
