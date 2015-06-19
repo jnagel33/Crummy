@@ -119,25 +119,25 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       if error != nil {
         self.presentErrorAlert(error!)
       } else {
-        if !events!.isEmpty {
-          var filteredEvents = [Event]()
-          if let eventType = type {
+        if let eventType = type {
+          self.titleLabel.text = "\(eventType.filterDisplayValue()) - \(self.kidName!)"
+          self.currentFilterType = eventType
+          if !events!.isEmpty {
+            var filteredEvents = [Event]()
             for event in events! {
               if event.type == eventType {
                 filteredEvents.append(event)
-                self.titleLabel.text = "\(eventType.filterDisplayValue()) - \(self.kidName!)"
-                self.currentFilterType = event.type
               }
             }
             self.kid.events = filteredEvents
-          } else {
-            self.kid.events = events!
-            self.titleLabel.text = "Events - \(self.kidName!)"
-            self.currentFilterType = nil
           }
-          self.getSections(true)
-          self.tableView.reloadData()
+        } else {
+          self.kid.events = events!
+          self.titleLabel.text = "Events - \(self.kidName!)"
+          self.currentFilterType = nil
         }
+        self.getSections(true)
+        self.tableView.reloadData()
       }
     })
   }
@@ -369,7 +369,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.contentOffsetChangeAmount = nil
     }
   }
-  
   
   @IBAction func doneButtonPressed(sender: UIButton) {
     var event: Event?
