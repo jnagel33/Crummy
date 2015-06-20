@@ -50,8 +50,8 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   let animationDuration: Double = 0.2
   let longerAnimationDuration: Double = 0.4
   let headerViewFrame: CGRect = CGRectMake(15, 0, 300, 30)
-  let titleFontSize: CGFloat = 26
-  let titleLabel = UILabel(frame: CGRectMake(0, 0, 80, 40))
+  let titleFontSize: CGFloat = 20
+  let titleLabel = UILabel(frame: CGRectMake(0, 0, 300, 40))
   let headerFontSize: CGFloat = 23
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let eventTypeConstraintBuffer: CGFloat = 600
@@ -73,13 +73,14 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   var kidName: String?
   var allEvents = [Event]()
   var currentCell: UITableViewCell?
+  var currentFilterType: EventType?
   
   //MARK:
   //MARK: ViewDidLoad
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.activityIndicator.startAnimating()
+
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.dataSource = self
@@ -112,27 +113,31 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   //MARK: Custom Methods
   
   func getEventsByType(type: EventType?) {
+    self.activityIndicator.startAnimating()
     self.crummyApiService.getEvents(self.kidId!, completionHandler: { (events, error) -> (Void) in
+      self.activityIndicator.stopAnimating()
       if error != nil {
         self.presentErrorAlert(error!)
       } else {
-        if !events!.isEmpty {
-          var filteredEvents = [Event]()
-          if let eventType = type {
+        if let eventType = type {
+          self.titleLabel.text = "\(eventType.filterDisplayValue()) - \(self.kidName!)"
+          self.currentFilterType = eventType
+          if !events!.isEmpty {
+            var filteredEvents = [Event]()
             for event in events! {
               if event.type == eventType {
                 filteredEvents.append(event)
-                self.titleLabel.text = "\(eventType.description()) - \(self.kidName!)"
               }
             }
             self.kid.events = filteredEvents
-          } else {
-            self.kid.events = events!
           }
-          self.getSections(true)
-          self.tableView.reloadData()
-          self.activityIndicator.stopAnimating()
+        } else {
+          self.kid.events = events!
+          self.titleLabel.text = "Events - \(self.kidName!)"
+          self.currentFilterType = nil
         }
+        self.getSections(true)
+        self.tableView.reloadData()
       }
     })
   }
@@ -297,13 +302,15 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
           }
         }
       }
-      if self.allEvents.count > 0 {
-        self.sections[0].insert(event, atIndex: 0)
-      } else {
-        self.sections.append([event])
+      if self.currentFilterType == event.type || self.currentFilterType == nil {
+        if self.allEvents.count > 0 {
+          self.sections[0].insert(event, atIndex: 0)
+        } else {
+          self.sections.append([event])
+        }
+        self.getSections(false)
+        self.tableView.reloadData()
       }
-      self.getSections(false)
-      self.tableView.reloadData()
     }
   }
 
@@ -362,7 +369,6 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       self.contentOffsetChangeAmount = nil
     }
   }
-  
   
   @IBAction func doneButtonPressed(sender: UIButton) {
     var event: Event?
@@ -476,18 +482,45 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         self.tableView.reloadData()
         self.createOrUpdateEvent(event)
       }
-        self.tableView.userInteractionEnabled = true
-        self.eventTypeContainerView.userInteractionEnabled = true
-        self.constraintDatePickerCenterX.constant = -self.view.frame.width
-        self.constraintToolbarCenterX.constant = -self.view.frame.width
-        UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
-          self.view.layoutIfNeeded()
-          self.datePicker.backgroundColor = UIColor.whiteColor()
-        })
-      }
-    
+      self.tableView.userInteractionEnabled = true
+      self.eventTypeContainerView.userInteractionEnabled = true
+      self.constraintDatePickerCenterX.constant = -self.view.frame.width
+      self.constraintToolbarCenterX.constant = -self.view.frame.width
+      UIView.animateWithDuration(self.animationDuration, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+        self.datePicker.backgroundColor = UIColor.whiteColor()
+      })
+    }
     self.currentEvent = nil
-    
+  }
+  
+  @IBAction func filterButtonPressed(sender: UIBarButtonItem) {
+    let alertController = UIAlertController(title: "Filter By Type", message: nil, preferredStyle: .ActionSheet)
+    let allFilterAction = UIAlertAction(title: "All Events", style: .Default) { (action) -> Void in
+      self.getEventsByType(nil)
+    }
+    alertController.addAction(allFilterAction)
+    let medFilterAction = UIAlertAction(title: EventType.Medication.filterDisplayValue(), style: .Default) { (action) -> Void in
+      self.getEventsByType(EventType.Medication)
+    }
+    alertController.addAction(medFilterAction)
+    let measurementFilterAction = UIAlertAction(title: EventType.Measurement.filterDisplayValue(), style: .Default) { (action) -> Void in
+      self.getEventsByType(EventType.Measurement)
+    }
+    alertController.addAction(measurementFilterAction)
+    let symptomFilterAction = UIAlertAction(title: EventType.Symptom.filterDisplayValue(), style: .Default) { (action) -> Void in
+      self.getEventsByType(EventType.Symptom)
+    }
+    alertController.addAction(symptomFilterAction)
+    let temperatureFilterAction = UIAlertAction(title: EventType.Temperature.filterDisplayValue(), style: .Default) { (action) -> Void in
+      self.getEventsByType(EventType.Temperature)
+    }
+    alertController.addAction(temperatureFilterAction)
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) -> Void in
+      
+    }
+    alertController.addAction(cancelAction)
+    self.presentViewController(alertController, animated: true, completion: nil)
   }
   
   

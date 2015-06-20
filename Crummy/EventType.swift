@@ -29,4 +29,19 @@ enum EventType: Int {
       return String(self.rawValue)
     }
   }
+  
+  func filterDisplayValue() -> String {
+    switch self {
+    case .Medication:
+      return "Medications"
+    case .Measurement:
+      return "Measurements"
+    case .Symptom:
+      return "Symptoms"
+    case .Temperature:
+      return "Temperatures"
+    default:
+      return String(self.rawValue)
+    }
+  }
 }
