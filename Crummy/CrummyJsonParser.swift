@@ -52,61 +52,61 @@ class CrummyJsonParser {
   class func parseEvents(jsonData: NSData) -> [Event] {
     var events = [Event]()
     var error: NSError?
+
+        if let jsonObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String: AnyObject]] {
+          for event in jsonObject {
+            if let eventId = event["id"] as? Int {
+              var id = "\(eventId)"
+              var eventType: EventType?
+              var name: String?
+              var temperature: String?
+              var height: String?
+              var weight: String?
+              var description: String?
+              var date: NSDate?
+              if let type = event["type"] as? String {
+                if type == "Medicine" {
+                  eventType = EventType.Medication
+                } else if type == "Temperature" {
+                  eventType = EventType.Temperature
+                } else if type == "HeightWeight" {
+                  eventType = EventType.Measurement
+                } else {
+                  eventType = EventType.Symptom
+                }
+              }
+              if let datetime = event["datetime"] as? String {
+                //Need dateFormatter
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                date = dateFormatter.dateFromString(datetime)
+              }
+              if let eventName = event["meds"] as? String {
+                name = eventName
+              }
+              if let eventTemperature = event["temperature"] as? String {
+                temperature = eventTemperature
+              }
+              if let eventHeight = event["height"] as? String {
+                height = eventHeight
+              }
+              if let eventWeight = event["weight"] as? String {
+                weight = eventWeight
+              }
+              if let eventDescription = event["description"] as? String {
+                description = eventDescription
+              }
     
-    if let jsonObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String: AnyObject]] {
-      for event in jsonObject {
-        if let eventId = event["id"] as? Int {
-          var id = "\(eventId)"
-          var eventType: EventType?
-          var name: String?
-          var temperature: String?
-          var height: String?
-          var weight: String?
-          var description: String?
-          var date: NSDate?
-          if let type = event["type"] as? String {
-            if type == "Medicine" {
-              eventType = EventType.Medication
-            } else if type == "Temperature" {
-              eventType = EventType.Temperature
-            } else if type == "HeightWeight" {
-              eventType = EventType.Measurement
-            } else {
-              eventType = EventType.Symptom
+              let event = Event(id: id, type: eventType!, temperature: temperature, medication: name, height: height, weight: weight, symptom: description, date: date!)
+              events.append(event)
             }
           }
-          if let datetime = event["datetime"] as? String {
-            //Need dateFormatter
-            var dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            date = dateFormatter.dateFromString(datetime)
-          }
-          if let eventName = event["meds"] as? String {
-            name = eventName
-          }
-          if let eventTemperature = event["temperature"] as? String {
-            temperature = eventTemperature
-          }
-          if let eventHeight = event["height"] as? String {
-            height = eventHeight
-          }
-          if let eventWeight = event["weight"] as? String {
-            weight = eventWeight
-          }
-          if let eventDescription = event["description"] as? String {
-            description = eventDescription
-          }
-          
-          let event = Event(id: id, type: eventType!, temperature: temperature, medication: name, height: height, weight: weight, symptom: description, date: date!)
-          events.append(event)
         }
-      }
-    }
-    return events
+        return events
   }
   
   class func getEventId(data: NSData) -> String? {
-
+    
     do {
       let event = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject], id = event["id"] as! Int
       return "\(id)"

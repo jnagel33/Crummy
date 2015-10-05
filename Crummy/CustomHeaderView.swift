@@ -47,7 +47,8 @@ class CustomHeaderView: UIView {
     let rectanglePath = UIBezierPath(rect: CGRectMake(0, 0, self.width, 32))
     CGContextSaveGState(context)
     rectanglePath.addClip()
-    CGContextDrawLinearGradient(context, gradient2, CGPointMake(300, -0), CGPointMake(300, 32), 0)
+    CGContextDrawLinearGradient(context, gradient2, CGPointMake(300, -0), CGPointMake(300, 32), CGGradientDrawingOptions(rawValue: 0))
+    //CGContextDrawLinearGradient(context, gradient2, CGPointMake(300, -0), CGPointMake(300, 32), 0)
     CGContextRestoreGState(context)
     
     ////// Rectangle Inner Shadow
@@ -58,7 +59,7 @@ class CustomHeaderView: UIView {
     CGContextBeginTransparencyLayer(context, nil)
     let rectangleOpaqueShadow = (shadow.shadowColor as! UIColor).colorWithAlphaComponent(1)
     CGContextSetShadowWithColor(context, shadow.shadowOffset, shadow.shadowBlurRadius, rectangleOpaqueShadow.CGColor)
-    CGContextSetBlendMode(context, kCGBlendModeSourceOut)
+    CGContextSetBlendMode(context, .SourceOut)
     CGContextBeginTransparencyLayer(context, nil)
     
     rectangleOpaqueShadow.setFill()

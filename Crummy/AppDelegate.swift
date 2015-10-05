@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let attributes = [
       NSFontAttributeName : UIFont(name: "HelveticaNeue", size: self.globalNavigationItemFontSize)!
-    ] as [NSObject: AnyObject]
+    ] as [String: AnyObject]!
     
     UIBarButtonItem.appearance().setTitleTextAttributes(attributes, forState: UIControlState.Normal)
     

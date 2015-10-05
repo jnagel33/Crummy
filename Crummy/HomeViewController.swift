@@ -136,7 +136,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func loadImage(kid: Kid) -> UIImage? {
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     let documentsDirectoryPath = paths[0]
-    let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
+    let filePath = documentsDirectoryPath.stringByAppendingString("appData")
+    //let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
     if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
       let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
       let customImageLocation = "kid_photo_\(kid.kidID)"
@@ -156,7 +157,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
       destinationController?.kidList = self.kids
     } else if segue.identifier == "ShowEvents" {
       let destinationController = segue.destinationViewController as? EventsViewController
-      let indexPath = self.collectionView.indexPathsForSelectedItems().first as! NSIndexPath
+      let indexPath = self.collectionView.indexPathsForSelectedItems()?.first as NSIndexPath!
       let kid = self.kids[indexPath.row]
       destinationController?.kidId = "\(kid.kidID)"
       destinationController?.kidName = kid.name
