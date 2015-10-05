@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let navBarImage = UIImage(named: "CrummyNavBar")
     self.navigationController!.navigationBar.setBackgroundImage(navBarImage, forBarMetrics: .Default)
     
-    var buttonBar = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
+    let buttonBar = UIColor(patternImage: UIImage(named: "ContainerViewBar")!)
     self.buttonContainerView.backgroundColor = buttonBar
     
     self.activityIndicator.startAnimating()
@@ -83,7 +83,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func appWillResign() {
     if self.phoneMenuContainer != nil {
       let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-      var blurView = UIVisualEffectView(effect: blurEffect)
+      let blurView = UIVisualEffectView(effect: blurEffect)
       blurView.tag = self.blurViewTag
       blurView.frame = self.view.frame
       self.phoneMenuContainer.addSubview(blurView)
@@ -103,7 +103,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.removeObjectForKey("crummyToken")
     defaults.synchronize()
-    let storyBoard = self.navigationController?.storyboard
+    _ = self.navigationController?.storyboard
     let login = storyboard?.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
     self.presentViewController(login, animated: true, completion: nil)
   }
@@ -121,7 +121,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     cell.kidImageView.layer.borderColor = UIColor(patternImage: UIImage(named: "ImageViewBorder")!).CGColor
     let kid = self.kids[indexPath.row]
     let image = self.loadImage(kid)
-    if let kidImage = image {
+    if let _ = image {
       cell.kidImageView.image = self.loadImage(kid)
     } else {
       cell.kidImageView.image = UIImage(named: "PersonPlaceholderImage")
@@ -135,7 +135,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   
   func loadImage(kid: Kid) -> UIImage? {
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-    let documentsDirectoryPath = paths[0] as! String
+    let documentsDirectoryPath = paths[0]
     let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
     if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
       let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
@@ -200,7 +200,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     // adding the phone menu view
     let phoneMenuViewHeight: CGFloat =  CGFloat(kidCount * kidNumberHeight)
-    var phoneMenuView = UITableView(frame: CGRect(x: 0, y: doneButtonHeight + astheticSpacing, width: phoneMenuContainer.frame.width, height: phoneMenuViewHeight))
+    let phoneMenuView = UITableView(frame: CGRect(x: 0, y: doneButtonHeight + astheticSpacing, width: phoneMenuContainer.frame.width, height: phoneMenuViewHeight))
     phoneMenuView.registerNib(phoneNib, forCellReuseIdentifier: "phoneCell")
     phoneMenuContainer.addSubview(phoneMenuView)
     phoneMenuView.delegate = self
@@ -212,14 +212,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     phoneCloser.center.x = self.view.center.x
     phoneCloser.addTarget(self, action: "phoneCloserPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     phoneMenuContainer.addSubview(phoneCloser)
-    let phoneCellView = NSBundle.mainBundle().loadNibNamed("PhoneCellContainerView", owner: self, options: nil)
+    _ = NSBundle.mainBundle().loadNibNamed("PhoneCellContainerView", owner: self, options: nil)
     UIView.animateWithDuration(phoneInterval, animations: { () -> Void in
       self.phoneMenuContainer.frame.origin.y = self.view.frame.height - phoneMenuViewAndDoneHeight
     })
   } // phoneButtonPressed
   
   func phoneCloserPressed(sender: AnyObject) {
-    var kidCount = CGFloat(kids.count)
+    let kidCount = CGFloat(kids.count)
     let phoneMenuViewAndDoneHeight: CGFloat = ((self.view.frame.height) - (kidCount * kidNumberHeight) - doneButtonHeight)
     UIView.animateWithDuration(phoneInterval, animations: { () -> Void in
       self.phoneMenuContainer.frame.origin.y = self.view.frame.height + phoneMenuViewAndDoneHeight

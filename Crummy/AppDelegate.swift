@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
-    var attributes = [
+    let attributes = [
       NSFontAttributeName : UIFont(name: "HelveticaNeue", size: self.globalNavigationItemFontSize)!
     ] as [NSObject: AnyObject]
     
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     self.window?.tintColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
     
-    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+    if let _ = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
       if let
         rootViewController = self.window?.rootViewController as? LoginViewController,
         storyboard = rootViewController.storyboard {

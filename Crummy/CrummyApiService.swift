@@ -25,9 +25,9 @@ class CrummyApiService {
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
-        let status = self.statusResponse(response)
+        let status = self.statusResponse(response!)
         if status == "200" {
           if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
             let token = jsonDictionary["authentication_token"] as! String
@@ -54,16 +54,16 @@ class CrummyApiService {
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
     
-    var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
     request.HTTPMethod = "POST"
     request.HTTPBody = data
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
-        let status = self.statusResponse(response)
+        let status = self.statusResponse(response!)
         if status == "200" {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(status, nil)
@@ -89,11 +89,11 @@ class CrummyApiService {
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
-        let status = self.statusResponse(response)
+        let status = self.statusResponse(response!)
         if status == "200" {
-          let parsedKids = CrummyJsonParser.parseJsonListKid(data)
+          let parsedKids = CrummyJsonParser.parseJsonListKid(data!)
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(parsedKids, nil)
           })
@@ -115,11 +115,11 @@ class CrummyApiService {
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
-        let status = self.statusResponse(response)
+        let status = self.statusResponse(response!)
         if status == "200" {
-          let editMenuKid = CrummyJsonParser.parseJsonGetKid(data)
+          let editMenuKid = CrummyJsonParser.parseJsonGetKid(data!)
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(editMenuKid, nil)
           })
@@ -163,9 +163,9 @@ class CrummyApiService {
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
-        let status = self.statusResponse(response)
+        let status = self.statusResponse(response!)
         if status == "200" {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             completionHandler(status, nil)
@@ -193,7 +193,7 @@ class CrummyApiService {
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       
-      let status = self.statusResponse(response)
+      let status = self.statusResponse(response!)
       if status == "200" {
         
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -241,7 +241,7 @@ class CrummyApiService {
     //post
     
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      let status = self.statusResponse(response)
+      let status = self.statusResponse(response!)
       var error: NSError?
       if status == "201" || status == "200" {
         if let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? [String: AnyObject], id = jsonObject["id"] as? Int {
@@ -275,7 +275,7 @@ class CrummyApiService {
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
           if httpResponse.statusCode == 200 {
-            let events = CrummyJsonParser.parseEvents(data)
+            let events = CrummyJsonParser.parseEvents(data!)
             
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(events, nil)
@@ -297,7 +297,7 @@ class CrummyApiService {
     request.setValue("Token token=nvZPt85uUZKh3itdoQkz", forHTTPHeaderField: "Authorization")
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
           if httpResponse.statusCode == 204 {
@@ -351,12 +351,12 @@ class CrummyApiService {
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
           if httpResponse.statusCode == 201 {
             if data != nil {
-              if let id = CrummyJsonParser.getEventId(data) {
+              if let id = CrummyJsonParser.getEventId(data!) {
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                   completionHandler(id, nil)
                 })
@@ -409,7 +409,7 @@ class CrummyApiService {
     }
     let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
       if error != nil {
-        completionHandler(nil, error.description)
+        completionHandler(nil, error!.description)
       } else {
         if let httpResponse = response as? NSHTTPURLResponse {
           if httpResponse.statusCode == 200 {

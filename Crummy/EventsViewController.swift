@@ -249,7 +249,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
       }
     }
     if currentEvent != nil {
-      let viewHeight = self.view.frame.height
+      _ = self.view.frame.height
       let cellBottomY = currentCellY! + self.currentCellHeight
       let visibleView = self.view.frame.height - self.keyboardHeight
       if cellBottomY > visibleView - self.currentContainerViewHeight {
