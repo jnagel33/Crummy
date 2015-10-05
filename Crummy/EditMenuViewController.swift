@@ -114,8 +114,8 @@ class EditMenuViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    var view = CustomHeaderView(width: self.view.frame.width)
-    var headerLabel = UILabel(frame: self.headerViewFrame)
+    let view = CustomHeaderView(width: self.view.frame.width)
+    let headerLabel = UILabel(frame: self.headerViewFrame)
     headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
     headerLabel.textColor = UIColor.whiteColor()
     headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.headerFontSize)

@@ -18,7 +18,7 @@ class CrummyApiService {
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
     
-    var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+    let request = NSMutableURLRequest(URL: NSURL(string: url)!)
     request.HTTPMethod = "POST"
     request.HTTPBody = data
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -29,7 +29,8 @@ class CrummyApiService {
       } else {
         let status = self.statusResponse(response!)
         if status == "200" {
-          if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
+          do {
+          if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject] {
             let token = jsonDictionary["authentication_token"] as! String
             
             NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
@@ -37,6 +38,9 @@ class CrummyApiService {
             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
               completionHandler(status, nil)
             })
+          }
+          } catch let error as NSError {
+            print("json error: \(error.localizedDescription)")
           }
         } else {
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
