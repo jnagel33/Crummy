@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -42,7 +42,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv4-Db-fdQ">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv4-Db-fdQ">
                                         <rect key="frame" x="8" y="345" width="552" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Login">
@@ -52,7 +52,7 @@
                                             <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oce-jf-ig8"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxC-jH-47V">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxC-jH-47V">
                                         <rect key="frame" x="8" y="287" width="552" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -68,7 +68,7 @@
                                         <color key="textColor" red="0.035294117649999998" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ain-c9-gk5">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ain-c9-gk5">
                                         <rect key="frame" x="8" y="395" width="552" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Create A New User">
@@ -78,6 +78,10 @@
                                             <segue destination="2Do-ZB-hBr" kind="show" identifier="Register" id="8SY-Ch-nKq"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LiI-Dg-MON">
+                                        <rect key="frame" x="266" y="232" width="37" height="37"/>
+                                        <color key="color" red="0.20000000300000001" green="0.20000000300000001" blue="0.60000002379999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,7 +91,9 @@
                                     <constraint firstAttribute="centerX" secondItem="Ain-c9-gk5" secondAttribute="centerX" id="4vy-bm-ucG"/>
                                     <constraint firstAttribute="trailing" secondItem="61v-aP-038" secondAttribute="trailing" constant="8" id="6zH-F5-QGe"/>
                                     <constraint firstAttribute="centerX" secondItem="65j-It-waA" secondAttribute="centerX" id="ACq-uW-xrJ"/>
+                                    <constraint firstAttribute="centerY" secondItem="LiI-Dg-MON" secondAttribute="centerY" constant="-23.5" id="Crd-Vt-ejR"/>
                                     <constraint firstItem="61v-aP-038" firstAttribute="top" secondItem="65j-It-waA" secondAttribute="bottom" constant="57" id="E4r-ch-CAO"/>
+                                    <constraint firstAttribute="centerX" secondItem="LiI-Dg-MON" secondAttribute="centerX" id="G6B-L7-iaC"/>
                                     <constraint firstAttribute="trailing" secondItem="Ain-c9-gk5" secondAttribute="trailing" constant="8" id="MFC-9s-5in"/>
                                     <constraint firstItem="Ain-c9-gk5" firstAttribute="leading" secondItem="XDY-ef-CbG" secondAttribute="leading" constant="8" id="OZG-6N-tEv"/>
                                     <constraint firstAttribute="trailing" secondItem="Iv4-Db-fdQ" secondAttribute="trailing" constant="8" id="PnC-lE-2i2"/>
@@ -138,6 +144,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityWheel" destination="qzo-px-tC8" id="cB5-EA-C0m"/>
                         <outlet property="constraintContainerCenterY" destination="o56-Zb-9fA" id="17e-Rs-GXf"/>
                         <outlet property="constraintStatusViewCenterX" destination="wE4-lG-adS" id="a7H-Bd-lbg"/>
                         <outlet property="loginButton" destination="Iv4-Db-fdQ" id="kT1-4C-4lp"/>
@@ -811,40 +818,40 @@
                                 <rect key="frame" x="16" y="150" width="568" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hga-IG-p7E">
-                                        <rect key="frame" x="8" y="20" width="552" height="20.5"/>
+                                        <rect key="frame" x="8" y="20" width="552" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTQ-Fw-JOI">
-                                        <rect key="frame" x="8" y="122" width="552" height="20.5"/>
+                                        <rect key="frame" x="8" y="124" width="552" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fVd-eK-nHq">
-                                        <rect key="frame" x="8" y="169" width="552" height="30"/>
+                                        <rect key="frame" x="8" y="172" width="552" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bep-Uc-NtA">
-                                        <rect key="frame" x="8" y="66" width="552" height="30"/>
+                                        <rect key="frame" x="8" y="68" width="552" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="8 character minimum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wz-pO-D6Q">
-                                        <rect key="frame" x="8" y="144" width="552" height="14.5"/>
+                                        <rect key="frame" x="8" y="147" width="552" height="15"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.035294117649999998" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Must be a valid email address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifk-Oy-cna">
-                                        <rect key="frame" x="8" y="42" width="552" height="14.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Must be a valid email address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifk-Oy-cna">
+                                        <rect key="frame" x="8" y="43" width="552" height="15"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.035294117649999998" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -879,7 +886,7 @@
                                 <rect key="frame" x="600" y="64" width="600" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8b-x9-Cav">
-                                        <rect key="frame" x="267" y="9" width="65.5" height="21"/>
+                                        <rect key="frame" x="267" y="9" width="66" height="21"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="nem-vO-Dux"/>
@@ -984,6 +991,6 @@
         <image name="TemperatureButton" width="60" height="59"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J2D-g9-ZxQ"/>
+        <segue reference="C4c-HT-tPk"/>
     </inferredMetricsTieBreakers>
 </document>

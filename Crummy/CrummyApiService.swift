@@ -14,7 +14,6 @@ class CrummyApiService {
   let baseUrl = "http://crummy.herokuapp.com/api/v1"
   
   func postLogin(username: String, password: String, completionHandler: (String?, String?) -> (Void)) {
-    
     let url = "http://crummy.herokuapp.com/api/v1/sessions"
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)

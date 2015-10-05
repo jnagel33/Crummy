@@ -21,7 +21,7 @@ class CustomHeaderView: UIView {
     super.init(frame: CGRect(x: 0, y: 0, width: self.width, height: 32))
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
 

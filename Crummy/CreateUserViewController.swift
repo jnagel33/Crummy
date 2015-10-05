@@ -55,7 +55,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
     let username = usernameTextField.text
     let password = passwordTextField.text
     
-    self.crummyApiService.createNewUser(username, password: password, completionHandler: { (status, error) -> (Void) in
+    self.crummyApiService.createNewUser(username!, password: password!, completionHandler: { (status, error) -> (Void) in
       
       if status != nil {
         self.statusView.backgroundColor = UIColor.greenColor()
@@ -64,7 +64,7 @@ class CreateUserViewController: UIViewController, UITextFieldDelegate {
         UIView.animateWithDuration(self.animationDurationLonger, animations: { () -> Void in
           self.view.layoutIfNeeded()
         }, completion: { (finshed) -> Void in
-          self.delegate?.getUsernameFromRegister(self.usernameTextField.text)
+          self.delegate?.getUsernameFromRegister(self.usernameTextField.text!)
           self.dismissViewControllerAnimated(true, completion: nil)
         })
       } else {

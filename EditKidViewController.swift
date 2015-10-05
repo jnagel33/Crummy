@@ -59,7 +59,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     self.titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: self.titleFontSize)
     self.titleLabel.textAlignment = .Center
     self.titleLabel.textColor = self.titleColor
-    if let name = selectedKid?.name {
+    if let _ = selectedKid?.name {
       self.titleLabel.text = "Edit"
       self.loadImage()
     } else {
@@ -67,7 +67,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     }
     self.navigationItem.titleView = self.titleLabel
     
-    var cellNib = UINib(nibName: "ImagePickerCell", bundle: nil)
+    let cellNib = UINib(nibName: "ImagePickerCell", bundle: nil)
     tableView.registerNib(cellNib,
       forCellReuseIdentifier: "ImagePickerCell")
     
@@ -122,7 +122,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   func appWillResign() {
     let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-    var blurView = UIVisualEffectView(effect: blurEffect)
+    let blurView = UIVisualEffectView(effect: blurEffect)
     blurView.tag = self.blurViewTag
     blurView.frame = self.view.frame
     self.view.addSubview(blurView)
@@ -139,7 +139,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker: UIDatePicker) {
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "dd-MM-yyyy"
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     selectedKid!.DOBString = strDate
@@ -153,7 +153,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   @IBAction func donePressed(sender: UIBarButtonItem) {
     selectedKid!.notes = self.notesTextView.text
-    selectedKid!.name = self.nameTextField.text
+    selectedKid!.name = self.nameTextField.text!
     selectedKid!.nursePhone = self.consultingNurseHotline.text
     selectedKid!.insuranceId = self.insuranceTextField.text
 
@@ -215,7 +215,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     datePicker.backgroundColor = UIColor.lightGrayColor()
     if let birthDate = self.selectedKid?.DOBString {
       if birthDate != "" {
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         datePicker.date = dateFormatter.dateFromString(birthDate)!
       }
@@ -243,8 +243,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   } // datePressed
   
   func userDate (theDate : String) -> (String){
-    var dateFormatter = NSDateFormatter()
-    var dateFormatter2 = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
+    let dateFormatter2 = NSDateFormatter()
     var theDateObject = NSDate()
     dateFormatter.dateFormat = "MMMM dd, YYYY"
     dateFormatter2.dateFormat = "dd-MM-yyyy"
@@ -269,7 +269,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     
     switch textField.tag {
     case 0:
-      selectedKid!.name = textField.text
+      selectedKid!.name = textField.text!
     case 2:
       selectedKid!.insuranceId = textField.text
     case 3:
@@ -292,8 +292,8 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   func getThisTextField (theRow : Int, theText : String) -> Void {
     //take in a string value and set the kid object located in that field to that value.  Pretty simple.
     
-    var text : String = theText
-    var row : Int = theRow
+    let text : String = theText
+    let row : Int = theRow
     
     switch row {
       
@@ -348,7 +348,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
     if indexPath.row == self.pickerCellIndexPath {
       let alertController = UIAlertController(title: "Add a Photo", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
       let addExistingPhotoAction = UIAlertAction(title: "Add an Existing Photo", style: .Default, handler: { (alert) -> Void in
-        var imagePickerController = UIImagePickerController()
+        let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePickerController.allowsEditing = true
@@ -359,7 +359,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       alertController.addAction(cancelAction)
       if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
         let takePhotoAction = UIAlertAction(title: "Take a Photo", style: .Default, handler: { (alert) -> Void in
-          var imagePickerController = UIImagePickerController()
+          let imagePickerController = UIImagePickerController()
           imagePickerController.delegate = self
           imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
           imagePickerController.allowsEditing = true
@@ -384,7 +384,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   //MARK:
   //MARK: UIImagePickerControllerDelegate
   
-  func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
+  func imagePickerController(picker: UIImagePickerController, _didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
     if let photo = info[UIImagePickerControllerEditedImage] as? UIImage {
       self.kidImage = photo
       saveImage(photo)
@@ -402,7 +402,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   func saveImage(image: UIImage) {
     if self.selectedKid != nil {
       let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-      let documentsDirectoryPath = paths[0] as! String
+      let documentsDirectoryPath = paths[0] as NSString
       let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
       //var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String: AnyObject]
       var data = [String: AnyObject]()
@@ -420,7 +420,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
   
   func loadImage() {
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-    let documentsDirectoryPath = paths[0] as! String
+    let documentsDirectoryPath = paths[0] as NSString
     let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
     if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
       let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]

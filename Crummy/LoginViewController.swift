@@ -16,6 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
   @IBOutlet weak var constraintContainerCenterY: NSLayoutConstraint!
   @IBOutlet weak var constraintStatusViewCenterX: NSLayoutConstraint!
   
+  @IBOutlet weak var activityWheel: UILabel!
+  
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var statusView: UIView!
   let crummyApiService = CrummyApiService()
@@ -29,18 +31,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
     super.viewDidLoad()
     self.usernameTextField.delegate = self
     self.passwordTextField.delegate = self
+    self.activityWheel.hidden = true
     
     self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     self.view.addGestureRecognizer(self.tapGestureRecognizer!)
   }
   
   @IBAction func loginPressed(sender: UIButton) {
+    self.activityWheel.hidden = false
     let username = usernameTextField.text
     let password = passwordTextField.text
-    
-    self.crummyApiService.postLogin(username, password: password, completionHandler: { (status, error) -> (Void) in
+    self.crummyApiService.postLogin(username!, password: password!, completionHandler: { (status, error) -> (Void) in
       
       if status != nil {
+          self.activityWheel.hidden = true
           self.statusView.backgroundColor = UIColor.greenColor()
           self.statusLabel.text = "Success"
           self.constraintStatusViewCenterX.constant = 0
@@ -50,6 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
               self.performSegueWithIdentifier("ShowHomeMenu", sender: self)
           })
       } else {
+        self.activityWheel.hidden = true
         self.statusView.backgroundColor = UIColor.redColor()
         self.statusLabel.text = "Error creating user"
         self.constraintStatusViewCenterX.constant = 0
@@ -58,6 +63,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, CreateUserView
         })
       }
     })
+    
   }
   
   func dismissKeyboard() {

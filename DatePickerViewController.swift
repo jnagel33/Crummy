@@ -24,12 +24,12 @@ class DatePickerViewController: UIViewController {
   // func to set the date from the picker if no date is set.
   // https://github.com/ioscreator/ioscreator/blob/master/IOSSwiftDatePickerTutorial/IOSSwiftDatePickerTutorial/ViewController.swift
   func datePickerChanged(datePicker:UIDatePicker) {
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     
     dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
     dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
     
-    var strDate = dateFormatter.stringFromDate(datePicker.date)
+    let strDate = dateFormatter.stringFromDate(datePicker.date)
     date = strDate
     
     // call here to send back to edit kid view controller?

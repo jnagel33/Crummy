@@ -37,14 +37,14 @@ class CrummyJsonParser {
     if let
       jsonDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &jsonError) as? [String: AnyObject] {
         
-      let name = jsonDictionary["name"] as! String
-      let kidId = jsonDictionary["id"] as! Int
-      let id = String(stringInterpolationSegment: kidId)
-      var dob = jsonDictionary["dob"] as? String
-      var insuranceId = jsonDictionary["insurance_id"] as? String
-      var nursePhone = jsonDictionary["nurse_phone"] as? String
-      var notes = jsonDictionary["notes"] as? String  // Add notes when Kid obbject updated
-      editMenuKid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId, theNursePhone: nursePhone, theNotes: notes, theKidID: id)
+        let name = jsonDictionary["name"] as! String
+        let kidId = jsonDictionary["id"] as! Int
+        let id = String(stringInterpolationSegment: kidId)
+        var dob = jsonDictionary["dob"] as? String
+        var insuranceId = jsonDictionary["insurance_id"] as? String
+        var nursePhone = jsonDictionary["nurse_phone"] as? String
+        var notes = jsonDictionary["notes"] as? String  // Add notes when Kid obbject updated
+        editMenuKid = Kid(theName: name, theDOB: dob, theInsuranceID: insuranceId, theNursePhone: nursePhone, theNotes: notes, theKidID: id)
     }
     return editMenuKid
   }
@@ -106,10 +106,12 @@ class CrummyJsonParser {
   }
   
   class func getEventId(data: NSData) -> String? {
-    
-    if let event = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject], id = event["id"] as? Int {
+
+    do {
+      let event = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject], id = event["id"] as! Int
       return "\(id)"
+    } catch let error as NSError {
+      print("json error: \(error.localizedDescription)")
     }
-    return nil
   }
 }
