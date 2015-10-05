@@ -30,15 +30,15 @@ class CrummyApiService {
         let status = self.statusResponse(response!)
         if status == "200" {
           do {
-          if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject] {
-            let token = jsonDictionary["authentication_token"] as! String
-            
-            NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              completionHandler(status, nil)
-            })
-          }
+            if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject] {
+              let token = jsonDictionary["authentication_token"] as! String
+              
+              NSUserDefaults.standardUserDefaults().setObject(token, forKey: "crummyToken")
+              NSUserDefaults.standardUserDefaults().synchronize()
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(status, nil)
+              })
+            }
           } catch let error as NSError {
             print("json error: \(error.localizedDescription)")
           }
@@ -99,7 +99,7 @@ class CrummyApiService {
         if status == "200" {
           let parsedKids = CrummyJsonParser.parseJsonListKid(data!)
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-              completionHandler(parsedKids, nil)
+            completionHandler(parsedKids, nil)
           })
         }
       }
@@ -140,7 +140,6 @@ class CrummyApiService {
     let queryString = id
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
-    var error: NSError?
     var editedKid = [String: AnyObject]()
     
     editedKid["name"] = name
@@ -156,34 +155,39 @@ class CrummyApiService {
     if let kidNotes = notes {
       editedKid["notes"]  = kidNotes
     }
-    
-    let data = NSJSONSerialization.dataWithJSONObject(editedKid, options: nil, error: &error)
-    let request = NSMutableURLRequest(URL: url!)
-    request.HTTPMethod = "PATCH"
-    request.HTTPBody = data
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
-    }
-    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      if error != nil {
-        completionHandler(nil, error!.description)
-      } else {
-        let status = self.statusResponse(response!)
-        if status == "200" {
-          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            completionHandler(status, nil)
-          })
-        } else {
-          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            completionHandler(nil, status)
-          })
-        }
+    do {
+      
+      
+      let data = try NSJSONSerialization.dataWithJSONObject(editedKid, options: NSJSONWritingOptions.init(rawValue: 0))
+      let request = NSMutableURLRequest(URL: url!)
+      request.HTTPMethod = "PATCH"
+      request.HTTPBody = data
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+        request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
       }
-    })
-    dataTask.resume()
+      let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        if error != nil {
+          completionHandler(nil, error!.description)
+        } else {
+          let status = self.statusResponse(response!)
+          if status == "200" {
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              completionHandler(status, nil)
+            })
+          } else {
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              completionHandler(nil, status)
+            })
+          }
+        }
+      })
+      dataTask.resume()
+    } catch let error as NSError {
+      print("json error: \(error.localizedDescription)")
+    }
   }
-
+  
   func deleteKid(id: String, completionHandler: (String) -> (Void)) {
     
     let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
@@ -203,7 +207,7 @@ class CrummyApiService {
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
           completionHandler(status)
         })
-        } else {
+      } else {
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
           completionHandler(status)
         })
@@ -216,8 +220,7 @@ class CrummyApiService {
     // url
     let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
     let url = NSURL(string: requestUrl)
-    var request = NSMutableURLRequest(URL: url!)
-    var error: NSError?
+    let request = NSMutableURLRequest(URL: url!)
     var editedKid = [String: AnyObject]()
     editedKid["name"] = name
     if let kidDob = dobString {
@@ -232,38 +235,49 @@ class CrummyApiService {
     if let kidNotes = notes {
       editedKid["notes"]  = kidNotes
     }
-    
-    let data = NSJSONSerialization.dataWithJSONObject(editedKid, options: nil, error: &error)
-    request.HTTPMethod = "POST"
-    request.HTTPBody = data
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-    // token
-    if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
-      request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
-    }
-    //post
-    
-    let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      let status = self.statusResponse(response!)
-      var error: NSError?
-      if status == "201" || status == "200" {
-        if let jsonObject = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? [String: AnyObject], id = jsonObject["id"] as? Int {
-          let kidID = "\(id)"
-          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-            completionHandler(kidID, status)
-          })
-        }
-      } else {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-          completionHandler(nil, status)
-        })
+    do {
+      
+      let data = try NSJSONSerialization.dataWithJSONObject(editedKid, options: NSJSONWritingOptions.init(rawValue: 0))
+      request.HTTPMethod = "POST"
+      request.HTTPBody = data
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      
+      // token
+      if let token = NSUserDefaults.standardUserDefaults().objectForKey("crummyToken") as? String {
+        request.setValue("Token token=\(token)", forHTTPHeaderField: "Authorization")
       }
-    })
-    
-    dataTask.resume()
+      //post
+      
+      let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        let status = self.statusResponse(response!)
+        if status == "201" || status == "200" {
+          do {
+            if let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as?[String: AnyObject], id = jsonObject["id"] as? Int {
+              let kidID = "\(id)"
+              NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(kidID, status)
+              })
+            } // Int
+          } catch let error as NSError {
+            print("json error: \(error.localizedDescription)")
+            
+          } // catch for inner "do"
+        }
+          
+        else {
+          NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+            completionHandler(nil, status)
+          })
+        } //status == "201" || status == "200"
+      })
+      
+      dataTask.resume()
+      
+    } catch let error as NSError {
+      print("json error: \(error.localizedDescription)")
+    }
   } // postNewKid
-
+  
   func getEvents(id: String, completionHandler: ([Event]?, String?) -> (Void)) {
     let eventUrl = "\(self.baseUrl)/kids/\(id)/events/"
     let url = NSURL(string: eventUrl)
@@ -293,7 +307,7 @@ class CrummyApiService {
   
   func deleteEvent(kidId: String, eventId: String, completionHandler: (String?, String?) -> (Void)) {
     let deleteEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(eventId)"
-//    let deleteEventUrl = "http://crummy.herokuapp.com/api/v1/kids/45/events/144"
+    //    let deleteEventUrl = "http://crummy.herokuapp.com/api/v1/kids/45/events/144"
     let url = NSURL(string: deleteEventUrl)
     
     let request = NSMutableURLRequest(URL: url!)
@@ -318,9 +332,8 @@ class CrummyApiService {
   func createEvent(kidId: String, event: Event, completionHandler: (String?, String?) -> (Void)) {
     let createEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/"
     let url = NSURL(string: createEventUrl)
-    var error: NSError?
     
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let eventDate = dateFormatter.stringFromDate(event.date)
     
@@ -343,8 +356,8 @@ class CrummyApiService {
       newEvent["meds"] = eventMeds
     }
     
-    
-    let data = NSJSONSerialization.dataWithJSONObject(newEvent, options: nil, error: &error)
+    do {
+    let data = try NSJSONSerialization.dataWithJSONObject(newEvent, options: NSJSONWritingOptions.init(rawValue: 0))
     
     let request = NSMutableURLRequest(URL: url!)
     request.HTTPMethod = "POST"
@@ -364,21 +377,28 @@ class CrummyApiService {
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                   completionHandler(id, nil)
                 })
-              }
-            }
-          }
-        }
-      }
+              } // Crummy JSON Parser
+            } // data
+          }  // statuscode
+        } // if let
+      } // if else
     })
     dataTask.resume()
+    
+    } catch let error as NSError {
+      print("json error: \(error.localizedDescription)")
+    }
+    
+    
+    
+    
   }
   
   func editEvent(kidId: String, event: Event, completionHandler: (Event?, String?) -> (Void)) {
     let updateEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(event.id!)"
     let url = NSURL(string: updateEventUrl)
-    var error: NSError?
     
-    var dateFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     let eventDate = dateFormatter.stringFromDate(event.date)
     
@@ -401,8 +421,8 @@ class CrummyApiService {
       updatedEvent["meds"] = eventMeds
     }
     
-    
-    let data = NSJSONSerialization.dataWithJSONObject(updatedEvent, options: nil, error: &error)
+    do {
+    let data = try NSJSONSerialization.dataWithJSONObject(updatedEvent, options: NSJSONWritingOptions.init(rawValue: 0))
     
     let request = NSMutableURLRequest(URL: url!)
     request.HTTPMethod = "PATCH"
@@ -425,6 +445,10 @@ class CrummyApiService {
       }
     })
     dataTask.resume()
+    } catch let error as NSError {
+      print("json error: \(error.localizedDescription)")
+    }
+    
   }
   
   func statusResponse(response: NSURLResponse) -> String {

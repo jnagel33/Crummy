@@ -56,7 +56,7 @@ class EventsViewController: UIViewController, UITextFieldDelegate, UITableViewDa
   let titleColor = UIColor(red: 0.060, green: 0.158, blue: 0.408, alpha: 1.000)
   let eventTypeConstraintBuffer: CGFloat = 600
   
-  var translatesAutoresizingMaskIntoConstraints: Bool
+  var translatesAutoresizingMaskIntoConstraints: Bool!
   var currentCellHeight: CGFloat = 0
   var currentContainerViewHeight: CGFloat = 0
   var constraintContainerViewBottom: NSLayoutConstraint?

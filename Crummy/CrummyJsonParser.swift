@@ -9,7 +9,7 @@ import Foundation
 
 class CrummyJsonParser {
   
-  class func parseJsonListKid(jsonData: NSData) -> [Kid] {
+  class func parseJsonListKid(jsonData: NSData) -> [Kid]? {
     var parse = [Kid]()
     do {
       if let
@@ -31,11 +31,11 @@ class CrummyJsonParser {
     }
     catch let error as NSError {
       print("json error: \(error.localizedDescription)")
-      return parseJsonListKid(jsonData)
+      return nil
     }
   }
   
-  class func parseJsonGetKid(jsonData: NSData) -> Kid {
+  class func parseJsonGetKid(jsonData: NSData) -> Kid? {
     var editMenuKid: Kid!
     do {
       if let
@@ -54,11 +54,11 @@ class CrummyJsonParser {
     }
     catch let error as NSError {
       print("json error: \(error.localizedDescription)")
-      return editMenuKid
+      return nil
     }
   }
   
-  class func parseEvents(jsonData: NSData) -> [Event] {
+  class func parseEvents(jsonData: NSData) -> [Event]? {
     var events = [Event]()
     
     do {
@@ -115,7 +115,7 @@ class CrummyJsonParser {
     }
     catch let error as NSError {
       print("json error: \(error.localizedDescription)")
-      return events
+      return nil
     }
   }
   
@@ -126,7 +126,7 @@ class CrummyJsonParser {
       return "\(id)"
     } catch let error as NSError {
       print("json error: \(error.localizedDescription)")
-      return "Error" 
+      return nil
     }
   }
 }
