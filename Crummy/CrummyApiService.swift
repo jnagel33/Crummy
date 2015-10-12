@@ -11,10 +11,10 @@ class CrummyApiService {
   
   static let sharedInstance: CrummyApiService = CrummyApiService()
   
-  let baseUrl = "http://crummy.herokuapp.com/api/v1"
+  let baseUrl = "https://crummy.herokuapp.com/api/v1"
   
   func postLogin(username: String, password: String, completionHandler: (String?, String?) -> (Void)) {
-    let url = "http://crummy.herokuapp.com/api/v1/sessions"
+    let url = "https://crummy.herokuapp.com/api/v1/sessions"
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
     
@@ -54,7 +54,7 @@ class CrummyApiService {
   
   func createNewUser(username: String, password: String, completionHandler: (String?, String?) -> (Void)) {
     
-    let url = "http://crummy.herokuapp.com/api/v1/users"
+    let url = "https://crummy.herokuapp.com/api/v1/users"
     let parameterString = "email=\(username)" + "&" + "password=\(password)"
     let data = parameterString.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
     
@@ -84,7 +84,7 @@ class CrummyApiService {
   
   func listKid(completionHandler: ([Kid]?, String?) -> (Void)) {
     
-    let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
+    let requestUrl = "https://crummy.herokuapp.com/api/v1/kids"
     
     let url = NSURL(string: requestUrl)
     let request = NSMutableURLRequest(URL: url!)
@@ -109,7 +109,7 @@ class CrummyApiService {
   
   func getKid(id: String, completionHandler: (Kid?, String?) -> (Void)) {
     
-    let kidIdUrl = "http://crummy.herokuapp.com/api/v1/kids/"
+    let kidIdUrl = "https://crummy.herokuapp.com/api/v1/kids/"
     let queryString = id
     let requestUrl = kidIdUrl + queryString
     let url = NSURL(string: requestUrl)
@@ -218,7 +218,7 @@ class CrummyApiService {
   
   func postNewKid(name: String, dobString: String?, insuranceID: String?, nursePhone: String?, notes: String?, completionHandler: (String?, String?) -> Void) {
     // url
-    let requestUrl = "http://crummy.herokuapp.com/api/v1/kids"
+    let requestUrl = "https://crummy.herokuapp.com/api/v1/kids"
     let url = NSURL(string: requestUrl)
     let request = NSMutableURLRequest(URL: url!)
     var editedKid = [String: AnyObject]()
@@ -307,7 +307,7 @@ class CrummyApiService {
   
   func deleteEvent(kidId: String, eventId: String, completionHandler: (String?, String?) -> (Void)) {
     let deleteEventUrl = "\(self.baseUrl)/kids/\(kidId)/events/\(eventId)"
-    //    let deleteEventUrl = "http://crummy.herokuapp.com/api/v1/kids/45/events/144"
+    //    let deleteEventUrl = "https://crummy.herokuapp.com/api/v1/kids/45/events/144"
     let url = NSURL(string: deleteEventUrl)
     
     let request = NSMutableURLRequest(URL: url!)

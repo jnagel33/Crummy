@@ -134,19 +134,37 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   //MARK: Load Image
   
   func loadImage(kid: Kid) -> UIImage? {
-    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-    let documentsDirectoryPath = paths[0]
-    let filePath = documentsDirectoryPath.stringByAppendingString("appData")
-    //let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
-    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
-      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+    let paths = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+    
+    let filePath = paths.URLByAppendingPathComponent("appData")
+    
+    
+//    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//    let documentsDirectoryPath = paths[0]
+//    let filePath = documentsDirectoryPath.URLByAppendingPathComponent("appData")
+
+    do {
+      try NSFileManager.defaultManager().createDirectoryAtPath(filePath.path!, withIntermediateDirectories: true, attributes: nil)
+      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath.path!) as! [String: AnyObject]
       let customImageLocation = "kid_photo_\(kid.kidID)"
       if let imageData = savedData[customImageLocation] as? NSData {
         return UIImage(data: imageData)
       }
+    } catch let error as NSError {
+      NSLog("Unable to create directory \(error.debugDescription)")
+      return nil
     }
-    return nil
-  }
+//    
+//
+//    
+//    if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+//      let savedData = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as! [String: AnyObject]
+//      let customImageLocation = "kid_photo_\(kid.kidID)"
+//      if let imageData = savedData[customImageLocation] as? NSData {
+//        return UIImage(data: imageData)
+//      }
+//    }
+}
   
     //MARK:
   //MARK: prepareForSegue
@@ -261,4 +279,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 100
   }
+}
+
+public extension String {
+  var NS: NSString { return (self as NSString) }
 }

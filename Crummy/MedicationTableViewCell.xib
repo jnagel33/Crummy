@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -11,10 +12,12 @@
             <rect key="frame" x="0.0" y="0.0" width="407" height="56"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pzm-Ls-wOQ" id="N9S-kz-LnJ">
+                <rect key="frame" x="0.0" y="0.0" width="407" height="55.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnG-iX-TSs">
                         <rect key="frame" x="364" y="10" width="35" height="35"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="Po4-hJ-r2H"/>
                             <constraint firstAttribute="width" constant="35" id="hYc-8V-GfM"/>
@@ -25,12 +28,14 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meds:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ck-N3-tLh">
                         <rect key="frame" x="86" y="18" width="47" height="20"/>
+                        <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="336-uM-GuL">
                         <rect key="frame" x="8" y="13" width="70" height="30"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="IR9-Ia-RjY"/>
                         </constraints>
@@ -41,11 +46,13 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="med" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fau-SL-DNc">
                         <rect key="frame" x="141" y="18" width="215" height="20"/>
+                        <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="2Ck-N3-tLh" firstAttribute="leading" secondItem="336-uM-GuL" secondAttribute="trailing" constant="8" id="0re-Wn-Qx6"/>
                     <constraint firstAttribute="centerY" secondItem="OnG-iX-TSs" secondAttribute="centerY" id="BNZ-qB-wk2"/>
@@ -58,6 +65,7 @@
                     <constraint firstAttribute="centerY" secondItem="336-uM-GuL" secondAttribute="centerY" id="pNN-eL-5qy"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <color key="backgroundColor" red="0.74121500600000001" green="1" blue="0.84004262799999996" alpha="0.88" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="duplicateButton" destination="OnG-iX-TSs" id="OzY-IC-Crj"/>

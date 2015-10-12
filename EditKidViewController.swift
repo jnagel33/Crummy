@@ -404,7 +404,7 @@ class EditKidViewController: UITableViewController, UITextFieldDelegate, UITextV
       let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
       let documentsDirectoryPath = paths[0] as NSString
       let filePath = documentsDirectoryPath.stringByAppendingPathComponent("appData")
-      //var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String: AnyObject]
+//      var data = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String: AnyObject]
       var data = [String: AnyObject]()
       if let dataObj = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String: AnyObject]  {
         data = dataObj
