@@ -164,6 +164,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //        return UIImage(data: imageData)
 //      }
 //    }
+    
+    // says requires a return statement here?  Why are the existing return statements not enough? I feel its because of the "if let".  Is there something I should use instead?  Thanks for looking! 
 }
   
     //MARK:
